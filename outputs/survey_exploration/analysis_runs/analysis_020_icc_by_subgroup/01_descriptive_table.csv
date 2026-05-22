@@ -1,0 +1,11 @@
+year,subgroup,n_children,n_families,icc_raw,icc_after_parent_ideology,pct_from_parent_ideology
+2014,all multi-child,2378,1091,0.26,0.23,11.4
+2014,rural families,1207,540,0.262,0.221,15.7
+2014,urban families,1142,537,0.255,0.236,7.5
+2014,older sibship,1196,559,0.187,0.159,14.9
+2014,younger sibship,1182,532,0.298,0.27,9.2
+2020,all multi-child,2584,1195,0.196,0.184,6.4
+2020,rural families,1023,468,0.217,0.212,2.6
+2020,urban families,1526,710,0.168,0.15,11.0
+2020,older sibship,1300,604,0.147,0.138,6.1
+2020,younger sibship,1284,591,0.17,0.16,6.0
