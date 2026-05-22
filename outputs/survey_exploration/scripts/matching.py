@@ -16,6 +16,38 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import StandardScaler
 
 
+def psm_att_boot(df: pd.DataFrame, treat_col: str, outcome_col: str,
+                 covariate_cols: list[str], caliper: float | None = None,
+                 n_boot: int = 300, seed: int = 0) -> dict:
+    """PSM ATT with BOOTSTRAP inference (re-matches on each resample).
+
+    Fixes the over-optimistic paired-t p-value from matching-with-replacement by
+    resampling rows with replacement, recomputing the ATT each time, and taking the
+    bootstrap SD as the SE. Returns att, boot_se, p (normal approx), and the 2.5/97.5
+    percentile CI.
+    """
+    point = psm_att(df, treat_col, outcome_col, covariate_cols, caliper)["att"]
+    rng = np.random.default_rng(seed)
+    d = df[[treat_col, outcome_col] + covariate_cols].dropna().reset_index(drop=True)
+    n = len(d)
+    atts = []
+    for _ in range(n_boot):
+        bs = d.iloc[rng.integers(0, n, n)]
+        if bs[treat_col].nunique() < 2:
+            continue
+        atts.append(psm_att(bs, treat_col, outcome_col, covariate_cols, caliper)["att"])
+    atts = np.asarray(atts, dtype="float64")
+    se = float(atts.std(ddof=1))
+    z = point / se if se else float("nan")
+    p = float(2 * stats.norm.sf(abs(z))) if se else float("nan")
+    return {
+        "att": float(point), "boot_se": se, "p": p,
+        "ci_lo": float(np.percentile(atts, 2.5)),
+        "ci_hi": float(np.percentile(atts, 97.5)),
+        "n_boot": int(len(atts)),
+    }
+
+
 def psm_att(df: pd.DataFrame, treat_col: str, outcome_col: str,
             covariate_cols: list[str], caliper: float | None = None) -> dict:
     """Nearest-neighbour PSM estimate of the ATT.

@@ -42,3 +42,19 @@ def test_psm_reports_counts_and_keys():
     for k in ("att", "se", "t", "p", "n_treated", "n_control"):
         assert k in res
     assert res["n_treated"] > 0 and res["n_control"] > 0
+
+
+def test_psm_bootstrap_recovers_effect_with_positive_se():
+    df = _confounded(effect=1.0, seed=3)
+    res = M.psm_att_boot(df, "treat", "y", ["x"], n_boot=80, seed=0)
+    assert 0.7 <= res["att"] <= 1.3
+    assert res["boot_se"] > 0
+    assert res["p"] < 0.05
+    assert res["ci_lo"] < res["att"] < res["ci_hi"]
+
+
+def test_psm_bootstrap_no_effect_ci_contains_zero():
+    df = _confounded(effect=0.0, seed=4)
+    res = M.psm_att_boot(df, "treat", "y", ["x"], n_boot=80, seed=0)
+    assert res["ci_lo"] <= 0.0 <= res["ci_hi"]
+    assert res["p"] > 0.05
