@@ -1,0 +1,13 @@
+year,model,n,term,coef,se,t
+2014,OLS ideation ~ eduy*female,29765,const,0.65125,0.00324,200.71
+2014,OLS ideation ~ eduy*female,29765,eduy,-0.00631,0.00033,-19.35
+2014,OLS ideation ~ eduy*female,29765,female,0.02245,0.00364,6.16
+2014,OLS ideation ~ eduy*female,29765,eduy_x_female,-0.00321,0.00041,-7.9
+2014,OLS ideation ~ eduy*female,29765,age_c,0.02446,0.00077,31.61
+2014,OLS ideation ~ eduy*female,29765,age_c2,-0.00713,0.00031,-22.91
+2020,OLS ideation ~ eduy*female,21404,const,0.64103,0.0047,136.4
+2020,OLS ideation ~ eduy*female,21404,eduy,-0.00894,0.00042,-21.15
+2020,OLS ideation ~ eduy*female,21404,female,0.01948,0.00526,3.7
+2020,OLS ideation ~ eduy*female,21404,eduy_x_female,-0.00665,0.00051,-13.05
+2020,OLS ideation ~ eduy*female,21404,age_c,0.04051,0.00098,41.32
+2020,OLS ideation ~ eduy*female,21404,age_c2,-0.00974,0.00042,-23.4
