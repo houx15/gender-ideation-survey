@@ -12,7 +12,7 @@ findings are summarised at the end of this file.
 | **Gender-ideation measurement** | **yes** | ACWF, CFPS, CGSS | core battery → [0,1] index | 7k–40k/wave | CFPS α low (0.37/0.51); cross-survey levels not comparable | factor/IRT; sub-scales |
 | **Individual practice — cohort/gender** | **yes** | CFPS (CGSS extendable) | index, birth year, gender | 31k/23k | 2 waves → no APC separation; no weights | replicate in CGSS; add weights |
 | **Couple ideation matching** | **yes** | CFPS 2014 | `pid_s`, both indices | 21.7k dyads | 2020 spouse link unresolved; co-residence | difference/distance/типology; 2020 roster |
-| **First marriage / first birth timing** | **partial** | CFPS, CGSS | marriage status, `a70` 1st-marriage yr, fertility | large | person-year files not built; timing vs attitude ordering | build event-history structure |
+| **First marriage timing** | **partial (done, descriptive)** | CGSS | `a70` 1st-marriage yr, birth yr | 71.6k | reverse time order → event-history NOT identifiable (attitude measured post-marriage) | analysis_022; needs youth-baseline panel for causal timing |
 | **Work / leadership outcomes** | **yes (done, CFPS)** | CFPS, CGSS | employment, income, mgmt qg14 | 22k/16k employed | occupation/sector still uncoded; 2014 wage scale | analysis_005; code occupation/sector next |
 | **Education / science outcomes** | **yes (done, CFPS)** | CFPS, CGSS, **CEPS** | eduy; expectation/science (CEPS) | 30k/21k | adult edu precedes attitude (ordering); CEPS no ideology battery | analysis_006; CEPS for youth science |
 | **Parent → child transmission** | **yes (done)** | CFPS 2014/2020 | `pid_f`/`pid_m`, both indices | 5.6k/4.1k both-parent | co-residence bias; not causal | analysis_008; formal mother=father test |
@@ -83,6 +83,8 @@ locking the index to `surveys/processed`). All associations are cross-sectional 
 | 018 sibling ICC + family FE | 5.7 | Sibling ICC of ideology ≈0.20–0.26 (family-clustered), but parents' measured ideology explains only 6–11% of it (shared environment dominates); family-FE: daughters less traditional than own brothers (−0.044→−0.101, p<0.001, widening) |
 | 019 population weights | 5.1/5.7 | CFPS weights (WLS, robust SEs): weighted mean ideation slightly lower; 2014 "women more traditional" gap → n.s. (sampling artifact); 2020 women-less-traditional & transmission unchanged → population-robust |
 | 020 ICC by subgroup | 5.7 | Ideology family-clustered everywhere (ICC 0.15–0.30), modestly higher in rural & younger sibships; parents' measured ideology explains only 3–16% in every subgroup → shared environment dominates (esp. rural 2020) |
+| 021 CGSS cohort replication | 5.1 | Cohort×gender crossover replicates across 8 CGSS waves (N=86,318): F−M gap +0.012 (1930s) → −0.120 (1990s+); decade×female −0.022 (t=−30.7) |
+| 022 marriage timing | 5.2 | Ever-married CGSS (N=71,560): more traditional → younger first marriage, steeper for women (ideation −1.8 yr, ×female −1.3); DESCRIPTIVE only (reverse time order; event-history not identifiable) |
 
 **Variable handling verified** (`08_variable_handling_verification.md`, `scripts/verify_coding.py`):
 missing/special codes excluded everywhere; nominal categoricals never used as continuous;
