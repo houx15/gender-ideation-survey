@@ -1,0 +1,2 @@
+note
+"CFPS 2014 only. Family income unavailable (no CFPS family file; 2020 has no personal-total-income var). SES proxied by parents' personal total income (p_income, ~47% legitimate zeros = non-earners). Bootstrap n=300."

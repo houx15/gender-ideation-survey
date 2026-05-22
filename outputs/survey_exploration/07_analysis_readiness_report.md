@@ -79,6 +79,7 @@ locking the index to `surveys/processed`). All associations are cross-sectional 
 | 014 CEPS resources PSM | 5.5 | Girls' educational-investment advantage (expectations/tutoring/spend) robust to matching (p<0.0001); raw chore & desk gaps flip sign when matching on sibship size → confounded by son-biased fertility |
 | 015 transmission corr+PSM | 5.7 | Parent↔child ideation r≈0.19–0.20 (p<0.001); PSM (traditional vs egalitarian parent, matched on parent education + child age/sex) ATT +0.063/+0.041, ≪0.001 → transmission robust to matching |
 | 016 transmission PSM enhanced | 5.7 | Formative window 16–30 + urban/rural match + **bootstrap SEs**: ATT ≈0.04–0.07, bootstrap p<0.05 everywhere (CIs exclude 0); bootstrap SE ~2× paired-t (confirms paired-t was optimistic), but effect robust |
+| 017 transmission + SES proxy | 5.7 | Adding parent income (2014; no family file, 2020 lacks income) modestly attenuates ATT 0.068→0.058 (still p≪0.001, CI excludes 0); transmission not an SES artifact as far as proxied (edu+urban+income) |
 
 **Variable handling verified** (`08_variable_handling_verification.md`, `scripts/verify_coding.py`):
 missing/special codes excluded everywhere; nominal categoricals never used as continuous;

@@ -1,0 +1,4 @@
+spec,n_treated,att,boot_se,boot_ci,boot_p
+edu+urban (no income),2523,0.0675,0.0092,"[0.046, 0.083]",0.0
+edu+urban+INCOME,2519,0.0583,0.0075,"[0.050, 0.079]",0.0
+"edu+urban+INCOME, formative 16-30",2008,0.0478,0.0096,"[0.033, 0.073]",1e-06
