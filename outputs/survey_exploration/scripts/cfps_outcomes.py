@@ -36,3 +36,24 @@ def currently_married(qea0: pd.Series) -> pd.Series:
 def clean_continuous(s: pd.Series, lo: float, hi: float) -> pd.Series:
     """Keep values within [lo, hi]; everything else (missing codes, out-of-range) -> NaN."""
     return s.where(s.between(lo, hi))
+
+
+# CFPS `employ`/`employ2014`: 1=employed; 0/2=unemployed, 3=left labour force,
+# 9=not economically active; 8=ambiguous, negatives=missing.
+NOT_EMPLOYED_CODES = {0, 2, 3, 9}
+
+
+def employed(s: pd.Series) -> pd.Series:
+    """1 if currently employed (code 1), 0 if non-working ({0,2,3,9}); else NaN."""
+    out = pd.Series(np.nan, index=s.index, dtype="float64")
+    out[s == 1] = 1.0
+    out[s.isin(NOT_EMPLOYED_CODES)] = 0.0
+    return out
+
+
+def yes_no(s: pd.Series) -> pd.Series:
+    """CFPS yes/no item: 1=是 -> 1; {0,5}=否 -> 0; not-applicable/missing -> NaN."""
+    out = pd.Series(np.nan, index=s.index, dtype="float64")
+    out[s == 1] = 1.0
+    out[s.isin({0, 5})] = 0.0
+    return out

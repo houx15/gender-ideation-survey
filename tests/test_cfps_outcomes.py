@@ -50,3 +50,30 @@ def test_clean_continuous_default_lower_bound_excludes_negatives():
     out = C.clean_continuous(s, lo=0, hi=100)
     assert math.isnan(out[0]) and math.isnan(out[1])
     assert out[2] == 5.0
+
+
+# ---- employment / yes-no helpers (SPEC 5.3) ----
+# employ: 1 = employed; 0/2 = unemployed, 3 = left labour force, 9 = not economically
+# active -> 0; 8 (ambiguous) and negatives -> NaN.
+
+def test_employed_one_for_working_zero_for_non_working():
+    s = pd.Series([1, 0, 2, 3, 9])
+    out = C.employed(s)
+    assert list(out) == [1.0, 0.0, 0.0, 0.0, 0.0]
+
+
+def test_employed_ambiguous_and_missing_are_nan():
+    s = pd.Series([8, -8, -1])
+    assert all(math.isnan(x) for x in C.employed(s))
+
+
+# yes_no: qg14/qg17 style -> 1=是 ->1 ; 0=否 / 5=否 ->0 ; 79/-8/.. -> NaN
+
+def test_yes_no_maps_yes_to_one_no_to_zero():
+    s = pd.Series([1, 0, 5])
+    assert list(C.yes_no(s)) == [1.0, 0.0, 0.0]
+
+
+def test_yes_no_not_applicable_and_missing_are_nan():
+    s = pd.Series([79, -8, -2])
+    assert all(math.isnan(x) for x in C.yes_no(s))

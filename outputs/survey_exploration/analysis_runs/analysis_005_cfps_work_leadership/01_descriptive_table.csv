@@ -1,0 +1,13 @@
+year,ideation_tertile,gender,n,pct_employed,mean_log_wage,pct_mgmt
+2014,low,male,6983,81.9,5.134,15.4
+2014,low,female,6530,68.2,4.343,11.7
+2014,mid,male,3989,80.0,4.309,14.3
+2014,mid,female,4162,65.9,2.761,9.6
+2014,high,male,4508,82.5,3.9,12.0
+2014,high,female,5382,63.7,2.236,7.1
+2020,low,male,5096,86.0,10.494,17.1
+2020,low,female,5428,72.6,10.184,11.4
+2020,mid,male,2833,84.4,10.372,15.9
+2020,mid,female,2355,65.0,9.775,9.2
+2020,high,male,3460,84.3,10.225,12.3
+2020,high,female,3520,65.4,9.347,6.4

@@ -1,0 +1,35 @@
+year,model,n,term,coef,se,t
+2014,LPM employed,30073,const,0.9247,0.0119,77.87
+2014,LPM employed,30073,ideation,0.073,0.019,3.85
+2014,LPM employed,30073,female,-0.103,0.0168,-6.14
+2014,LPM employed,30073,ideation_x_female,-0.0921,0.0266,-3.46
+2014,LPM employed,30073,age_c,-0.0076,0.002,-3.83
+2014,LPM employed,30073,age_c2,-0.047,0.0008,-59.15
+2014,OLS log_wage (employed),22149,const,6.2959,0.1544,40.79
+2014,OLS log_wage (employed),22149,ideation,-1.8619,0.2464,-7.56
+2014,OLS log_wage (employed),22149,female,-0.1606,0.2278,-0.7
+2014,OLS log_wage (employed),22149,ideation_x_female,-2.0345,0.3632,-5.6
+2014,OLS log_wage (employed),22149,age_c,-1.0128,0.0273,-37.1
+2014,OLS log_wage (employed),22149,age_c2,-0.0736,0.0144,-5.12
+2014,LPM mgmt (employed),7540,const,0.1828,0.0166,10.99
+2014,LPM mgmt (employed),7540,ideation,-0.07,0.0277,-2.53
+2014,LPM mgmt (employed),7540,female,-0.0247,0.0248,-0.99
+2014,LPM mgmt (employed),7540,ideation_x_female,-0.0327,0.0422,-0.77
+2014,LPM mgmt (employed),7540,age_c,-0.0005,0.0032,-0.15
+2020,LPM employed,21209,const,0.9372,0.0121,77.16
+2020,LPM employed,21209,ideation,0.0857,0.0207,4.14
+2020,LPM employed,21209,female,-0.1096,0.0159,-6.9
+2020,LPM employed,21209,ideation_x_female,-0.108,0.0273,-3.95
+2020,LPM employed,21209,age_c,-0.0041,0.0026,-1.57
+2020,LPM employed,21209,age_c2,-0.0441,0.0011,-41.79
+2020,OLS log_wage (employed),9486,const,10.8617,0.069,157.44
+2020,OLS log_wage (employed),9486,ideation,-0.3832,0.1201,-3.19
+2020,OLS log_wage (employed),9486,female,-0.0616,0.0915,-0.67
+2020,OLS log_wage (employed),9486,ideation_x_female,-1.0235,0.1725,-5.93
+2020,OLS log_wage (employed),9486,age_c,-0.0642,0.0155,-4.14
+2020,OLS log_wage (employed),9486,age_c2,-0.1693,0.0104,-16.22
+2020,LPM mgmt (employed),8215,const,0.2124,0.015,14.2
+2020,LPM mgmt (employed),8215,ideation,-0.1072,0.0271,-3.96
+2020,LPM mgmt (employed),8215,female,-0.0722,0.02,-3.61
+2020,LPM mgmt (employed),8215,ideation_x_female,0.0156,0.0384,0.41
+2020,LPM mgmt (employed),8215,age_c,-0.0072,0.0033,-2.16
