@@ -1,0 +1,9 @@
+year,parent,child,n,corr
+2014,mother,daughter,1987,0.154
+2014,mother,son,3577,0.12
+2014,father,daughter,1987,0.149
+2014,father,son,3577,0.163
+2020,mother,daughter,1672,0.152
+2020,mother,son,2448,0.127
+2020,father,daughter,1672,0.147
+2020,father,son,2448,0.128

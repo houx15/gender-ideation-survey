@@ -7,6 +7,8 @@ wife/husband by the female flag. It must:
   - drop egos whose spouse is not in the sample,
   - drop same-sex / ambiguous pairs (can't assign wife vs husband).
 """
+import math
+
 import pandas as pd
 
 import cfps_linkage as K
@@ -46,3 +48,36 @@ def test_build_couples_drops_same_sex_pairs():
     })
     out = K.build_couples(df, "pid", "pid_s", "female", ["ideation"])
     assert len(out) == 0
+
+
+# ---- attach_parents: child ego rows gain mother_/father_ values ----
+
+def _kid_frame():
+    return pd.DataFrame({
+        "pid":      [1, 2, 3, 4],
+        "pid_f":    [2, 0, 0, 8],   # child1's father=2; 4's father (8) not in sample
+        "pid_m":    [3, 0, 0, 0],   # child1's mother=3
+        "ideation": [0.9, 0.4, 0.7, 0.5],
+    })
+
+
+def test_attach_parents_maps_father_and_mother_values():
+    out = K.attach_parents(_kid_frame(), "pid", "pid_f", "pid_m", ["ideation"])
+    row = out.set_index("pid").loc[1]
+    assert row["father_ideation"] == 0.4
+    assert row["mother_ideation"] == 0.7
+
+
+def test_attach_parents_missing_or_zero_pointer_is_nan():
+    out = K.attach_parents(_kid_frame(), "pid", "pid_f", "pid_m", ["ideation"])
+    out = out.set_index("pid")
+    # child 2 has no parent pointers (0) -> NaN
+    assert math.isnan(out.loc[2, "father_ideation"])
+    assert math.isnan(out.loc[2, "mother_ideation"])
+    # child 4's father pointer (8) is not in sample -> NaN
+    assert math.isnan(out.loc[4, "father_ideation"])
+
+
+def test_attach_parents_keeps_all_ego_rows():
+    out = K.attach_parents(_kid_frame(), "pid", "pid_f", "pid_m", ["ideation"])
+    assert len(out) == 4

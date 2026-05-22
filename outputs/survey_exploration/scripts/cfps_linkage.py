@@ -46,3 +46,18 @@ def build_couples(df: pd.DataFrame, pid_col: str, spouse_col: str,
             rec[f"husband_{c}"] = hrow[c]
         rows.append(rec)
     return pd.DataFrame(rows)
+
+
+def attach_parents(df: pd.DataFrame, pid_col: str, father_col: str,
+                   mother_col: str, value_cols: list[str]) -> pd.DataFrame:
+    """Add father_<col>/mother_<col> to each ego (child) row by following the
+    in-sample parent pointers. Pointers that are <=0 or not present in the sample
+    yield NaN. All ego rows are kept.
+    """
+    out = df.copy()
+    lookup = {c: df.set_index(pid_col)[c] for c in value_cols}
+    for parent, ptr in (("father", father_col), ("mother", mother_col)):
+        valid_ptr = out[ptr].where(out[ptr] > 0)
+        for c in value_cols:
+            out[f"{parent}_{c}"] = valid_ptr.map(lookup[c])
+    return out
