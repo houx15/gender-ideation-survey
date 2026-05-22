@@ -1,0 +1,9 @@
+year,model,n,term,coef,se,t
+2014,OLS index~decade*female,31383,const,0.5891,0.0014,432.88
+2014,OLS index~decade*female,31383,decade_c,-0.0174,0.0008,-21.36
+2014,OLS index~decade*female,31383,female,0.0084,0.0019,4.42
+2014,OLS index~decade*female,31383,decade_x_female,-0.0168,0.0011,-14.62
+2020,OLS index~decade*female,22632,const,0.5618,0.0018,320.01
+2020,OLS index~decade*female,22632,decade_c,-0.0313,0.001,-30.77
+2020,OLS index~decade*female,22632,female,-0.0084,0.0025,-3.37
+2020,OLS index~decade*female,22632,decade_x_female,-0.0326,0.0014,-22.49

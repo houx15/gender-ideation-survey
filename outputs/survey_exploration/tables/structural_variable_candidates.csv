@@ -1,0 +1,2567 @@
+dataset,wave,domain,variable,variable_label,has_value_labels
+CFPS,2014,id_person,pid,个人ID,True
+CFPS,2014,id_family,fid14,2014年家庭样本编码,True
+CFPS,2014,id_family,fid12,2012年家庭样本编码,True
+CFPS,2014,id_family,fid10,2010年家庭样本编码,True
+CFPS,2014,region,provcd14,2014年省国标码,True
+CFPS,2014,region,countyid14,区县顺序码,True
+CFPS,2014,region,urban14,基于国家统计局资料的城乡分类,True
+CFPS,2014,id_person,code_b_1,个人编码,True
+CFPS,2014,id_person,code_a_f,父亲个人编码,True
+CFPS,2014,id_person,pid_f,父亲在调查中的样本编码,True
+CFPS,2014,id_parent_child,pid_f,父亲在调查中的样本编码,True
+CFPS,2014,id_person,code_a_m,母亲个人编码,True
+CFPS,2014,id_person,pid_m,母亲在调查中的样本编码,True
+CFPS,2014,id_parent_child,pid_m,母亲在调查中的样本编码,True
+CFPS,2014,id_person,code_a_s,配偶个人编码,True
+CFPS,2014,marriage,code_a_s,配偶个人编码,True
+CFPS,2014,id_person,pid_s,配偶在调查中的样本编码,True
+CFPS,2014,marriage,pid_s,配偶在调查中的样本编码,True
+CFPS,2014,id_person,code_a_c1,孩1个人编码,True
+CFPS,2014,id_person,pid_c1,孩子1在调查中的样本编码,True
+CFPS,2014,id_person,code_a_c2,孩2个人编码,True
+CFPS,2014,id_person,pid_c2,孩子2在调查中的样本编码,True
+CFPS,2014,id_person,code_a_c3,孩3个人编码,True
+CFPS,2014,id_person,pid_c3,孩子3在调查中的样本编码,True
+CFPS,2014,id_person,code_a_c4,孩4个人编码,True
+CFPS,2014,id_person,pid_c4,孩子4在调查中的样本编码,True
+CFPS,2014,id_person,code_a_c5,孩5个人编码,True
+CFPS,2014,id_person,pid_c5,孩子5在调查中的样本编码,True
+CFPS,2014,id_person,code_a_c6,孩6个人编码,True
+CFPS,2014,id_person,pid_c6,孩子6在调查中的样本编码,True
+CFPS,2014,id_person,code_a_c7,孩7个人编码,True
+CFPS,2014,id_person,pid_c7,孩子7在调查中的样本编码,True
+CFPS,2014,id_person,code_a_c8,孩8个人编码,True
+CFPS,2014,id_person,pid_c8,孩子8在调查中的样本编码,True
+CFPS,2014,id_person,code_a_c9,孩9个人编码,True
+CFPS,2014,id_person,pid_c9,孩子9在调查中的样本编码,True
+CFPS,2014,id_person,code_a_c10,孩10个人编码,True
+CFPS,2014,id_person,pid_c10,孩子10在调查中的样本编码,True
+CFPS,2014,weight,rswt_natcs14,CFPS2014个人横截面权数:全国总样本,True
+CFPS,2014,weight,rswt_rescs14,CFPS2014个人横截面权数：2010年全国再抽样样本,True
+CFPS,2014,weight,rswt_natpn1014,CFPS2014个人面板权数:全国总样本,True
+CFPS,2014,weight,rswt_respn1014,CFPS2014个人面板权数：2010年全国再抽样样本,True
+CFPS,2014,birth_age,cfps_birthy,出生年份,True
+CFPS,2014,birth_age,cfps2014_age,2014年调查时的年龄,True
+CFPS,2014,marriage,cfps2012_marriage,2012调查的婚姻状态,True
+CFPS,2014,education,cfps2012latest_school,最近一次调查是否在上学,True
+CFPS,2014,education,cfps2012_latest_edu,最近一次调查最高学历,True
+CFPS,2014,education,cfps2012_latest_r1,最近一次调查上学阶段,True
+CFPS,2014,education,te4,最高学历,True
+CFPS,2014,employment,everwork,是否曾经工作,True
+CFPS,2014,region,qa301,现在的户口状况,True
+CFPS,2014,region,qa302,现在的户口所在地,True
+CFPS,2014,region,qa302ccode,当前户口所在省,True
+CFPS,2014,education,wc01,现在在上学吗,True
+CFPS,2014,education,wc02,两次调查间是否上过学,True
+CFPS,2014,education,ks9total_m,个人及家庭支付教育费用,True
+CFPS,2014,marriage,qea0,当前婚姻状态,True
+CFPS,2014,employment,qg1,工作所有者,True
+CFPS,2014,employment,qg101,工作性质,True
+CFPS,2014,employment,jobclass_base,主要工作类型(base),True
+CFPS,2014,employment,qg303code,QG303职业编码,True
+CFPS,2014,employment,jobclass,主要工作类型,True
+CFPS,2014,employment,qg6,每周工作时间（小时）,True
+CFPS,2014,employment,qg12,工作总收入（元）,True
+CFPS,2014,income,qg12,工作总收入（元）,True
+CFPS,2014,employment,qg1201_min,工作总收入区间下限：修正后,True
+CFPS,2014,income,qg1201_min,工作总收入区间下限：修正后,True
+CFPS,2014,employment,qg1201_max,工作总收入区间上限：修正后,True
+CFPS,2014,income,qg1201_max,工作总收入区间上限：修正后,True
+CFPS,2014,income,qg1204_min,非经营税后总收入（区间）下限：修正后,True
+CFPS,2014,income,qg1204_max,非经营税后总收入（区间）上限：修正后,True
+CFPS,2014,income,qg1203,非经营税后总收入（元）,True
+CFPS,2014,id_person,pid_a_1,个人ID：家庭成员1,True
+CFPS,2014,id_person,pid_a_2,个人ID：家庭成员2,True
+CFPS,2014,id_person,pid_a_3,个人ID：家庭成员3,True
+CFPS,2014,id_person,pid_a_4,个人ID：家庭成员4,True
+CFPS,2014,id_person,pid_a_5,个人ID：家庭成员5,True
+CFPS,2014,id_person,pid_a_6,个人ID：家庭成员6,True
+CFPS,2014,id_person,pid_a_7,个人ID：家庭成员7,True
+CFPS,2014,id_person,pid_a_8,个人ID：家庭成员8,True
+CFPS,2014,id_person,pid_a_9,个人ID：家庭成员9,True
+CFPS,2014,id_person,pid_a_10,个人ID：家庭成员10,True
+CFPS,2014,id_person,pid_a_11,个人ID：家庭成员11,True
+CFPS,2014,id_person,pid_a_12,个人ID：家庭成员12,True
+CFPS,2014,id_person,pid_a_13,个人ID：家庭成员13,True
+CFPS,2014,id_person,pid_a_14,个人ID：家庭成员14,True
+CFPS,2014,id_person,pid_a_15,个人ID：家庭成员15,True
+CFPS,2014,id_person,pid_a_16,个人ID：家庭成员16,True
+CFPS,2014,id_person,pid_a_17,个人ID：家庭成员17,True
+CFPS,2014,income,p_wage,个人工资性收入,True
+CFPS,2014,income,p_income,个人总收入,True
+CFPS,2014,education,cfps2014sch,CFPS2014个人问卷受访者离校/上学阶段,True
+CFPS,2014,education,cfps2014edu,CFPS2014个人问卷受访者已完成的最高学历,True
+CFPS,2014,education,cfps2014eduy,CFPS2014个人问卷受访者已完成的受教育年限,True
+CFPS,2014,education,cfps2014eduy_im,CFPS2014个人问卷受访者已完成的受教育年限（插补）,True
+CFPS,2014,birth_age,qa101,出生时的体重,True
+CFPS,2014,birth_age,qa401,出生时家庭地址,True
+CFPS,2014,region,qa401ccode,出生时家庭地址所在省,True
+CFPS,2014,birth_age,qa401ccode,出生时家庭地址所在省,True
+CFPS,2014,region,qa501,3岁时居住地是否与出生地相同,True
+CFPS,2014,birth_age,qa501,3岁时居住地是否与出生地相同,True
+CFPS,2014,region,qa502,您3岁时的居住地,True
+CFPS,2014,region,qa502ccode,3岁居住省份,True
+CFPS,2014,region,qa503,3岁时户口状况,True
+CFPS,2014,region,qa601,12岁时居住地是否与出生地相同,True
+CFPS,2014,birth_age,qa601,12岁时居住地是否与出生地相同,True
+CFPS,2014,region,qa602,12岁时居住地,True
+CFPS,2014,region,qa602ccode,12岁居住省份,True
+CFPS,2014,region,qa603,12岁时户口状况,True
+CFPS,2014,region,qa303y,不在户口所在地居住(年),True
+CFPS,2014,region,qa303m,不在户口所在地居住（月）,True
+CFPS,2014,marriage,qobs2,受访者是否共同查看电脑上的内容: EHC婚姻,True
+CFPS,2014,employment,qobs3,受访者是否共同查看电脑上的内容: EHC工作,True
+CFPS,2014,region,ear101a,居住地址（省）,True
+CFPS,2014,region,ear102,该地址是您当前主要的居住地址吗？,True
+CFPS,2014,region,ear201a,当前居住地址（省）,True
+CFPS,2014,region,ear4,其他居住地址数（处）,True
+CFPS,2014,education,qb302_a_1,去世兄弟姐妹学历,True
+CFPS,2014,employment,qb303_a_1code,去世兄弟姐妹职业编码1,True
+CFPS,2014,education,qb302_a_2,去世兄弟姐妹学历,True
+CFPS,2014,employment,qb303_a_2code,去世兄弟姐妹职业编码2,True
+CFPS,2014,education,qb302_a_3,去世兄弟姐妹学历,True
+CFPS,2014,employment,qb303_a_3code,去世兄弟姐妹职业编码3,True
+CFPS,2014,education,qb302_a_4,去世兄弟姐妹学历,True
+CFPS,2014,employment,qb303_a_4code,去世兄弟姐妹职业编码4,True
+CFPS,2014,education,qb302_a_5,去世兄弟姐妹学历,True
+CFPS,2014,employment,qb303_a_5code,去世兄弟姐妹职业编码5,True
+CFPS,2014,education,qb302_a_6,去世兄弟姐妹学历,True
+CFPS,2014,employment,qb303_a_6code,去世兄弟姐妹职业编码6,True
+CFPS,2014,education,qb302_a_7,去世兄弟姐妹学历,True
+CFPS,2014,employment,qb303_a_7code,去世兄弟姐妹职业编码7,True
+CFPS,2014,education,qb302_a_8,去世兄弟姐妹学历,True
+CFPS,2014,employment,qb303_a_8code,去世兄弟姐妹职业编码8,True
+CFPS,2014,education,qb302_a_9,去世兄弟姐妹学历,True
+CFPS,2014,employment,qb303_a_9code,去世兄弟姐妹职业编码9,True
+CFPS,2014,education,qb302_a_10,去世兄弟姐妹学历,True
+CFPS,2014,employment,qb303_a_10code,去世兄弟姐妹职业编码10,True
+CFPS,2014,education,qc201,您期望的受教育程度,True
+CFPS,2014,edu_expect,qc201,您期望的受教育程度,True
+CFPS,2014,education,qc301,非学历教育次数(次),True
+CFPS,2014,education,qc302_a_1,非学历教育天数(天),True
+CFPS,2014,education,qc303_a_1,非学历教育小时数(小时),True
+CFPS,2014,education,qc304_a_1,非学历教育类别,True
+CFPS,2014,education,qc305_a_1,非学历教育是否单位组织,True
+CFPS,2014,employment,qc305_a_1,非学历教育是否单位组织,True
+CFPS,2014,education,qc302_a_2,非学历教育天数(天),True
+CFPS,2014,education,qc303_a_2,非学历教育小时数(小时),True
+CFPS,2014,education,qc304_a_2,非学历教育类别,True
+CFPS,2014,education,qc305_a_2,非学历教育是否单位组织,True
+CFPS,2014,employment,qc305_a_2,非学历教育是否单位组织,True
+CFPS,2014,marriage,qea1,调查时婚姻状况,True
+CFPS,2014,marriage,qea2,2012年婚姻状况,True
+CFPS,2014,marriage,cfps2012_marriage_update,2012婚姻状态更新,True
+CFPS,2014,birth_age,qea201y,配偶/同伴出生日期(年),True
+CFPS,2014,marriage,qea201y,配偶/同伴出生日期(年),True
+CFPS,2014,birth_age,qea201m,配偶/同伴出生日期(月),True
+CFPS,2014,marriage,qea201m,配偶/同伴出生日期(月),True
+CFPS,2014,education,qea202,配偶/同伴学历状况,True
+CFPS,2014,marriage,qea202,配偶/同伴学历状况,True
+CFPS,2014,marriage,qea203code,配偶/同伴职业编码,True
+CFPS,2014,employment,qea203code,配偶/同伴职业编码,True
+CFPS,2014,marriage,qea204,与配偶/同伴如何认识,True
+CFPS,2014,marriage,qea205y,结婚日期(年),True
+CFPS,2014,marriage,qea205m,结婚日期(月),True
+CFPS,2014,marriage,qea2071,是否是初婚,True
+CFPS,2014,marriage,qea208y,离婚日期(年),True
+CFPS,2014,marriage,qea208m,离婚日期(月),True
+CFPS,2014,marriage,qea209y,配偶去世日期(年),True
+CFPS,2014,marriage,qea209m,配偶去世日期(月),True
+CFPS,2014,marriage,eeb401y_a_1,结婚日期（年）,True
+CFPS,2014,marriage,eeb401m_a_1,结婚日期（月）,True
+CFPS,2014,birth_age,eeb402y_a_1,对方出生日期（年）,True
+CFPS,2014,birth_age,eeb402m_a_1,对方出生日期（月）,True
+CFPS,2014,education,eeb4021_a_1,对方已完成（毕业）的最高学历,True
+CFPS,2014,employment,eeb4022_a_1code,对方职业编码,True
+CFPS,2014,marriage,eeb406y_a_1,婚姻结束时间（月）,True
+CFPS,2014,marriage,eeb406m_a_1,婚姻结束时间（月）,True
+CFPS,2014,marriage,eeb401y_a_2,结婚日期（年）,True
+CFPS,2014,marriage,eeb401m_a_2,结婚日期（月）,True
+CFPS,2014,birth_age,eeb402y_a_2,对方出生日期（年）,True
+CFPS,2014,birth_age,eeb402m_a_2,对方出生日期（月）,True
+CFPS,2014,education,eeb4021_a_2,对方已完成（毕业）的最高学历,True
+CFPS,2014,marriage,eeb406y_a_2,婚姻结束时间（年）,True
+CFPS,2014,marriage,eeb406m_a_2,婚姻结束时间（月）,True
+CFPS,2014,marriage,eeb401y_a_3,结婚日期（年）,True
+CFPS,2014,marriage,eeb401m_a_3,结婚日期（月）,True
+CFPS,2014,birth_age,eeb402y_a_3,对方出生日期（年）,True
+CFPS,2014,birth_age,eeb402m_a_3,对方出生日期（月）,True
+CFPS,2014,education,eeb4021_a_3,对方已完成（毕业）的最高学历,True
+CFPS,2014,marriage,eeb406y_a_3,婚姻结束时间（年）,True
+CFPS,2014,marriage,eeb406m_a_3,婚姻结束时间（月）,True
+CFPS,2014,marriage,eeb401y_a_4,结婚日期（年）,True
+CFPS,2014,marriage,eeb401m_a_4,结婚日期（月）,True
+CFPS,2014,birth_age,eeb402y_a_4,对方出生日期（年）,True
+CFPS,2014,birth_age,eeb402m_a_4,对方出生日期（月）,True
+CFPS,2014,education,eeb4021_a_4,对方已完成（毕业）的最高学历,True
+CFPS,2014,marriage,eeb406y_a_4,婚姻结束时间（年）,True
+CFPS,2014,marriage,eeb406m_a_4,婚姻结束时间（月）,True
+CFPS,2014,marriage,eeb401y_a_5,结婚日期（年）,True
+CFPS,2014,marriage,eeb401m_a_5,结婚日期（月）,True
+CFPS,2014,birth_age,eeb402y_a_5,对方出生日期（年）,True
+CFPS,2014,birth_age,eeb402m_a_5,对方出生日期（月）,True
+CFPS,2014,education,eeb4021_a_5,对方已完成（毕业）的最高学历,True
+CFPS,2014,marriage,eeb406y_a_5,婚姻结束时间（年）,True
+CFPS,2014,marriage,eeb406m_a_5,婚姻结束时间（月）,True
+CFPS,2014,marriage,eeb401m_a_6,结婚日期（月）,True
+CFPS,2014,birth_age,eeb402y_a_6,对方出生日期（年）,True
+CFPS,2014,birth_age,eeb402m_a_6,对方出生日期（月）,True
+CFPS,2014,education,eeb4021_a_6,对方已完成（毕业）的最高学历,True
+CFPS,2014,marriage,eeb406y_a_6,婚姻结束时间（年）,True
+CFPS,2014,marriage,eeb406m_a_6,婚姻结束时间（月）,True
+CFPS,2014,marriage,eeb401m_a_7,结婚日期（月）,True
+CFPS,2014,birth_age,eeb402y_a_7,对方出生日期（年）,True
+CFPS,2014,birth_age,eeb402m_a_7,对方出生日期（月）,True
+CFPS,2014,education,eeb4021_a_7,对方已完成（毕业）的最高学历,True
+CFPS,2014,marriage,eeb406y_a_7,婚姻结束时间（年）,True
+CFPS,2014,marriage,eeb406m_a_7,婚姻结束时间（月）,True
+CFPS,2014,marriage,eeb401m_a_8,结婚日期（月）,True
+CFPS,2014,birth_age,eeb402y_a_8,对方出生日期（年）,True
+CFPS,2014,birth_age,eeb402m_a_8,对方出生日期（月）,True
+CFPS,2014,education,eeb4021_a_8,对方已完成（毕业）的最高学历,True
+CFPS,2014,marriage,eeb406y_a_8,婚姻结束时间（年）,True
+CFPS,2014,marriage,eeb406m_a_8,婚姻结束时间（月）,True
+CFPS,2014,marriage,eeb401m_a_9,结婚日期（月）,True
+CFPS,2014,birth_age,eeb402y_a_9,对方出生日期（年）,True
+CFPS,2014,birth_age,eeb402m_a_9,对方出生日期（月）,True
+CFPS,2014,education,eeb4021_a_9,对方已完成（毕业）的最高学历,True
+CFPS,2014,marriage,eeb406y_a_9,婚姻结束时间（年）,True
+CFPS,2014,marriage,eeb406m_a_9,婚姻结束时间（月）,True
+CFPS,2014,marriage,eeb401m_a_10,结婚日期（月）,True
+CFPS,2014,birth_age,eeb402y_a_10,对方出生日期（年）,True
+CFPS,2014,birth_age,eeb402m_a_10,对方出生日期（月）,True
+CFPS,2014,education,eeb4021_a_10,对方已完成（毕业）的最高学历,True
+CFPS,2014,marriage,eeb406y_a_10,婚姻结束时间（年）,True
+CFPS,2014,marriage,eeb406m_a_10,婚姻结束时间（月）,True
+CFPS,2014,birth_age,eeb603y_a_1,对方的出生年月是 （年）,True
+CFPS,2014,birth_age,eeb603m_a_1,对方的出生年月是（月）,True
+CFPS,2014,birth_age,eeb603y_a_2,对方的出生年月是 （年）,True
+CFPS,2014,birth_age,eeb603m_a_2,对方的出生年月是（月）,True
+CFPS,2014,birth_age,eeb603y_a_3,对方的出生年月是 （年）,True
+CFPS,2014,birth_age,eeb603m_a_3,对方的出生年月是（月）,True
+CFPS,2014,birth_age,eeb603y_a_4,对方的出生年月是 （年）,True
+CFPS,2014,birth_age,eeb603m_a_4,对方的出生年月是（月）,True
+CFPS,2014,marriage,cohabitn,EHC回忆时段内的最终走向婚姻的同居次数,True
+CFPS,2014,marriage,cmstart_best,EHC回忆时段内新开始且持续到当前的婚姻_BEST,True
+CFPS,2014,marriage,eeb2,您与2012年调查/2012年1月1日时的同居伙伴是否结婚？,True
+CFPS,2014,marriage,eeb201y,你们的结婚日期是？ （年）,True
+CFPS,2014,marriage,eeb201m,你们的结婚日期是?（月）,True
+CFPS,2014,marriage,eeb202y,您与EB200的婚姻持续到什么时候？ （年）,True
+CFPS,2014,marriage,eeb202m,您与EB200的婚姻持续到什么时候?（月）,True
+CFPS,2014,marriage,currentmorc,婚姻或同居是否持续到当前,True
+CFPS,2014,marriage,currentm,婚姻是否持续到当前,True
+CFPS,2014,marriage,cmstart,EHC回忆时段内新开始且持续到当前的婚姻,True
+CFPS,2014,employment,qga1,全职工作经历,True
+CFPS,2014,employment,qga302,实习每周工作时间（小时）,True
+CFPS,2014,employment,qga401code,QGA401职业编码,True
+CFPS,2014,employment,qgb1,过去一周工作状态,True
+CFPS,2014,employment,qgb201,返回工作岗位,True
+CFPS,2014,employment,qgb4,从事农业工作,True
+CFPS,2014,employment,qgb5,是否找工作,True
+CFPS,2014,employment,qgb501,两周内开始工作,True
+CFPS,2014,employment,qgb6,没有工作原因,True
+CFPS,2014,employment,employ2014,当前工作状态,True
+CFPS,2014,employment,qgb601,找不到适合工作的因素,True
+CFPS,2014,employment,egc2012y_a_1,您什么时候开始从事这份工作？,True
+CFPS,2014,employment,egc2012m_a_1,您什么时候开始从事这份工作？,True
+CFPS,2014,employment,egc2013y_a_1,您什么时候结束这份工作？（年）,True
+CFPS,2014,employment,egc2013m_a_1,您什么时候结束这份工作？（月）,True
+CFPS,2014,employment,egc202_a_1,您的这份工作是为自己/自家干活还是受雇于他人/他家/组织/单位/公司？,True
+CFPS,2014,employment,egc2021_a_1,您的这份工作是农业工作还是非农工作？,True
+CFPS,2014,employment,egc203_a_1,工作单位/雇主性质,True
+CFPS,2014,employment,egc2031_a_1,您这份工作的雇主是否为个体工商户？,True
+CFPS,2014,employment,egc204_a_1,过去12个月，您这份工作一般每周工作多少个小时？,True
+CFPS,2014,employment,egc205_a_1,过去12个月，其他工作税后月收入：工作 1,True
+CFPS,2014,income,egc205_a_1,过去12个月，其他工作税后月收入：工作 1,True
+CFPS,2014,employment,mincomea_a_1,其他工作月收入（工作1）,True
+CFPS,2014,income,mincomea_a_1,其他工作月收入（工作1）,True
+CFPS,2014,employment,yincomea_a_1,其他工作年收入（工作1）,True
+CFPS,2014,income,yincomea_a_1,其他工作年收入（工作1）,True
+CFPS,2014,employment,egc2051_min_a_1,去12个月，其他工作税后月收入（工作 1）：最小值,True
+CFPS,2014,income,egc2051_min_a_1,去12个月，其他工作税后月收入（工作 1）：最小值,True
+CFPS,2014,employment,egc2051_max_a_1,过去12个月，其他工作税后月收入（工作 1）：最大值,True
+CFPS,2014,income,egc2051_max_a_1,过去12个月，其他工作税后月收入（工作 1）：最大值,True
+CFPS,2014,employment,mincomea_a_1_new,其他工作月收入（工作1）：清理后,True
+CFPS,2014,income,mincomea_a_1_new,其他工作月收入（工作1）：清理后,True
+CFPS,2014,employment,yincomea_a_1_new,其他工作年收入（工作1）：清理后,True
+CFPS,2014,income,yincomea_a_1_new,其他工作年收入（工作1）：清理后,True
+CFPS,2014,employment,egc2051_min_a_2,过去12个月，其他工作税后月收入（工作 2）：最小值,True
+CFPS,2014,income,egc2051_min_a_2,过去12个月，其他工作税后月收入（工作 2）：最小值,True
+CFPS,2014,employment,egc2051_max_a_2,过去12个月，其他工作税后月收入（工作 2）：最大值,True
+CFPS,2014,income,egc2051_max_a_2,过去12个月，其他工作税后月收入（工作 2）：最大值,True
+CFPS,2014,employment,mincomea_a_2_new,其他工作月收入（工作2）：清理后,True
+CFPS,2014,income,mincomea_a_2_new,其他工作月收入（工作2）：清理后,True
+CFPS,2014,employment,yincomea_a_2_new,其他工作年收入（工作2）：清理后,True
+CFPS,2014,income,yincomea_a_2_new,其他工作年收入（工作2）：清理后,True
+CFPS,2014,employment,egc2051_min_a_3,过去12个月，其他工作税后月收入（工作 3）：最小值,True
+CFPS,2014,income,egc2051_min_a_3,过去12个月，其他工作税后月收入（工作 3）：最小值,True
+CFPS,2014,employment,egc2051_max_a_3,过去12个月，其他工作税后月收入（工作 3）：最大值,True
+CFPS,2014,income,egc2051_max_a_3,过去12个月，其他工作税后月收入（工作 3）：最大值,True
+CFPS,2014,employment,mincomea_a_3_new,其他工作月收入（工作3）：清理后,True
+CFPS,2014,income,mincomea_a_3_new,其他工作月收入（工作3）：清理后,True
+CFPS,2014,employment,yincomea_a_3_new,其他工作年收入（工作3）：清理后,True
+CFPS,2014,income,yincomea_a_3_new,其他工作年收入（工作3）：清理后,True
+CFPS,2014,employment,egc2051_min_a_4,过去12个月，其他工作税后月收入（工作 4）：最小值,True
+CFPS,2014,income,egc2051_min_a_4,过去12个月，其他工作税后月收入（工作 4）：最小值,True
+CFPS,2014,employment,egc2051_max_a_4,过去12个月，其他工作税后月收入（工作 4）：最大值,True
+CFPS,2014,income,egc2051_max_a_4,过去12个月，其他工作税后月收入（工作 4）：最大值,True
+CFPS,2014,employment,mincomea_a_4_new,其他工作月收入（工作4）：清理后,True
+CFPS,2014,income,mincomea_a_4_new,其他工作月收入（工作4）：清理后,True
+CFPS,2014,employment,yincomea_a_4_new,其他工作年收入（工作4）：清理后,True
+CFPS,2014,income,yincomea_a_4_new,其他工作年收入（工作4）：清理后,True
+CFPS,2014,employment,egc2051_min_a_5,过去12个月，其他工作税后月收入（工作 5）：最小值,True
+CFPS,2014,income,egc2051_min_a_5,过去12个月，其他工作税后月收入（工作 5）：最小值,True
+CFPS,2014,employment,egc2051_max_a_5,过去12个月，其他工作税后月收入（工作 5）：最大值,True
+CFPS,2014,income,egc2051_max_a_5,过去12个月，其他工作税后月收入（工作 5）：最大值,True
+CFPS,2014,employment,mincomea_a_5_new,其他工作月收入（工作5）：清理后,True
+CFPS,2014,income,mincomea_a_5_new,其他工作月收入（工作5）：清理后,True
+CFPS,2014,employment,yincomea_a_5_new,其他工作年收入（工作5）：清理后,True
+CFPS,2014,income,yincomea_a_5_new,其他工作年收入（工作5）：清理后,True
+CFPS,2014,employment,egc2051_min_a_6,过去12个月，其他工作税后月收入（工作 6）：最小值,True
+CFPS,2014,income,egc2051_min_a_6,过去12个月，其他工作税后月收入（工作 6）：最小值,True
+CFPS,2014,employment,egc2051_max_a_6,过去12个月，其他工作税后月收入（工作 6）：最大值,True
+CFPS,2014,income,egc2051_max_a_6,过去12个月，其他工作税后月收入（工作 6）：最大值,True
+CFPS,2014,employment,mincomea_a_6_new,其他工作月收入（工作6）：清理后,True
+CFPS,2014,income,mincomea_a_6_new,其他工作月收入（工作6）：清理后,True
+CFPS,2014,employment,yincomea_a_6_new,其他工作年收入（工作6）：清理后,True
+CFPS,2014,income,yincomea_a_6_new,其他工作年收入（工作6）：清理后,True
+CFPS,2014,employment,egc2051_min_a_7,过去12个月，其他工作税后月收入（工作 7）：最小值,True
+CFPS,2014,income,egc2051_min_a_7,过去12个月，其他工作税后月收入（工作 7）：最小值,True
+CFPS,2014,employment,egc2051_max_a_7,过去12个月，其他工作税后月收入（工作 7）：最大值,True
+CFPS,2014,income,egc2051_max_a_7,过去12个月，其他工作税后月收入（工作 7）：最大值,True
+CFPS,2014,employment,mincomea_a_7_new,其他工作月收入（工作7）：清理后,True
+CFPS,2014,income,mincomea_a_7_new,其他工作月收入（工作7）：清理后,True
+CFPS,2014,employment,yincomea_a_7_new,其他工作年收入（工作7）：清理后,True
+CFPS,2014,income,yincomea_a_7_new,其他工作年收入（工作7）：清理后,True
+CFPS,2014,employment,egc2051_min_a_8,过去12个月，其他工作税后月收入（工作 8）：最小值,True
+CFPS,2014,income,egc2051_min_a_8,过去12个月，其他工作税后月收入（工作 8）：最小值,True
+CFPS,2014,employment,egc2051_max_a_8,过去12个月，其他工作税后月收入（工作 8）：最大值,True
+CFPS,2014,income,egc2051_max_a_8,过去12个月，其他工作税后月收入（工作 8）：最大值,True
+CFPS,2014,employment,mincomea_a_8_new,其他工作月收入（工作8）：清理后,True
+CFPS,2014,income,mincomea_a_8_new,其他工作月收入（工作8）：清理后,True
+CFPS,2014,employment,yincomea_a_8_new,其他工作年收入（工作8）：清理后,True
+CFPS,2014,income,yincomea_a_8_new,其他工作年收入（工作8）：清理后,True
+CFPS,2014,employment,egc2051_min_a_9,过去12个月，其他工作税后月收入（工作 9）：最小值,True
+CFPS,2014,income,egc2051_min_a_9,过去12个月，其他工作税后月收入（工作 9）：最小值,True
+CFPS,2014,employment,egc2051_max_a_9,过去12个月，其他工作税后月收入（工作 9）：最大值,True
+CFPS,2014,income,egc2051_max_a_9,过去12个月，其他工作税后月收入（工作 9）：最大值,True
+CFPS,2014,employment,mincomea_a_9_new,其他工作月收入（工作9）：清理后,True
+CFPS,2014,income,mincomea_a_9_new,其他工作月收入（工作9）：清理后,True
+CFPS,2014,employment,yincomea_a_9_new,其他工作年收入（工作9）：清理后,True
+CFPS,2014,income,yincomea_a_9_new,其他工作年收入（工作9）：清理后,True
+CFPS,2014,employment,egc2051_min_a_10,过去12个月，其他工作税后月收入（工作 10）：最小值,True
+CFPS,2014,income,egc2051_min_a_10,过去12个月，其他工作税后月收入（工作 10）：最小值,True
+CFPS,2014,employment,egc2051_max_a_10,过去12个月，其他工作税后月收入（工作 10）：最大值,True
+CFPS,2014,income,egc2051_max_a_10,过去12个月，其他工作税后月收入（工作 10）：最大值,True
+CFPS,2014,employment,mincomea_a_10_new,其他工作月收入（工作10）：清理后,True
+CFPS,2014,income,mincomea_a_10_new,其他工作月收入（工作10）：清理后,True
+CFPS,2014,employment,yincomea_a_10_new,其他工作年收入（工作10）：清理后,True
+CFPS,2014,income,yincomea_a_10_new,其他工作年收入（工作10）：清理后,True
+CFPS,2014,employment,egc2051_min_b_1,过去12个月，2012年主要工作税后月收入：最小值,True
+CFPS,2014,income,egc2051_min_b_1,过去12个月，2012年主要工作税后月收入：最小值,True
+CFPS,2014,employment,egc2051_max_b_1,过去12个月，2012年主要工作税后月收入：最大值,True
+CFPS,2014,income,egc2051_max_b_1,过去12个月，2012年主要工作税后月收入：最大值,True
+CFPS,2014,employment,mincomea_b_1_new,2012年主要工作月收入：清理后,True
+CFPS,2014,income,mincomea_b_1_new,2012年主要工作月收入：清理后,True
+CFPS,2014,employment,yincomea_b_1_new,2012年主要工作年收入：清理后,True
+CFPS,2014,income,yincomea_b_1_new,2012年主要工作年收入：清理后,True
+CFPS,2014,employment,incomea_new,所有其他工作总收入：清理后,True
+CFPS,2014,income,incomea_new,所有其他工作总收入：清理后,True
+CFPS,2014,employment,jobclass_base_a_1,其他工作类型(base)工作1,True
+CFPS,2014,employment,jobclass_a_1,其他工作类型：工作1,True
+CFPS,2014,employment,egc2012y_a_2,您什么时候开始从事这份工作？,True
+CFPS,2014,employment,egc2012m_a_2,您什么时候开始从事这份工作？,True
+CFPS,2014,employment,egc2013y_a_2,您什么时候结束这份工作？（年）,True
+CFPS,2014,employment,egc2013m_a_2,您什么时候结束这份工作？（月）,True
+CFPS,2014,employment,egc202_a_2,您的这份工作是为自己/自家干活还是受雇于他人/他家/组织/单位/公司？,True
+CFPS,2014,employment,egc2021_a_2,您的这份工作是农业工作还是非农工作？,True
+CFPS,2014,employment,egc203_a_2,工作单位/雇主性质,True
+CFPS,2014,employment,egc2031_a_2,您这份工作的雇主是否为个体工商户？,True
+CFPS,2014,employment,egc204_a_2,过去12个月，您这份工作一般每周工作多少个小时？,True
+CFPS,2014,employment,egc205_a_2,过去12个月，其他工作税后月收入：工作 2,True
+CFPS,2014,income,egc205_a_2,过去12个月，其他工作税后月收入：工作 2,True
+CFPS,2014,employment,mincomea_a_2,其他工作月收入（工作2),True
+CFPS,2014,income,mincomea_a_2,其他工作月收入（工作2),True
+CFPS,2014,employment,yincomea_a_2,其他工作年收入（工作2),True
+CFPS,2014,income,yincomea_a_2,其他工作年收入（工作2),True
+CFPS,2014,employment,jobclass_base_a_2,其他工作类型(base)工作2,True
+CFPS,2014,employment,jobclass_a_2,其他工作类型：工作2,True
+CFPS,2014,employment,egc2012y_a_3,您什么时候开始从事这份工作？,True
+CFPS,2014,employment,egc2012m_a_3,您什么时候开始从事这份工作？,True
+CFPS,2014,employment,egc2013y_a_3,您什么时候结束这份工作？（年）,True
+CFPS,2014,employment,egc2013m_a_3,您什么时候结束这份工作？（月）,True
+CFPS,2014,employment,egc202_a_3,您的这份工作是为自己/自家干活还是受雇于他人/他家/组织/单位/公司？,True
+CFPS,2014,employment,egc2021_a_3,您的这份工作是农业工作还是非农工作？,True
+CFPS,2014,employment,egc203_a_3,工作单位/雇主性质,True
+CFPS,2014,employment,egc2031_a_3,您这份工作的雇主是否为个体工商户？,True
+CFPS,2014,employment,egc204_a_3,过去12个月，您这份工作一般每周工作多少个小时？,True
+CFPS,2014,employment,egc205_a_3,过去12个月，其他工作税后月收入：工作 3,True
+CFPS,2014,income,egc205_a_3,过去12个月，其他工作税后月收入：工作 3,True
+CFPS,2014,employment,mincomea_a_3,其他工作月收入（工作3）,True
+CFPS,2014,income,mincomea_a_3,其他工作月收入（工作3）,True
+CFPS,2014,employment,yincomea_a_3,其他工作年收入（工作3）,True
+CFPS,2014,income,yincomea_a_3,其他工作年收入（工作3）,True
+CFPS,2014,employment,jobclass_base_a_3,其他工作类型(base)工作3,True
+CFPS,2014,employment,jobclass_a_3,其他工作类型：工作3,True
+CFPS,2014,employment,egc2012y_a_4,您什么时候开始从事这份工作？,True
+CFPS,2014,employment,egc2012m_a_4,您什么时候开始从事这份工作？,True
+CFPS,2014,employment,egc2013y_a_4,您什么时候结束这份工作？（年）,True
+CFPS,2014,employment,egc2013m_a_4,您什么时候结束这份工作？（月）,True
+CFPS,2014,employment,egc202_a_4,您的这份工作是为自己/自家干活还是受雇于他人/他家/组织/单位/公司？,True
+CFPS,2014,employment,egc2021_a_4,您的这份工作是农业工作还是非农工作？,True
+CFPS,2014,employment,egc203_a_4,工作单位/雇主性质,True
+CFPS,2014,employment,egc2031_a_4,您这份工作的雇主是否为个体工商户？,True
+CFPS,2014,employment,egc204_a_4,过去12个月，您这份工作一般每周工作多少个小时？,True
+CFPS,2014,employment,egc205_a_4,过去12个月，其他工作税后月收入：工作 4,True
+CFPS,2014,income,egc205_a_4,过去12个月，其他工作税后月收入：工作 4,True
+CFPS,2014,employment,mincomea_a_4,其他工作月收入（工作4）,True
+CFPS,2014,income,mincomea_a_4,其他工作月收入（工作4）,True
+CFPS,2014,employment,yincomea_a_4,其他工作年收入（工作4）,True
+CFPS,2014,income,yincomea_a_4,其他工作年收入（工作4）,True
+CFPS,2014,employment,jobclass_base_a_4,其他工作类型(base)工作4,True
+CFPS,2014,employment,jobclass_a_4,其他工作类型：工作4,True
+CFPS,2014,employment,egc2012y_a_5,您什么时候开始从事这份工作？,True
+CFPS,2014,employment,egc2012m_a_5,您什么时候开始从事这份工作？,True
+CFPS,2014,employment,egc2013y_a_5,您什么时候结束这份工作？（年）,True
+CFPS,2014,employment,egc2013m_a_5,您什么时候结束这份工作？（月）,True
+CFPS,2014,employment,egc202_a_5,您的这份工作是为自己/自家干活还是受雇于他人/他家/组织/单位/公司？,True
+CFPS,2014,employment,egc2021_a_5,您的这份工作是农业工作还是非农工作？,True
+CFPS,2014,employment,egc203_a_5,工作单位/雇主性质,True
+CFPS,2014,employment,egc2031_a_5,您这份工作的雇主是否为个体工商户？,True
+CFPS,2014,employment,egc204_a_5,过去12个月，您这份工作一般每周工作多少个小时？,True
+CFPS,2014,employment,egc205_a_5,过去12个月，其他工作税后月收入：工作 5,True
+CFPS,2014,income,egc205_a_5,过去12个月，其他工作税后月收入：工作 5,True
+CFPS,2014,employment,mincomea_a_5,其他工作月收入（工作5）,True
+CFPS,2014,income,mincomea_a_5,其他工作月收入（工作5）,True
+CFPS,2014,employment,yincomea_a_5,其他工作年收入（工作5）,True
+CFPS,2014,income,yincomea_a_5,其他工作年收入（工作5）,True
+CFPS,2014,employment,jobclass_base_a_5,其他工作类型(base)工作5,True
+CFPS,2014,employment,jobclass_a_5,其他工作类型：工作5,True
+CFPS,2014,employment,mincomea_a_6,其他工作月收入（工作6）,True
+CFPS,2014,income,mincomea_a_6,其他工作月收入（工作6）,True
+CFPS,2014,employment,yincomea_a_6,其他工作年收入（工作6）,True
+CFPS,2014,income,yincomea_a_6,其他工作年收入（工作6）,True
+CFPS,2014,employment,jobclass_base_a_6,其他工作类型(base)工作6,True
+CFPS,2014,employment,jobclass_a_6,其他工作类型：工作6,True
+CFPS,2014,employment,mincomea_a_7,其他工作月收入（工作7）,True
+CFPS,2014,income,mincomea_a_7,其他工作月收入（工作7）,True
+CFPS,2014,employment,yincomea_a_7,其他工作年收入（工作7）,True
+CFPS,2014,income,yincomea_a_7,其他工作年收入（工作7）,True
+CFPS,2014,employment,jobclass_base_a_7,其他工作类型(base)工作7,True
+CFPS,2014,employment,jobclass_a_7,其他工作类型：工作7,True
+CFPS,2014,employment,mincomea_a_8,其他工作月收入（工作8）,True
+CFPS,2014,income,mincomea_a_8,其他工作月收入（工作8）,True
+CFPS,2014,employment,yincomea_a_8,其他工作年收入（工作8）,True
+CFPS,2014,income,yincomea_a_8,其他工作年收入（工作8）,True
+CFPS,2014,employment,jobclass_base_a_8,其他工作类型(base)工作8,True
+CFPS,2014,employment,jobclass_a_8,其他工作类型：工作8,True
+CFPS,2014,employment,mincomea_a_9,其他工作月收入（工作9）,True
+CFPS,2014,income,mincomea_a_9,其他工作月收入（工作9）,True
+CFPS,2014,employment,yincomea_a_9,其他工作年收入（工作9）,True
+CFPS,2014,income,yincomea_a_9,其他工作年收入（工作9）,True
+CFPS,2014,employment,jobclass_base_a_9,其他工作类型(base)工作9,True
+CFPS,2014,employment,jobclass_a_9,其他工作类型：工作9,True
+CFPS,2014,employment,mincomea_a_10,其他工作月收入（工作10）,True
+CFPS,2014,income,mincomea_a_10,其他工作月收入（工作10）,True
+CFPS,2014,employment,yincomea_a_10,其他工作年收入（工作10）,True
+CFPS,2014,income,yincomea_a_10,其他工作年收入（工作10）,True
+CFPS,2014,employment,jobclass_base_a_10,其他工作类型(base)工作10,True
+CFPS,2014,employment,jobclass_a_10,其他工作类型：工作10,True
+CFPS,2014,employment,mincomea_b_1,2012年主要工作月收入,True
+CFPS,2014,income,mincomea_b_1,2012年主要工作月收入,True
+CFPS,2014,employment,yincomea_b_1,2012年主要工作年收入,True
+CFPS,2014,income,yincomea_b_1,2012年主要工作年收入,True
+CFPS,2014,employment,incomea,所有其他工作总收入,True
+CFPS,2014,income,incomea,所有其他工作总收入,True
+CFPS,2014,employment,egc101,2012工作确认,True
+CFPS,2014,employment,egc104y,工作结束时间（年）,True
+CFPS,2014,employment,egc104m,工作结束时间（月）,True
+CFPS,2014,employment,egc103,主要工作确认,True
+CFPS,2014,employment,egc105,从上次调查/2012年1月1日至今，您是否有过工作,True
+CFPS,2014,employment,egc1052y,工作开始时间（年）,True
+CFPS,2014,employment,egc1052m,工作开始时间（月）,True
+CFPS,2014,employment,egc1053y,这份工作最早一次的间断时间（年）,True
+CFPS,2014,employment,egc1053m,这份工作最早一次的间断时间（月）,True
+CFPS,2014,employment,egc201,其他工作的数量,True
+CFPS,2014,employment,egc202_b_1,您的这份工作是为自己/自家干活还是受雇于他人/他家/组织/单位/公司？,True
+CFPS,2014,employment,egc2021_b_1,您的这份工作是农业工作还是非农工作？,True
+CFPS,2014,employment,egc203_b_1,工作单位/雇主性质,True
+CFPS,2014,employment,egc2031_b_1,您这份工作的雇主是否为个体工商户？,True
+CFPS,2014,employment,egc204_b_1,过去12个月，您这份工作一般每周工作多少个小时？,True
+CFPS,2014,employment,egc205_b_1,过去12个月，2012主要工作的税后月收入,True
+CFPS,2014,income,egc205_b_1,过去12个月，2012主要工作的税后月收入,True
+CFPS,2014,employment,jobclass_base_2012,2012年工作类型(base),True
+CFPS,2014,employment,jobclass_2012,2012年工作类型,True
+CFPS,2014,employment,ku702,使用互联网工作的频率(次),True
+CFPS,2014,employment,ku302,上网时工作的重要程度,True
+CFPS,2014,education,qm3013,孩子的受教育程度（分）,True
+CFPS,2014,fertility,qm501,理想孩子数（个）,True
+CFPS,2014,leadership,qn10025,对干部的信任度,True
+CFPS,2014,marriage,qm801,婚姻满意度,True
+CFPS,2014,housework,qm803,对方家务贡献满意度,True
+CFPS,2014,marriage,qm804,结婚幸福感,True
+CFPS,2014,marriage,qm1102,女人婚姻,True
+CFPS,2014,housework,qm1104,男人家务,True
+CFPS,2014,income,qn8011,您的收入在本地,True
+CFPS,2014,leadership,qn1014,受到政府干部不公,True
+CFPS,2014,leadership,qn1015,与政府干部发生冲突,True
+CFPS,2014,employment,qn6014,中国就业问题严重程度,True
+CFPS,2014,education,qn6015,中国教育问题严重程度,True
+CFPS,2014,housework,qq701a,近一年您生病时谁照顾,True
+CFPS,2014,birth_age,qq2011,开始吸烟年龄（岁）,True
+CFPS,2014,birth_age,qq205,戒烟年龄（岁）,True
+CFPS,2014,employment,qq4011,工作日睡眠时长（小时）,True
+CFPS,2014,housework,qq9010,干家务时长（小时）,True
+CFPS,2014,employment,qq9011,工作日干家务时长（小时）,True
+CFPS,2014,housework,qq9011,工作日干家务时长（小时）,True
+CFPS,2014,housework,qq9012,休息日干家务时长（小时）,True
+CFPS,2014,science_math,mathtest14_sc2,14年数学测试题得分：14年问卷算法,True
+CFPS,2014,science_math,mathtest14,14年数学测试题得分：与10年可比算法,True
+CFPS,2014,science_math,whichmathlist,受访者回答的题组：数学,True
+CFPS,2014,education,kra2,目前就读学校所在地,True
+CFPS,2014,education,kr402ma,是否示范/重点学校,True
+CFPS,2014,education,kr402m,是哪种类型的学校,True
+CFPS,2014,education,kr402mb,如何入读这所学校,True
+CFPS,2014,region,kr402md,为入学是否变更居住地,True
+CFPS,2014,region,kr402me,如何变更居住地,True
+CFPS,2014,science_math,kr501,大专专业是什么学科,True
+CFPS,2014,science_math,kra601,本科专业是什么学科,True
+CFPS,2014,education,kra605,上学期本专业排名(%),True
+CFPS,2014,science_math,kr701,硕士专业是什么学科,True
+CFPS,2014,science_math,kr801m,博士修读哪个学科,True
+CFPS,2014,education,kr405,学校是否能够寄宿,True
+CFPS,2014,education,kr406,从住处到学校有多远(公里),True
+CFPS,2014,education,kr406a,从住处到学校出行方式,True
+CFPS,2014,education,kr406b,住处到学校需几分钟(分钟),True
+CFPS,2014,leadership,ks1,是否担任学生干部,True
+CFPS,2014,leadership,ks102b,担任的最高职务级别,True
+CFPS,2014,leadership,ks202,是否担任社团干部,True
+CFPS,2014,science_math,ks4,天赋占成绩好原因的比例(%),True
+CFPS,2014,leadership,ks504,适合做学生干部,True
+CFPS,2014,education,ks603m,会检查学校功课,True
+CFPS,2014,education,ks606m,完成学校功课后才玩,True
+CFPS,2014,education,ks701,对学校满意程度,True
+CFPS,2014,science_math,ks704,对数学老师满意程度,True
+CFPS,2014,employment,ks8,希望的职业类型,True
+CFPS,2014,employment,ks801code,希望的具体职业编码,True
+CFPS,2014,education,ks906,过去12个月教育软件费(元),True
+CFPS,2014,education,ks9total,过去12个月教育总支出（元）:系统自动加总,True
+CFPS,2014,education,ks9ckp,确认过去12个月教育总支出,True
+CFPS,2014,education,ks11,政府、学校及其他组织机构支付 (元),True
+CFPS,2014,education,kw2y,离开学校（年）,True
+CFPS,2014,education,kw2m,离开学校（月）,True
+CFPS,2014,science_math,kw602,大专专业是什么学科,True
+CFPS,2014,science_math,kw702,本科专业是什么学科,True
+CFPS,2014,science_math,kw705,是否获得本科学位,True
+CFPS,2014,science_math,kw802,硕士专业是什么学科,True
+CFPS,2014,employment,incomeb,2014年主要工作总收入,True
+CFPS,2014,income,incomeb,2014年主要工作总收入,True
+CFPS,2014,employment,income,所有工作总收入,True
+CFPS,2014,income,income,所有工作总收入,True
+CFPS,2014,employment,qg301,工作地点,True
+CFPS,2014,region,qg301ccode,其他省份编码,True
+CFPS,2014,employment,qg4,工作满意度,True
+CFPS,2014,employment,qg5,签订劳动合同,True
+CFPS,2014,employment,qg801_a_3,每月福利金额(元)-单位配车/班车,True
+CFPS,2014,employment,qg9_s_1,工作保障,True
+CFPS,2014,employment,qg9_s_2,工作保障,True
+CFPS,2014,employment,qg9_s_3,工作保障,True
+CFPS,2014,employment,qg9_s_4,工作保障,True
+CFPS,2014,employment,qg9_s_5,工作保障,True
+CFPS,2014,income,qg11,每月税后工资(元),True
+CFPS,2014,employment,kg1301,获得工作主要渠道,True
+CFPS,2014,education,kg1302,胜任工作的教育程度,True
+CFPS,2014,employment,kg1302,胜任工作的教育程度,True
+CFPS,2014,leadership,qg14,行政管理职务,True
+CFPS,2014,leadership,qg1401code,行政管理职务编码,True
+CFPS,2014,employment,qg15,工作晋级,True
+CFPS,2014,employment,qg16,工作单位规模(人),True
+CFPS,2014,leadership,qg1701,管理人员规模(人),True
+CFPS,2014,employment,qg20,工作场所,True
+CFPS,2014,employment,qg21_s_1,工作环境特征,True
+CFPS,2014,employment,qg21_s_2,工作环境特征,True
+CFPS,2014,employment,qg21_s_3,工作环境特征,True
+CFPS,2014,employment,qg21_s_4,工作环境特征,True
+CFPS,2014,employment,qg21_s_5,工作环境特征,True
+CFPS,2014,employment,qg21_s_6,工作环境特征,True
+CFPS,2014,employment,qg21_s_7,工作环境特征,True
+CFPS,2014,employment,qg1202,工作总收入校验,True
+CFPS,2014,income,qg1202,工作总收入校验,True
+CFPS,2014,science_math,qz209,对调查的兴趣,True
+CFPS,2014,employment,jobstartn,EHC回忆时段内开始新工作份数,True
+CFPS,2014,region,ear5a_a_1,居住地址（省）,True
+CFPS,2014,region,ear5a_a_2,居住地址（省）,True
+CFPS,2014,region,ear5a_a_3,居住地址（省）,True
+CFPS,2014,region,ear5a_a_4,居住地址（省）,True
+CFPS,2014,region,ear5a_a_5,居住地址（省）,True
+CFPS,2014,region,ear5a_a_6,居住地址（省）,True
+CFPS,2014,region,ear7a_a_1,居住地址（省）,True
+CFPS,2014,region,ear7a_a_2,居住地址（省）,True
+CFPS,2014,education,dsa1total_m,过去12个月亲友及其他机构支付教育费用,True
+CFPS,2014,education,pw1r,最高学历,True
+CFPS,2014,employment,pg01,现在是否有工作,True
+CFPS,2014,employment,pg02,过去12个月是否有工作,True
+CFPS,2014,employment,pgc103a,主要工作确认,True
+CFPS,2014,employment,pg501,工作月数（月）,True
+CFPS,2014,science_math,pz209,代答者对调查的兴趣,True
+CFPS,2014,id_person,interviewerid_sf,访员编号：自答,False
+CFPS,2014,id_person,interviewerid_pr,访员编号：代答,False
+CFPS,2020,id_person,pid,个人ID,True
+CFPS,2020,id_family,fid20,2020年家庭样本编码,True
+CFPS,2020,id_family,fid18,2018家庭样本编码,True
+CFPS,2020,id_family,fid16,2016年家庭编码,True
+CFPS,2020,id_family,fid14,2014年家庭样本编码,True
+CFPS,2020,id_family,fid12,2012年家庭样本编码,True
+CFPS,2020,id_family,fid10,2010年家庭样本编码,True
+CFPS,2020,id_person,fid_base,基线家庭样本编码,True
+CFPS,2020,id_family,fid_base,基线家庭样本编码,True
+CFPS,2020,id_parent_child,fid_base,基线家庭样本编码,True
+CFPS,2020,birth_age,age,年龄,True
+CFPS,2020,id_person,pid_a_f,父亲在调查中的样本编码,True
+CFPS,2020,id_person,pid_a_m,母亲在调查中的样本编码,True
+CFPS,2020,employment,psu,基线家庭初级抽样单位,True
+CFPS,2020,weight,rswt_natcs20n,CFPS2020个人横截面权数（标准化）-无回答权数,True
+CFPS,2020,weight,rswt_natpn1020n,CFPS2020个人面板权数（标准化）-无回答权数,True
+CFPS,2020,weight,rswtps_natcs20n,CFPS2020个人横截面权数（标准化）-事后分层权数,True
+CFPS,2020,weight,rswtps_natpn1020n,CFPS2020个人面板权数（标准化）-事后分层权数,True
+CFPS,2020,region,provcd20,2020年省国标码,True
+CFPS,2020,region,countyid20,区县顺序码,True
+CFPS,2020,region,urban20,基于国家统计局资料的城乡分类,True
+CFPS,2020,id_person,respc1pid,代答人样本编码（代答）,True
+CFPS,2020,birth_age,ibirthy,加载变量：出生年份,True
+CFPS,2020,birth_age,birthw,加载变量：出生时体重是否有数据,True
+CFPS,2020,region,huk,加载变量：最近一轮调查户口地址（1=有；缺失代表无数据）,True
+CFPS,2020,birth_age,birthp,加载变量：出生时家庭住址,True
+CFPS,2020,region,a12hk,加载变量：12岁时户口,True
+CFPS,2020,education,edu_last,最近一次调查最高学历,True
+CFPS,2020,education,r1_last,加载变量：最近一次调查最高学历,True
+CFPS,2020,marriage,marriage_last,加载变量：最近一次访问婚姻状态,True
+CFPS,2020,employment,firstj_last,加载变量：是否采集第一份工作信息,True
+CFPS,2020,id_parent_child,mother_dead,加载变量：最近一次调查母亲已去世,True
+CFPS,2020,id_parent_child,father_dead,加载变量：最近一次调查父亲已去世,True
+CFPS,2020,birth_age,smokeage,加载变量：开始吸烟的年龄,True
+CFPS,2020,birth_age,qa001y,出生日期（年）,True
+CFPS,2020,birth_age,qa001m,出生日期（月）,True
+CFPS,2020,birth_age,qa001b,年龄,True
+CFPS,2020,birth_age,ibirthy_update,出生年份更新,True
+CFPS,2020,region,qa301,现在的户口状况,True
+CFPS,2020,region,qa3020,户口所在地变化,True
+CFPS,2020,region,qa302,现在的户口所在地,True
+CFPS,2020,region,qa302a_code,您现在户口所在地(省),True
+CFPS,2020,region,qa302c_code,您现在户口所在地（县/市）,True
+CFPS,2020,region,qa303y,离开户口所在地年份（年）,True
+CFPS,2020,region,qa303m,离开户口所在地月份（月）,True
+CFPS,2020,birth_age,qa401,出生时家庭地址,True
+CFPS,2020,region,qa401a_code,您出生时家庭住址（省）,True
+CFPS,2020,birth_age,qa401a_code,您出生时家庭住址（省）,True
+CFPS,2020,birth_age,qa401c_code,您出生时家庭住址（县/市）,True
+CFPS,2020,region,qa601,12岁时居住地是否与出生地相同,True
+CFPS,2020,birth_age,qa601,12岁时居住地是否与出生地相同,True
+CFPS,2020,region,qa602,12岁时居住地,True
+CFPS,2020,region,qa602a_code,12岁时居住地（省）,True
+CFPS,2020,region,qa602c_code,12岁时居住地（县/市）,True
+CFPS,2020,region,qa603,12岁时户口状况,True
+CFPS,2020,education,qc1,现在在上学吗,True
+CFPS,2020,education,school,上学状态,True
+CFPS,2020,education,wr0s1,就读学校名称确认,False
+CFPS,2020,education,wr0s2,就读学校确认,False
+CFPS,2020,region,qr5,为入学变更居住地,True
+CFPS,2020,region,qr6,如何变更居住地,True
+CFPS,2020,region,qr7,为入学变更居户口地址,True
+CFPS,2020,education,qs1_b_1code,学校类型编码（中等职业及高等教育）,True
+CFPS,2020,employment,qs1_b_1code,学校类型编码（中等职业及高等教育）,True
+CFPS,2020,education,qs1002,目前就读学校所在地,True
+CFPS,2020,education,qs601,是否公立学校,True
+CFPS,2020,education,qs602,是否示范/重点学校,True
+CFPS,2020,education,qs603,是哪种类型的私立学校,True
+CFPS,2020,science_math,qs701_b_1code,大专主修学科（编码）,False
+CFPS,2020,science_math,qs9code,专业学科（编码）,False
+CFPS,2020,education,qs10,学校是否能够寄宿,True
+CFPS,2020,education,qs1001,学校是否能够寄宿,True
+CFPS,2020,education,qs11,从住处到学校有多远(公里),False
+CFPS,2020,education,qs1102,从住处到学校出行方式,True
+CFPS,2020,education,qs1103,住处到学校需几分钟(分钟),True
+CFPS,2020,education,kra605,上学期本专业排名(%),True
+CFPS,2020,leadership,qs1_b_2,是否担任学生干部,False
+CFPS,2020,leadership,qs102b,担任的最高职务级别,True
+CFPS,2020,leadership,qs202,是否担任社团干部,True
+CFPS,2020,leadership,qs504,适合做学生干部,True
+CFPS,2020,education,qs603mn,会检查学校功课,True
+CFPS,2020,education,qs606mn,完成学校功课后才玩,True
+CFPS,2020,education,qs701_b_2,对学校满意程度,True
+CFPS,2020,science_math,qs704,对数学老师满意程度,False
+CFPS,2020,education,pt2,是否参加学校辅导,True
+CFPS,2020,education,pt201,每周参加学校课程辅导时间（小时）,True
+CFPS,2020,education,pd501b,过去12个月学校教育支出(元/年),True
+CFPS,2020,education,pd5total,教育支出总费用,True
+CFPS,2020,education,pd5ckp,教育总支出确认,True
+CFPS,2020,education,pd5total_mn,教育总支出(元/年),True
+CFPS,2020,education,wd7rn,政府、学校及其他组织机构支付,True
+CFPS,2020,education,w01,最高学历,True
+CFPS,2020,education,kw2y,离开学校（年）,True
+CFPS,2020,education,kw2m,离开学校（月）,True
+CFPS,2020,education,kw0,其他教育经历,True
+CFPS,2020,education,kw1_s_1,上次调查至今或曾经经历过的教育阶段：选择1,True
+CFPS,2020,education,kw1_s_2,上次调查至今或曾经经历过的教育阶段：选择2,True
+CFPS,2020,education,kw1_s_3,上次调查至今或曾经经历过的教育阶段：选择3,True
+CFPS,2020,education,kw1_s_4,上次调查至今或曾经经历过的教育阶段：选择4,True
+CFPS,2020,education,kw1_s_5,上次调查至今或曾经经历过的教育阶段：选择5,True
+CFPS,2020,education,kw1_s_6,上次调查至今或曾经经历过的教育阶段：选择6,True
+CFPS,2020,education,kw1_s_7,上次调查至今或曾经经历过的教育阶段：选择7,True
+CFPS,2020,education,wedu,教育阶段,True
+CFPS,2020,science_math,kw1003_b_1code,大专阶段主修专业的学科,False
+CFPS,2020,science_math,kw1003_b_2code,大学阶段主修专业的学科,False
+CFPS,2020,science_math,kw1003_b_3code,硕士阶段主修专业的学科,False
+CFPS,2020,science_math,kw1003_b_4code,博士阶段主修专业的学科,False
+CFPS,2020,science_math,kw1005_b_1,是否获得本科学位,True
+CFPS,2020,education,qc201,您期望的受教育程度,True
+CFPS,2020,edu_expect,qc201,您期望的受教育程度,True
+CFPS,2020,employment,qs801_b_2code,希望的具体职业,True
+CFPS,2020,marriage,qea0,当前婚姻状态,True
+CFPS,2020,marriage,qea1,确认上一次访问时婚姻状态,True
+CFPS,2020,marriage,marriage_last_update,2018婚姻状态更新,True
+CFPS,2020,marriage,qea2,2018年婚姻状况,True
+CFPS,2020,birth_age,qea201y,配偶/同伴出生日期(年),True
+CFPS,2020,marriage,qea201y,配偶/同伴出生日期(年),True
+CFPS,2020,birth_age,qea201m,配偶/同伴出生日期(月),True
+CFPS,2020,marriage,qea201m,配偶/同伴出生日期(月),True
+CFPS,2020,education,qea202,配偶/同伴学历状况,True
+CFPS,2020,marriage,qea202,配偶/同伴学历状况,True
+CFPS,2020,marriage,qea203code,上一期配偶/同伴职业编码（修补）,True
+CFPS,2020,employment,qea203code,上一期配偶/同伴职业编码（修补）,True
+CFPS,2020,employment,qea203code_isco,QEA203职业威望：ISCO Code,True
+CFPS,2020,employment,qea203code_isei,QEA203职业威望：ISEI Code,True
+CFPS,2020,employment,qea203code_siops,QEA203职业威望：SIOPS Code,True
+CFPS,2020,marriage,qea204,与配偶/同伴如何认识,True
+CFPS,2020,marriage,qea205y,结婚日期(年),True
+CFPS,2020,marriage,qea205m,结婚日期(月),True
+CFPS,2020,marriage,qea2071,是否是初婚,True
+CFPS,2020,marriage,qea208y,离婚日期(年),True
+CFPS,2020,marriage,qea208m,离婚日期(月),True
+CFPS,2020,marriage,qea209y,配偶去世日期(年),True
+CFPS,2020,marriage,qea209m,配偶去世日期(月),True
+CFPS,2020,marriage,qea210code,配偶去世原因,False
+CFPS,2020,marriage,eeb2,您与2018年调查/2018年1月1日时的同居伙伴是否结婚,True
+CFPS,2020,marriage,eeb201y,你们的结婚日期是 （年）,True
+CFPS,2020,marriage,eeb201m,你们的结婚日期是（月）,True
+CFPS,2020,marriage,eeb202_1,您的婚姻是否持续到当前,True
+CFPS,2020,marriage,eeb202y,您与EA200的婚姻持续到什么时候 （年）,True
+CFPS,2020,marriage,eeb202m,您与EA200的婚姻持续到什么时候（月）,True
+CFPS,2020,marriage,eeb401y_a_1,结婚日期(年),True
+CFPS,2020,marriage,eeb401m_a_1,结婚日期(月),True
+CFPS,2020,birth_age,eeb402y_a_1,对方出生日期(年),True
+CFPS,2020,birth_age,eeb402m_a_1,对方出生日期(月),True
+CFPS,2020,education,eeb4021_a_1,对方已完成（毕业）的最高学历,True
+CFPS,2020,marriage,eeb4022_a_1code,当期配偶职业职业编码：基于eeb4022文本,True
+CFPS,2020,employment,eeb4022_a_1code,当期配偶职业职业编码：基于eeb4022文本,True
+CFPS,2020,employment,eeb4022_a_1code_isco,EEB4022_A_1职业威望：ISCO Code,True
+CFPS,2020,employment,eeb4022_a_1code_isei,EEB4022_A_1职业威望：ISEI Code,True
+CFPS,2020,employment,eeb4022_a_1code_siops,EEB4022_A_1职业威望：SIOPS Code,True
+CFPS,2020,marriage,eeb406_1_a_1,婚姻是否持续,True
+CFPS,2020,marriage,eeb406y_a_1,婚姻结束时间（年）,True
+CFPS,2020,marriage,eeb406m_a_1,婚姻结束时间（月）,True
+CFPS,2020,marriage,eeb408_a_1code,配偶死亡原因,False
+CFPS,2020,birth_age,eeb603y_a_1,对方出生日期（年）,True
+CFPS,2020,birth_age,eeb603m_a_1,对方出生日期（月）,True
+CFPS,2020,birth_age,eeb603y_a_2,对方出生日期（年）,True
+CFPS,2020,birth_age,eeb603m_a_2,对方出生日期（月）,True
+CFPS,2020,birth_age,eeb603y_a_3,对方出生日期（年）,True
+CFPS,2020,birth_age,eeb603m_a_3,对方出生日期（月）,True
+CFPS,2020,birth_age,eeb603y_a_4,对方出生日期（年）,True
+CFPS,2020,birth_age,eeb603m_a_4,对方出生日期（月）,True
+CFPS,2020,birth_age,qka201,理想结婚年龄（岁）,True
+CFPS,2020,marriage,qka201,理想结婚年龄（岁）,True
+CFPS,2020,fertility,qka205,未来两年生育意愿,True
+CFPS,2020,marriage,qm801,您对您当前的“婚姻/同居”生活有多满意,True
+CFPS,2020,housework,qm803,您对对方在家务上为家庭做出的贡献有多满意,True
+CFPS,2020,marriage,marriagen,生成婚姻段数变量,True
+CFPS,2020,marriage,cmstart,2018年1月1日至今新开始且持续到当前的婚姻,True
+CFPS,2020,region,ear101a,2018居住地址（省）,True
+CFPS,2020,region,ear101c_code,2018居住地址（县/市）,True
+CFPS,2020,region,ear101e_code,2018居住地址（村居）,True
+CFPS,2020,region,ear102,2018地址是否为当前主要的居住地址,True
+CFPS,2020,region,ear103,2018调查至今是否离开过主要居住地址,True
+CFPS,2020,region,ear104y,最早搬离2018居住地址时间（年）,False
+CFPS,2020,region,ear104m,最早搬离2018居住地址时间（月）,True
+CFPS,2020,region,ear105y,最近入住2018居住地址时间（年）,False
+CFPS,2020,region,ear105m,最近入住2018居住地址时间（月）,True
+CFPS,2020,region,ear106_a_1,2018居住地址其他居住时段1,True
+CFPS,2020,region,ear106_1sy_a_1,2018居住地址第1段居住起始时间（年）,False
+CFPS,2020,region,ear106_1sm_a_1,2018居住地址第1段居住起始时间（月）,True
+CFPS,2020,region,ear106_1fy_a_1,2018居住地址第1段居住结束时间（年）,False
+CFPS,2020,region,ear106_1fm_a_1,2018居住地址第1段居住结束时间（月）,True
+CFPS,2020,region,ear106_1fc_a_1,2018居住地址第1段居住是否持续到当前,True
+CFPS,2020,region,ear106_a_2,2018居住地址其他居住时段2,True
+CFPS,2020,region,ear106_1sy_a_2,2018居住地址第2段居住起始时间（年）,False
+CFPS,2020,region,ear106_1sm_a_2,2018居住地址第2段居住起始时间（月）,True
+CFPS,2020,region,ear106_1fy_a_2,2018居住地址第2段居住结束时间（年）,False
+CFPS,2020,region,ear106_1fm_a_2,2018居住地址第2段居住结束时间（月）,True
+CFPS,2020,region,ear106_1fc_a_2,2018居住地址第2段居住是否持续到当前,True
+CFPS,2020,region,ear106_a_3,2018居住地址其他居住时段3,True
+CFPS,2020,region,ear106_1sy_a_3,2018居住地址第3段居住起始时间（年）,False
+CFPS,2020,region,ear106_1sm_a_3,2018居住地址第3段居住起始时间（月）,True
+CFPS,2020,region,ear106_1fy_a_3,2018居住地址第3段居住结束时间（年）,False
+CFPS,2020,region,ear106_1fm_a_3,2018居住地址第3段居住结束时间（月）,True
+CFPS,2020,region,ear106_1fc_a_3,2018居住地址第3段居住是否持续到当前,True
+CFPS,2020,region,ear106_a_4,2018居住地址其他居住时段4,True
+CFPS,2020,region,ear106_1sy_a_4,2018居住地址第4段居住起始时间（年）,False
+CFPS,2020,region,ear106_1sm_a_4,2018居住地址第4段居住起始时间（月）,True
+CFPS,2020,region,ear106_1fy_a_4,2018居住地址第4段居住结束时间（年）,False
+CFPS,2020,region,ear106_1fm_a_4,2018居住地址第4段居住结束时间（月）,True
+CFPS,2020,region,ear106_1fc_a_4,2018居住地址第4段居住是否持续到当前,True
+CFPS,2020,region,ear106_a_5,2018居住地址其他居住时段5,True
+CFPS,2020,region,ear106_1sy_a_5,2018居住地址第5段居住起始时间（年）,False
+CFPS,2020,region,ear106_1sm_a_5,2018居住地址第5段居住起始时间（月）,True
+CFPS,2020,region,ear106_1fy_a_5,2018居住地址第5段居住结束时间（年）,False
+CFPS,2020,region,ear106_1fm_a_5,2018居住地址第5段居住结束时间（月）,True
+CFPS,2020,region,ear106_1fc_a_5,2018居住地址第5段居住是否持续到当前,True
+CFPS,2020,region,ear106_a_6,2018居住地址其他居住时段6,True
+CFPS,2020,region,ear106_1sy_a_6,2018居住地址第6段居住起始时间（年）,False
+CFPS,2020,region,ear106_1sm_a_6,2018居住地址第6段居住起始时间（月）,True
+CFPS,2020,region,ear106_1fy_a_6,2018居住地址第6段居住结束时间（年）,False
+CFPS,2020,region,ear106_1fm_a_6,2018居住地址第6段居住结束时间（月）,True
+CFPS,2020,region,ear106_1fc_a_6,2018居住地址第6段居住是否持续到当前,True
+CFPS,2020,region,ear106_a_7,2018居住地址其他居住时段7,True
+CFPS,2020,region,ear106_1sy_a_7,2018居住地址第7段居住起始时间（年）,False
+CFPS,2020,region,ear106_1sm_a_7,2018居住地址第7段居住起始时间（月）,True
+CFPS,2020,region,ear106_1fy_a_7,2018居住地址第7段居住结束时间（年）,False
+CFPS,2020,region,ear106_1fm_a_7,2018居住地址第7段居住结束时间（月）,True
+CFPS,2020,region,ear106_1fc_a_7,2018居住地址第7段居住是否持续到当前,True
+CFPS,2020,region,ear106_a_8,2018居住地址其他居住时段8,True
+CFPS,2020,region,ear106_1sy_a_8,2018居住地址第8段居住起始时间（年）,False
+CFPS,2020,region,ear106_1sm_a_8,2018居住地址第8段居住起始时间（月）,True
+CFPS,2020,region,ear106_1fy_a_8,2018居住地址第8段居住结束时间（年）,False
+CFPS,2020,region,ear106_1fm_a_8,2018居住地址第8段居住结束时间（月）,True
+CFPS,2020,region,ear106_1fc_a_8,2018居住地址第8段居住是否持续到当前,True
+CFPS,2020,region,ear201_pre,当前主要的居住地址确认,True
+CFPS,2020,region,ear201a,当前主要居住地址（省）,True
+CFPS,2020,region,ear201c_code,当前主要居住地址（县/市）,True
+CFPS,2020,region,ear201e_code,当前主要居住地址（村居）,True
+CFPS,2020,region,ear202y,当前主要居住地址最近入住时间（年）,False
+CFPS,2020,region,ear202m,当前主要居住地址最近入住时间（月）,True
+CFPS,2020,region,ear3_a_1,当前主要居住地址其他居住时段1,True
+CFPS,2020,region,ear3_1sy_a_1,当前主要居住地址第1段居住起始时间（年）,False
+CFPS,2020,region,ear3_1sm_a_1,当前主要居住地址第1段居住起始时间（月）,True
+CFPS,2020,region,ear3_1fy_a_1,当前主要居住地址第1段居住结束时间（年）,True
+CFPS,2020,region,ear3_1fm_a_1,当前主要居住地址第1段居住结束时间（月）,True
+CFPS,2020,region,ear3_1fc_a_1,当前主要居住地址第1段居住是否持续到当前,True
+CFPS,2020,region,ear3_a_2,当前主要居住地址其他居住时段2,True
+CFPS,2020,region,ear3_1sy_a_2,当前主要居住地址第2段居住起始时间（年）,False
+CFPS,2020,region,ear3_1sm_a_2,当前主要居住地址第2段居住起始时间（月）,True
+CFPS,2020,region,ear3_1fy_a_2,当前主要居住地址第2段居住结束时间（年）,True
+CFPS,2020,region,ear3_1fm_a_2,当前主要居住地址第2段居住结束时间（月）,True
+CFPS,2020,region,ear3_1fc_a_2,当前主要居住地址第2段居住是否持续到当前,True
+CFPS,2020,region,ear3_a_3,当前主要居住地址其他居住时段3,True
+CFPS,2020,region,ear3_1sy_a_3,当前主要居住地址第3段居住起始时间（年）,False
+CFPS,2020,region,ear3_1sm_a_3,当前主要居住地址第3段居住起始时间（月）,True
+CFPS,2020,region,ear3_1fy_a_3,当前主要居住地址第3段居住结束时间（年）,True
+CFPS,2020,region,ear3_1fm_a_3,当前主要居住地址第3段居住结束时间（月）,True
+CFPS,2020,region,ear3_1fc_a_3,当前主要居住地址第3段居住是否持续到当前,True
+CFPS,2020,region,ear3_a_4,当前主要居住地址其他居住时段4,True
+CFPS,2020,region,ear3_1sy_a_4,当前主要居住地址第4段居住起始时间（年）,False
+CFPS,2020,region,ear3_1sm_a_4,当前主要居住地址第4段居住起始时间（月）,True
+CFPS,2020,region,ear3_1fy_a_4,当前主要居住地址第4段居住结束时间（年）,True
+CFPS,2020,region,ear3_1fm_a_4,当前主要居住地址第4段居住结束时间（月）,True
+CFPS,2020,region,ear3_1fc_a_4,当前主要居住地址第4段居住是否持续到当前,True
+CFPS,2020,region,ear3_a_5,当前主要居住地址其他居住时段5,True
+CFPS,2020,region,ear3_1sy_a_5,当前主要居住地址第5段居住起始时间（年）,False
+CFPS,2020,region,ear3_1sm_a_5,当前主要居住地址第5段居住起始时间（月）,True
+CFPS,2020,region,ear3_1fy_a_5,当前主要居住地址第5段居住结束时间（年）,True
+CFPS,2020,region,ear3_1fm_a_5,当前主要居住地址第5段居住结束时间（月）,True
+CFPS,2020,region,ear3_1fc_a_5,当前主要居住地址第5段居住是否持续到当前,True
+CFPS,2020,region,ear3_a_6,当前主要居住地址其他居住时段6,True
+CFPS,2020,region,ear3_1sy_a_6,当前主要居住地址第6段居住起始时间（年）,False
+CFPS,2020,region,ear3_1sm_a_6,当前主要居住地址第6段居住起始时间（月）,True
+CFPS,2020,region,ear3_1fy_a_6,当前主要居住地址第6段居住结束时间（年）,True
+CFPS,2020,region,ear3_1fm_a_6,当前主要居住地址第6段居住结束时间（月）,True
+CFPS,2020,region,ear3_1fc_a_6,当前主要居住地址第6段居住是否持续到当前,True
+CFPS,2020,region,ear3_a_7,当前主要居住地址其他居住时段7,True
+CFPS,2020,region,ear3_1sy_a_7,当前主要居住地址第7段居住起始时间（年）,False
+CFPS,2020,region,ear3_1sm_a_7,当前主要居住地址第7段居住起始时间（月）,True
+CFPS,2020,region,ear3_1fy_a_7,当前主要居住地址第7段居住结束时间（年）,True
+CFPS,2020,region,ear3_1fm_a_7,当前主要居住地址第7段居住结束时间（月）,True
+CFPS,2020,region,ear3_1fc_a_7,当前主要居住地址第7段居住是否持续到当前,True
+CFPS,2020,region,ear3_a_8,当前主要居住地址其他居住时段8,True
+CFPS,2020,region,ear3_1sy_a_8,当前主要居住地址第8段居住起始时间（年）,False
+CFPS,2020,region,ear3_1sm_a_8,当前主要居住地址第8段居住起始时间（月）,True
+CFPS,2020,region,ear3_1fy_a_8,当前主要居住地址第8段居住结束时间（年）,True
+CFPS,2020,region,ear3_1fm_a_8,当前主要居住地址第8段居住结束时间（月）,True
+CFPS,2020,region,ear3_1fc_a_8,当前主要居住地址第8段居住是否持续到当前,True
+CFPS,2020,region,ear4,其他居住地址数（处）,True
+CFPS,2020,region,ear5a_a_1,其他地址1（省）,True
+CFPS,2020,region,ear5a_a_2,其他地址2（省）,True
+CFPS,2020,region,ear5a_a_3,其他地址3（省）,True
+CFPS,2020,region,ear5a_a_4,其他地址4（省）,True
+CFPS,2020,region,ear5a_a_5,其他地址5（省）,True
+CFPS,2020,region,ear5a_a_6,其他地址6（省）,True
+CFPS,2020,region,ear7a_a_1,居住地址1（省）,True
+CFPS,2020,region,ear7c_a_1_code,居住地址1（县/市）,True
+CFPS,2020,region,ear7e_a_1_code,居住地址1（村居）,True
+CFPS,2020,region,ear7a_a_2,居住地址2（省）,True
+CFPS,2020,region,ear7c_a_2_code,居住地址2（县/市）,True
+CFPS,2020,region,ear7e_a_2_code,居住地址2（村居）,True
+CFPS,2020,region,ear7a_a_3,居住地址3（省）,True
+CFPS,2020,region,ear7c_a_3_code,居住地址3（县/市）,True
+CFPS,2020,employment,qga302,实习每周工作时间(小时/周),True
+CFPS,2020,employment,qga401code,实习工作职业编码：基于QGA401文本,True
+CFPS,2020,employment,qga401code_isco,QGA401职业威望：ISCO Code,True
+CFPS,2020,employment,qga401code_isei,QGA401职业威望：ISEI Code,True
+CFPS,2020,employment,qga401code_siops,QGA401职业威望：SIOPS Code,True
+CFPS,2020,employment,qga1,全职工作经历,True
+CFPS,2020,employment,qgb1,过去一周工作状态,True
+CFPS,2020,employment,qgb201,返回工作岗位,True
+CFPS,2020,employment,qgb4,从事农业工作,True
+CFPS,2020,employment,qgb5,是否找工作,True
+CFPS,2020,employment,qgb501,两周内开始工作,True
+CFPS,2020,employment,qgb6,没有工作原因,True
+CFPS,2020,employment,employ,当前工作状态,True
+CFPS,2020,employment,egc101,2018工作确认,True
+CFPS,2020,employment,egc104y,工作结束时间（年）,False
+CFPS,2020,employment,egc104m,工作结束时间（月）,True
+CFPS,2020,employment,egc103,当前最主要工作/最近结束的工作确认,True
+CFPS,2020,employment,egc105,从上次调查/2018年1月1日至今，您是否有过工作,True
+CFPS,2020,employment,egc1052y,从上次调查/2018年1月1日至今，新产生的主要工作/最近一份工作的开始时间（年）,False
+CFPS,2020,employment,egc1052m,从上次调查/2018年1月1日至今，新产生的主要工作/最近一份工作的开始时间（月）,True
+CFPS,2020,employment,egc1053y,从上次调查/2018年1月1日至今，新产生的主要工作/最近一份工作的最早一次的间断时间（,False
+CFPS,2020,employment,egc1053m,从上次调查/2018年1月1日至今，新产生的主要工作/最近一份工作的最早一次的间断时间（,True
+CFPS,2020,employment,egc1053c,从上次调查/2018年1月1日至今，新产生的主要工作/最近一份工作，是否持续到当前,True
+CFPS,2020,employment,egc202_b_1,2018主要工作（若不再是2020主要工作，则变成2020一般工作）是为自己干活还是受雇于他,True
+CFPS,2020,employment,egc2021_b_1,2018主要工作（若不再是2020主要工作，则变成2020一般工作）是农业工作还是非农工作,True
+CFPS,2020,employment,egc203_b_1,2018主要工作（若不再是2020主要工作，则变成2020一般工作）的工作单位/雇主性质,True
+CFPS,2020,employment,egc2031_b_1,2018主要工作（若不再是2020主要工作，则变成2020一般工作）的雇主是否为个体工商户,True
+CFPS,2020,employment,egc204_b_1,过去12个月，2018主要工作（若不再是2020主要工作，则变成2020一般工作）每周工作多少,True
+CFPS,2020,employment,egc205_b_1,过去12个月，2018主要工作（若不再是2020主要工作，则变成2020一般工作）的税后月收入,True
+CFPS,2020,income,egc205_b_1,过去12个月，2018主要工作（若不再是2020主要工作，则变成2020一般工作）的税后月收入,True
+CFPS,2020,employment,lastyjob_last,CFPS2018主要工作是否延续到最近一年,True
+CFPS,2020,employment,lastyjob_cur,CFPS2018之后产生的最近一份工作是否延续到最近一年,True
+CFPS,2020,employment,jobstartn,EHC回忆时段内开始新工作份数,True
+CFPS,2020,employment,jobclass_base_2018,2018主要工作（若不再是2020主要工作，则变成2020一般工作）的工作类型（base）,True
+CFPS,2020,employment,jobclass_2018,2018主要工作（若不再是2020主要工作，则变成2020一般工作）的工作类型,True
+CFPS,2020,employment,mincomea_b_1,2018主要工作（若不再是2020主要工作，则变成2020一般工作）的税后月收入,True
+CFPS,2020,income,mincomea_b_1,2018主要工作（若不再是2020主要工作，则变成2020一般工作）的税后月收入,True
+CFPS,2020,employment,yincomea_b_1,2018主要工作（若不再是2020主要工作，则变成2020一般工作）的税后年收入,True
+CFPS,2020,income,yincomea_b_1,2018主要工作（若不再是2020主要工作，则变成2020一般工作）的税后年收入,True
+CFPS,2020,employment,egc201,其他一般工作的数量,True
+CFPS,2020,employment,egc2012y_a_1,您什么时候开始从事一般工作1（年）,False
+CFPS,2020,employment,egc2012m_a_1,您什么时候开始从事一般工作1（月）,True
+CFPS,2020,employment,egc2013y_a_1,您什么时候结束一般工作1（年）,False
+CFPS,2020,employment,egc2013m_a_1,您什么时候结束一般工作1（月）,True
+CFPS,2020,employment,egc2013c_a_1,一般工作1是否持续到当前,True
+CFPS,2020,employment,egc202_a_1,一般工作1是为自己/自家干活还是受雇于他人/他家/组织/单位/公司,True
+CFPS,2020,employment,egc2021_a_1,一般工作1是农业工作还是非农工作,True
+CFPS,2020,employment,egc203_a_1,一般工作1的单位/雇主性质,True
+CFPS,2020,employment,egc2031_a_1,一般工作1的雇主是否为个体工商户,True
+CFPS,2020,employment,egc204_a_1,过去12个月，一般工作1每周工作多少个小时,True
+CFPS,2020,employment,egc205_a_1,过去12个月，一般工作1的税后月收入,True
+CFPS,2020,income,egc205_a_1,过去12个月，一般工作1的税后月收入,True
+CFPS,2020,employment,egc2051_min_a_1,一般工作1的税后月收入区间最低值,True
+CFPS,2020,income,egc2051_min_a_1,一般工作1的税后月收入区间最低值,True
+CFPS,2020,employment,egc2051_max_a_1,一般工作1的税后月收入区间最高值,True
+CFPS,2020,income,egc2051_max_a_1,一般工作1的税后月收入区间最高值,True
+CFPS,2020,employment,egc2051_a_1_est,一般工作1的税后月收入-估计值,True
+CFPS,2020,income,egc2051_a_1_est,一般工作1的税后月收入-估计值,True
+CFPS,2020,employment,mincomea_a_1,一般工作1的税后月收入,True
+CFPS,2020,income,mincomea_a_1,一般工作1的税后月收入,True
+CFPS,2020,employment,yincomea_a_1,一般工作1的税后年收入,True
+CFPS,2020,income,yincomea_a_1,一般工作1的税后年收入,True
+CFPS,2020,employment,jobclass_base_a_1,一般工作1的类型（base）,True
+CFPS,2020,employment,jobclass_a_1,一般工作1的工作类型,True
+CFPS,2020,employment,lastyjob_comm_a_1,一般工作1是否延续到最近一年,True
+CFPS,2020,employment,egc2012y_a_2,您什么时候开始从事一般工作2（年）,False
+CFPS,2020,employment,egc2012m_a_2,您什么时候开始从事一般工作2（月）,True
+CFPS,2020,employment,egc2013y_a_2,您什么时候结束一般工作2（年）,False
+CFPS,2020,employment,egc2013m_a_2,您什么时候结束一般工作2（月）,True
+CFPS,2020,employment,egc2013c_a_2,一般工作2是否持续到当前,True
+CFPS,2020,employment,egc202_a_2,一般工作2是为自己/自家干活还是受雇于他人/他家/组织/单位/公司,True
+CFPS,2020,employment,egc2021_a_2,一般工作2是农业工作还是非农工作,True
+CFPS,2020,employment,egc203_a_2,一般工作2的单位/雇主性质,True
+CFPS,2020,employment,egc2031_a_2,一般工作2的雇主是否为个体工商户,True
+CFPS,2020,employment,egc204_a_2,过去12个月，一般工作2每周工作多少个小时,True
+CFPS,2020,employment,egc205_a_2,过去12个月，一般工作2的税后月收入,True
+CFPS,2020,income,egc205_a_2,过去12个月，一般工作2的税后月收入,True
+CFPS,2020,employment,egc2051_min_a_2,一般工作2的税后月收入区间最低值,True
+CFPS,2020,income,egc2051_min_a_2,一般工作2的税后月收入区间最低值,True
+CFPS,2020,employment,egc2051_max_a_2,一般工作2的税后月收入区间最高值,True
+CFPS,2020,income,egc2051_max_a_2,一般工作2的税后月收入区间最高值,True
+CFPS,2020,employment,egc2051_a_2_est,一般工作2的税后月收入-估计值,True
+CFPS,2020,income,egc2051_a_2_est,一般工作2的税后月收入-估计值,True
+CFPS,2020,employment,mincomea_a_2,一般工作2的税后月收入,True
+CFPS,2020,income,mincomea_a_2,一般工作2的税后月收入,True
+CFPS,2020,employment,yincomea_a_2,一般工作2的税后年收入,True
+CFPS,2020,income,yincomea_a_2,一般工作2的税后年收入,True
+CFPS,2020,employment,jobclass_base_a_2,一般工作2的类型（base）,True
+CFPS,2020,employment,jobclass_a_2,一般工作2的工作类型,True
+CFPS,2020,employment,lastyjob_comm_a_2,一般工作2是否延续到最近一年,True
+CFPS,2020,employment,egc2012y_a_3,您什么时候开始从事一般工作3（年）,False
+CFPS,2020,employment,egc2012m_a_3,您什么时候开始从事一般工作3（月）,True
+CFPS,2020,employment,egc2013y_a_3,您什么时候结束一般工作3（年）,False
+CFPS,2020,employment,egc2013m_a_3,您什么时候结束一般工作3（月）,True
+CFPS,2020,employment,egc2013c_a_3,一般工作3是否持续到当前,True
+CFPS,2020,employment,egc202_a_3,一般工作3是为自己/自家干活还是受雇于他人/他家/组织/单位/公司,True
+CFPS,2020,employment,egc2021_a_3,一般工作3是农业工作还是非农工作,True
+CFPS,2020,employment,egc203_a_3,一般工作3的单位/雇主性质,True
+CFPS,2020,employment,egc2031_a_3,一般工作3的雇主是否为个体工商户,True
+CFPS,2020,employment,egc204_a_3,过去12个月，一般工作3每周工作多少个小时,True
+CFPS,2020,employment,egc205_a_3,过去12个月，一般工作3的税后月收入,True
+CFPS,2020,income,egc205_a_3,过去12个月，一般工作3的税后月收入,True
+CFPS,2020,employment,mincomea_a_3,一般工作3的税后月收入,True
+CFPS,2020,income,mincomea_a_3,一般工作3的税后月收入,True
+CFPS,2020,employment,yincomea_a_3,一般工作3的税后年收入,True
+CFPS,2020,income,yincomea_a_3,一般工作3的税后年收入,True
+CFPS,2020,employment,jobclass_base_a_3,一般工作3的类型（base）,True
+CFPS,2020,employment,jobclass_a_3,一般工作3的工作类型,True
+CFPS,2020,employment,lastyjob_comm_a_3,一般工作3是否延续到最近一年,True
+CFPS,2020,employment,egc2012y_a_4,您什么时候开始从事一般工作4（年）,False
+CFPS,2020,employment,egc2012m_a_4,您什么时候开始从事一般工作4（月）,True
+CFPS,2020,employment,egc2013y_a_4,您什么时候结束一般工作4（年）,False
+CFPS,2020,employment,egc2013m_a_4,您什么时候结束一般工作4（月）,True
+CFPS,2020,employment,egc2013c_a_4,一般工作4是否持续到当前,True
+CFPS,2020,employment,egc202_a_4,一般工作4是为自己/自家干活还是受雇于他人/他家/组织/单位/公司,True
+CFPS,2020,employment,egc2021_a_4,一般工作4是农业工作还是非农工作,True
+CFPS,2020,employment,egc203_a_4,一般工作4的单位/雇主性质,True
+CFPS,2020,employment,egc2031_a_4,一般工作4的雇主是否为个体工商户,True
+CFPS,2020,employment,egc204_a_4,过去12个月，一般工作4每周工作多少个小时,True
+CFPS,2020,employment,egc205_a_4,过去12个月，一般工作4的税后月收入,True
+CFPS,2020,income,egc205_a_4,过去12个月，一般工作4的税后月收入,True
+CFPS,2020,employment,mincomea_a_4,一般工作4的税后月收入,True
+CFPS,2020,income,mincomea_a_4,一般工作4的税后月收入,True
+CFPS,2020,employment,yincomea_a_4,一般工作4的税后年收入,True
+CFPS,2020,income,yincomea_a_4,一般工作4的税后年收入,True
+CFPS,2020,employment,jobclass_base_a_4,一般工作4的类型（base）,True
+CFPS,2020,employment,jobclass_a_4,一般工作4的工作类型,True
+CFPS,2020,employment,lastyjob_comm_a_4,一般工作4是否延续到最近一年,True
+CFPS,2020,employment,egc2012y_a_5,您什么时候开始从事一般工作5（年）,False
+CFPS,2020,employment,egc2012m_a_5,您什么时候开始从事一般工作5（月）,True
+CFPS,2020,employment,egc2013y_a_5,您什么时候结束一般工作5（年）,False
+CFPS,2020,employment,egc2013m_a_5,您什么时候结束一般工作5（月）,True
+CFPS,2020,employment,egc2013c_a_5,一般工作5是否持续到当前,True
+CFPS,2020,employment,egc202_a_5,一般工作5是为自己/自家干活还是受雇于他人/他家/组织/单位/公司,True
+CFPS,2020,employment,egc2021_a_5,一般工作5是农业工作还是非农工作,True
+CFPS,2020,employment,egc203_a_5,一般工作5的单位/雇主性质,True
+CFPS,2020,employment,egc2031_a_5,一般工作5的雇主是否为个体工商户,True
+CFPS,2020,employment,egc204_a_5,过去12个月，一般工作5每周工作多少个小时,True
+CFPS,2020,employment,egc205_a_5,过去12个月，一般工作5的税后月收入,True
+CFPS,2020,income,egc205_a_5,过去12个月，一般工作5的税后月收入,True
+CFPS,2020,employment,mincomea_a_5,一般工作5的税后月收入,True
+CFPS,2020,income,mincomea_a_5,一般工作5的税后月收入,True
+CFPS,2020,employment,yincomea_a_5,一般工作5的税后年收入,True
+CFPS,2020,income,yincomea_a_5,一般工作5的税后年收入,True
+CFPS,2020,employment,jobclass_base_a_5,一般工作5的类型（base）,True
+CFPS,2020,employment,jobclass_a_5,一般工作5的工作类型,True
+CFPS,2020,employment,lastyjob_comm_a_5,一般工作5是否延续到最近一年,True
+CFPS,2020,employment,egc2012y_a_6,您什么时候开始从事一般工作6（年）,False
+CFPS,2020,employment,egc2012m_a_6,您什么时候开始从事一般工作6（月）,True
+CFPS,2020,employment,egc2013y_a_6,您什么时候结束一般工作6（年）,False
+CFPS,2020,employment,egc2013m_a_6,您什么时候结束一般工作6（月）,True
+CFPS,2020,employment,egc2013c_a_6,一般工作6是否持续到当前,True
+CFPS,2020,employment,egc202_a_6,一般工作6是为自己/自家干活还是受雇于他人/他家/组织/单位/公司,True
+CFPS,2020,employment,egc2021_a_6,一般工作6是农业工作还是非农工作,True
+CFPS,2020,employment,egc203_a_6,一般工作6的单位/雇主性质,True
+CFPS,2020,employment,egc2031_a_6,一般工作6的雇主是否为个体工商户,True
+CFPS,2020,employment,egc204_a_6,过去12个月，一般工作6每周工作多少个小时,True
+CFPS,2020,employment,egc205_a_6,过去12个月，一般工作6的税后月收入,True
+CFPS,2020,income,egc205_a_6,过去12个月，一般工作6的税后月收入,True
+CFPS,2020,employment,mincomea_a_6,一般工作6的税后月收入,True
+CFPS,2020,income,mincomea_a_6,一般工作6的税后月收入,True
+CFPS,2020,employment,yincomea_a_6,一般工作6的税后年收入,True
+CFPS,2020,income,yincomea_a_6,一般工作6的税后年收入,True
+CFPS,2020,employment,jobclass_base_a_6,一般工作6的类型（base）,True
+CFPS,2020,employment,jobclass_a_6,一般工作6的工作类型,True
+CFPS,2020,employment,lastyjob_comm_a_6,一般工作6是否延续到最近一年,True
+CFPS,2020,employment,egc2012y_a_7,您什么时候开始从事一般工作7（年）,False
+CFPS,2020,employment,egc2012m_a_7,您什么时候开始从事一般工作7（月）,True
+CFPS,2020,employment,egc2013y_a_7,您什么时候结束一般工作7（年）,False
+CFPS,2020,employment,egc2013m_a_7,您什么时候结束一般工作7（月）,True
+CFPS,2020,employment,egc2013c_a_7,一般工作7是否持续到当前,True
+CFPS,2020,employment,egc202_a_7,一般工作7是为自己/自家干活还是受雇于他人/他家/组织/单位/公司,True
+CFPS,2020,employment,egc2021_a_7,一般工作7是农业工作还是非农工作,True
+CFPS,2020,employment,egc203_a_7,一般工作7的单位/雇主性质,True
+CFPS,2020,employment,egc204_a_7,过去12个月，一般工作7每周工作多少个小时,True
+CFPS,2020,employment,egc205_a_7,过去12个月，一般工作7的税后月收入,True
+CFPS,2020,income,egc205_a_7,过去12个月，一般工作7的税后月收入,True
+CFPS,2020,employment,mincomea_a_7,一般工作7的税后月收入,True
+CFPS,2020,income,mincomea_a_7,一般工作7的税后月收入,True
+CFPS,2020,employment,yincomea_a_7,一般工作7的税后年收入,True
+CFPS,2020,income,yincomea_a_7,一般工作7的税后年收入,True
+CFPS,2020,employment,jobclass_base_a_7,一般工作7的类型（base）,True
+CFPS,2020,employment,jobclass_a_7,一般工作7的工作类型,True
+CFPS,2020,employment,lastyjob_comm_a_7,一般工作7是否延续到最近一年,True
+CFPS,2020,employment,qgd01,全职工作经历,True
+CFPS,2020,employment,qgd0,这是您人生的第一份工作吗,True
+CFPS,2020,employment,kgd1a,第一份工作是否受雇,True
+CFPS,2020,employment,kgd2a_a_1,求职渠道：是否自己直接与用人单位联系,True
+CFPS,2020,employment,kgd2a_a_2,求职渠道：是否职业介绍机构、招聘广告、自己登求职广告，或参加人才交流会/招聘会,True
+CFPS,2020,education,kgd2a_a_5,求职渠道：是否学校就业指导机构，或学校推荐,True
+CFPS,2020,employment,kgd2a_a_5,求职渠道：是否学校就业指导机构，或学校推荐,True
+CFPS,2020,employment,kgd101,获得工作主要渠道,True
+CFPS,2020,employment,kgd4code,第一份工作职业编码：基于KGD4文本,True
+CFPS,2020,employment,kgd4code_isco,KGD4职业威望：ISCO Code,True
+CFPS,2020,employment,kgd4code_isei,KGD4职业威望：ISEI Code,True
+CFPS,2020,employment,kgd4code_siops,KGD4职业威望：SIOPS Code,True
+CFPS,2020,education,kgd2,胜任工作的教育程度,True
+CFPS,2020,employment,kgd2,胜任工作的教育程度,True
+CFPS,2020,employment,qg1,当前最主要工作/最近结束的工作的工作所有者,True
+CFPS,2020,employment,qg101,当前最主要工作/最近结束的工作的工作性质,True
+CFPS,2020,employment,jobclass_base,当前最主要工作/最近结束的工作类型（base）,True
+CFPS,2020,employment,jobclass,当前最主要工作/最近结束的工作类型,True
+CFPS,2020,employment,qg301,工作地点,True
+CFPS,2020,region,qg301a_code,工作地点(省),True
+CFPS,2020,employment,qg301a_code,工作地点(省),True
+CFPS,2020,employment,qg301c_code,工作地点(县/市),True
+CFPS,2020,employment,qg303code,主要工作职业编码：基于QG303文本,True
+CFPS,2020,employment,qg303code_isco,QG303职业威望：ISCO Code,True
+CFPS,2020,employment,qg303code_isei,QG303职业威望：ISEI Code,True
+CFPS,2020,employment,qg303code_siops,QG303职业威望：SIOPS Code,True
+CFPS,2020,employment,qg303code_egp,QG303职业威望：EGP Code,True
+CFPS,2020,employment,qg401,工作收入满意度,True
+CFPS,2020,income,qg401,工作收入满意度,True
+CFPS,2020,employment,qg402,工作安全满意度,True
+CFPS,2020,employment,qg403,工作环境满意度,True
+CFPS,2020,employment,qg404,工作时间满意度,True
+CFPS,2020,employment,qg405,工作晋升满意度,True
+CFPS,2020,leadership,qg405,工作晋升满意度,True
+CFPS,2020,employment,qg406,工作满意度,True
+CFPS,2020,employment,qg6,每周工作时间(小时/周),True
+CFPS,2020,employment,qg8_a_3,实物福利：是否提供单位配车/班,True
+CFPS,2020,employment,qg801_a_3,每月福利金额（元）-单位配车/班车,True
+CFPS,2020,employment,qg9_s_1,工作保障：选择1,True
+CFPS,2020,employment,qg9_s_2,工作保障：选择2,True
+CFPS,2020,employment,qg9_s_3,工作保障：选择3,True
+CFPS,2020,employment,qg9_s_4,工作保障：选择4,True
+CFPS,2020,employment,qg9_s_5,工作保障：选择5,True
+CFPS,2020,employment,qg9_a_1,工作保障：是否提供养老保险,True
+CFPS,2020,employment,qg9_a_2,工作保障：是否提供医疗保险,True
+CFPS,2020,employment,qg9_a_3,工作保障：是否提供失业保险,True
+CFPS,2020,employment,qg9_a_4,工作保障：是否提供工伤保险,True
+CFPS,2020,fertility,qg9_a_5,工作保障：是否提供生育保险,True
+CFPS,2020,employment,qg9_a_5,工作保障：是否提供生育保险,True
+CFPS,2020,employment,qg9_a_78,工作保障：是否以上都没有,True
+CFPS,2020,income,qg11,每月税后工资(元/月),True
+CFPS,2020,employment,qg12,工作总收入(元/年),True
+CFPS,2020,income,qg12,工作总收入(元/年),True
+CFPS,2020,employment,qg1201_min,工作总收入区间最低值,True
+CFPS,2020,income,qg1201_min,工作总收入区间最低值,True
+CFPS,2020,employment,qg1201_max,工作总收入区间最高值,True
+CFPS,2020,income,qg1201_max,工作总收入区间最高值,True
+CFPS,2020,employment,qg1201_est,工作总收入-估计值,True
+CFPS,2020,income,qg1201_est,工作总收入-估计值,True
+CFPS,2020,employment,incomea,过去12个月所有一般工作的税后工资性收入,True
+CFPS,2020,income,incomea,过去12个月所有一般工作的税后工资性收入,True
+CFPS,2020,employment,incomeb,过去12个月主要工作税后工资性收入,True
+CFPS,2020,income,incomeb,过去12个月主要工作税后工资性收入,True
+CFPS,2020,employment,emp_income,过去12个月所有工作（主要工作+一般工作）的税后工资性收入,True
+CFPS,2020,income,emp_income,过去12个月所有工作（主要工作+一般工作）的税后工资性收入,True
+CFPS,2020,employment,kg13a_a_1,求职渠道：是否自己直接与用人单位联系,True
+CFPS,2020,employment,kg13a_a_2,求职渠道：是否职业介绍机构、招聘广告、自己登求职广告，或参加人才交流会/招聘会,True
+CFPS,2020,education,kg13a_a_5,求职渠道：是否学校就业指导机构，或学校推荐,True
+CFPS,2020,employment,kg13a_a_5,求职渠道：是否学校就业指导机构，或学校推荐,True
+CFPS,2020,employment,kg1301,获得工作主要渠道,True
+CFPS,2020,education,kg1302,胜任工作的教育程度,True
+CFPS,2020,employment,kg1302,胜任工作的教育程度,True
+CFPS,2020,leadership,qg14,行政管理职务,True
+CFPS,2020,leadership,qg1401code,QG1401行政管理职务编码,True
+CFPS,2020,employment,qg15,工作晋级,True
+CFPS,2020,employment,qg16,工作单位规模(人),True
+CFPS,2020,leadership,qg1701,管理人员规模(人),True
+CFPS,2020,employment,qg20,工作场所,False
+CFPS,2020,employment,qg1202,工作总收入校验,True
+CFPS,2020,income,qg1202,工作总收入校验,True
+CFPS,2020,income,qg1203,非经营税后总收入(元/年),True
+CFPS,2020,employment,qg1204_min,非经营税后总收入区间最低值（工作总收入校验值）,True
+CFPS,2020,income,qg1204_min,非经营税后总收入区间最低值（工作总收入校验值）,True
+CFPS,2020,employment,qg1204_max,非经营税后总收入区间最高值（工作总收入校验值）,True
+CFPS,2020,income,qg1204_max,非经营税后总收入区间最高值（工作总收入校验值）,True
+CFPS,2020,employment,qg1204_est,非经营税后总收入区间最低值（工作总收入校验值）-估计值,True
+CFPS,2020,income,qg1204_est,非经营税后总收入区间最低值（工作总收入校验值）-估计值,True
+CFPS,2020,employment,qi301_a_1,参保项目：是否离退休后从所在机关或事业单位领取离退休金,True
+CFPS,2020,region,qi301_a_5,参保项目：是否参保农村养老保险（老农保）,True
+CFPS,2020,region,qi301_a_6,参保项目：是否参保新型农村社会养老保险（新农保）,True
+CFPS,2020,region,qi301_a_7,参保项目：是否参保城镇居民养老保险,True
+CFPS,2020,id_person,xchildpid_a_1,受访者子女1（F模块）,True
+CFPS,2020,housework,qf203_a_1,是否帮子女1料理家务看孩子,True
+CFPS,2020,housework,qf204_a_1,帮子女1料理家务看孩子的频率,True
+CFPS,2020,housework,qf303_a_1,子女1是否帮你料理家务或照顾你的饮食起居,True
+CFPS,2020,housework,qf304_a_1,子女1帮你料理家务或照顾你的饮食起居的频率,True
+CFPS,2020,id_person,xchildpid_a_2,受访者子女2（F模块）,True
+CFPS,2020,housework,qf203_a_2,是否帮子女2料理家务看孩子,True
+CFPS,2020,housework,qf204_a_2,帮子女2料理家务看孩子的频率,True
+CFPS,2020,housework,qf303_a_2,子女2是否帮你料理家务或照顾你的饮食起居,True
+CFPS,2020,housework,qf304_a_2,子女2帮你料理家务或照顾你的饮食起居的频率,True
+CFPS,2020,id_person,xchildpid_a_3,受访者子女3（F模块）,True
+CFPS,2020,housework,qf203_a_3,是否帮子女3料理家务看孩子,True
+CFPS,2020,housework,qf204_a_3,帮子女3料理家务看孩子的频率,True
+CFPS,2020,housework,qf303_a_3,子女3是否帮你料理家务或照顾你的饮食起居,True
+CFPS,2020,housework,qf304_a_3,子女3帮你料理家务或照顾你的饮食起居的频率,True
+CFPS,2020,id_person,xchildpid_a_4,受访者子女4（F模块）,True
+CFPS,2020,housework,qf203_a_4,是否帮子女4料理家务看孩子,True
+CFPS,2020,housework,qf204_a_4,帮子女4料理家务看孩子的频率,True
+CFPS,2020,housework,qf303_a_4,子女4是否帮你料理家务或照顾你的饮食起居,True
+CFPS,2020,housework,qf304_a_4,子女4帮你料理家务或照顾你的饮食起居的频率,True
+CFPS,2020,id_person,xchildpid_a_5,受访者子女5（F模块）,True
+CFPS,2020,housework,qf203_a_5,是否帮子女5料理家务看孩子,True
+CFPS,2020,housework,qf204_a_5,帮子女5料理家务看孩子的频率,True
+CFPS,2020,housework,qf303_a_5,子女5是否帮你料理家务或照顾你的饮食起居,True
+CFPS,2020,housework,qf304_a_5,子女5帮你料理家务或照顾你的饮食起居的频率,True
+CFPS,2020,id_person,xchildpid_a_6,受访者子女6（F模块）,True
+CFPS,2020,housework,qf203_a_6,是否帮子女6料理家务看孩子,True
+CFPS,2020,housework,qf303_a_6,子女6是否帮你料理家务或照顾你的饮食起居,True
+CFPS,2020,housework,qf304_a_6,子女6帮你料理家务或照顾你的饮食起居的频率,True
+CFPS,2020,id_person,xchildpid_a_7,受访者子女7（F模块）,True
+CFPS,2020,housework,qf203_a_7,是否帮子女7料理家务看孩子,True
+CFPS,2020,housework,qf303_a_7,子女7是否帮你料理家务或照顾你的饮食起居,True
+CFPS,2020,housework,qf304_a_7,子女7帮你料理家务或照顾你的饮食起居的频率,True
+CFPS,2020,id_person,xchildpid_a_8,受访者子女8（F模块）,True
+CFPS,2020,housework,qf203_a_8,是否帮子女8料理家务看孩子,True
+CFPS,2020,housework,qf303_a_8,子女8是否帮你料理家务或照顾你的饮食起居,True
+CFPS,2020,housework,qf603_a_1,是否料理家务或照顾父亲,True
+CFPS,2020,housework,qf604_a_1,料理家务或照顾父亲的频率,True
+CFPS,2020,housework,qf703_a_1,父亲是否为您料理家务或照看孩子,True
+CFPS,2020,housework,qf704_a_1,父亲为您料理家务或照看孩子的频率,True
+CFPS,2020,housework,qf603_a_2,是否料理家务或照顾母亲,True
+CFPS,2020,housework,qf604_a_2,料理家务或照顾母亲的频率,True
+CFPS,2020,housework,qf703_a_2,母亲是否为您料理家务或照看孩子,True
+CFPS,2020,housework,qf704_a_2,母亲为您料理家务或照看孩子的频率,True
+CFPS,2020,employment,qu951,网络对工作重要性,True
+CFPS,2020,employment,wv104,努力工作能有回报,True
+CFPS,2020,income,wv101,经济繁荣要拉大收入差距,True
+CFPS,2020,housework,qm991,照料投入,True
+CFPS,2020,marriage,qm1102,女人婚姻,True
+CFPS,2020,housework,qm1104,男人家务,True
+CFPS,2020,income,qn8011,您的收入在本地,False
+CFPS,2020,education,qm3013,孩子的受教育程度（分）,True
+CFPS,2020,employment,qn4005,是否是个体劳动者协会成员,True
+CFPS,2020,employment,qn6014,就业问题,True
+CFPS,2020,education,qn6015,教育问题,True
+CFPS,2020,birth_age,qa101,出生时的体重(斤),True
+CFPS,2020,housework,qq701a,近一年您生病时谁照顾,True
+CFPS,2020,region,qp605_a_2,享有哪些医疗保险：城镇职工医疗保险,True
+CFPS,2020,region,qp605_a_3,享有哪些医疗保险：城镇居民医疗保险（含一老一小保险）,True
+CFPS,2020,region,qp605_a_5,享有哪些医疗保险：新型农村合作医疗,True
+CFPS,2020,region,qp605_a_6,享有哪些医疗保险：城乡居民基本医疗保险,True
+CFPS,2020,birth_age,qq2011,开始吸烟年龄（岁）,True
+CFPS,2020,birth_age,qq205,戒烟年龄（岁）,True
+CFPS,2020,employment,qq400,工作日区分,True
+CFPS,2020,employment,qq4011,工作日睡眠时长(小时/天),True
+CFPS,2020,housework,qq9010n,干家务时长（小时/天）,True
+CFPS,2020,employment,qq9011n,工作日干家务时长(小时/天),True
+CFPS,2020,housework,qq9011n,工作日干家务时长(小时/天),True
+CFPS,2020,housework,qq9012,休息日干家务时长(小时/天),True
+CFPS,2020,housework,qq9013,照顾孩子时长（小时/天）,True
+CFPS,2020,education,qm207_b_2,家长问你学校的情况,True
+CFPS,2020,birth_age,qv101a,父亲出生日期（年）,True
+CFPS,2020,birth_age,qv101c,父亲年龄,True
+CFPS,2020,education,qv102,您14岁时父亲教育程度,False
+CFPS,2020,employment,qv103code,您14岁时父亲职业编码：基于QV103文本,True
+CFPS,2020,employment,qv103code_isco,QV103职业威望：ISCO Code,True
+CFPS,2020,employment,qv103code_isei,QV103职业威望：ISEI Code,True
+CFPS,2020,employment,qv103code_siops,QV103职业威望：SIOPS Code,True
+CFPS,2020,birth_age,qv201y,您母亲出生日期（年）,True
+CFPS,2020,birth_age,qv201b,您母亲的年龄,True
+CFPS,2020,education,qv202,您14岁时母亲教育程度,False
+CFPS,2020,employment,qv203code,您14岁时母亲职业编码：基于QV203文本,True
+CFPS,2020,employment,qv203code_isco,QV203职业威望：ISCO Code,True
+CFPS,2020,employment,qv203code_isei,QV203职业威望：ISEI Code,True
+CFPS,2020,employment,qv203code_siops,QV203职业威望：SIOPS Code,True
+CFPS,2020,id_person,qz101pid_a_1,其他参与回答问卷的家庭成员1,True
+CFPS,2020,id_person,qz101pid_a_2,其他参与回答问卷的家庭成员2,True
+CFPS,2020,employment,pg02,过去12个月是否有工作（代答）,True
+CFPS,2020,education,cfps2020edu,CFPS2020个人问卷受访者已完成的最高学历,True
+CFPS,2020,education,cfps2020sch,CFPS2020个人问卷受访者离校/上学阶段,True
+CFPS,2020,education,cfps2020eduy,CFPS2020个人问卷受访者已完成的受教育年限,True
+CFPS,2020,education,cfps2020eduy_im,CFPS2020个人问卷受访者已完成的受教育年限（插补）,True
+CGSS,2017,region,s41,采访地点-省/自治区/直辖市,True
+CGSS,2017,birth_age,a31,[年]  您的出生日期是什么？,False
+CGSS,2017,education,a7a,您目前的最高教育程度是：,True
+CGSS,2017,education,a7b,您目前的最高教育程度是：,True
+CGSS,2017,education,a7c,您已完成的最高学历是在哪一年获得的？,False
+CGSS,2017,income,a8a,您个人去年(2016年)全年总收入,True
+CGSS,2017,employment,a8b,您个人去年(2016年)全年职业/劳动收入,True
+CGSS,2017,income,a8b,您个人去年(2016年)全年职业/劳动收入,True
+CGSS,2017,marriage,a122,[配偶所有]  您现在这座房子的产权（部分或全部产权）属于谁（多选）？,True
+CGSS,2017,marriage,a125,[配偶父母所有]  您现在这座房子的产权（部分或全部产权）属于谁（多选）？,True
+CGSS,2017,marriage,a126,[子女配偶所有]  您现在这座房子的产权（部分或全部产权）属于谁（多选）？,True
+CGSS,2017,employment,a128,[家人/亲戚以外的个人或单位所有，这房是租（借）来的]  您现在这座房子的产权（部分或全部产权）属于谁（多选）？,True
+CGSS,2017,employment,a16,在过去的四周中，由于健康问题影响到您的工作或其他日常活动的频繁程度是：,True
+CGSS,2017,region,a18,您目前的户口登记状况是：,True
+CGSS,2017,region,a19,您（目前）的非农户口是哪一年获得的？,False
+CGSS,2017,region,a19a,您是哪一年转为居民户口的？,False
+CGSS,2017,region,a20,您获得非农户口的途径是什么？,True
+CGSS,2017,region,a21,您目前的户口登记地是：,True
+CGSS,2017,region,a23,您是哪一年离开户口登记地的？,False
+CGSS,2017,region,a24,您的户口是哪一年迁到本地（本区/县/县级市）的？,False
+CGSS,2017,birth_age,a27b,您出生时母亲的常居地属于：,True
+CGSS,2017,region,a27d,您出生时的户口登记地属于：,True
+CGSS,2017,birth_age,a27d,您出生时的户口登记地属于：,True
+CGSS,2017,region,a27h,您14周岁时的户口登记地属于：,True
+CGSS,2017,region,a27k1,[1 农村人要获得城市户口很难] 您是否同意以下说法：,True
+CGSS,2017,region,a27k2,[2 户口不同在本地享受的福利待遇有很大差别] 您是否同意以下说法：,True
+CGSS,2017,housework,a425,[5 夫妻应该均等分摊家务]  您是否同意以下说法：,True
+CGSS,2017,employment,a48,在哪里工作和生活是个人的自由，政府不应该干涉。您同意吗？,True
+CGSS,2017,employment,a53,您上一周是否为了取得收入而从事了一小时以上的劳动（包括参军）？,True
+CGSS,2017,income,a53,您上一周是否为了取得收入而从事了一小时以上的劳动（包括参军）？,True
+CGSS,2017,employment,a53aa,一般每周的工作时间是多少个小时？,False
+CGSS,2017,employment,a53a,在您有工作的时候，通常情况下，您一周的工作时间大概有多少个小时（包括加班时间）？,False
+CGSS,2017,employment,a54,您上一周没有工作的原因是什么？,True
+CGSS,2017,employment,a55,到目前为止，您连续没有工作的时间有多少个月？,False
+CGSS,2017,employment,a561,[未找过工作]  您在最近三个月内采取过以下哪些方式寻找工作？,True
+CGSS,2017,employment,a562,[在职业介绍机构登记求职]  您在最近三个月内采取过以下哪些方式寻找工作？,True
+CGSS,2017,employment,a563,[委托亲友找工作]  您在最近三个月内采取过以下哪些方式寻找工作？,True
+CGSS,2017,employment,a564,[利用网络及其他媒体求职]  您在最近三个月内采取过以下哪些方式寻找工作？,True
+CGSS,2017,employment,a565,[参加招聘会、或者自己直接上门询问]  您在最近三个月内采取过以下哪些方式寻找工作？,True
+CGSS,2017,employment,a566,[为自己经营做准备]  您在最近三个月内采取过以下哪些方式寻找工作？,True
+CGSS,2017,employment,a567,[其他]  您在最近三个月内采取过以下哪些方式寻找工作？,True
+CGSS,2017,employment,a5698,[不知道]  您在最近三个月内采取过以下哪些方式寻找工作？,True
+CGSS,2017,employment,a5699,[拒绝回答]  您在最近三个月内采取过以下哪些方式寻找工作？,True
+CGSS,2017,employment,a57a,如有适合的工作，您能否在两周内开始工作？,True
+CGSS,2017,employment,a57b,十年前（2007年），您的主要职业是：,True
+CGSS,2017,employment,a58,您的工作经历及状况是？,True
+CGSS,2017,employment,a58a,您目前是否同时兼有多份工作？,True
+CGSS,2017,employment,a58aa,一共兼有多少份工作？,False
+CGSS,2017,employment,a58b,那您目前最主要的工作大约占您职业收入的百分之多少？,False
+CGSS,2017,income,a58b,那您目前最主要的工作大约占您职业收入的百分之多少？,False
+CGSS,2017,employment,a59a,下列各种情形，哪一种更符合您目前的工作的状况？,True
+CGSS,2017,employment,a59b,您目前的工作是否与用人单位或雇主签订了书面劳动合同？,True
+CGSS,2017,employment,a59c,从您第一份非农工作到您目前的工作，您一共工作了多少年？,False
+CGSS,2017,employment,a59e,您目前工作的性质是？,True
+CGSS,2017,employment,a59f,在您目前的工作中，您的管理活动情况是：,True
+CGSS,2017,leadership,a59f,在您目前的工作中，您的管理活动情况是：,True
+CGSS,2017,leadership,a59f1,请问您管理的人数是：,False
+CGSS,2017,employment,a59g,在您目前的工作中，您在多大程度上能自主决定您工作的具体方式：,True
+CGSS,2017,employment,a59h,在您目前的工作岗位上，是否经常有人希望通过您的工作便利帮他/她办事？,True
+CGSS,2017,employment,a59j,您目前工作的单位或公司的单位类型是：,True
+CGSS,2017,employment,a59k,您目前工作的单位或公司的所有制性质是：,True
+CGSS,2017,employment,a59l,您目前工作的单位或公司有多少员工？,False
+CGSS,2017,employment,a59m,到目前为止，您在目前的工作单位或公司工作了多少年？,False
+CGSS,2017,employment,a60a,下列各种情形，哪一种更符合您最近那份非农工作的状况？,True
+CGSS,2017,employment,a60b,您最近那份非农工作是否与用人单位或雇主签订了书面劳动合同？,True
+CGSS,2017,employment,a60c,从您第一份非农工作到您最近那份非农工作，您一共工作了多少年？,False
+CGSS,2017,employment,a60e,您最近那份非农工作的性质是？,True
+CGSS,2017,employment,a60f,在您最近那份非农工作中，您的管理活动情况是：,True
+CGSS,2017,leadership,a60f,在您最近那份非农工作中，您的管理活动情况是：,True
+CGSS,2017,leadership,a60f1,请问您管理的人数是：,False
+CGSS,2017,employment,a60g,在您最近那份非农工作中，您在多大程度上能自主决定您工作的具体方式？,True
+CGSS,2017,employment,a60h,在您最近那份非农工作岗位上，是否经常有人希望通过您的工作便利帮他/她办事？,True
+CGSS,2017,employment,a60j,您最近那份非农工作的单位或公司的单位类型是：,True
+CGSS,2017,employment,a60k,您最近那份非农工作的单位或公司的所有制性质是：,True
+CGSS,2017,employment,a60l,您最近那份非农工作的单位或公司有多少员工？,False
+CGSS,2017,employment,a60m,您在最近那份非农工作的工作单位或公司工作了多少年？,False
+CGSS,2017,region,a611,[1 城市基本医疗保险/新型农村合作医疗保险/公费医疗]  您目前是否参加了以下社会保障项目？,True
+CGSS,2017,region,a612,[2 城市/农村基本养老保险]  您目前是否参加了以下社会保障项目？,True
+CGSS,2017,income,a62,您家2016年全年家庭总收入,True
+CGSS,2017,marriage,a69,您目前的婚姻状况是？,True
+CGSS,2017,marriage,a69a,现在您和您的配偶或同居伴侣住在一起吗？,True
+CGSS,2017,marriage,a70,您第一次结婚的时间是？,False
+CGSS,2017,birth_age,a71a,请问您目前的配偶或同居伴侣是哪一年出生的？,False
+CGSS,2017,marriage,a71a,请问您目前的配偶或同居伴侣是哪一年出生的？,False
+CGSS,2017,marriage,a71b,请问您与目前的配偶是哪一年结婚的？,False
+CGSS,2017,education,a72,您配偶或同居伴侣目前的最高教育程度是：,True
+CGSS,2017,marriage,a72,您配偶或同居伴侣目前的最高教育程度是：,True
+CGSS,2017,marriage,a73,您配偶或同居伴侣的政治面貌是：,True
+CGSS,2017,region,a74,您配偶或同居伴侣目前的户口登记状况是：,True
+CGSS,2017,marriage,a74,您配偶或同居伴侣目前的户口登记状况是：,True
+CGSS,2017,marriage,a75a,您配偶或同居伴侣去年（2016）全年的总收入,True
+CGSS,2017,income,a75a,您配偶或同居伴侣去年（2016）全年的总收入,True
+CGSS,2017,marriage,a75b,您配偶或同居伴侣去年（2016）全年的职业/劳动收入,True
+CGSS,2017,employment,a75b,您配偶或同居伴侣去年（2016）全年的职业/劳动收入,True
+CGSS,2017,income,a75b,您配偶或同居伴侣去年（2016）全年的职业/劳动收入,True
+CGSS,2017,marriage,a76,您配偶或同居伴侣上一周的就业状况是？,True
+CGSS,2017,employment,a76,您配偶或同居伴侣上一周的就业状况是？,True
+CGSS,2017,employment,a76aa,一般每周的工作时间为多少小时？,False
+CGSS,2017,marriage,a76a,在您配偶或同居伴侣有工作的时候，通常情况下，您配偶或同居伴侣一周的工作时间大概有多少个小时（包括加班时间）？,False
+CGSS,2017,employment,a76a,在您配偶或同居伴侣有工作的时候，通常情况下，您配偶或同居伴侣一周的工作时间大概有多少个小时（包括加班时间）？,False
+CGSS,2017,marriage,a77,您配偶或同居伴侣上一周没有工作的原因是什么？,True
+CGSS,2017,employment,a77,您配偶或同居伴侣上一周没有工作的原因是什么？,True
+CGSS,2017,marriage,a78,到目前为止，您配偶或同居伴侣连续未工作的时间有多少个月？,False
+CGSS,2017,employment,a78,到目前为止，您配偶或同居伴侣连续未工作的时间有多少个月？,False
+CGSS,2017,marriage,a791,[未找过工作]  您配偶或同居伴侣在最近三个月内采取过以下哪些方式寻找工作（多选）？,True
+CGSS,2017,employment,a791,[未找过工作]  您配偶或同居伴侣在最近三个月内采取过以下哪些方式寻找工作（多选）？,True
+CGSS,2017,marriage,a792,[在职业介绍机构登记求职]  您配偶或同居伴侣在最近三个月内采取过以下哪些方式寻找工作（多选）？,True
+CGSS,2017,employment,a792,[在职业介绍机构登记求职]  您配偶或同居伴侣在最近三个月内采取过以下哪些方式寻找工作（多选）？,True
+CGSS,2017,marriage,a793,[委托亲友找工作]  您配偶或同居伴侣在最近三个月内采取过以下哪些方式寻找工作（多选）？,True
+CGSS,2017,employment,a793,[委托亲友找工作]  您配偶或同居伴侣在最近三个月内采取过以下哪些方式寻找工作（多选）？,True
+CGSS,2017,marriage,a794,[利用网络及其他媒体求职]  您配偶或同居伴侣在最近三个月内采取过以下哪些方式寻找工作（多选）？,True
+CGSS,2017,employment,a794,[利用网络及其他媒体求职]  您配偶或同居伴侣在最近三个月内采取过以下哪些方式寻找工作（多选）？,True
+CGSS,2017,marriage,a795,[参加招聘会、或者自己直接上门询问]  您配偶或同居伴侣在最近三个月内采取过以下哪些方式寻找工作（多选）？,True
+CGSS,2017,employment,a795,[参加招聘会、或者自己直接上门询问]  您配偶或同居伴侣在最近三个月内采取过以下哪些方式寻找工作（多选）？,True
+CGSS,2017,marriage,a796,[为自己经营做准备]  您配偶或同居伴侣在最近三个月内采取过以下哪些方式寻找工作（多选）？,True
+CGSS,2017,employment,a796,[为自己经营做准备]  您配偶或同居伴侣在最近三个月内采取过以下哪些方式寻找工作（多选）？,True
+CGSS,2017,marriage,a797,[其他]  您配偶或同居伴侣在最近三个月内采取过以下哪些方式寻找工作（多选）？,True
+CGSS,2017,employment,a797,[其他]  您配偶或同居伴侣在最近三个月内采取过以下哪些方式寻找工作（多选）？,True
+CGSS,2017,marriage,a7998,[不知道]  您配偶或同居伴侣在最近三个月内采取过以下哪些方式寻找工作（多选）？,True
+CGSS,2017,employment,a7998,[不知道]  您配偶或同居伴侣在最近三个月内采取过以下哪些方式寻找工作（多选）？,True
+CGSS,2017,marriage,a7999,[拒绝回答]  您配偶或同居伴侣在最近三个月内采取过以下哪些方式寻找工作（多选）？,True
+CGSS,2017,employment,a7999,[拒绝回答]  您配偶或同居伴侣在最近三个月内采取过以下哪些方式寻找工作（多选）？,True
+CGSS,2017,marriage,a80,如有适合的工作，您配偶或同居伴侣能否在两周内开始工作？,True
+CGSS,2017,employment,a80,如有适合的工作，您配偶或同居伴侣能否在两周内开始工作？,True
+CGSS,2017,marriage,a81,您配偶或同居伴侣的的工作经历及状况是？,True
+CGSS,2017,employment,a81,您配偶或同居伴侣的的工作经历及状况是？,True
+CGSS,2017,marriage,a81a,您配偶或同居伴侣目前是否同时兼有多份工作？,True
+CGSS,2017,employment,a81a,您配偶或同居伴侣目前是否同时兼有多份工作？,True
+CGSS,2017,employment,a81aa,一共兼有多少份工作？,False
+CGSS,2017,marriage,a81b,那您配偶或同居伴侣目前最主要的工作大约占他/她职业收入的百分之多少？,False
+CGSS,2017,employment,a81b,那您配偶或同居伴侣目前最主要的工作大约占他/她职业收入的百分之多少？,False
+CGSS,2017,income,a81b,那您配偶或同居伴侣目前最主要的工作大约占他/她职业收入的百分之多少？,False
+CGSS,2017,marriage,a82,下列各种情形，哪一种更符合您配偶或同居伴侣目前的工作的状况？,True
+CGSS,2017,employment,a82,下列各种情形，哪一种更符合您配偶或同居伴侣目前的工作的状况？,True
+CGSS,2017,marriage,a82a,请问您配偶或同居伴侣雇有的雇员数是? ,False
+CGSS,2017,marriage,a83a,您配偶或同居伴侣的目前的工作是否与用人单位或雇主签订了书面劳动合同？,True
+CGSS,2017,employment,a83a,您配偶或同居伴侣的目前的工作是否与用人单位或雇主签订了书面劳动合同？,True
+CGSS,2017,marriage,a83b,在您配偶或同居伴侣目前的工作中，他/她的管理活动情况是：,True
+CGSS,2017,employment,a83b,在您配偶或同居伴侣目前的工作中，他/她的管理活动情况是：,True
+CGSS,2017,leadership,a83b,在您配偶或同居伴侣目前的工作中，他/她的管理活动情况是：,True
+CGSS,2017,leadership,a83c,请问他/她管理的人数是：,False
+CGSS,2017,marriage,a85,您配偶或同居伴侣目前工作的性质是？,True
+CGSS,2017,employment,a85,您配偶或同居伴侣目前工作的性质是？,True
+CGSS,2017,marriage,a87,您配偶或同居伴侣目前工作的单位或公司的单位类型是：,True
+CGSS,2017,employment,a87,您配偶或同居伴侣目前工作的单位或公司的单位类型是：,True
+CGSS,2017,marriage,a88,您配偶或同居伴侣目前工作的单位或公司的所有制性质是：,True
+CGSS,2017,employment,a88,您配偶或同居伴侣目前工作的单位或公司的所有制性质是：,True
+CGSS,2017,birth_age,a89a,请问您父亲是哪一年出生的？,False
+CGSS,2017,education,a89b,您父亲的最高教育程度是：,True
+CGSS,2017,employment,a89d,请问您14岁时，您父亲的就业状况是：,True
+CGSS,2017,leadership,a89f,您14岁时，您父亲如担任了行政职务，他的职务级别是：,True
+CGSS,2017,employment,a89g,您14岁时，您父亲工作的单位或公司的单位类型是：,True
+CGSS,2017,employment,a89h,您14岁时，您父亲工作的单位或公司所有制性质是：,True
+CGSS,2017,birth_age,a90a,请问您母亲是哪一年出生的？,False
+CGSS,2017,education,a90b,您母亲的最高教育程度是：,True
+CGSS,2017,employment,a90d,请问您14岁时，您母亲的就业状况是：,True
+CGSS,2017,leadership,a90f,您14岁时，您母亲如担任了行政职务，她的职务级别是：,True
+CGSS,2017,employment,a90g,您14岁时，您母亲工作的单位或公司的单位类型是：,True
+CGSS,2017,employment,a90h,您14岁时，您母亲工作的单位或公司所有制性质是：,True
+CGSS,2017,employment,c11,[1 公交车/卡车司机] 您认识的人中有没有是从事以下职业的？,True
+CGSS,2017,employment,c12,[2 大型企业的高级管理人员] 您认识的人中有没有是从事以下职业的？,True
+CGSS,2017,leadership,c12,[2 大型企业的高级管理人员] 您认识的人中有没有是从事以下职业的？,True
+CGSS,2017,employment,c13,[3 家庭或办公室清洁工] 您认识的人中有没有是从事以下职业的？,True
+CGSS,2017,employment,c14,[4 美发师/理发师] 您认识的人中有没有是从事以下职业的？,True
+CGSS,2017,employment,c15,[5 人力资源经理/人事经理] 您认识的人中有没有是从事以下职业的？,True
+CGSS,2017,employment,c16,[6 律师] 您认识的人中有没有是从事以下职业的？,True
+CGSS,2017,employment,c17,[7 汽车维修工] 您认识的人中有没有是从事以下职业的？,True
+CGSS,2017,employment,c18,[8 护士] 您认识的人中有没有是从事以下职业的？,True
+CGSS,2017,employment,c19,[9 警察（包括交警、巡警等）] 您认识的人中有没有是从事以下职业的？,True
+CGSS,2017,employment,c110,[10 初中老师] 您认识的人中有没有是从事以下职业的？,True
+CGSS,2017,income,c21,[1 我国的收入差距太大了。] 您在多大程度上同意下面的观点？,True
+CGSS,2017,income,c23,[3 缩小高收入者和低收入者之间的差距是政府的责任。] 您在多大程度上同意下面的观点？,True
+CGSS,2017,housework,c4,您认为在我国主要应该由谁照顾老人？,True
+CGSS,2017,employment,c71,[1 帮您做无法独自做的家务或园艺工作] 遇到下列情形时，您首先会找谁？,True
+CGSS,2017,housework,c71,[1 帮您做无法独自做的家务或园艺工作] 遇到下列情形时，您首先会找谁？,True
+CGSS,2017,housework,c72,[2 当您生病需要卧床休息时，帮您料理家务] 遇到下列情形时，您首先会找谁？,True
+CGSS,2017,employment,c82,[2 如果您需要找一份工作] 遇到下列情形时，您首先会向谁或哪个机构寻求帮助？,True
+CGSS,2017,employment,c83,[3 帮您处理行政问题或办公室文书工作（比如：填写表格、申请，签合同等）] 遇到下列情形时，您首先会向谁或哪个机构寻求帮助？,True
+CGSS,2017,housework,c85,[5 如果您病得很严重，照顾您] 遇到下列情形时，您首先会向谁或哪个机构寻求帮助？,True
+CGSS,2017,housework,c131,[1 成年子女有照顾年迈父母的义务] 您在多大程度上同意以下观点？,True
+CGSS,2017,housework,c132,[2 在帮助别人之前，应该首先照顾好自己和家人] 您在多大程度上同意以下观点？,True
+CGSS,2017,marriage,v942,想一下您生活中重要的人，比如您的配偶或同居伴侣、家人或者亲密朋友，在过去四周里，他们有没有对您感到生气或者失望？,True
+CGSS,2017,employment,c20,通常情况下，在工作日里，您一天里与多少个人有联系，不管您认不认识这些人？,True
+CGSS,2017,marriage,c25,想一下与您联系最多的家人，不包括您的配偶或同居伴侣、父母、兄弟姐妹和成年子女。您跟他/她多久联系一次？,True
+CGSS,2017,income,c34,想一下您家的所有收入，包括所有家庭成员的所有收入来源，您家保持收支平衡困难还是容易？,True
+CGSS,2017,employment,c495,[5 因为上网，我的工作受到了影响] 下列描述在多大程度上符合您自己的实际情况？,True
+CGSS,2017,employment,c56,在您一周的工作中，需要使用互联网的工作大概占多大比例？,False
+CGSS,2017,employment,c571,[寻找客户] 您的工作单位使用网络来（多选）：,True
+CGSS,2017,employment,c572,[和客户沟通] 您的工作单位使用网络来（多选）：,True
+CGSS,2017,employment,c573,[优化工作流程] 您的工作单位使用网络来（多选）：,True
+CGSS,2017,employment,c574,[培训] 您的工作单位使用网络来（多选）：,True
+CGSS,2017,employment,c575,[减少繁文缛节] 您的工作单位使用网络来（多选）：,True
+CGSS,2017,employment,c576,[提高工作效率] 您的工作单位使用网络来（多选）：,True
+CGSS,2017,employment,c577,[其他] 您的工作单位使用网络来（多选）：,True
+CGSS,2017,employment,c5797,[不适用] 您的工作单位使用网络来（多选）：,True
+CGSS,2017,employment,c5798,[不知道] 您的工作单位使用网络来（多选）：,True
+CGSS,2017,employment,c5799,[拒绝回答] 您的工作单位使用网络来（多选）：,True
+CGSS,2017,employment,c59,您认为在家上网办公与在单位面对面办公的最根本差异是什么？,True
+CGSS,2017,employment,c614,[4互联网使政府工作人员可以更好的关心大众的想法] 您同不同意下面这些说法？,True
+CGSS,2017,employment,c64,请问平均一周，除工作和学习时间外，您和朋友面对面交流的时间有多少？,False
+CGSS,2017,birth_age,d21_1,[1曾经有过的所有兄弟姐妹数] [哥哥] 请问您有多少个兄弟姐妹（包括离家或出生后死亡者）？其中仍健在的有几位？,False
+CGSS,2017,birth_age,d21_2,[1曾经有过的所有兄弟姐妹数] [姐姐] 请问您有多少个兄弟姐妹（包括离家或出生后死亡者）？其中仍健在的有几位？,False
+CGSS,2017,birth_age,d21_3,[1曾经有过的所有兄弟姐妹数] [弟弟] 请问您有多少个兄弟姐妹（包括离家或出生后死亡者）？其中仍健在的有几位？,False
+CGSS,2017,birth_age,d21_4,[1曾经有过的所有兄弟姐妹数] [妹妹] 请问您有多少个兄弟姐妹（包括离家或出生后死亡者）？其中仍健在的有几位？,False
+CGSS,2017,birth_age,d22_1,[2目前仍健在的] [哥哥] 请问您有多少个兄弟姐妹（包括离家或出生后死亡者）？其中仍健在的有几位？,False
+CGSS,2017,birth_age,d22_2,[2目前仍健在的] [姐姐] 请问您有多少个兄弟姐妹（包括离家或出生后死亡者）？其中仍健在的有几位？,False
+CGSS,2017,birth_age,d22_3,[2目前仍健在的] [弟弟] 请问您有多少个兄弟姐妹（包括离家或出生后死亡者）？其中仍健在的有几位？,False
+CGSS,2017,birth_age,d22_4,[2目前仍健在的] [妹妹] 请问您有多少个兄弟姐妹（包括离家或出生后死亡者）？其中仍健在的有几位？,False
+CGSS,2017,birth_age,d2a1_1,[1曾经有过的所有兄弟姐妹数] [哥哥] 请问您的配偶有多少个兄弟姐妹（包括离家或出生后死亡者）？其中仍健在的有几位？,False
+CGSS,2017,marriage,d2a1_1,[1曾经有过的所有兄弟姐妹数] [哥哥] 请问您的配偶有多少个兄弟姐妹（包括离家或出生后死亡者）？其中仍健在的有几位？,False
+CGSS,2017,birth_age,d2a1_2,[1曾经有过的所有兄弟姐妹数] [姐姐] 请问您的配偶有多少个兄弟姐妹（包括离家或出生后死亡者）？其中仍健在的有几位？,False
+CGSS,2017,marriage,d2a1_2,[1曾经有过的所有兄弟姐妹数] [姐姐] 请问您的配偶有多少个兄弟姐妹（包括离家或出生后死亡者）？其中仍健在的有几位？,False
+CGSS,2017,birth_age,d2a1_3,[1曾经有过的所有兄弟姐妹数] [弟弟] 请问您的配偶有多少个兄弟姐妹（包括离家或出生后死亡者）？其中仍健在的有几位？,False
+CGSS,2017,marriage,d2a1_3,[1曾经有过的所有兄弟姐妹数] [弟弟] 请问您的配偶有多少个兄弟姐妹（包括离家或出生后死亡者）？其中仍健在的有几位？,False
+CGSS,2017,birth_age,d2a1_4,[1曾经有过的所有兄弟姐妹数] [妹妹] 请问您的配偶有多少个兄弟姐妹（包括离家或出生后死亡者）？其中仍健在的有几位？,False
+CGSS,2017,marriage,d2a1_4,[1曾经有过的所有兄弟姐妹数] [妹妹] 请问您的配偶有多少个兄弟姐妹（包括离家或出生后死亡者）？其中仍健在的有几位？,False
+CGSS,2017,birth_age,d2a2_1,[2目前仍健在的] [哥哥] 请问您的配偶有多少个兄弟姐妹（包括离家或出生后死亡者）？其中仍健在的有几位？,False
+CGSS,2017,marriage,d2a2_1,[2目前仍健在的] [哥哥] 请问您的配偶有多少个兄弟姐妹（包括离家或出生后死亡者）？其中仍健在的有几位？,False
+CGSS,2017,birth_age,d2a2_2,[2目前仍健在的] [姐姐] 请问您的配偶有多少个兄弟姐妹（包括离家或出生后死亡者）？其中仍健在的有几位？,False
+CGSS,2017,marriage,d2a2_2,[2目前仍健在的] [姐姐] 请问您的配偶有多少个兄弟姐妹（包括离家或出生后死亡者）？其中仍健在的有几位？,False
+CGSS,2017,birth_age,d2a2_3,[2目前仍健在的] [弟弟] 请问您的配偶有多少个兄弟姐妹（包括离家或出生后死亡者）？其中仍健在的有几位？,False
+CGSS,2017,marriage,d2a2_3,[2目前仍健在的] [弟弟] 请问您的配偶有多少个兄弟姐妹（包括离家或出生后死亡者）？其中仍健在的有几位？,False
+CGSS,2017,birth_age,d2a2_4,[2目前仍健在的] [妹妹] 请问您的配偶有多少个兄弟姐妹（包括离家或出生后死亡者）？其中仍健在的有几位？,False
+CGSS,2017,marriage,d2a2_4,[2目前仍健在的] [妹妹] 请问您的配偶有多少个兄弟姐妹（包括离家或出生后死亡者）？其中仍健在的有几位？,False
+CGSS,2017,birth_age,d3c1,[{d3a_1shown}] 他们的年龄分别是（周岁）：,False
+CGSS,2017,birth_age,d3c2,[{d3a_2shown}] 他们的年龄分别是（周岁）：,False
+CGSS,2017,birth_age,d3c3,[{d3a_3shown}] 他们的年龄分别是（周岁）：,False
+CGSS,2017,birth_age,d3c4,[{d3a_4shown}] 他们的年龄分别是（周岁）：,False
+CGSS,2017,birth_age,d3c5,[{d3a_5shown}] 他们的年龄分别是（周岁）：,False
+CGSS,2017,birth_age,d3c6,[{d3a_6shown}] 他们的年龄分别是（周岁）：,False
+CGSS,2017,birth_age,d3c7,[{d3a_7shown}] 他们的年龄分别是（周岁）：,False
+CGSS,2017,birth_age,d3c8,[{d3a_8shown}] 他们的年龄分别是（周岁）：,False
+CGSS,2017,birth_age,d3c9,[{d3a_9shown}] 他们的年龄分别是（周岁）：,False
+CGSS,2017,birth_age,d3c10,[{d3a_10shown}] 他们的年龄分别是（周岁）：,False
+CGSS,2017,marriage,d3d1,[{d3a_1shown}] 他们的婚姻状况分别是：,True
+CGSS,2017,marriage,d3d2,[{d3a_2shown}] 他们的婚姻状况分别是：,True
+CGSS,2017,marriage,d3d3,[{d3a_3shown}] 他们的婚姻状况分别是：,True
+CGSS,2017,marriage,d3d4,[{d3a_4shown}] 他们的婚姻状况分别是：,True
+CGSS,2017,marriage,d3d5,[{d3a_5shown}] 他们的婚姻状况分别是：,True
+CGSS,2017,marriage,d3d6,[{d3a_6shown}] 他们的婚姻状况分别是：,True
+CGSS,2017,marriage,d3d7,[{d3a_7shown}] 他们的婚姻状况分别是：,True
+CGSS,2017,marriage,d3d8,[{d3a_8shown}] 他们的婚姻状况分别是：,True
+CGSS,2017,marriage,d3d9,[{d3a_9shown}] 他们的婚姻状况分别是：,True
+CGSS,2017,marriage,d3d10,[{d3a_10shown}] 他们的婚姻状况分别是：,True
+CGSS,2017,employment,d3g1,[{d3a_1shown}] 他们有没有在工作：,True
+CGSS,2017,employment,d3g2,[{d3a_2shown}] 他们有没有在工作：,True
+CGSS,2017,employment,d3g3,[{d3a_3shown}] 他们有没有在工作：,True
+CGSS,2017,employment,d3g4,[{d3a_4shown}] 他们有没有在工作：,True
+CGSS,2017,employment,d3g5,[{d3a_5shown}] 他们有没有在工作：,True
+CGSS,2017,employment,d3g6,[{d3a_6shown}] 他们有没有在工作：,True
+CGSS,2017,employment,d3g7,[{d3a_7shown}] 他们有没有在工作：,True
+CGSS,2017,employment,d3g8,[{d3a_8shown}] 他们有没有在工作：,True
+CGSS,2017,employment,d3g9,[{d3a_9shown}] 他们有没有在工作：,True
+CGSS,2017,employment,d3g10,[{d3a_10shown}] 他们有没有在工作：,True
+CGSS,2017,birth_age,d5b1,[{d5a_1shown}] 他们的年龄分别是：,False
+CGSS,2017,birth_age,d5b2,[{d5a_2shown}] 他们的年龄分别是：,False
+CGSS,2017,birth_age,d5b3,[{d5a_3shown}] 他们的年龄分别是：,False
+CGSS,2017,birth_age,d5b4,[{d5a_4shown}] 他们的年龄分别是：,False
+CGSS,2017,birth_age,d5b5,[{d5a_5shown}] 他们的年龄分别是：,False
+CGSS,2017,marriage,d5c1,[{d5a_1shown}] 他们的婚姻状况分别是：,True
+CGSS,2017,marriage,d5c2,[{d5a_2shown}] 他们的婚姻状况分别是：,True
+CGSS,2017,marriage,d5c3,[{d5a_3shown}] 他们的婚姻状况分别是：,True
+CGSS,2017,marriage,d5c4,[{d5a_4shown}] 他们的婚姻状况分别是：,True
+CGSS,2017,marriage,d5c5,[{d5a_5shown}] 他们的婚姻状况分别是：,True
+CGSS,2017,employment,d5d1,[{d5a_1shown}] 他们有没有在工作：,True
+CGSS,2017,employment,d5d2,[{d5a_2shown}] 他们有没有在工作：,True
+CGSS,2017,employment,d5d3,[{d5a_3shown}] 他们有没有在工作：,True
+CGSS,2017,employment,d5d4,[{d5a_4shown}] 他们有没有在工作：,True
+CGSS,2017,employment,d5d5,[{d5a_5shown}] 他们有没有在工作：,True
+CGSS,2017,birth_age,d61b,请问您父亲的年龄是（周岁）？,False
+CGSS,2017,marriage,d61c,请问您父亲的婚姻状况是？,True
+CGSS,2017,employment,d61d,请问您父亲有没有在工作？,True
+CGSS,2017,marriage,d61e1,[已婚儿子] 请问您父亲现在大部分时间跟谁住（多选）？,True
+CGSS,2017,marriage,d61e2,[已婚女儿] 请问您父亲现在大部分时间跟谁住（多选）？,True
+CGSS,2017,marriage,d61e3,[未婚子女] 请问您父亲现在大部分时间跟谁住（多选）？,True
+CGSS,2017,birth_age,d62b,请问您母亲的年龄是（周岁）？,False
+CGSS,2017,marriage,d62c,请问您母亲的婚姻状况是？,True
+CGSS,2017,employment,d62d,请问您母亲有没有在工作？,True
+CGSS,2017,marriage,d62e1,[已婚儿子] 请问您母亲现在大部分时间跟谁住（多选）？,True
+CGSS,2017,marriage,d62e2,[已婚女儿] 请问您母亲现在大部分时间跟谁住（多选）？,True
+CGSS,2017,marriage,d62e3,[未婚子女] 请问您母亲现在大部分时间跟谁住（多选）？,True
+CGSS,2017,marriage,d63a,请问您配偶的父亲是否健在？,True
+CGSS,2017,birth_age,d63b,请问您配偶父亲的年龄是（周岁）？,False
+CGSS,2017,marriage,d63b,请问您配偶父亲的年龄是（周岁）？,False
+CGSS,2017,marriage,d63c,请问您配偶父亲的婚姻状况是？,True
+CGSS,2017,marriage,d63d,请问您配偶的父亲有没有在工作？,True
+CGSS,2017,employment,d63d,请问您配偶的父亲有没有在工作？,True
+CGSS,2017,marriage,d63e1,[已婚儿子] 请问您配偶的父亲现在大部分时间跟谁住（多选）？,True
+CGSS,2017,marriage,d63e2,[已婚女儿] 请问您配偶的父亲现在大部分时间跟谁住（多选）？,True
+CGSS,2017,marriage,d63e3,[未婚子女] 请问您配偶的父亲现在大部分时间跟谁住（多选）？,True
+CGSS,2017,marriage,d63e4,[老伴] 请问您配偶的父亲现在大部分时间跟谁住（多选）？,True
+CGSS,2017,marriage,d63e5,[自己一人住] 请问您配偶的父亲现在大部分时间跟谁住（多选）？,True
+CGSS,2017,marriage,d63e6,[住老人院等机构] 请问您配偶的父亲现在大部分时间跟谁住（多选）？,True
+CGSS,2017,marriage,d63e7,[其他] 请问您配偶的父亲现在大部分时间跟谁住（多选）？,True
+CGSS,2017,marriage,d63e98,[不知道] 请问您配偶的父亲现在大部分时间跟谁住（多选）？,True
+CGSS,2017,marriage,d63e99,[拒绝回答] 请问您配偶的父亲现在大部分时间跟谁住（多选）？,True
+CGSS,2017,marriage,d63f,请问您配偶父亲的住处离您家多远？,True
+CGSS,2017,marriage,d63g,请问您与您配偶的父亲多久见一次面？,True
+CGSS,2017,marriage,d63h,请问您与您配偶的父亲除了见面之外多久联系一次（电话、书信或email等）？,True
+CGSS,2017,marriage,d64a,请问您配偶的母亲是否健在？,True
+CGSS,2017,birth_age,d64b,请问您配偶母亲的年龄是（周岁）？,False
+CGSS,2017,marriage,d64b,请问您配偶母亲的年龄是（周岁）？,False
+CGSS,2017,marriage,d64c,请问您配偶母亲的婚姻状况是？,True
+CGSS,2017,marriage,d64d,请问您配偶的母亲有没有在工作？,True
+CGSS,2017,employment,d64d,请问您配偶的母亲有没有在工作？,True
+CGSS,2017,marriage,d64e1,[已婚儿子] 请问您配偶的母亲现在大部分时间跟谁住（多选）？,True
+CGSS,2017,marriage,d64e2,[已婚女儿] 请问您配偶的母亲现在大部分时间跟谁住（多选）？,True
+CGSS,2017,marriage,d64e3,[未婚子女] 请问您配偶的母亲现在大部分时间跟谁住（多选）？,True
+CGSS,2017,marriage,d64e4,[老伴] 请问您配偶的母亲现在大部分时间跟谁住（多选）？,True
+CGSS,2017,marriage,d64e5,[自己一人住] 请问您配偶的母亲现在大部分时间跟谁住（多选）？,True
+CGSS,2017,marriage,d64e6,[住老人院等机构] 请问您配偶的母亲现在大部分时间跟谁住（多选）？,True
+CGSS,2017,marriage,d64e7,[其他] 请问您配偶的母亲现在大部分时间跟谁住（多选）？,True
+CGSS,2017,marriage,d64e98,[不知道] 请问您配偶的母亲现在大部分时间跟谁住（多选）？,True
+CGSS,2017,marriage,d64e99,[拒绝回答] 请问您配偶的母亲现在大部分时间跟谁住（多选）？,True
+CGSS,2017,marriage,d64f,请问您配偶母亲的住处离您家多远？,True
+CGSS,2017,marriage,d64g,请问您与您配偶的母亲多久见一次面？,True
+CGSS,2017,marriage,d64h,请问您与您配偶的母亲除了见面之外多久联系一次（电话、书信或email等）？,True
+CGSS,2017,marriage,d71,[1 未婚成年男性应该给自己父母生活费] 下列关于子女赡养父母的说法，您是否同意？,True
+CGSS,2017,marriage,d72,[2 未婚成年女性应该给自己父母生活费] 下列关于子女赡养父母的说法，您是否同意？,True
+CGSS,2017,marriage,d73,[3 已婚男性应该给自己父母生活费 ] 下列关于子女赡养父母的说法，您是否同意？,True
+CGSS,2017,marriage,d74,[4 已婚女性应该给自己父母生活费 ] 下列关于子女赡养父母的说法，您是否同意？,True
+CGSS,2017,marriage,d75,[5 已婚男性应该给配偶的父母生活费 ] 下列关于子女赡养父母的说法，您是否同意？,True
+CGSS,2017,marriage,d76,[6 已婚女性应该给配偶的父母生活费 ] 下列关于子女赡养父母的说法，您是否同意？,True
+CGSS,2017,housework,d82,[2 帮助料理家务(例如打扫、准备晚餐、买东西、代办杂事)或照顾小孩或其他家人] 过去一年，您是否经常为自己父母提供以下帮助？,True
+CGSS,2017,housework,d92,[2 帮助料理家务(例如打扫、准备晚餐、买东西、代办杂事)或照顾小孩或其他家人 ] 过去一年，您自己父母是否经常为您提供以下帮助？,True
+CGSS,2017,housework,d10b2,[2 帮助料理家务(例如打扫、准备晚餐、买东西、代办杂事)或照顾小孩或其他家人] 过去一年，您对该成年子女是否经常提供以下帮助？,True
+CGSS,2017,housework,d10c2,[2 帮助料理家务(例如打扫、准备晚餐、买东西、代办杂事)或照顾小孩或其他家人] 那么，在过去一年，该成年子女是否经常为您提供以下帮助？,True
+CGSS,2017,marriage,d111,[1 给钱 ] 过去一年，您是否经常为您配偶父母提供以下帮助？,True
+CGSS,2017,marriage,d112,[2 帮助料理家务(例如打扫、准备晚餐、买东西、代办杂事)或照顾他们(您配偶父母)] 过去一年，您是否经常为您配偶父母提供以下帮助？,True
+CGSS,2017,housework,d112,[2 帮助料理家务(例如打扫、准备晚餐、买东西、代办杂事)或照顾他们(您配偶父母)] 过去一年，您是否经常为您配偶父母提供以下帮助？,True
+CGSS,2017,marriage,d121,[1 给钱 ] 过去一年，您配偶父母是否经常为您提供以下帮助？,True
+CGSS,2017,marriage,d122,[2 帮您料理家务(例如打扫、准备晚餐、买东西、代办杂事)或照顾小孩或其他家人] 过去一年，您配偶父母是否经常为您提供以下帮助？,True
+CGSS,2017,housework,d122,[2 帮您料理家务(例如打扫、准备晚餐、买东西、代办杂事)或照顾小孩或其他家人] 过去一年，您配偶父母是否经常为您提供以下帮助？,True
+CGSS,2017,housework,d131,[1 做晚饭] 下列家务事，您多长时间会做一次？,True
+CGSS,2017,housework,d132,[2 洗衣服] 下列家务事，您多长时间会做一次？,True
+CGSS,2017,housework,d133,[3 打扫家里] 下列家务事，您多长时间会做一次？,True
+CGSS,2017,housework,d134,[4 屋里屋外的修理维护] 下列家务事，您多长时间会做一次？,True
+CGSS,2017,housework,d135,[5 购买日常用品] 下列家务事，您多长时间会做一次？,True
+CGSS,2017,housework,d15,您认为谁（以及/或他的家庭成员）最应该负起照顾年老父母的责任？,True
+CGSS,2017,housework,d163,[3 小孩的养育和照顾 ] 一般而言，您认为以下事情应该是政府的责任还是个人∕家庭的责任？,True
+CGSS,2017,education,d164,[4 小孩的教育费用 ] 一般而言，您认为以下事情应该是政府的责任还是个人∕家庭的责任？,True
+CGSS,2017,birth_age,d171,[1 选择对象时，先生的年龄要比太太大 ] 以下关于婚姻的看法，您是否同意？,True
+CGSS,2017,marriage,d171,[1 选择对象时，先生的年龄要比太太大 ] 以下关于婚姻的看法，您是否同意？,True
+CGSS,2017,marriage,d172,[2 结婚后不一定要有孩子 ] 以下关于婚姻的看法，您是否同意？,True
+CGSS,2017,marriage,d173,[3 一般而言，已婚的男人比未婚的男人快乐 ] 以下关于婚姻的看法，您是否同意？,True
+CGSS,2017,marriage,d174,[4 一般而言，已婚的女人比未婚的女人快乐 ] 以下关于婚姻的看法，您是否同意？,True
+CGSS,2017,marriage,d175,[5 一对情侣住在一起，即使没有结婚的打算也没什么关系 ] 以下关于婚姻的看法，您是否同意？,True
+CGSS,2017,marriage,d176,[6 想要离婚的人应等到小孩长大再离婚 ] 以下关于婚姻的看法，您是否同意？,True
+CGSS,2017,marriage,d177,[7 当夫妻没有办法解决他们的婚姻问题时，离婚通常是最好的解决方法 ] 以下关于婚姻的看法，您是否同意？,True
+CGSS,2017,marriage,d178,[8 婚姻再不好，也比单身强 ] 以下关于婚姻的看法，您是否同意？,True
+CGSS,2017,marriage,d179,[9 婚姻再不好，也比离婚强 ] 以下关于婚姻的看法，您是否同意？,True
+CGSS,2017,housework,d182,[2 丈夫的责任就是赚钱，妻子的责任就是照顾家庭 ] 以下关于性别角色的说法，您是否同意？,True
+CGSS,2017,education,d183,[3 孩子上学之前母亲最好不要出去工作] 以下关于性别角色的说法，您是否同意？,True
+CGSS,2017,employment,d183,[3 孩子上学之前母亲最好不要出去工作] 以下关于性别角色的说法，您是否同意？,True
+CGSS,2017,marriage,d201,[1 当夫家和娘家都需要帮忙时，已婚妇女应先帮助夫家 ] 以下关于家庭价值观的说法，您是否同意？,True
+CGSS,2017,housework,d204,[4 子女中，谁照顾父母较多，谁就应该继承较多家产] 以下关于家庭价值观的说法，您是否同意？,True
+CGSS,2017,marriage,d24,这是您的第一次婚姻吗？,True
+CGSS,2017,marriage,d25,这是您目前配偶的第一次婚姻吗？,True
+CGSS,2017,marriage,d27,您父母对您选择结婚对象有多大影响？,True
+CGSS,2017,marriage,d281,[1 配偶会听我说我的烦恼 ] 以下这些叙述符合您的情形或想法吗？,True
+CGSS,2017,marriage,d282,[2 配偶会跟我说他/她的烦恼 ] 以下这些叙述符合您的情形或想法吗？,True
+CGSS,2017,marriage,d291,[1 做晚饭] 下列家务事，您配偶多长时间会做一次？,True
+CGSS,2017,housework,d291,[1 做晚饭] 下列家务事，您配偶多长时间会做一次？,True
+CGSS,2017,marriage,d292,[2 洗衣服] 下列家务事，您配偶多长时间会做一次？,True
+CGSS,2017,housework,d292,[2 洗衣服] 下列家务事，您配偶多长时间会做一次？,True
+CGSS,2017,marriage,d293,[3 打扫家里] 下列家务事，您配偶多长时间会做一次？,True
+CGSS,2017,housework,d293,[3 打扫家里] 下列家务事，您配偶多长时间会做一次？,True
+CGSS,2017,marriage,d294,[4 屋里屋外的修理维护] 下列家务事，您配偶多长时间会做一次？,True
+CGSS,2017,housework,d294,[4 屋里屋外的修理维护] 下列家务事，您配偶多长时间会做一次？,True
+CGSS,2017,marriage,d301,[1 子女的教养 ] 下列家庭事务是由您还是您配偶决定？,True
+CGSS,2017,marriage,d302,[2 自己父母的奉养 ] 下列家庭事务是由您还是您配偶决定？,True
+CGSS,2017,marriage,d303,[3 家用支出的分配 ] 下列家庭事务是由您还是您配偶决定？,True
+CGSS,2017,marriage,d304,[4 买高价的家庭用品 ] 下列家庭事务是由您还是您配偶决定？,True
+CGSS,2017,marriage,d31,总的来说，您对您的婚姻生活感到满意吗？,True
+CGSS,2017,marriage,d32,结婚以来，您父母是否在金钱上帮助过您，例如买（租）房子或做生意？给了多少钱？,True
+CGSS,2017,marriage,d33,结婚以来，您配偶的父母是否在金钱上帮助过您，例如买（租）房子或做生意？给了多少钱？,True
+CGSS,2017,marriage,d344,[4 您配偶] 以下请您评估您自己和家人的健康状况：,True
+CGSS,2017,marriage,d345,[5 您配偶父亲 ] 以下请您评估您自己和家人的健康状况：,True
+CGSS,2017,marriage,d346,[6 您配偶母亲 ] 以下请您评估您自己和家人的健康状况：,True
+CGSS,2017,education,d378,教育、培训支出,True
+CGSS,2017,edu_expect,d381,[1 在事情不确定时，我通常会期望事情朝最好的方向发展。] 您对以下观点的同意程度如何？,True
+CGSS,2017,birth_age,d402,[2 随着年龄增长，我从生活中悟出了许多道理，这使我变得更坚强、更有能力] 您对以下观点的同意程度如何？,True
+CGSS,2017,income,d408,[8 我对家里的收入感到满意] 您对以下观点的同意程度如何？,True
+CGSS,2017,employment,isco08_a59,被访者目前从事非农工作,True
+CGSS,2017,employment,isco08_a60,被访者曾经从事非农工作,True
+CGSS,2017,marriage,isco08_sp,配偶职业,True
+CGSS,2017,employment,isco08_sp,配偶职业,True
+CGSS,2017,employment,isco08_fa,父亲职业,True
+CGSS,2017,employment,isco08_mo,母亲职业,True
+CGSS,2017,region,isurban,城乡,True
+CGSS,2017,weight,weight,权重,False
+CGSS,2021,region,s41,采访地点-省/自治区/直辖市编码,True
+CGSS,2021,birth_age,A3_1,[年]  A3. 您的出生日期是什么？,False
+CGSS,2021,birth_age,A3_2,[月]  A3. 您的出生日期是什么？,True
+CGSS,2021,birth_age,A3_3,[日]  A3. 您的出生日期是什么？,True
+CGSS,2021,education,A7a, A7a. 您目前的最高教育程度是：,True
+CGSS,2021,education,A7b, A7b. 您目前的最高教育程度是：,True
+CGSS,2021,education,A7c,A7c. 您已完成的最高学历是在哪一年获得的？,True
+CGSS,2021,education,A7d,A7d. 若您上过高中，请问您所上高中的学校等级是什么？,True
+CGSS,2021,education,A7e,A7e. 若您上过大学，请问您所上大学的学校等级是什么？,True
+CGSS,2021,science_math,A7f,A7f. 若您上过大学，请问您最后所学专业（学科大类）是什么,True
+CGSS,2021,income,A8a,您个人去年（2020年）全年的总收入是,True
+CGSS,2021,employment,A8b,您个人去年（2020年）全年的职业/劳动收入是,True
+CGSS,2021,income,A8b,您个人去年（2020年）全年的职业/劳动收入是,True
+CGSS,2021,marriage,A12_2,[配偶所有] A12. 您现在这座房子的产权（部分或全部产权）属,True
+CGSS,2021,marriage,A12_5,[配偶父母所有] A12. 您现在这座房子的产权（部分或全部产权,True
+CGSS,2021,marriage,A12_6,[子女配偶所有] A12. 您现在这座房子的产权（部分或全部产权,True
+CGSS,2021,employment,A12_8,[家人/亲戚以外的个人或单位所有，这房是租（借）来的] A12.,True
+CGSS,2021,employment,A16,A16. 在过去的四周中，由于健康问题影响到您的工作或其他日,True
+CGSS,2021,region,A18,A18. 您目前的户口登记状况是：,True
+CGSS,2021,region,A19,A19. 您（目前）的非农户口是哪一年获得的？,True
+CGSS,2021,region,A19a,A19a. 您是哪一年转为居民户口的？,True
+CGSS,2021,region,A20,A20. 您获得非农户口的途径是什么？,True
+CGSS,2021,region,A21,A21. 您目前的户口登记地是：,True
+CGSS,2021,region,A23,A23. 您是哪一年离开户口登记地的？,True
+CGSS,2021,region,A24,A24. 您的户口是哪一年迁到本地（本区/县/县级市）的？（请,True
+CGSS,2021,birth_age,A27b,A27b. 您出生时母亲的常居地属于：,True
+CGSS,2021,region,A27d,A27d. 您出生时的户口登记地属于：,True
+CGSS,2021,birth_age,A27d,A27d. 您出生时的户口登记地属于：,True
+CGSS,2021,region,A27h,A27h. 您14周岁时的户口登记地属于：,True
+CGSS,2021,housework,A42_5,[5. 夫妻应该均等分摊家务] A42. 您是否同意以下说法：,True
+CGSS,2021,employment,A48,A48. 在哪里工作和生活是个人的自由，政府不应该干涉。您同,True
+CGSS,2021,employment,A53,A53. 您上一周是否为了取得收入而从事了一小时以上的劳动（,True
+CGSS,2021,income,A53,A53. 您上一周是否为了取得收入而从事了一小时以上的劳动（,True
+CGSS,2021,employment,A53aa,A53aa. 一般每周的工作时间是多少小时？,True
+CGSS,2021,employment,A53a,A53a. 在您有工作的时候，通常情况下，您一周的工作时间大,True
+CGSS,2021,employment,A54,A54. 您上一周没有工作的原因是什么？,True
+CGSS,2021,employment,A55,A55. 到目前为止，您连续没有工作的时间有多少个月？ ,True
+CGSS,2021,employment,A56_1,[未找过工作] A56. 您在最近三个月内采取过以下哪些方式寻找,True
+CGSS,2021,employment,A56_2,[在职业介绍机构登记求职] A56. 您在最近三个月内采取过以下,True
+CGSS,2021,employment,A56_3,[委托亲友找工作] A56. 您在最近三个月内采取过以下哪些方式,True
+CGSS,2021,employment,A56_7,[其他] A56. 您在最近三个月内采取过以下哪些方式寻找工作？,True
+CGSS,2021,employment,A56_98,[不知道] A56. 您在最近三个月内采取过以下哪些方式寻找工作,True
+CGSS,2021,employment,A57a,A57a. 如有适合的工作，您能否在两周内开始工作？,True
+CGSS,2021,employment,A57b,A57b. 您人生第一份工作的职业是什么？,True
+CGSS,2021,employment,A57c,A57c.您的第一份工作是在哪一年获得的？,True
+CGSS,2021,employment,A57d,A57d.下列各种情形，哪一种更符合您第一份工作的状况?,True
+CGSS,2021,employment,A58,A58. 您的工作经历及状况是？,True
+CGSS,2021,employment,A58a,A58a. 您目前是否同时兼有多份工作？,True
+CGSS,2021,employment,A58aa,A58aa. 一共兼有多少份工作？,True
+CGSS,2021,employment,A58b,A58b. 那您目前最主要的工作大约占您职业收入的百分之多少,True
+CGSS,2021,income,A58b,A58b. 那您目前最主要的工作大约占您职业收入的百分之多少,True
+CGSS,2021,employment,A59a,A59a. 下列各种情形，哪一种更符合您目前的工作的状况？,True
+CGSS,2021,employment,A59b,A59b. 您目前的工作是否与用人单位或雇主签订了书面劳动合,True
+CGSS,2021,employment,A59c,A59c. 从您第一份非农工作到您目前的工作，您一共工作了多,True
+CGSS,2021,employment,A59e,A59e. 您目前工作的性质是？,True
+CGSS,2021,leadership,A59e1,A59e1.您如果担任了行政职务，您的行政级别是：,True
+CGSS,2021,employment,A59f,A59f.在您目前的工作中，您的管理活动情况是：,True
+CGSS,2021,leadership,A59f,A59f.在您目前的工作中，您的管理活动情况是：,True
+CGSS,2021,leadership,A59f1,A59f1. 请问您管理的人数是：,True
+CGSS,2021,employment,A59g,A59g. 在您目前的工作中，您在多大程度上能自主决定您工作,True
+CGSS,2021,employment,A59h,A59h. 在您目前的工作岗位上，是否经常有人希望通过您的工,True
+CGSS,2021,employment,A59j,A59j. 您目前工作的单位或公司的单位类型是：,True
+CGSS,2021,employment,A59k,A59k. 您目前工作的单位或公司的所有制性质是：,True
+CGSS,2021,employment,A59L,A59L. 您目前工作的单位或公司有多少员工？,True
+CGSS,2021,employment,A59m,A59m. 到目前为止，您在目前的工作单位或公司工作了多少年,True
+CGSS,2021,income,L1,L1.您目前的工资计算方式主要是？,True
+CGSS,2021,employment,L2,L2.您平时从家（或住的地方）到工作单位的通勤时间（单程,True
+CGSS,2021,employment,L3,L3.您过去一个月工作了几天？,True
+CGSS,2021,employment,L4a,L4a.在过去的一个月内，您工作时间最长的一周，大概工作了,True
+CGSS,2021,employment,L4b,L4b.在过去的一个月内，您工作时间最短的一周，大概工作了,True
+CGSS,2021,employment,L5,L5.您觉得一周工作时间超过多少小时算加班？,True
+CGSS,2021,income,L9,您上个月获得的加班工资一共有多少,True
+CGSS,2021,employment,L11_a,[a.做重体力劳动] L11.请问以下情况在您的工作中经常发生吗,True
+CGSS,2021,employment,L11_b,[b.做重脑力劳动] L11.请问以下情况在您的工作中经常发生吗,True
+CGSS,2021,employment,L11_c,[c.感觉工作压力大] L11.请问以下情况在您的工作中经常发生,True
+CGSS,2021,employment,L12,L12.您平时的工作日程安排是：,True
+CGSS,2021,employment,L13,L13.在您的工作中，有关您工作日程的安排，单位或领导一般,True
+CGSS,2021,leadership,L13,L13.在您的工作中，有关您工作日程的安排，单位或领导一般,True
+CGSS,2021,employment,L14,L14.过去一个月，您的工作是不是存在电话随叫随到的情况？,True
+CGSS,2021,employment,L15,L15.过去一个月，您的工作是不是存在通过微信或电话随时安,True
+CGSS,2021,employment,L16_a,[a.您的工作妨碍了家庭生活] L16.总体而言，感受到如下情况,True
+CGSS,2021,employment,L16_b,[b.您的家庭生活妨碍了工作] L16.总体而言，感受到如下情况,True
+CGSS,2021,employment,L17,L17.总体而言，您对您当下的工作是否满意？,True
+CGSS,2021,income,L18,L18.与去年相比，今年您家的收入状况是：,True
+CGSS,2021,income,L19,L19.总体而言，过去一年中，您家的收入和支出是什么状况：,True
+CGSS,2021,employment,A60a,A60a. 下列各种情形，哪一种更符合您最近那份非农工作的状,True
+CGSS,2021,employment,A60b,A60b. 您最近那份非农工作是否与用人单位或雇主签订了书面,True
+CGSS,2021,employment,A60c,A60c. 从您第一份非农工作到您最近那份非农工作，您一共工,True
+CGSS,2021,employment,A60e,A60e. 您最近那份非农工作的性质是？,True
+CGSS,2021,employment,A60f,A60f. 在您最近那份非农工作中，您的管理活动情况是：,True
+CGSS,2021,leadership,A60f,A60f. 在您最近那份非农工作中，您的管理活动情况是：,True
+CGSS,2021,leadership,A60f1,A60f1. 请问您管理的人数是：,True
+CGSS,2021,employment,A60g,A60g. 在您最近那份非农工作中，您在多大程度上能自主决定,True
+CGSS,2021,employment,A60h,A60h. 在您最近那份非农工作岗位上，是否经常有人希望通过,True
+CGSS,2021,employment,A60j,A60j. 您最近那份非农工作的单位或公司的单位类型是：,True
+CGSS,2021,employment,A60k,A60k. 您最近那份非农工作的单位或公司的所有制性质是：,True
+CGSS,2021,employment,A60L,A60L. 您最近那份非农工作的单位或公司有多少员工？,True
+CGSS,2021,employment,A60m,A60m. 您在最近那份非农工作的工作单位或公司工作了多少年,True
+CGSS,2021,region,A61_1,[1. 城市基本医疗保险/新型农村合作医疗保险/公费医疗] A61. ,True
+CGSS,2021,region,A61_2,[2. 城市/农村基本养老保险] A61. 您目前是否参加了以下社会,True
+CGSS,2021,income,A62,您家2020年全年家庭总收入是多少,True
+CGSS,2021,marriage,A69,A69. 您目前的婚姻状况是：,True
+CGSS,2021,marriage,A69a,A69a. 现在您和您的配偶或同居伴侣住在一起吗？,True
+CGSS,2021,marriage,A70,A70. 您第一次结婚的时间是？,True
+CGSS,2021,birth_age,A71a,A71a. 请问您目前的配偶或同居伴侣是哪一年出生的？,True
+CGSS,2021,marriage,A71a,A71a. 请问您目前的配偶或同居伴侣是哪一年出生的？,True
+CGSS,2021,marriage,A71b,A71b. 请问您与目前的配偶是哪一年结婚的？,True
+CGSS,2021,education,A72,A72. 您配偶或同居伴侣目前的最高教育程度是：,True
+CGSS,2021,marriage,A72,A72. 您配偶或同居伴侣目前的最高教育程度是：,True
+CGSS,2021,marriage,A73,A73. 您配偶或同居伴侣的政治面貌是：,True
+CGSS,2021,region,A74,A74. 您配偶或同居伴侣目前的户口登记状况是：,True
+CGSS,2021,marriage,A74,A74. 您配偶或同居伴侣目前的户口登记状况是：,True
+CGSS,2021,marriage,A75a,您配偶或同居伴侣去年（2020年）全年的总收入是,True
+CGSS,2021,income,A75a,您配偶或同居伴侣去年（2020年）全年的总收入是,True
+CGSS,2021,marriage,A75b,您配偶或同居伴侣去年（2020年）全年的职业/劳动收入是,True
+CGSS,2021,employment,A75b,您配偶或同居伴侣去年（2020年）全年的职业/劳动收入是,True
+CGSS,2021,income,A75b,您配偶或同居伴侣去年（2020年）全年的职业/劳动收入是,True
+CGSS,2021,marriage,A76,A76. 您配偶或同居伴侣上一周的就业状况是？（高位补零）,True
+CGSS,2021,employment,A76,A76. 您配偶或同居伴侣上一周的就业状况是？（高位补零）,True
+CGSS,2021,employment,A76aa,A76aa. 一般每周的工作时间为多少小时？,True
+CGSS,2021,marriage,A76a,A76a. 在您配偶或同居伴侣有工作的时候，通常情况下，您配,True
+CGSS,2021,employment,A76a,A76a. 在您配偶或同居伴侣有工作的时候，通常情况下，您配,True
+CGSS,2021,marriage,A77,A77. 您配偶或同居伴侣上一周没有工作的原因是什么？,True
+CGSS,2021,employment,A77,A77. 您配偶或同居伴侣上一周没有工作的原因是什么？,True
+CGSS,2021,marriage,A78,A78. 到目前为止，您配偶或同居伴侣连续未工作的时间有多少,True
+CGSS,2021,employment,A78,A78. 到目前为止，您配偶或同居伴侣连续未工作的时间有多少,True
+CGSS,2021,marriage,A79_1,[未找过工作] A79. 您配偶或同居伴侣在最近三个月内采取过,True
+CGSS,2021,employment,A79_1,[未找过工作] A79. 您配偶或同居伴侣在最近三个月内采取过,True
+CGSS,2021,marriage,A79_2,[在职业介绍机构登记求职] A79. 您配偶或同居伴侣在最近三,True
+CGSS,2021,employment,A79_2,[在职业介绍机构登记求职] A79. 您配偶或同居伴侣在最近三,True
+CGSS,2021,marriage,A79_3,[委托亲友找工作] A79. 您配偶或同居伴侣在最近三个月内采,True
+CGSS,2021,employment,A79_3,[委托亲友找工作] A79. 您配偶或同居伴侣在最近三个月内采,True
+CGSS,2021,marriage,A79_4,[利用网络及其他媒体求职] A79. 您配偶或同居伴侣在最近三,True
+CGSS,2021,marriage,A79_5,[参加招聘会、自己直接上门询问] A79. 您配偶或同居伴侣在,True
+CGSS,2021,marriage,A79_6,[为自己经营做准备] A79. 您配偶或同居伴侣在最近三个月内,True
+CGSS,2021,marriage,A79_7,[其他（请注明）] A79. 您配偶或同居伴侣在最近三个月内采,True
+CGSS,2021,marriage,A79_98,[不知道] A79. 您配偶或同居伴侣在最近三个月内采取过以下,True
+CGSS,2021,marriage,A79_99,[拒绝回答] A79. 您配偶或同居伴侣在最近三个月内采取过以,True
+CGSS,2021,marriage,A80,A80. 如有适合的工作，您配偶或同居伴侣能否在两周内开始,True
+CGSS,2021,employment,A80,A80. 如有适合的工作，您配偶或同居伴侣能否在两周内开始,True
+CGSS,2021,marriage,A81,A81. 您配偶或同居伴侣的工作经历及状况是？,True
+CGSS,2021,employment,A81,A81. 您配偶或同居伴侣的工作经历及状况是？,True
+CGSS,2021,marriage,A81a,A81a. 您配偶或同居伴侣目前是否同时兼有多份工作？,True
+CGSS,2021,employment,A81a,A81a. 您配偶或同居伴侣目前是否同时兼有多份工作？,True
+CGSS,2021,employment,A81aa,A81aa. 一共兼有多少份工作？,True
+CGSS,2021,marriage,A81b,A81b. 那您配偶或同居伴侣目前最主要的工作大约占他/她职业,True
+CGSS,2021,employment,A81b,A81b. 那您配偶或同居伴侣目前最主要的工作大约占他/她职业,True
+CGSS,2021,marriage,A82,A82. 下列各种情形，哪一种更符合您配偶或同居伴侣目前的,True
+CGSS,2021,marriage,A82a,A82a. 请问您配偶或同居伴侣雇有的雇员人数是：,True
+CGSS,2021,marriage,A83a,A83a. 您配偶或同居伴侣的目前工作是否与用人单位或雇主签,True
+CGSS,2021,employment,A83a,A83a. 您配偶或同居伴侣的目前工作是否与用人单位或雇主签,True
+CGSS,2021,marriage,A83b,A83b. 在您配偶或同居伴侣目前的工作中，他/她的管理活动情,True
+CGSS,2021,employment,A83b,A83b. 在您配偶或同居伴侣目前的工作中，他/她的管理活动情,True
+CGSS,2021,leadership,A83b,A83b. 在您配偶或同居伴侣目前的工作中，他/她的管理活动情,True
+CGSS,2021,leadership,A83c,A83c. 请问他/她管理的人数是：,True
+CGSS,2021,marriage,A85,A85. 您配偶或同居伴侣目前工作的性质是？,True
+CGSS,2021,employment,A85,A85. 您配偶或同居伴侣目前工作的性质是？,True
+CGSS,2021,marriage,A87,A87. 您配偶或同居伴侣目前工作的单位或公司的单位类型是,True
+CGSS,2021,employment,A87,A87. 您配偶或同居伴侣目前工作的单位或公司的单位类型是,True
+CGSS,2021,marriage,A88,A88. 您配偶或同居伴侣目前工作的单位或公司的所有制性质,True
+CGSS,2021,employment,A88,A88. 您配偶或同居伴侣目前工作的单位或公司的所有制性质,True
+CGSS,2021,birth_age,A89a,A89a. 请问您父亲是哪一年出生的？,True
+CGSS,2021,education,A89b,A89b. 您父亲的最高教育程度是：,True
+CGSS,2021,employment,A89d,A89d. 请问您14岁时，您父亲的就业状况是：,True
+CGSS,2021,leadership,A89f,A89f. 您14岁时，您父亲如担任了行政职务，他的职务级别是,True
+CGSS,2021,employment,A89g,A89g. 您14岁时，您父亲工作的单位或公司的单位类型是：,True
+CGSS,2021,employment,A89h,A89h. 您14岁时，您父亲工作的单位或公司所有制性质是：  ,True
+CGSS,2021,birth_age,A90a,A90a. 请问您母亲是哪一年出生的？,True
+CGSS,2021,education,A90b,A90b. 您母亲的最高教育程度是：,True
+CGSS,2021,employment,A90d,A90d. 请问您14岁时，您母亲的就业状况是：,True
+CGSS,2021,leadership,A90f,A90f. 您14岁时，您母亲如担任了行政职务，她的职务级别是,True
+CGSS,2021,employment,A90g,A90g. 您14岁时，您母亲工作的单位或公司的单位类型是：,True
+CGSS,2021,employment,A90h,A90h. 您14岁时，您母亲工作的单位或公司所有制性质是：  ,True
+CGSS,2021,birth_age,XA1,甲的年龄,True
+CGSS,2021,income,XA2,甲的收入,True
+CGSS,2021,education,XA5,甲的教育程度,True
+CGSS,2021,marriage,B101_1,[请打分]您觉得甲作为结婚的对象有多理想？,True
+CGSS,2021,birth_age,XB1,乙的年龄,True
+CGSS,2021,income,XB2,乙的收入,True
+CGSS,2021,education,XB5,乙的教育程度,True
+CGSS,2021,marriage,B102_1,[请打分]您觉得乙作为结婚的对象有多理想？,True
+CGSS,2021,birth_age,XC1,丙的年龄,True
+CGSS,2021,income,XC2,丙的收入,True
+CGSS,2021,education,XC5,丙的教育程度,True
+CGSS,2021,marriage,B103_1,[请打分]您觉得丙作为结婚的对象有多理想？,True
+CGSS,2021,marriage,B2,B2.您觉得婚姻的首要目的是什么？,True
+CGSS,2021,housework,C2_C201,[C201.相比于母亲，父亲不应当因为照顾孩子而放缓事业上的,True
+CGSS,2021,fertility,C2_C205,[C205.需要有自己的房产才可以生孩子] C2.您是否同意以下观点,True
+CGSS,2021,fertility,C2_C206,[C206.不管本人想不想生孩子，只要父母想要，我们就应该满,True
+CGSS,2021,leadership,V5_6,[担心政府对疫苗管理不力（假疫苗、失效疫苗等）] V5.您不,True
+CGSS,2021,employment,D27_a,[a.关闭企业或工作场所] D27.疫情严重期间，您认为我国政府,True
+CGSS,2021,employment,D31,D31.您目前的就业状况与新冠疫情之前相比，下列哪项描述最,True
+CGSS,2021,income,D32,D32.您家目前的收入与新冠疫情之前相比有什么变化？,True
+CGSS,2021,employment,E4,E4.由于健康问题，您无法完成预期的工作或日常活动：,True
+CGSS,2021,employment,E6,E6.由于情绪问题，您无法完成预期的工作或日常活动：,True
+CGSS,2021,employment,E7,E7.由于情绪问题，让您的工作或其他日常活动变得心不在焉,True
+CGSS,2021,employment,E8,E8.在过去的四周中，病痛在多大程度上影响您的正常工作（,True
+CGSS,2021,employment,E20,E20.您在工作日走多长时间路?（包括您工作和居家生活，从一,True
+CGSS,2021,employment,E22_1_1,[] [小时] E22.您一般工作日有多少时间是坐着的？包括所有坐,False
+CGSS,2021,employment,E22_1_2,[] [分钟] E22.您一般工作日有多少时间是坐着的？包括所有坐,False
+CGSS,2021,employment,E23_1_1,[] [小时] E23.您一般工作日的实际睡眠时间是多长?（这不是指,False
+CGSS,2021,employment,E23_1_2,[] [分钟] E23.您一般工作日的实际睡眠时间是多长?（这不是指,False
+CGSS,2021,employment,E33_3,[工作的同事 ] E33.他们都是哪些人？（多选）,True
+CGSS,2021,housework,E33_6,[医生、照料、治疗等专业人员 ] E33.他们都是哪些人？（多选,True
+CGSS,2021,housework,E43,E43.您是否是其中一位的主要照料者？,True
+CGSS,2021,employment,E45_D,[D.履行工作、社会责任和角色] E45.健康对您以下各方面的重,True
+CGSS,2021,housework,E48_C,[C.因为看不懂药品说明书或医嘱，而无法知道如何照顾自己,True
+CGSS,2021,marriage,E51,E51.总的来说，您认为您配偶的健康状况是:,True
+CGSS,2021,income,D3,D3.比起低收入的人，高收入的人能够负担得起更好的医疗保,True
+CGSS,2021,employment,D8_b,[b.人们出现严重的健康问题是因为他们的工作或居住环境] D8.,True
+CGSS,2021,income,D10_c,[c.比起关心病人，医生更关心自己的收入] D10.您同不同意下,True
+CGSS,2021,employment,D18_b,[b.您无法从工作中请假或是因其他事情脱不开身] D18.在过去,True
+CGSS,2021,employment,D23_a,[a.在一天之内喝酒4个单位或更多] D23.您是否经常做下面这些,True
+CGSS,2021,birth_age,D35_2,[2.随着年龄增长，我从生活中悟出了许多道理，这使我变得,True
+CGSS,2021,income,D35_8,[8.我对家里的收入感到满意] D35.您对以下观点的同意程度如,True
+CGSS,2021,employment,H5a_1,[向责任单位或个人直接交涉] H5a. 如果您和家人采取了行动，,True
+CGSS,2021,employment,H5a_3,[向工作单位反映] H5a. 如果您和家人采取了行动，主要是哪些,True
+CGSS,2021,region,H5a_4,[向居住地政府投诉 ] H5a. 如果您和家人采取了行动，主要是,True
+CGSS,2021,employment,H5a_6,[向正式新闻单位投诉] H5a. 如果您和家人采取了行动，主要是,True
+CGSS,2021,region,H6,H6.总体看来，您认为您居住地区的环境质量比5年前的情况是,True
+CGSS,2021,region,H7,H7.总体看来，您认为您居住地区的环境质量比10年前的情况是,True
+CGSS,2021,region,H8,H8.在解决您居住地区环境问题方面，您认为近五年来，地方,True
+CGSS,2021,leadership,H10_14,[14.党政领导干部生态环境损害责任追究] H10.您对以下各种事,True
+CGSS,2021,fertility,H14_1,[1.经常对家庭生活产生的垃圾进行分类投放] H14.为了解决垃,True
+CGSS,2021,employment,H14_4,[4.愿意作为志愿者定期参与维护环境整洁的公益劳动] H14.为,True
+CGSS,2021,science_math,P10_1,[1.现代科学将会在几乎不改变我们生活方式的同时解决环境,True
+CGSS,2021,employment,P10_2,[2.我们对未来的环境状况担忧太多而对当前的物价和就业关,True
+CGSS,2021,employment,isco08_a57e,被访者第一份工作,True
+CGSS,2021,employment,isco08_a59d,被访者目前从事工作,True
+CGSS,2021,employment,isco08_a60d,被访者曾经从事非农工作,True
+CGSS,2021,marriage,isco08_sp,配偶职业,True
+CGSS,2021,employment,isco08_sp,配偶职业,True
+CGSS,2021,employment,isco08_f,父亲职业,True
+CGSS,2021,employment,isco08_m,母亲职业,True
+CGSS,2021,weight,weight,权重,False
+ACWF,2010,id_family,newid,newid区县编码+家庭户编码,False
+ACWF,2010,region,newid,newid区县编码+家庭户编码,False
+ACWF,2010,region,DID1,did1 区县编码,False
+ACWF,2010,id_family,DID2,did2家庭户编码,False
+ACWF,2010,region,sheng,省区,True
+ACWF,2010,region,Quxian,区县,False
+ACWF,2010,region,ChengX,城乡,True
+ACWF,2010,birth_age,V301,v301年龄,False
+ACWF,2010,marriage,V401,v401婚姻状况,True
+ACWF,2010,region,V501,v501户口性质,True
+ACWF,2010,birth_age,V302,v302年龄,False
+ACWF,2010,marriage,V402,v402婚姻状况,True
+ACWF,2010,region,V502,v502户口性质,True
+ACWF,2010,birth_age,V303,v303年龄,False
+ACWF,2010,marriage,V403,v403婚姻状况,True
+ACWF,2010,region,V503,v503户口性质,True
+ACWF,2010,birth_age,V304,v304年龄,False
+ACWF,2010,marriage,V404,v404婚姻状况,True
+ACWF,2010,region,V504,v504户口性质,True
+ACWF,2010,birth_age,V305,v305年龄,False
+ACWF,2010,marriage,V405,v405婚姻状况,True
+ACWF,2010,region,V505,v505户口性质,True
+ACWF,2010,birth_age,V306,v306年龄,False
+ACWF,2010,marriage,V406,v406婚姻状况,True
+ACWF,2010,region,V506,v506户口性质,True
+ACWF,2010,birth_age,V307,v307年龄,False
+ACWF,2010,marriage,V407,v407婚姻状况,True
+ACWF,2010,region,V507,v507户口性质,True
+ACWF,2010,birth_age,V308,v308年龄,False
+ACWF,2010,marriage,V408,v408婚姻状况,True
+ACWF,2010,region,V508,v508户口性质,True
+ACWF,2010,birth_age,V309,v309年龄,False
+ACWF,2010,marriage,V409,v409婚姻状况,True
+ACWF,2010,region,V509,v509户口性质,True
+ACWF,2010,birth_age,V310,v310年龄,False
+ACWF,2010,marriage,V410,v410婚姻状况,True
+ACWF,2010,region,V510,v510户口性质,True
+ACWF,2010,birth_age,V311,v311年龄,False
+ACWF,2010,marriage,V411,v411婚姻状况,True
+ACWF,2010,region,V511,v511户口性质,True
+ACWF,2010,birth_age,V312,v312年龄,False
+ACWF,2010,marriage,V412,v412婚姻状况,True
+ACWF,2010,region,V512,v512户口性质,True
+ACWF,2010,birth_age,V313,v313年龄,False
+ACWF,2010,marriage,V413,v413婚姻状况,True
+ACWF,2010,region,V513,v513户口性质,True
+ACWF,2010,birth_age,V314,v314年龄,False
+ACWF,2010,marriage,V414,v414婚姻状况,True
+ACWF,2010,region,V514,v514户口性质,True
+ACWF,2010,birth_age,V315,v315年龄,False
+ACWF,2010,marriage,V415,v415婚姻状况,True
+ACWF,2010,region,V515,v515户口性质,True
+ACWF,2010,birth_age,A2A,A2a您的出生年： 19,True
+ACWF,2010,birth_age,A2B,A2b出生月,True
+ACWF,2010,birth_age,A3, A3您的出生地当时是：,True
+ACWF,2010,region,A4A, A4a近10年来户口性质是否发生过变化,True
+ACWF,2010,education,B2,B2不包括成人教育，您总共上了几年学？,True
+ACWF,2010,education,B3A,B3a您目前的受教育程度是：,True
+ACWF,2010,education,B3B,B3b您的最后学历/学位是工作/务农以后获得的吗？,True
+ACWF,2010,employment,B3B,B3b您的最后学历/学位是工作/务农以后获得的吗？,True
+ACWF,2010,employment,C1A,C1a 目前您是否从事有收入的工作/劳动?,True
+ACWF,2010,income,C1A,C1a 目前您是否从事有收入的工作/劳动?,True
+ACWF,2010,birth_age,C1B,C1b 您退休/内退时的年龄为多少周岁,True
+ACWF,2010,housework,C1DA,C1dA家里有孩子需要照顾,True
+ACWF,2010,housework,C1DB,C1dB家里有老人/病人需要照顾,True
+ACWF,2010,employment,C1DD,C1dD不想出去工作,True
+ACWF,2010,marriage,C1DE,C1dE配偶不支持,True
+ACWF,2010,employment,C1E,C1e以前是否工作/劳动过？,True
+ACWF,2010,employment,C2,C2您目前/最后的职业是什么？,True
+ACWF,2010,employment,C3,C3 您目前/最后所在单位/所从事工作的主要业务或主要产品是：,True
+ACWF,2010,employment,C5A,C5a您目前/最后的就业身份是：,True
+ACWF,2010,employment,C5B,C5b您所在单位的类型是：,True
+ACWF,2010,employment,C5D,C5d您所在单位的所有制性质是：,True
+ACWF,2010,employment,C5F,C5f您在单位中所处的位置是：,True
+ACWF,2010,employment,C6A,C6a您目前/最后的工作主要是通过什么途径得到的?,True
+ACWF,2010,employment,C6B,C6b这份工作/劳动您干了多长时间?,True
+ACWF,2010,employment,C7A,C7a您是否与用人单位签定了书面的劳动合同？,True
+ACWF,2010,employment,C7B,C7b劳动合同期限为,True
+ACWF,2010,employment,C8AA,C8a A工作条件,True
+ACWF,2010,employment,C8AB,C8aB劳动强度,True
+ACWF,2010,employment,C8AC,C8aC工作稳定性,True
+ACWF,2010,income,C8AD,C8aD收入水平,True
+ACWF,2010,employment,C8BA,C8b A因为工作太忙，很少管家里的事,True
+ACWF,2010,birth_age,C9,C9 开始工作/务农的年龄,True
+ACWF,2010,employment,C9,C9 开始工作/务农的年龄,True
+ACWF,2010,employment,C10A,C10a换工作次数,True
+ACWF,2010,employment,C10BA,C10b A第一份工作,True
+ACWF,2010,employment,C10BB,C10bB倒数第二份工作,True
+ACWF,2010,employment,C11A,C11a是否有过半年及以上不工作也无劳动收入的情况,True
+ACWF,2010,income,C11A,C11a是否有过半年及以上不工作也无劳动收入的情况,True
+ACWF,2010,employment,C11C,C11c工作中断的主要原因,True
+ACWF,2010,employment,C14A,C14a今年您从事农林牧渔劳动了吗？,True
+ACWF,2010,employment,C14B,C14b您有多长时间不从事这类劳动了？,True
+ACWF,2010,employment,C14C,C14c您从事这类劳动的时间大约有几个月,True
+ACWF,2010,leadership,C15A,C15AA农、林、果木等种植管理专业技术,True
+ACWF,2010,region,C16A,C16a本人外县市城镇务工经商经历,True
+ACWF,2010,region,C16B,C16b配偶婚后外县市城镇务工经商经历,True
+ACWF,2010,marriage,C16B,C16b配偶婚后外县市城镇务工经商经历,True
+ACWF,2010,employment,C17A,C17a除农业劳动外今年是否从事其他有收入劳动,True
+ACWF,2010,income,C17A,C17a除农业劳动外今年是否从事其他有收入劳动,True
+ACWF,2010,employment,C17B,C17b最主要的劳动是：,True
+ACWF,2010,employment,C18AA,C18aA劳动收入,True
+ACWF,2010,income,C18AA,C18aA劳动收入,True
+ACWF,2010,income,C18AB,C18aB房屋、土地、车辆等租赁收入,True
+ACWF,2010,income,C18AC,C18aC其他财产性收入（股票/债券/基金收益、利息等）,True
+ACWF,2010,marriage,C18B,C18b配偶的个人总收入,True
+ACWF,2010,income,C18B,C18b配偶的个人总收入,True
+ACWF,2010,employment,D4A,D4a 在工作/劳动中是否有过事故伤害或职业病伤害？,True
+ACWF,2010,employment,D5CB,D5cB免费就业指导和咨询服务,True
+ACWF,2010,employment,D5CC,D5cC免费职业技能培训,True
+ACWF,2010,employment,D5CD,D5cD政府相关机构的职业介绍服务,True
+ACWF,2010,income,D6A,D6AA带薪年假,True
+ACWF,2010,employment,D6D,D6D工作餐/餐补（含包吃）,True
+ACWF,2010,employment,E5A,E5 A给所在单位/社区/村提建议,True
+ACWF,2010,leadership,E6A,E6a担任领导或负责人情况,True
+ACWF,2010,leadership,E6B,E6b担任过的最高职务,True
+ACWF,2010,leadership,E7B,E7B女性不愿当领导,True
+ACWF,2010,leadership,E7C,E7C女性不适合当领导,True
+ACWF,2010,leadership,E7D,E7D家人不支持女性当领导,True
+ACWF,2010,housework,E7E,E7E女性家务负担重,True
+ACWF,2010,employment,E9,E9您对本单位/社区/村的决策能否产生影响？,True
+ACWF,2010,leadership,E10ad,E10aD社区管理、活动组织（如业主委员会、老年活动队等）,True
+ACWF,2010,marriage,F1A,F1a 您目前的婚姻状况是,True
+ACWF,2010,marriage,F1B,F1b是第一次婚姻吗？,True
+ACWF,2010,marriage,F1C,F1c离婚是您主动提出的吗,True
+ACWF,2010,birth_age,F2A,F2a您的初婚年龄,True
+ACWF,2010,marriage,F2A,F2a您的初婚年龄,True
+ACWF,2010,birth_age,F2B,F2b当时配偶的年龄,True
+ACWF,2010,marriage,F2B,F2b当时配偶的年龄,True
+ACWF,2010,birth_age,F2C,F2c您本次结婚时的年龄,True
+ACWF,2010,marriage,F2C,F2c您本次结婚时的年龄,True
+ACWF,2010,birth_age,F2D,F2d再婚时您配偶的年龄,True
+ACWF,2010,marriage,F2D,F2d再婚时您配偶的年龄,True
+ACWF,2010,marriage,F3A,F3a结婚前，双方家庭相比谁家的经济状况更好,True
+ACWF,2010,marriage,F3B,F3b 结婚后，你们与哪一方家庭的经济往来更多,True
+ACWF,2010,birth_age,F4C,F4c第一个孩子出生时母亲的年龄,True
+ACWF,2010,birth_age,F4D,F4d最后一个/这个孩子出生时母亲的年龄,True
+ACWF,2010,housework,F4f,F4f最后一个/这个孩子3岁以前白天主要由谁照顾,True
+ACWF,2010,employment,F6B,F6B谁承担的家务劳动更多,True
+ACWF,2010,housework,F6B,F6B谁承担的家务劳动更多,True
+ACWF,2010,marriage,F7A,F7A配偶能倾听您的心事和烦恼,True
+ACWF,2010,marriage,F7B,F7B在重要事情上配偶会征求您的意见,True
+ACWF,2010,marriage,F7C,F7C您想做的事一般能得到配偶的支持,True
+ACWF,2010,marriage,F8AA,F8aA配偶是否对你有过：限制人身自由,True
+ACWF,2010,marriage,F8AB,F8aB配偶是否对你有过：经济控制,True
+ACWF,2010,marriage,F8AC,F8aC配偶是否对你有过：殴打,True
+ACWF,2010,marriage,F8AD,F8aD配偶是否对你有过：侮辱/谩骂,True
+ACWF,2010,marriage,F8AE,F8aE配偶是否对你有过：持续几天不理睬,True
+ACWF,2010,marriage,F8AF,F8aF配偶是否对你有过：强迫过性生活,True
+ACWF,2010,employment,F9A,F9A承担家务劳动情况：做饭,True
+ACWF,2010,housework,F9A,F9A承担家务劳动情况：做饭,True
+ACWF,2010,employment,F9B,F9B承担家务劳动情况：洗碗,True
+ACWF,2010,housework,F9B,F9B承担家务劳动情况：洗碗,True
+ACWF,2010,employment,F9C,F9C承担家务劳动情况：洗衣服、做卫生,True
+ACWF,2010,housework,F9C,F9C承担家务劳动情况：洗衣服、做卫生,True
+ACWF,2010,employment,F9D,F9D承担家务劳动情况：日常家庭采购,True
+ACWF,2010,housework,F9D,F9D承担家务劳动情况：日常家庭采购,True
+ACWF,2010,employment,F9E,F9E承担家务劳动情况：照料孩子生活,True
+ACWF,2010,housework,F9E,F9E承担家务劳动情况：照料孩子生活,True
+ACWF,2010,employment,F9F,F9fF承担家务劳动情况：辅导孩子功课,True
+ACWF,2010,housework,F9F,F9fF承担家务劳动情况：辅导孩子功课,True
+ACWF,2010,employment,F9G,F9G承担家务劳动情况：照料老人,True
+ACWF,2010,housework,F9G,F9G承担家务劳动情况：照料老人,True
+ACWF,2010,employment,F9H,F9H承担家务劳动情况：家庭日常维修,True
+ACWF,2010,housework,F9H,F9H承担家务劳动情况：家庭日常维修,True
+ACWF,2010,employment,F9I,F9I 承担家务劳动情况：买煤、换煤气/砍柴等,True
+ACWF,2010,housework,F9I,F9I 承担家务劳动情况：买煤、换煤气/砍柴等,True
+ACWF,2010,marriage,F10BA,F10bA是否有自己名下财产：房产（配偶）,True
+ACWF,2010,marriage,F10BB,F10bB是否有自己名下财产：宅基地（配偶）,True
+ACWF,2010,marriage,F10BC,F10bC是否有自己名下财产：存款（配偶）,True
+ACWF,2010,marriage,F10BD,F10bD是否有自己名下财产：机动车（配偶）,True
+ACWF,2010,marriage,F10BE,F10bE是否有自己名下财产：股票/基金（配偶）,True
+ACWF,2010,employment,F11B,F11B自己外出学习/工作,True
+ACWF,2010,education,F12AA,F12aA父亲受教育程度,True
+ACWF,2010,education,F12AB,F12aB母亲受教育程度,True
+ACWF,2010,education,F12AC,F12aC配偶受教育程度,True
+ACWF,2010,marriage,F12AC,F12aC配偶受教育程度,True
+ACWF,2010,employment,F12BA,F12bA父亲目前/最后的职业,True
+ACWF,2010,employment,F12BB,F12bB母亲目前/最后的职业,True
+ACWF,2010,marriage,F12BC,F12bC配偶目前/最后的职业,True
+ACWF,2010,employment,F12BC,F12bC配偶目前/最后的职业,True
+ACWF,2010,science_math,G4E,G4E对什么都不感兴趣,True
+ACWF,2010,income,G9F,G9f产假期间的收入,True
+ACWF,2010,income,G9G,G9g丈夫带薪陪护假天数,True
+ACWF,2010,marriage,G10C,G10c问已婚者第一次人工流产的主要原因,True
+ACWF,2010,employment,H2A,H2a昨天是您的工作/学习日还是休息日？,True
+ACWF,2010,employment,H2BA,H2bA有收入的工作/劳动/经营活动（含家庭手工/种植/养殖等）,True
+ACWF,2010,income,H2BA,H2bA有收入的工作/劳动/经营活动（含家庭手工/种植/养殖等）,True
+ACWF,2010,employment,H2BC,H2bC工作/劳动/学习往返路途,True
+ACWF,2010,employment,H2BD,H2bD家务劳动（含做饭、清洁 、照顾家人、日常采购等）,True
+ACWF,2010,housework,H2BD,H2bD家务劳动（含做饭、清洁 、照顾家人、日常采购等）,True
+ACWF,2010,housework,H2C,H2c通常看电视的时候，您是否同时做一些家务活儿？,True
+ACWF,2010,employment,H5BC,H5bC学习/工作,True
+ACWF,2010,marriage,H7CC,H7cC亲人亡故、婚姻不幸等,True
+ACWF,2010,marriage,I4AC,I4aC因结婚怀孕生育被解雇（是否属于歧视）,True
+ACWF,2010,fertility,I4AC,I4aC因结婚怀孕生育被解雇（是否属于歧视）,True
+ACWF,2010,marriage,I4BC,I4bC因结婚怀孕生育被解雇（是否有此类经历）,True
+ACWF,2010,fertility,I4BC,I4bC因结婚怀孕生育被解雇（是否有此类经历）,True
+ACWF,2010,income,J2C,J2C挣钱养家主要是男人的事情,True
+ACWF,2010,employment,J2E,J2E男人也应该主动承担家务劳动,True
+ACWF,2010,housework,J2E,J2E男人也应该主动承担家务劳动,True
+ACWF,2010,leadership,J2H,J2H在领导岗位上男女比例应大致相等,True
+ACWF,2010,region,K1B,K1b您的户口所在地是,False
+ACWF,2010,region,K1B2,K1b2您的户口所在地是,True
+ACWF,2010,marriage,K2CA,K2cA是否与您同行：配偶/情侣,True
+ACWF,2010,employment,K3A,K3a这次/最后一次外出的第一份工作是,True
+ACWF,2010,employment,K3E,K3e这份工作第一年内月平均收入,True
+ACWF,2010,income,K3E,K3e这份工作第一年内月平均收入,True
+ACWF,2010,employment,K3F,K3f这份工作第一年内每天大约工作多长时间？,True
+ACWF,2010,region,K4a,K4a外出期间，农村家里的生产经营活动主要由谁负责,True
+ACWF,2010,region,K4b,K4b农村家里的日常家务劳动主要由谁负责,True
+ACWF,2010,employment,K4b,K4b农村家里的日常家务劳动主要由谁负责,True
+ACWF,2010,housework,K4b,K4b农村家里的日常家务劳动主要由谁负责,True
+ACWF,2010,region,K7AC,K7ac第一次（所到省份）,True
+ACWF,2010,region,K7AD,K7ad第一次（所到省份）,False
+ACWF,2010,region,K7BC,K7bc第二次（所到省份）,True
+ACWF,2010,region,K7BD,K7bd第二次（所到省份）,False
+ACWF,2010,region,K7CC,K7cc第三次（所到省份）,True
+ACWF,2010,region,K7CD,K7cd第三次（所到省份）,False
+ACWF,2010,region,K7DC,K7dc倒数第二次（所到省份）,True
+ACWF,2010,region,K7DD,K7dd倒数第二次（所到省份）,False
+ACWF,2010,marriage,K8BA,K8bA是否与您同行：配偶/情侣,True
+ACWF,2010,employment,K9B,K9B外出期间是否：患职业病,True
+ACWF,2010,income,K9G,K9G外出期间是否：工资被拖欠或克扣,True
+ACWF,2010,education,K10C,K10C子女教育状况,True
+ACWF,2010,marriage,K10F,K10F与配偶父母的关系,True
+ACWF,2010,employment,K11,K11总的来说，对外出期间的工作生活满意吗,True
+ACWF,2010,employment,K12CB,K12cB不满意外面的工作,True
+ACWF,2010,birth_age,K12CD,K12cD自己年龄大了,True
+ACWF,2010,marriage,K12CE,K12cE不愿离开配偶,True
+ACWF,2010,birth_age,K12CG,K12cG父母年龄大，不便离开,True
+ACWF,2010,region,K12CH,K12cH农村政策好，机会多,True
+ACWF,2010,marriage,K12DE,K12dE配偶在外面,True
+ACWF,2010,housework,K12DF,K12dF子女和老人不需照顾,True
+ACWF,2010,marriage,K14,K14您和您配偶是老乡吗？,True
+ACWF,2010,marriage,K15,K15您配偶这次/最后一次外出是：,True
+ACWF,2010,marriage,K16A,K16a配偶这次/最后一次外出期间平均多久与您联系一次,True
+ACWF,2010,marriage,K17A,K17a您配偶外出务工经商的收入占您家总收入的比重,True
+ACWF,2010,income,K17A,K17a您配偶外出务工经商的收入占您家总收入的比重,True
+ACWF,2010,marriage,K17B,K17b配偶外出期间，给家里汇/带钱主要给谁？,True
+ACWF,2010,marriage,K18A,K18a 配偶外出期间，家里的生产活动主要由谁来负责？,True
+ACWF,2010,employment,K18B,K18b家里的日常家务劳动主要由谁来负责？,True
+ACWF,2010,housework,K18B,K18b家里的日常家务劳动主要由谁来负责？,True
+ACWF,2010,marriage,K19C,K19C配偶不在，自己被人欺负,True
+ACWF,2010,housework,K19D,K19D孩子没人照料/管教/指导,True
+ACWF,2010,marriage,K19F,K19F配偶在外的安全,True
+ACWF,2010,income,K20A,K20A家庭收入,True
+ACWF,2010,employment,K20E,K20E个人劳动负担,True
+ACWF,2010,leadership,L1,L1您目前/最后的行政职务是：,True
+ACWF,2010,leadership,L2A,L2a您担任目前/最后职务的起始年份,True
+ACWF,2010,leadership,L2B,L2b您担任比目前/最后职务低一级职务的起始年份,True
+ACWF,2010,education,L4A,L4a获得最高学历的院校是重点院校吗,True
+ACWF,2010,education,L4B,L4b获得最高学历的学费来源,True
+ACWF,2010,education,L4C,L4c最高学历是在海外获得的吗,True
+ACWF,2010,education,L6,L6大学期间在院系、学校或学生社团担任过学生干部吗,True
+ACWF,2010,leadership,L6,L6大学期间在院系、学校或学生社团担任过学生干部吗,True
+ACWF,2010,employment,L8A,L8a参加工作以来培训/进修时间最长的一次是：,True
+ACWF,2010,employment,L8D,L8d这次培训/进修对您的职业发展有帮助吗？,True
+ACWF,2010,employment,L9A,L9a更换过几次工作单位？,True
+ACWF,2010,employment,L9B,L9b第一份工作主要是通过什么途径得到的?,True
+ACWF,2010,employment,L9C,L9c目前工作与最初工作是同一个领域/职业吗？,True
+ACWF,2010,employment,L9DA,L9dA最后一次更换工作原因：想挣更多的钱,True
+ACWF,2010,science_math,L9DC,L9dC更好地实现自身价值/满足兴趣,True
+ACWF,2010,employment,L9DD,L9dD组织/单位安排（包括升迁）,True
+ACWF,2010,employment,L10,L10您工作后获得的最高荣誉/奖项是哪一级？,True
+ACWF,2010,employment,L12,L12是否持有本单位的股份？,True
+ACWF,2010,employment,L13A,L13a目前/最后所在单位的一把手是：,True
+ACWF,2010,employment,L13B,L13b目前/最后所在单位领导班子的女性比例是：,True
+ACWF,2010,leadership,L13B,L13b目前/最后所在单位领导班子的女性比例是：,True
+ACWF,2010,employment,L13C,L13c目前/最后所在单位工作人员的女性比例是：,True
+ACWF,2010,employment,L14A,L14aA最近3年所在单位有：只招男性或同等条件下优先招用男性,True
+ACWF,2010,leadership,L14B,L14bB同等条件下男性晋升比女性快,True
+ACWF,2010,employment,L15A,L15A您是否符合：能出色地完成工作任务,True
+ACWF,2010,employment,L15B,L15B享受自己的工作，有成就感,True
+ACWF,2010,employment,L15C,L15cC在工作中得不到晋升,True
+ACWF,2010,leadership,L15C,L15cC在工作中得不到晋升,True
+ACWF,2010,employment,L15D,L15D性别给自己的职业发展带来阻碍,True
+ACWF,2010,marriage,L15E,L15eE配偶支持自己的职业发展,True
+ACWF,2010,employment,L15E,L15eE配偶支持自己的职业发展,True
+ACWF,2010,employment,L15H,L15H始终坚持自己的职业理想,True
+ACWF,2010,employment,L15I,L15I经常与同事/同行交流对工作/专业的想法,True
+ACWF,2010,employment,L15J,L15J经常把工作中认识的人变成朋友,True
+ACWF,2010,employment,L17A,L17a在您的职业发展中，有没有榜样？,True
+ACWF,2010,employment,L18B,L18B职业规划,True
+ACWF,2010,housework,L18D,L18D解决家务负担,True
+ACWF,2010,edu_expect,L19A,L19a今天的成就与刚参加工作时自己的期望相比：,True
+ACWF,2010,employment,L19A,L19a今天的成就与刚参加工作时自己的期望相比：,True
+ACWF,2010,edu_expect,L19B,L19b今天的成就与父母对您的期望相比：,True
+ACWF,2010,leadership,L21AB,L21aB厅局级及以上干部,True
+ACWF,2010,leadership,L21BB,L21bB厅局级及以上干部,True
+ACWF,2010,leadership,L21AC,L21aC处级干部,True
+ACWF,2010,leadership,L21BC,L21bC处级干部,True
+ACWF,2010,leadership,L22A,L22A是否会主动联络看望：领导,True
+ACWF,2010,leadership,L23B,L23B是否同意：总体而言，男人比女人更胜任领导的角色,True
+ACWF,2010,birth_age,L23F,L23F男女应该同年龄退休,True
+ACWF,2010,birth_age,M1A2,{M1bA父亲年龄,True
+ACWF,2010,education,M1A3,M1cA父亲受教育程度,True
+ACWF,2010,employment,M1A4,M1dA父亲目前是否在业,True
+ACWF,2010,birth_age,M1B2,M1bB母亲年龄,True
+ACWF,2010,education,M1B3,M1cB母亲受教育程度,True
+ACWF,2010,employment,M1B4,M1dB母亲目前是否在业,True
+ACWF,2010,employment,M1E1,M1e1目前/最后的职业是：父亲：,True
+ACWF,2010,employment,M1E2,M1e2目前/最后的职业是：母亲：,True
+ACWF,2010,birth_age,M2C,M2c年龄：,True
+ACWF,2010,education,M2D,M2d受教育程度：,True
+ACWF,2010,birth_age,M4A,M4a出生年月：年,True
+ACWF,2010,education,M8A,M8a你目前是否在上学？,True
+ACWF,2010,education,M8C,M8c以前上过学吗？,True
+ACWF,2010,education,M10,M10你现在/以前就读的学校是重点学校吗？,True
+ACWF,2010,education,M11,M11你现在/以前上学时是住校还是走读？,True
+ACWF,2010,education,M12A,M12a你在学校有好朋友吗？,True
+ACWF,2010,leadership,M13,M13你当过班级及以上干部吗？,True
+ACWF,2010,science_math,M14,M14与同班同学相比，总体上你的学习成绩属于：,True
+ACWF,2010,education,M15,M15上学时最喜欢的科目是,True
+ACWF,2010,science_math,M17A,M17a目前有课外辅导、补习或兴趣爱好的学习吗？,True
+ACWF,2010,science_math,M18A,M18A数学老师,True
+ACWF,2010,employment,M27E,M27E在家里能否参与讨论决定父母到外地工作,True
+ACWF,2010,employment,M29A,M29a 昨天对你而言是学习/劳动日还是休息日？,True
+ACWF,2010,housework,M29BC,M29bC昨天做家务时间,True
+ACWF,2010,science_math,M29BE,M29bE昨天上兴趣班/课外补习班/请家教上课时间,True
+ACWF,2010,science_math,M32B1,M32Bc父亲说过男孩女孩都能学好数学,True
+ACWF,2010,science_math,M33B,M33B是否同意男孩女孩都能学好数学,True
+ACWF,2010,education,M34,M34你希望自己上学上到什么程度？,True
+ACWF,2010,housework,M39B,M39b他/她对你的生活照顾情况如何？,True
+ACWF,2010,income,M43C,M43C挣钱养家主要是男人的事情,True
+ACWF,2010,employment,M43D,M43D男人也应该主动承担家务劳动,True
+ACWF,2010,housework,M43D,M43D男人也应该主动承担家务劳动,True
+ACWF,2010,leadership,M43F,M43F在领导岗位上男女比例应大致相等,True
+ACWF,2010,employment,M44,M44你接受过职业技能培训吗？,True
+ACWF,2010,marriage,M45B,M45b结婚时你多大：,True
+ACWF,2010,birth_age,NA2A,NA2A 出生年月：年19,True
+ACWF,2010,birth_age,NA2B,NA2B出生年月：月,True
+ACWF,2010,birth_age,NA3,NA3出生地当时是:,True
+ACWF,2010,region,NA4A,NA4a您的户口性质是否发生过变化？,True
+ACWF,2010,education,NA6,NA6 您的受教育程度,True
+ACWF,2010,employment,NC1A,NC1a目前您是否从事有收入的工作/劳动?,True
+ACWF,2010,income,NC1A,NC1a目前您是否从事有收入的工作/劳动?,True
+ACWF,2010,employment,NC1B,NC1b您未工作/劳动是属于,True
+ACWF,2010,employment,NC1C,NC1c您是属于离/退休后继续就业吗？,True
+ACWF,2010,employment,NC1D1,NC1d1工作劳动的主要目的是：首先,True
+ACWF,2010,employment,NC1D2,NC1d2工作劳动的主要目的是：其次,True
+ACWF,2010,employment,NC1E,NC1e您目前的职业是：,True
+ACWF,2010,employment,NC1FA,NC1fA长期未工作的原因：年轻时孩子多，家务负担重,True
+ACWF,2010,housework,NC1FA,NC1fA长期未工作的原因：年轻时孩子多，家务负担重,True
+ACWF,2010,employment,NC1FB,NC1f B长期未工作的原因：家里有老人/病人需要照顾,True
+ACWF,2010,housework,NC1FB,NC1f B长期未工作的原因：家里有老人/病人需要照顾,True
+ACWF,2010,employment,NC1FC,NC1fC长期未工作的原因：自己身体不好，不能出去工作,True
+ACWF,2010,employment,NC1FD,NC1fD长期未工作的原因：不想出去工作,True
+ACWF,2010,marriage,NC1FE,NC1fE长期未工作的原因：配偶不支持,True
+ACWF,2010,employment,NC1FE,NC1fE长期未工作的原因：配偶不支持,True
+ACWF,2010,employment,NC1FF,NC1fF长期未工作的原因：自己文化水平低,True
+ACWF,2010,birth_age,NC2,NC2您离/退休/退出生产劳动前的职业是：,True
+ACWF,2010,employment,NC2,NC2您离/退休/退出生产劳动前的职业是：,True
+ACWF,2010,employment,NC4A,NC4a您目前/最后的就业身份是：,True
+ACWF,2010,employment,NC4B,NC4b您所在单位的类型是：,True
+ACWF,2010,employment,NC4C,NC4c 您所在单位的所有制性质是：,True
+ACWF,2010,employment,Nc4e,N4e单位中所处的位置是：,True
+ACWF,2010,birth_age,NC5A,NC5a您开始工作/劳动时的年龄是：,True
+ACWF,2010,employment,NC5A,NC5a您开始工作/劳动时的年龄是：,True
+ACWF,2010,birth_age,NC5B,NC5b 您离/退休/退出生产劳动时的年龄是：,True
+ACWF,2010,employment,NC5B,NC5b 您离/退休/退出生产劳动时的年龄是：,True
+ACWF,2010,employment,NC5D,NC5d您是否有过半年及以上不工作也没劳动收入的情况？,True
+ACWF,2010,income,NC5D,NC5d您是否有过半年及以上不工作也没劳动收入的情况？,True
+ACWF,2010,employment,NC5F,NC5f工作中断的主要原因是：,True
+ACWF,2010,employment,NC7B,NC7b未从事者有多长时间不从事这类劳动了？,True
+ACWF,2010,employment,NC7C,NC7c您现在是家里农业生产活动的主要劳动力吗？,True
+ACWF,2010,employment,NC7D,NC7d 您的劳动负担重吗？,True
+ACWF,2010,income,NC9A,NC9a去年您个人的总收入是：,True
+ACWF,2010,income,NC9B,NC9b 您的收入在家庭的总收入中占几成？,True
+ACWF,2010,income,NC9C,NC9c您的收入主要由谁支配？,True
+ACWF,2010,marriage,NC9D,NC9d去年您配偶的个人总收入大约为：,True
+ACWF,2010,income,NC9D,NC9d去年您配偶的个人总收入大约为：,True
+ACWF,2010,employment,NE3A,NE3A给所在单位/社区/村提建议,True
+ACWF,2010,leadership,NE4A,NE4a是否担任过班组长、村/居民小组长及以上领导或负责人？,True
+ACWF,2010,leadership,NE4B,NE4b您担任过的最高职务为：,True
+ACWF,2010,leadership,NE5A,NE5A各级领导女性少的原因：女性能力比男性差,True
+ACWF,2010,leadership,NE5B,NE5B各级领导女性少的原因：女性不愿当领导,True
+ACWF,2010,leadership,NE5C,NE5C各级领导女性少的原因：女性不适合当领导,True
+ACWF,2010,leadership,NE5D,NE5D各级领导女性少的原因：家人不支持女性当领导,True
+ACWF,2010,leadership,NE5E,NE5E各级领导女性少的原因：女性家务负担重,True
+ACWF,2010,housework,NE5E,NE5E各级领导女性少的原因：女性家务负担重,True
+ACWF,2010,leadership,NE5F,NE5F各级领导女性少的原因：社会对女性有偏见,True
+ACWF,2010,leadership,NE5G,NE5G各级领导女性少的原因：对女性培养、选拔不力,True
+ACWF,2010,marriage,NF1,NF1您目前的婚姻状况是：,True
+ACWF,2010,marriage,NF2A,NF2a您离婚/丧偶几年了？,True
+ACWF,2010,marriage,NF2B,NF2b离婚/丧偶一年及以上者是否有再婚的打算？,True
+ACWF,2010,birth_age,NF3A,NF3a您的初婚年龄是,True
+ACWF,2010,marriage,NF3A,NF3a您的初婚年龄是,True
+ACWF,2010,birth_age,NF3B,NF3b当时您配偶年龄是,True
+ACWF,2010,marriage,NF3B,NF3b当时您配偶年龄是,True
+ACWF,2010,birth_age,NF3C,NF3c再婚者本次结婚的年龄是,True
+ACWF,2010,marriage,NF3C,NF3c再婚者本次结婚的年龄是,True
+ACWF,2010,birth_age,NF3D,NF3d 当时您配偶的年龄是,True
+ACWF,2010,marriage,NF3D,NF3d 当时您配偶的年龄是,True
+ACWF,2010,education,NF4A,NF4a您配偶的受教育程度是：,True
+ACWF,2010,marriage,NF4A,NF4a您配偶的受教育程度是：,True
+ACWF,2010,marriage,NF4B,NF4b您配偶目前/最后的职业是：,True
+ACWF,2010,employment,NF4B,NF4b您配偶目前/最后的职业是：,True
+ACWF,2010,marriage,NF5A,NF5a您现在是和配偶共同生活吗？,True
+ACWF,2010,marriage,NF5BA,NF5bA与配偶分居原因：帮助照顾子女/孙子女,True
+ACWF,2010,housework,NF5BA,NF5bA与配偶分居原因：帮助照顾子女/孙子女,True
+ACWF,2010,marriage,NF5BB,NF5bB与配偶分居原因：子女分别赡养,True
+ACWF,2010,marriage,NF5BC,NF5bC与配偶分居原因：两人性格/生活习惯不合,True
+ACWF,2010,marriage,NF5BD,NF5bD与配偶分居原因：一方在外地工作/干活,True
+ACWF,2010,employment,NF5BD,NF5bD与配偶分居原因：一方在外地工作/干活,True
+ACWF,2010,marriage,NF6A,NF6A配偶能倾听您的心事和烦恼,True
+ACWF,2010,marriage,NF6B,NF6bB在重要事情上配偶会征求您的意见,True
+ACWF,2010,marriage,NF6C,NF6bC您想做的事一般能得到配偶的支持,True
+ACWF,2010,employment,NF7B,NF7B谁承担的家务劳动更多,True
+ACWF,2010,housework,NF7B,NF7B谁承担的家务劳动更多,True
+ACWF,2010,birth_age,NF8C,NF8c第一个孩子出生时母亲的年龄是,True
+ACWF,2010,birth_age,NF8D,NF8d最后一个/这个孩子出生时母亲的年龄是,True
+ACWF,2010,housework,NF9AB,NF9ab儿子给予生活照料,True
+ACWF,2010,housework,NF9BB,NF9bb女儿给予生活照料,True
+ACWF,2010,housework,NF10AC,NF10ac给予儿子日常生活照料,True
+ACWF,2010,housework,NF10BC,NF10bc给予女儿日常生活照料,True
+ACWF,2010,employment,NF11AA,NF11aA承担家务劳动情况：做饭,True
+ACWF,2010,housework,NF11AA,NF11aA承担家务劳动情况：做饭,True
+ACWF,2010,employment,NF11AB,NF11aB承担家务劳动情况：洗碗,True
+ACWF,2010,housework,NF11AB,NF11aB承担家务劳动情况：洗碗,True
+ACWF,2010,employment,NF11AC,NF11aC承担家务劳动情况：洗衣服、做卫生,True
+ACWF,2010,housework,NF11AC,NF11aC承担家务劳动情况：洗衣服、做卫生,True
+ACWF,2010,employment,NF11AD,NF11aD承担家务劳动情况：日常家庭采购,True
+ACWF,2010,housework,NF11AD,NF11aD承担家务劳动情况：日常家庭采购,True
+ACWF,2010,employment,NF11AE,NF11aE承担家务劳动情况：照料看护小孩,True
+ACWF,2010,housework,NF11AE,NF11aE承担家务劳动情况：照料看护小孩,True
+ACWF,2010,employment,NF11AF,NF11aF承担家务劳动情况：照料老人,True
+ACWF,2010,housework,NF11AF,NF11aF承担家务劳动情况：照料老人,True
+ACWF,2010,employment,NF11AG,NF11aG承担家务劳动情况：家庭日常维修,True
+ACWF,2010,housework,NF11AG,NF11aG承担家务劳动情况：家庭日常维修,True
+ACWF,2010,employment,NF11AH,NF11aH承担家务劳动情况：饲养家禽/宠物/养花草,True
+ACWF,2010,housework,NF11AH,NF11aH承担家务劳动情况：饲养家禽/宠物/养花草,True
+ACWF,2010,employment,NF11AI,NF11aI承担家务劳动情况：买煤、换煤气/砍柴等,True
+ACWF,2010,housework,NF11AI,NF11aI承担家务劳动情况：买煤、换煤气/砍柴等,True
+ACWF,2010,marriage,NF12C,NF12c您（和配偶）是否有单独的房间？,True
+ACWF,2010,housework,NG6A,NG6a您现在的日常生活需要别人照料吗？,True
+ACWF,2010,housework,NG6B1,NG6b1谁给您的照料帮助较多？首先,True
+ACWF,2010,housework,NG6B2,NG6b2谁给您的照料帮助较多？其次,True
+ACWF,2010,birth_age,NG6C1,NG6c1主要照料者年龄：,True
+ACWF,2010,housework,NG6C1,NG6c1主要照料者年龄：,True
+ACWF,2010,housework,NG6C2,NG6c2主要照料者性别：,True
+ACWF,2010,employment,NG6c3,NG6c3主要照料者工作情况是：,True
+ACWF,2010,housework,NG6c3,NG6c3主要照料者工作情况是：,True
+ACWF,2010,housework,NG6C4,NG6c4您和照料者之间的关系如何？,True
+ACWF,2010,employment,NH2A,NH2A 有收入的工作/劳动/经营活动时间,True
+ACWF,2010,income,NH2A,NH2A 有收入的工作/劳动/经营活动时间,True
+ACWF,2010,employment,NH2B,NH2bB工作/劳动/学习往返路途时间,True
+ACWF,2010,employment,NH2C,NH2C家务劳动时间,True
+ACWF,2010,housework,NH2C,NH2C家务劳动时间,True
+ACWF,2010,marriage,NH3BA,NH3bA一起吃饭的人：配偶,True
+ACWF,2010,leadership,NH5B,NH5b 您认识这个村/居委会的干部吗？,True
+ACWF,2010,marriage,NH7CC,NH7cC信教原因：亲人亡故、婚姻不幸等,True
+ACWF,2010,income,NI5C,NI5C是否同意：挣钱养家主要是男人的事情,True
+ACWF,2010,employment,NI5E,NI5E是否同意：男人也应该主动承担家务劳动,True
+ACWF,2010,housework,NI5E,NI5E是否同意：男人也应该主动承担家务劳动,True
+ACWF,2010,leadership,NI5H,NI5H是否同意：在领导岗位上男女比例应大致相等,True
+ACWF,2010,housework,NI6AC,NI6aC家人是否有过：需要时不照顾您,True
+ACWF,2010,id_family,FID1,{FID1} [P47]    编号：,False
+ACWF,2010,region,Hukou,户口性质,True
+ACWF,2010,region,Nhukou,户口性质,True
+ACWF,2010,birth_age,age,年龄,False
+ACWF,2010,weight,fawcs,区域权数,False
+ACWF,2010,weight,fnwcs,全国权数,False
+ACWF,2010,employment,NEWC1A,在业状况,True
+ACWF,2010,employment,C2CAT6,职业6分类,True
+ACWF,2010,employment,C10baCAT6,C10ba职业分类-6大类,True
+ACWF,2010,employment,C10bbCAT6,C10bb职业分类-6大类,True
+ACWF,2010,employment,C17bCAT6,C17b职业分类-6大类,True
+ACWF,2010,employment,F12baCAT6,F12BA父亲职业分类-6大类,True
+ACWF,2010,employment,F12bBCAT6,F12BB母亲职业分类-6大类,True
+ACWF,2010,marriage,F12bCCAT6,F12BC配偶职业分类-6大类,True
+ACWF,2010,employment,F12bCCAT6,F12BC配偶职业分类-6大类,True
+ACWF,2010,employment,nC2CAT6,老年职业分类-6大类,True
+ACWF,2010,employment,nC1ecAT6,老年职业分类-6大类,True
+ACWF,2010,marriage,nF4bcAT6,老年配偶职业分类-6大类,True
+ACWF,2010,employment,nF4bcAT6,老年配偶职业分类-6大类,True
+ACWF,2010,employment,M1E1CAT6,M1E1父亲职业分类-6大类,True
+ACWF,2010,employment,M1E2CAT6,M1E2母亲职业分类-6大类,True
+ACWF,2010,birth_age,agecat5,年龄分类-5岁组,True
+ACWF,2010,birth_age,AGECAT10,年龄分类-10岁组,True
+CEPS,baseline-student,id_person,ids,学生个人代码,False
+CEPS,baseline-student,id_person,clsids,班级代码,False
+CEPS,baseline-student,id_person,schids,学校代码,False
+CEPS,baseline-student,education,schids,学校代码,False
+CEPS,baseline-student,id_person,ctyids,县(区)代码,False
+CEPS,baseline-student,weight,sweight,学生个体权数,False
+CEPS,baseline-student,science_math,tr_chn,学生2013年期中考试原始成绩-语文,False
+CEPS,baseline-student,science_math,tr_mat,学生2013年期中考试原始成绩-数学,False
+CEPS,baseline-student,science_math,tr_eng,学生2013年期中考试原始成绩-英语,False
+CEPS,baseline-student,science_math,stdchn,"学生2013年期中考试标准化成绩(均值70,标准差10)-语文",False
+CEPS,baseline-student,science_math,stdmat,"学生2013年期中考试标准化成绩(均值70,标准差10)-数学",False
+CEPS,baseline-student,science_math,stdeng,"学生2013年期中考试标准化成绩(均值70,标准差10)-英语",False
+CEPS,baseline-student,birth_age,a02a,你的出生日期-年,False
+CEPS,baseline-student,birth_age,a02b,您的出生日期-月,False
+CEPS,baseline-student,birth_age,a04,你的出生地是,True
+CEPS,baseline-student,region,a05,你的户口登记地是,True
+CEPS,baseline-student,region,a06,你目前的户口类型是,True
+CEPS,baseline-student,birth_age,a09,你出生时的体重,True
+CEPS,baseline-student,education,a1201,"就算身体有点不舒服,或者有其他理由可以留在家里,我仍然会尽量去上学",True
+CEPS,baseline-student,education,b03,"如果你家户籍不在本地,你是否有兄弟姐妹在老家上学",True
+CEPS,baseline-student,education,b06,你妈妈的教育水平是,True
+CEPS,baseline-student,education,b07,你爸爸的教育水平是,True
+CEPS,baseline-student,employment,b08a,你妈妈是做什么工作的,True
+CEPS,baseline-student,employment,b08b,你爸爸是做什么工作的,True
+CEPS,baseline-student,education,b14a1,"过去一周里,你平均每天花多少时间写学校老师布置的作业-周一到周五-小时",False
+CEPS,baseline-student,education,b14a2,"过去一周里,你平均每天花多少时间写学校老师布置的作业-周一到周五-分钟",False
+CEPS,baseline-student,education,b14b1,"过去一周里,你平均每天花多少时间写学校老师布置的作业-周六和周日-小时",False
+CEPS,baseline-student,education,b14b2,"过去一周里,你平均每天花多少时间写学校老师布置的作业-周六和周日-分钟",False
+CEPS,baseline-student,housework,b15g1,"在过去的周一到周五,你平均每天的时间安排-做家务或帮父母干活-小时",False
+CEPS,baseline-student,housework,b15g2,"在过去的周一到周五,你平均每天的时间安排-做家务或帮父母干活-分钟",False
+CEPS,baseline-student,housework,b16g1,"上周末,你平均每天的时间安排-做家务或帮父母干活-小时",False
+CEPS,baseline-student,housework,b16g2,"上周末,你平均每天的时间安排-做家务或帮父母干活-分钟",False
+CEPS,baseline-student,science_math,b1900,你参加了哪些兴趣班/课外辅导班-没参加,True
+CEPS,baseline-student,science_math,b1901,你参加了哪些兴趣班/课外辅导班-奥数,True
+CEPS,baseline-student,science_math,b1902,你参加了哪些兴趣班/课外辅导班-普通数学(不包括奥数),True
+CEPS,baseline-student,science_math,b1903,你参加了哪些兴趣班/课外辅导班-语文/作文,True
+CEPS,baseline-student,science_math,b1904,你参加了哪些兴趣班/课外辅导班-英语,True
+CEPS,baseline-student,science_math,b1905,你参加了哪些兴趣班/课外辅导班-绘画,True
+CEPS,baseline-student,science_math,b1906,你参加了哪些兴趣班/课外辅导班-书法,True
+CEPS,baseline-student,science_math,b1907,你参加了哪些兴趣班/课外辅导班-音乐/乐器,True
+CEPS,baseline-student,science_math,b1908,你参加了哪些兴趣班/课外辅导班-舞蹈,True
+CEPS,baseline-student,science_math,b1909,你参加了哪些兴趣班/课外辅导班-棋类,True
+CEPS,baseline-student,science_math,b1910,你参加了哪些兴趣班/课外辅导班-体育,True
+CEPS,baseline-student,science_math,b1911,你参加了哪些兴趣班/课外辅导班-其他,True
+CEPS,baseline-student,science_math,b2000,你有哪些兴趣爱好-没有,True
+CEPS,baseline-student,science_math,b2001,你有哪些兴趣爱好-演奏乐器,True
+CEPS,baseline-student,science_math,b2002,你有哪些兴趣爱好-声乐/唱歌/舞蹈/表演,True
+CEPS,baseline-student,science_math,b2003,你有哪些兴趣爱好-书法,True
+CEPS,baseline-student,science_math,b2004,你有哪些兴趣爱好-绘画/动漫,True
+CEPS,baseline-student,science_math,b2005,你有哪些兴趣爱好-棋类,True
+CEPS,baseline-student,science_math,b2006,你有哪些兴趣爱好-体育运动,True
+CEPS,baseline-student,science_math,b2007,你有哪些兴趣爱好-其他,True
+CEPS,baseline-student,education,b2302,你的父母在以下事情管你严不严-在学校表现,True
+CEPS,baseline-student,education,b2303,你的父母在以下事情管你严不严-每天上学,True
+CEPS,baseline-student,education,b24a1,你的妈妈是否经常与你讨论以下问题-学校发生的事情,True
+CEPS,baseline-student,education,b24b1,你的爸爸是否经常与你讨论以下问题-学校发生的事情,True
+CEPS,baseline-student,science_math,b30,你父母对你的学业成绩有什么要求,True
+CEPS,baseline-student,education,b31,你父母对你的教育期望是,True
+CEPS,baseline-student,edu_expect,b31,你父母对你的教育期望是,True
+CEPS,baseline-student,edu_expect,b32,你对这种期望感到,True
+CEPS,baseline-student,edu_expect,b33,你父母希望你将来干什么,True
+CEPS,baseline-student,edu_expect,b34,你认为父母希望你以后在什么地方工作和生活,True
+CEPS,baseline-student,employment,b34,你认为父母希望你以后在什么地方工作和生活,True
+CEPS,baseline-student,education,c05,你从小学一年级到六年级一共休过几次学(休学指的是至少有一个月没来上学),False
+CEPS,baseline-student,science_math,c08,小学六年级你成绩是班里第几名,False
+CEPS,baseline-student,education,c09,你进入目前就读的学校有没有参加入学考试/分班考试,True
+CEPS,baseline-student,science_math,c1001,回想你六年级时有没有觉得以下课程学起来比较吃力-数学,True
+CEPS,baseline-student,science_math,c1101,你目前是否觉得以下课程学起来比较吃力-数学,True
+CEPS,baseline-student,science_math,c12,你目前的成绩在班里处于,True
+CEPS,baseline-student,science_math,c1301,"关于主课程,你是否同意下列说法-数学对我的未来很有帮助",True
+CEPS,baseline-student,science_math,c1304,"关于主课程,你是否同意下列说法-数学老师经常提问我",True
+CEPS,baseline-student,science_math,c1307,"关于主课程,你是否同意下列说法-数学老师经常表扬我",True
+CEPS,baseline-student,science_math,c14,你是否认为男生比女生擅长学数学,True
+CEPS,baseline-student,science_math,c15,你父母是否认为男生比女生擅长学数学,True
+CEPS,baseline-student,science_math,c16,你身边的大部分人是否认为男生比女生擅长学数学,True
+CEPS,baseline-student,education,c1701,"关于学校生活,你是否同意下列说法-我经常迟到",True
+CEPS,baseline-student,education,c1702,"关于学校生活,你是否同意下列说法-我经常逃课",True
+CEPS,baseline-student,education,c1703,"关于学校生活,你是否同意下列说法-我的父母经常收到老师对我的批评",True
+CEPS,baseline-student,education,c1704,"关于学校生活,你是否同意下列说法-班主任老师经常表扬我",True
+CEPS,baseline-student,education,c1705,"关于学校生活,你是否同意下列说法-班主任老师经常批评我",True
+CEPS,baseline-student,education,c1706,"关于学校生活,你是否同意下列说法-班里大多数同学对我很友好",True
+CEPS,baseline-student,education,c1707,"关于学校生活,你是否同意下列说法-我认为自己很容易与人相处",True
+CEPS,baseline-student,education,c1708,"关于学校生活,你是否同意下列说法-我所在的班级班风良好",True
+CEPS,baseline-student,education,c1709,"关于学校生活,你是否同意下列说法-我经常参加学校或班级组织的活动",True
+CEPS,baseline-student,education,c1710,"关于学校生活,你是否同意下列说法-我对这个学校的人感到亲近",True
+CEPS,baseline-student,education,c1711,"关于学校生活,你是否同意下列说法-我在这个学校里感到很无聊",True
+CEPS,baseline-student,education,c1712,"关于学校生活,你是否同意下列说法-我希望能去另外一个学校",True
+CEPS,baseline-student,education,c18,"周一到周四的晚上,你是否在学校寄宿",True
+CEPS,baseline-student,science_math,c2101,上面提到的几个好朋友有没有以下情况-学习成绩优良,True
+CEPS,baseline-student,edu_expect,c22,你希望自己读到什么程度,True
+CEPS,baseline-student,employment,c24,你希望长大后在什么地方工作和生活,True
+CEPS,baseline-student,region,c26a1,对外区县学生抱怨或说一些比较难听的话-从外区县城市来的,True
+CEPS,baseline-student,region,c26b1,对外区县学生抱怨或说一些比较难听的话-从外区县农村来的,True
+CEPS,baseline-student,region,c26a2,和外区县同学经常在一起玩-从外区县城市来的,True
+CEPS,baseline-student,region,c26b2,和外区县同学经常在一起玩-从外区县农村来的,True
+CEPS,baseline-student,region,c26a3,和外区县同学互相请教学习上的问题-从外区县城市来的,True
+CEPS,baseline-student,region,c26b3,和外区县同学互相请教学习上的问题-从外区县农村来的,True
+CEPS,baseline-student,region,c26a4,和外区县同学成为朋友-从外区县城市来的,True
+CEPS,baseline-student,region,c26b4,和外区县同学成为朋友-从外区县农村来的,True
+CEPS,baseline-student,education,c28a1,七年级秋季学期-学校类型,True
+CEPS,baseline-student,education,c28b1,七年级秋季学期-学校地点是在现在学校的同一县(区)吗,True
+CEPS,baseline-student,education,c28a2,七年级春季学期-学校类型,True
+CEPS,baseline-student,education,c28b2,七年级春季学期-学校地点是在现在学校的同一县(区)吗,True
+CEPS,baseline-student,education,c28a3,八年级秋季学期-学校类型,True
+CEPS,baseline-student,education,c28b3,八年级秋季学期-学校地点是在现在学校的同一县(区)吗,True
+CEPS,baseline-student,education,c28a4,八年级春季学期-学校类型,True
+CEPS,baseline-student,education,c28b4,八年级春季学期-学校地点是在现在学校的同一县(区)吗,True
+CEPS,baseline-student,region,sthkplace,学生户口登记地,True
+CEPS,baseline-student,region,sthktype,学生目前的户口类型,True
+CEPS,baseline-student,region,st0,学生类型:户口性质/户口登记地/父母是否同住,True
+CEPS,baseline-student,education,stmedu,学生母亲的教育程度,True
+CEPS,baseline-student,education,stfedu,学生父亲的教育程度,True
+CEPS,baseline-student,education,stprhedu,学生父亲/母亲的最高教育程度,True
+CEPS,baseline-parent,id_person,ids,学生个人代码,False
+CEPS,baseline-parent,id_person,clsids,班级代码,False
+CEPS,baseline-parent,id_person,schids,学校代码,False
+CEPS,baseline-parent,education,schids,学校代码,False
+CEPS,baseline-parent,id_person,ctyids,县(区)代码,False
+CEPS,baseline-parent,science_math,ba02,"本学期,这个孩子有没有上校外辅导班或学习兴趣班",True
+CEPS,baseline-parent,science_math,ba03,"本学期,孩子上校外辅导班或学习兴趣班每学期所需要的费用共计",False
+CEPS,baseline-parent,education,ba0802,"在下列方面,您对孩子管得严不严-在学校表现",True
+CEPS,baseline-parent,education,ba0803,"在下列方面,您对孩子管得严不严-每天上学",True
+CEPS,baseline-parent,education,ba10,这个孩子在学校里有几个朋友,True
+CEPS,baseline-parent,housework,ba13,"您平均每天直接花在孩子身上的时间(生活照料,学习辅导,娱乐玩耍)是",False
+CEPS,baseline-parent,education,ba1401,您是否主动与孩子讨论以下问题-学校发生的事情,True
+CEPS,baseline-parent,edu_expect,ba18,您希望这孩子书最高读到什么程度,True
+CEPS,baseline-parent,education,bb02,"这学期以来,孩子的家长是否曾经主动联络学校老师",True
+CEPS,baseline-parent,science_math,bb09,您觉得老师的教学方法更有利于学习成绩处于班里什么位置的学生,True
+CEPS,baseline-parent,education,bb10,您是否同意教育孩子全是学校老师的责任,True
+CEPS,baseline-parent,education,bb1101,您觉得您的孩子喜不喜欢这所学校的老师和同学-班主任,True
+CEPS,baseline-parent,education,bb1102,您觉得您的孩子喜不喜欢这所学校的老师和同学-其他老师,True
+CEPS,baseline-parent,education,bb1103,您觉得您的孩子喜不喜欢这所学校的老师和同学-同学,True
+CEPS,baseline-parent,science_math,bb1201,您认为学生成绩的好坏和下列哪些因素有关系-父母的管教,True
+CEPS,baseline-parent,science_math,bb1202,您认为学生成绩的好坏和下列哪些因素有关系-老师的教学,True
+CEPS,baseline-parent,science_math,bb1203,您认为学生成绩的好坏和下列哪些因素有关系-班级,True
+CEPS,baseline-parent,science_math,bb1204,您认为学生成绩的好坏和下列哪些因素有关系-交往的朋友,True
+CEPS,baseline-parent,science_math,bb1205,您认为学生成绩的好坏和下列哪些因素有关系-是否参加补习,True
+CEPS,baseline-parent,science_math,bb1206,您认为学生成绩的好坏和下列哪些因素有关系-努力程度,True
+CEPS,baseline-parent,science_math,bb1207,您认为学生成绩的好坏和下列哪些因素有关系-资质能力,True
+CEPS,baseline-parent,science_math,bb13,您是否认为男生比女生擅长学数学,True
+CEPS,baseline-parent,science_math,bb14,您身边的大部分人是否认为男生比女生擅长学数学,True
+CEPS,baseline-parent,education,bb15,您觉得外县(区)户籍的学生多了会对学校教学质量,True
+CEPS,baseline-parent,education,bb16,您觉得外县(区)户籍的学生多了会对学校的校风建设,True
+CEPS,baseline-parent,education,bc0101,您家是通过哪些方式了解这所学校的招生信息-孩子小学毕业时的学校,True
+CEPS,baseline-parent,education,bc0102,您家是通过哪些方式了解这所学校的招生信息-所在的街道办事处/乡镇政府,True
+CEPS,baseline-parent,education,bc0103,您家是通过哪些方式了解这所学校的招生信息-互联网,True
+CEPS,baseline-parent,education,bc0104,您家是通过哪些方式了解这所学校的招生信息-这所学校提供的信息,True
+CEPS,baseline-parent,education,bc0105,您家是通过哪些方式了解这所学校的招生信息-其他学生家长,True
+CEPS,baseline-parent,education,bc0106,您家是通过哪些方式了解这所学校的招生信息-其他方式,True
+CEPS,baseline-parent,leadership,bc0202,给有关领导送礼,True
+CEPS,baseline-parent,education,bc0204,在学校所在片区买房,True
+CEPS,baseline-parent,region,bc0205,迁户口,True
+CEPS,baseline-parent,region,bc0206,把户口挂靠到亲戚或朋友家,True
+CEPS,baseline-parent,region,bc0301,"给孩子报名时,您家都准备了什么证件-户口本",True
+CEPS,baseline-parent,fertility,bc0305,"给孩子报名时,您家都准备了什么证件-计划生育证",True
+CEPS,baseline-parent,employment,bc0306,"给孩子报名时,您家都准备了什么证件-营业执照或雇佣证明",True
+CEPS,baseline-parent,education,bc05a,"交给学校的费用,总计",False
+CEPS,baseline-parent,education,bc05f,学校住宿费,False
+CEPS,baseline-parent,education,bc0602,"是,学校提供免费午餐",True
+CEPS,baseline-parent,science_math,bc10,这个孩子目前的成绩在班里处于,True
+CEPS,baseline-parent,science_math,bc11,您对这个孩子的成绩有些什么要求,True
+CEPS,baseline-parent,region,bc1303,需要获得哪些特殊条件-本省户籍,True
+CEPS,baseline-parent,fertility,bc1307,需要获得哪些特殊条件-计划生育证,True
+CEPS,baseline-parent,employment,bc1308,需要获得哪些特殊条件-营业执照或雇佣证明,True
+CEPS,baseline-parent,birth_age,bd01,这个孩子的出生地,True
+CEPS,baseline-parent,region,bd02,这个孩子出生时的户口登记地是,True
+CEPS,baseline-parent,birth_age,bd02,这个孩子出生时的户口登记地是,True
+CEPS,baseline-parent,region,bd03,这个孩子目前的户口登记地是,True
+CEPS,baseline-parent,region,bd04,孩子出生时的户口类型是,True
+CEPS,baseline-parent,birth_age,bd04,孩子出生时的户口类型是,True
+CEPS,baseline-parent,region,bd05,孩子目前的户口类型是,True
+CEPS,baseline-parent,region,bd06,您孩子的非农户口是哪一年获得的,False
+CEPS,baseline-parent,birth_age,bd11,孩子出生时的体重是,False
+CEPS,baseline-parent,employment,bd1601,孩子目前拥有什么样的医疗保险-父母的工作单位报销孩子的医疗保险费,True
+CEPS,baseline-parent,region,bd1602,孩子目前拥有什么样的医疗保险-城镇居民医疗保险,True
+CEPS,baseline-parent,region,bd1603,孩子目前拥有什么样的医疗保险-新型农村合作医疗保险(新农合),True
+CEPS,baseline-parent,birth_age,be01,您的出生日年,False
+CEPS,baseline-parent,region,be04,您的户口类型是,True
+CEPS,baseline-parent,region,be05,您的非农户口是哪一年获得的,False
+CEPS,baseline-parent,education,be07,您的教育程度是,True
+CEPS,baseline-parent,employment,be08,您目前的职业是,True
+CEPS,baseline-parent,employment,be1001,在您每天工作之余做下列事情的时间大概是-读书(包括各种报刊杂志),True
+CEPS,baseline-parent,employment,be1002,在您每天工作之余做下列事情的时间大概是-看新闻,True
+CEPS,baseline-parent,employment,be1003,在您每天工作之余做下列事情的时间大概是-上网,True
+CEPS,baseline-parent,marriage,be1204,孩子的哪些亲属目前在家中与孩子同住-孩子的兄弟姐妹的配偶,True
+CEPS,baseline-parent,region,be14,您目前的户口登记地是,True
+CEPS,baseline-parent,education,be18,这些兄弟姐妹中是否有正在上学的,True
+CEPS,baseline-parent,income,be21,您家的收入水平跟您社区周围人比属于,True
+CEPS,baseline-parent,leadership,be3106,您家所在的生活区主要都住着哪些人-企业高级管理人员,True

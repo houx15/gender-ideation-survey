@@ -1,0 +1,40 @@
+dataset,year_wave,file,format,size_mb,readable
+ACWF (中国妇女地位调查),1990,surveys/中国妇女地位调查/1990/一期个人调查问卷.doc,doc,0.18,binary
+ACWF (中国妇女地位调查),2000,surveys/中国妇女地位调查/2000/居委会问卷.doc,doc,0.04,binary
+ACWF (中国妇女地位调查),2000,surveys/中国妇女地位调查/2000/村委会1106.doc,doc,0.16,binary
+ACWF (中国妇女地位调查),2000,surveys/中国妇女地位调查/2000/第二期妇女社会地位调查问卷11.doc,doc,0.75,binary
+ACWF (中国妇女地位调查),2010,surveys/中国妇女地位调查/2010/2010-9-4主问卷送审稿修订.doc,doc,1.1,binary
+ACWF (中国妇女地位调查),2010,surveys/中国妇女地位调查/2010/2010-9-5社区问卷送审稿修订.doc,doc,0.46,binary
+ACWF (中国妇女地位调查),2010,surveys/中国妇女地位调查/2010/9-4老年专卷送审稿.doc,doc,0.57,binary
+ACWF (中国妇女地位调查),2010,surveys/中国妇女地位调查/2010/儿童问卷送审稿9月4日修订.doc,doc,0.32,binary
+CEPS,,surveys/CEPS13-14/基线-七年级学生问卷.pdf,pdf,0.49,binary
+CEPS,,surveys/CEPS13-14/基线-七年级家长问卷.pdf,pdf,0.34,binary
+CEPS,,surveys/CEPS13-14/基线-九年级学生问卷.pdf,pdf,0.49,binary
+CEPS,,surveys/CEPS13-14/基线-九年级家长问卷.pdf,pdf,0.34,binary
+CEPS,,surveys/CEPS13-14/基线-任课教师问卷.pdf,pdf,0.38,binary
+CEPS,,surveys/CEPS13-14/基线-数据手册.pdf,pdf,1.29,binary
+CEPS,,surveys/CEPS13-14/基线-校领导问卷.pdf,pdf,0.43,binary
+CEPS,,surveys/CEPS13-14/基线-班主任问卷.pdf,pdf,0.43,binary
+CEPS,,surveys/CEPS13-14/抽样设计.pdf,pdf,0.36,binary
+CEPS,,surveys/CEPS13-14/追访 数据手册.pdf,pdf,0.68,binary
+CEPS,,surveys/CEPS13-14/追访-任课教师.pdf,pdf,0.27,binary
+CEPS,,surveys/CEPS13-14/追访-八年级学生.pdf,pdf,0.5,binary
+CEPS,,surveys/CEPS13-14/追访-八年级家长.pdf,pdf,0.43,binary
+CEPS,,surveys/CEPS13-14/追访-变量对照表.xls,xls,0.48,tabular
+CEPS,,surveys/CEPS13-14/追访-小领导.pdf,pdf,0.5,binary
+CEPS,,surveys/CEPS13-14/追访-班主任.pdf,pdf,0.29,binary
+Processed,,surveys/processed/methodology.md,md,0.01,yes
+Provincial,,surveys/provincial/CALCULATION_METHOD.md,md,0.0,yes
+Provincial,,surveys/provincial/distribution/eduy_diff_m_f_kde.pdf,pdf,0.02,binary
+Provincial,,surveys/provincial/distribution/emp_diff_m_f_kde.pdf,pdf,0.02,binary
+Provincial,,surveys/provincial/gender_education_15.xls,xls,0.04,tabular
+Provincial,,surveys/provincial/gender_education_25.xls,xls,0.04,tabular
+Provincial,,surveys/provincial/gender_education_3.xls,xls,0.04,tabular
+Provincial,,surveys/provincial/gender_employment.xls,xls,0.05,tabular
+Provincial,,surveys/provincial/gender_population.xls,xls,0.05,tabular
+Provincial,,surveys/provincial/newspaper_province_mapping.json,json,0.12,yes
+Provincial,2020,surveys/provincial/distribution/eduy_gt25_2020_kde.pdf,pdf,0.02,binary
+Provincial,2020,surveys/provincial/distribution/emp_2020_kde.pdf,pdf,0.02,binary
+Provincial,2024,surveys/provincial/distribution/avg_income_2024_kde.pdf,pdf,0.02,binary
+Provincial,2024,surveys/provincial/distribution/gdp_2024_kde.pdf,pdf,0.01,binary
+Unknown,,surveys/survey-config.md,md,0.01,yes
