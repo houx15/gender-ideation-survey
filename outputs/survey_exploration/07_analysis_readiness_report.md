@@ -49,6 +49,11 @@ findings are summarised at the end of this file.
 3. Codebooks for **occupation/industry/sector** coding (CFPS/CGSS) to build work/leadership
    and STEM-proxy variables.
 4. Decision on **index vs single-item** reporting per RQ (esp. CFPS).
+5. **CFPS children's questionnaire** (per-child education expenditure, expectations,
+   tutoring). This is the key unlock for *parent-ideology → gendered resource allocation*:
+   CEPS has the resource measures but **no ideology item and no province** (county codes
+   anonymized), while CFPS has parental ideology but no during-childhood resource data in
+   the adult file. A survey carrying **both** is required for a conclusive 5.5 test.
 
 ## Completed analysis runs (analysis_001–009) and headline findings
 
@@ -67,6 +72,9 @@ locking the index to `surveys/processed`). All associations are cross-sectional 
 | 007 couple "whose matters" | 5.2 | Wife's own ideology dominates HER housework (4× husband's), but men's housework sticky → wife's *share* depends ≥ as much on husband |
 | 008 transmission | 5.7 | Both parents transmit ≈ equally (father slightly larger); same/cross-gender ns; daughters less traditional net of parents |
 | 009 child outcomes | 5.5/5.6 | Traditional parents → less-educated children (both genders); no significant daughter-specific penalty (co-residence selection caveat) |
+| 010 sibling investment | 5.5 | Within-family (one-son-one-daughter) + age≥25: naive "daughter advantage" is co-residence selection; no significant son-favouring education tilt |
+| 011 CEPS resources | 5.5 | Girls get MORE educational investment overall but more chores; the girls' tutoring-spending advantage reverses when a brother is present (son preference at sibling-competition margin) |
+| 012 ideology→allocation | 5.5 | Within-family, traditional parents point son-favouring (less edu, more chores for daughters) but NOT significant (underpowered); CEPS resources can't be linked to ideology |
 
 ### Cross-cutting theme — "does women's ideology matter more in the family?"
 A woman's ideology is highly **self-consequential** (drives her own housework and labour-force
