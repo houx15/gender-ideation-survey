@@ -86,3 +86,25 @@ def one_son_one_daughter_diff(df: pd.DataFrame, family_col: str, female_col: str
             rec[f"{c}_diff"] = d[c] - s[c]
         rows.append(rec)
     return pd.DataFrame(rows)
+
+
+def family_gender_gap(df: pd.DataFrame, family_col: str, female_col: str,
+                      value_cols: list[str]) -> pd.DataFrame:
+    """Within-family mean(daughters) - mean(sons) for ANY family with both sexes.
+
+    Generalizes one_son_one_daughter_diff to families with multiple children:
+    keeps families with >=1 daughter and >=1 son, and returns one row per family
+    with `<col>_gap` = mean over daughters minus mean over sons (NaNs ignored per
+    side), plus `n_daughters`/`n_sons`.
+    """
+    rows = []
+    for fam, g in df.groupby(family_col):
+        daughters = g[g[female_col] == 1]
+        sons = g[g[female_col] == 0]
+        if len(daughters) == 0 or len(sons) == 0:
+            continue
+        rec = {family_col: fam, "n_daughters": len(daughters), "n_sons": len(sons)}
+        for c in value_cols:
+            rec[f"{c}_gap"] = daughters[c].mean() - sons[c].mean()
+        rows.append(rec)
+    return pd.DataFrame(rows)

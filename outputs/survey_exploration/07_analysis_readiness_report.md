@@ -75,6 +75,8 @@ locking the index to `surveys/processed`). All associations are cross-sectional 
 | 010 sibling investment | 5.5 | Within-family (one-son-one-daughter) + age≥25: naive "daughter advantage" is co-residence selection; no significant son-favouring education tilt |
 | 011 CEPS resources | 5.5 | Girls get MORE educational investment overall but more chores; the girls' tutoring-spending advantage reverses when a brother is present (son preference at sibling-competition margin) |
 | 012 ideology→allocation | 5.5 | Within-family, traditional parents point son-favouring (less edu, more chores for daughters) but NOT significant (underpowered); CEPS resources can't be linked to ideology |
+| 013 allocation robustness (CFPS) | 5.5 | Expanded within-family + PSM + p-values: **female×parent_ideology on housework significant** (p=0.04/0.02) — traditional parents → daughters do more chores; education moderation marginal/ns; daughter education advantage concentrated in egalitarian families |
+| 014 CEPS resources PSM | 5.5 | Girls' educational-investment advantage (expectations/tutoring/spend) robust to matching (p<0.0001); raw chore & desk gaps flip sign when matching on sibship size → confounded by son-biased fertility |
 
 ### Cross-cutting theme — "does women's ideology matter more in the family?"
 A woman's ideology is highly **self-consequential** (drives her own housework and labour-force

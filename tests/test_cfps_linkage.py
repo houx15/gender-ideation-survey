@@ -106,3 +106,33 @@ def test_osod_diff_is_daughter_minus_son():
     out = K.one_son_one_daughter_diff(_sibs(), "fam", "female", ["eduy"]).set_index("fam")
     assert out.loc["A", "eduy_diff"] == -4
     assert out.loc["B", "eduy_diff"] == 1
+
+
+# ---- family_gender_gap: mean(daughters) - mean(sons) for ANY mixed-gender family ----
+
+def _mixed():
+    # A: 1 daughter (12) + 1 son (16)            -> gap 12-16 = -4
+    # B: 2 daughters (10,14)=12 + 1 son (8)       -> gap 12-8  = +4
+    # C: two sons only                            -> excluded (no daughter)
+    # D: single daughter                          -> excluded (no son)
+    return pd.DataFrame({
+        "fam":    ["A", "A", "B", "B", "B", "C", "C", "D"],
+        "female": [1,   0,   1,   1,   0,   0,   0,   1],
+        "eduy":   [12,  16,  10,  14,  8,   9,   11,  7],
+    })
+
+
+def test_family_gender_gap_only_mixed_gender_families():
+    out = K.family_gender_gap(_mixed(), "fam", "female", ["eduy"])
+    assert sorted(out["fam"]) == ["A", "B"]
+
+
+def test_family_gender_gap_is_mean_daughters_minus_mean_sons():
+    out = K.family_gender_gap(_mixed(), "fam", "female", ["eduy"]).set_index("fam")
+    assert out.loc["A", "eduy_gap"] == -4.0
+    assert out.loc["B", "eduy_gap"] == 4.0
+
+
+def test_family_gender_gap_reports_child_counts():
+    out = K.family_gender_gap(_mixed(), "fam", "female", ["eduy"]).set_index("fam")
+    assert out.loc["B", "n_daughters"] == 2 and out.loc["B", "n_sons"] == 1

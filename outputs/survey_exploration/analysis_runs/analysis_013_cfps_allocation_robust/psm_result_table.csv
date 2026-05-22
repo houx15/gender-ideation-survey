@@ -1,0 +1,13 @@
+year,rung,outcome,stratum,n_treated,att,se,t,p
+2014,3 PSM all families,eduy,all,738,1.1396,0.1769,6.44,0.0
+2014,3 PSM all families,eduy,traditional-parents,371,0.903,0.2516,3.59,0.0004
+2014,3 PSM all families,eduy,egalitarian-parents,367,1.891,0.2503,7.55,0.0
+2014,3 PSM all families,hw,all,1984,0.6031,0.0411,14.68,0.0
+2014,3 PSM all families,hw,traditional-parents,950,0.7544,0.0536,14.08,0.0
+2014,3 PSM all families,hw,egalitarian-parents,1034,0.8386,0.0475,17.65,0.0
+2020,3 PSM all families,eduy,all,858,0.5443,0.1548,3.52,0.0005
+2020,3 PSM all families,eduy,traditional-parents,473,-0.1797,0.2456,-0.73,0.4648
+2020,3 PSM all families,eduy,egalitarian-parents,385,1.7766,0.2131,8.34,0.0
+2020,3 PSM all families,hw,all,855,0.6199,0.0611,10.15,0.0
+2020,3 PSM all families,hw,traditional-parents,457,0.9376,0.0967,9.7,0.0
+2020,3 PSM all families,hw,egalitarian-parents,398,0.2347,0.0693,3.39,0.0008

@@ -1,0 +1,7 @@
+outcome,n_treated,n_control,naive_girl_minus_boy,psm_att,se,t,p,sig
+parent_expect_college,9093,9383,0.0419,0.0494,0.0048,10.31,0.0,yes
+tutoring,9089,9365,0.0472,0.0596,0.0062,9.64,0.0,yes
+log_tutor_cost,8647,8906,0.3474,0.3446,0.0511,6.74,0.0,yes
+own_desk,9190,9575,0.0141,-0.0627,0.0049,-12.68,0.0,yes
+hw_help_daily,9238,9695,-0.0433,0.0042,0.0063,0.68,0.4995,no
+chore_hours_week,8970,9425,0.6368,-0.5039,0.1868,-2.7,0.007,yes
