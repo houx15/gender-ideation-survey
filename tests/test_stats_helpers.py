@@ -48,6 +48,43 @@ def test_ols_reports_pvalues_in_unit_interval():
     assert all(0.0 <= p <= 1.0 for p in res["p"])
 
 
+def test_icc_oneway_perfect_clustering_is_one():
+    # members identical within group, groups differ -> ICC = 1.
+    val = pd.Series([1.0, 1.0, 0.0, 0.0, 2.0, 2.0])
+    grp = pd.Series(["a", "a", "b", "b", "c", "c"])
+    assert S.icc_oneway(val, grp) == pytest.approx(1.0, abs=1e-6)
+
+
+def test_icc_oneway_random_groups_near_zero():
+    # values independent of group assignment -> no real clustering -> ICC ~ 0.
+    rng = np.random.default_rng(11)
+    n = 4000
+    val = pd.Series(rng.normal(size=n))
+    grp = pd.Series(rng.integers(0, n // 2, size=n))   # random 2-ish-member groups
+    assert abs(S.icc_oneway(val, grp)) < 0.1
+
+
+def test_fe_ols_recovers_within_slope_when_pooled_is_confounded():
+    rng = np.random.default_rng(7)
+    n_fam = 400
+    fam_eff = rng.normal(size=n_fam)
+    rows = []
+    for f in range(n_fam):
+        for _ in range(2):                       # 2 siblings per family
+            x = fam_eff[f] + rng.normal(scale=0.5)   # x correlated with family effect
+            y = 2.0 * x + 5.0 * fam_eff[f] + rng.normal(scale=0.1)
+            rows.append({"fam": f, "x": x, "y": y})
+    df = pd.DataFrame(rows)
+    # pooled OLS is biased upward (family effect drives both x and y)
+    pooled = S.ols(pd.DataFrame({"const": 1.0, "x": df["x"]}), df["y"].to_numpy())
+    pooled_slope = pooled["coef"][pooled["term"].index("x")]
+    fe = S.fe_ols(df, "fam", "y", ["x"])
+    fe_slope = fe["coef"][fe["term"].index("x")]
+    assert pooled_slope > 2.5            # confounded
+    assert 1.8 <= fe_slope <= 2.2        # FE recovers the true within slope
+    assert fe["p"][fe["term"].index("x")] < 1e-6
+
+
 def test_ols_strong_effect_has_tiny_pvalue_noise_effect_large():
     rng = np.random.default_rng(2)
     n = 300

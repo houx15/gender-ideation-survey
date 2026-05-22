@@ -1,0 +1,5 @@
+year,model,n,n_groups,term,coef,se,t,p
+2014,family-FE ideation~female+age,2378,1091,female,-0.0444,0.0092,-4.82,0.0
+2014,family-FE ideation~female+age,2378,1091,age_c,0.0317,0.0134,2.37,0.0181
+2020,family-FE ideation~female+age,2583,1195,female,-0.1009,0.0089,-11.33,0.0
+2020,family-FE ideation~female+age,2583,1195,age_c,0.023,0.0126,1.82,0.0688

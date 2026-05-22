@@ -1,0 +1,3 @@
+year,n_children,n_families,icc_raw,icc_after_parent_ideology,pct_resemblance_from_parent_ideology,icc_after_parent_age_urban
+2014,2378,1091,0.26,0.23,11.4,0.214
+2020,2584,1195,0.196,0.184,6.4,0.125
