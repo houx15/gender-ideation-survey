@@ -1,0 +1,25 @@
+year,model,n,term,coef,se,t
+2014,LPM currently_married,31552,const,0.8437,0.0074,113.37
+2014,LPM currently_married,31552,ideation,0.1154,0.0114,10.16
+2014,LPM currently_married,31552,female,0.0051,0.0038,1.33
+2014,LPM currently_married,31552,age_c,0.1447,0.0015,97.96
+2014,LPM currently_married,31552,age_c2,-0.0661,0.0006,-105.54
+2014,OLS housework_hrs,31493,const,1.3506,0.0521,25.9
+2014,OLS housework_hrs,31493,ideation,-0.0692,0.085,-0.81
+2014,OLS housework_hrs,31493,female,0.3551,0.0729,4.87
+2014,OLS housework_hrs,31493,ideation_x_female,1.4189,0.1171,12.12
+2014,OLS housework_hrs,31493,age_c,0.1919,0.0063,30.68
+2014,OLS ideal_children,31414,const,1.6745,0.0158,106.27
+2014,OLS ideal_children,31414,ideation,0.442,0.0251,17.62
+2014,OLS ideal_children,31414,female,0.0453,0.0084,5.36
+2014,OLS ideal_children,31414,age_c,0.0848,0.0026,32.54
+2020,LPM currently_married,22691,const,0.819,0.0078,104.92
+2020,LPM currently_married,22691,ideation,0.0949,0.0125,7.58
+2020,LPM currently_married,22691,female,0.0312,0.0045,6.89
+2020,LPM currently_married,22691,age_c,0.1759,0.0019,94.67
+2020,LPM currently_married,22691,age_c2,-0.07,0.0008,-86.39
+2020,OLS housework_hrs,16547,const,1.3153,0.0745,17.66
+2020,OLS housework_hrs,16547,ideation,0.4453,0.1276,3.49
+2020,OLS housework_hrs,16547,female,0.494,0.1003,4.93
+2020,OLS housework_hrs,16547,ideation_x_female,0.9584,0.1695,5.65
+2020,OLS housework_hrs,16547,age_c,0.2229,0.0102,21.8

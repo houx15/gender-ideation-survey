@@ -1,0 +1,13 @@
+year,ideation_tertile,gender,n,pct_currently_married,mean_housework_hrs,mean_ideal_children
+2014,low,male,6983,73.6,1.37,1.89
+2014,low,female,6530,71.6,2.27,1.91
+2014,mid,male,3989,82.3,1.43,2.05
+2014,mid,female,4162,84.7,2.78,2.09
+2014,high,male,4508,84.9,1.52,2.08
+2014,high,female,5382,84.9,2.96,2.15
+2020,low,male,5096,66.6,1.57,
+2020,low,female,5428,68.8,2.33,
+2020,mid,male,2833,78.8,1.73,
+2020,mid,female,2355,86.4,2.89,
+2020,high,male,3460,84.7,1.99,
+2020,high,female,3520,86.5,3.2,
