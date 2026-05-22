@@ -12,6 +12,34 @@ import pandas as pd
 from scipy import stats
 
 
+def wls(X: pd.DataFrame, y, w) -> dict:
+    """Weighted least squares with robust (sandwich) SEs — for survey weights.
+
+    Point estimates: beta = (X'WX)^-1 X'W y. Inference: heteroskedasticity-robust
+    sandwich V = (X'WX)^-1 (X' W diag(e^2) W X) (X'WX)^-1, the correct estimator for
+    sampling weights. Weights are normalized to mean 1 (point estimates are scale-free;
+    this keeps SEs interpretable). Rows with NaN in X/y/w or w<=0 are dropped.
+    """
+    y = np.asarray(y, dtype="float64")
+    w = np.asarray(w, dtype="float64")
+    Xv = X.to_numpy(dtype="float64")
+    ok = np.isfinite(Xv).all(axis=1) & np.isfinite(y) & np.isfinite(w) & (w > 0)
+    Xm, ym, wm = Xv[ok], y[ok], w[ok]
+    wm = wm / wm.mean()
+    n, k = Xm.shape
+    XtW = Xm.T * wm
+    bread = np.linalg.inv(XtW @ Xm)
+    beta = bread @ (XtW @ ym)
+    e = ym - Xm @ beta
+    meat = (Xm * (wm * e)[:, None]).T @ (Xm * (wm * e)[:, None])
+    V = bread @ meat @ bread
+    se = np.sqrt(np.diag(V))
+    tvals = [float(b / s) if s else float("nan") for b, s in zip(beta, se)]
+    pvals = [float(2 * stats.norm.sf(abs(t))) if np.isfinite(t) else float("nan") for t in tvals]
+    return {"term": list(X.columns), "coef": [float(b) for b in beta],
+            "se": [float(s) for s in se], "t": tvals, "p": pvals, "n": int(n)}
+
+
 def icc_oneway(value: pd.Series, group: pd.Series) -> float:
     """One-way random-effects ICC (ANOVA estimator) on groups with >=2 members.
 

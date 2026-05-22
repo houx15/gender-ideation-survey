@@ -48,6 +48,29 @@ def test_ols_reports_pvalues_in_unit_interval():
     assert all(0.0 <= p <= 1.0 for p in res["p"])
 
 
+def test_wls_equal_weights_matches_ols():
+    rng = np.random.default_rng(20)
+    x = rng.normal(size=300)
+    X = pd.DataFrame({"const": 1.0, "x": x})
+    y = 1.0 + 0.7 * x + rng.normal(scale=0.5, size=300)
+    o = S.ols(X, y)
+    w = S.wls(X, y, np.ones(300))
+    assert w["coef"][w["term"].index("x")] == pytest.approx(o["coef"][o["term"].index("x")], abs=1e-9)
+
+
+def test_wls_recovers_slope_and_reports_p():
+    rng = np.random.default_rng(21)
+    x = rng.normal(size=500)
+    X = pd.DataFrame({"const": 1.0, "x": x})
+    y = 2.0 + 0.5 * x + rng.normal(scale=0.3, size=500)
+    w = rng.uniform(0.5, 5.0, size=500)
+    res = S.wls(X, y, w)
+    bx = res["coef"][res["term"].index("x")]
+    assert 0.4 <= bx <= 0.6
+    assert res["se"][res["term"].index("x")] > 0
+    assert 0.0 <= res["p"][res["term"].index("x")] <= 1.0
+
+
 def test_icc_oneway_perfect_clustering_is_one():
     # members identical within group, groups differ -> ICC = 1.
     val = pd.Series([1.0, 1.0, 0.0, 0.0, 2.0, 2.0])

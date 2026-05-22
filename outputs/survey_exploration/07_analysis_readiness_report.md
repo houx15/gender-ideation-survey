@@ -81,6 +81,7 @@ locking the index to `surveys/processed`). All associations are cross-sectional 
 | 016 transmission PSM enhanced | 5.7 | Formative window 16–30 + urban/rural match + **bootstrap SEs**: ATT ≈0.04–0.07, bootstrap p<0.05 everywhere (CIs exclude 0); bootstrap SE ~2× paired-t (confirms paired-t was optimistic), but effect robust |
 | 017 transmission + SES proxy | 5.7 | Adding parent income (2014; no family file, 2020 lacks income) modestly attenuates ATT 0.068→0.058 (still p≪0.001, CI excludes 0); transmission not an SES artifact as far as proxied (edu+urban+income) |
 | 018 sibling ICC + family FE | 5.7 | Sibling ICC of ideology ≈0.20–0.26 (family-clustered), but parents' measured ideology explains only 6–11% of it (shared environment dominates); family-FE: daughters less traditional than own brothers (−0.044→−0.101, p<0.001, widening) |
+| 019 population weights | 5.1/5.7 | CFPS weights (WLS, robust SEs): weighted mean ideation slightly lower; 2014 "women more traditional" gap → n.s. (sampling artifact); 2020 women-less-traditional & transmission unchanged → population-robust |
 
 **Variable handling verified** (`08_variable_handling_verification.md`, `scripts/verify_coding.py`):
 missing/special codes excluded everywhere; nominal categoricals never used as continuous;
