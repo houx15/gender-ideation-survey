@@ -77,6 +77,11 @@ locking the index to `surveys/processed`). All associations are cross-sectional 
 | 012 ideology→allocation | 5.5 | Within-family, traditional parents point son-favouring (less edu, more chores for daughters) but NOT significant (underpowered); CEPS resources can't be linked to ideology |
 | 013 allocation robustness (CFPS) | 5.5 | Expanded within-family + PSM + p-values: **female×parent_ideology on housework significant** (p=0.04/0.02) — traditional parents → daughters do more chores; education moderation marginal/ns; daughter education advantage concentrated in egalitarian families |
 | 014 CEPS resources PSM | 5.5 | Girls' educational-investment advantage (expectations/tutoring/spend) robust to matching (p<0.0001); raw chore & desk gaps flip sign when matching on sibship size → confounded by son-biased fertility |
+| 015 transmission corr+PSM | 5.7 | Parent↔child ideation r≈0.19–0.20 (p<0.001); PSM (traditional vs egalitarian parent, matched on parent education + child age/sex) ATT +0.063/+0.041, ≪0.001 → transmission robust to matching |
+
+**Variable handling verified** (`08_variable_handling_verification.md`, `scripts/verify_coding.py`):
+missing/special codes excluded everywhere; nominal categoricals never used as continuous;
+ordinal SES/parent-education-as-linear controls robustness-confirmed.
 
 ### Cross-cutting theme — "does women's ideology matter more in the family?"
 A woman's ideology is highly **self-consequential** (drives her own housework and labour-force

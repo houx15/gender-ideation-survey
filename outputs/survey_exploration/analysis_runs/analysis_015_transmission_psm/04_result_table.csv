@@ -1,0 +1,3 @@
+year,contrast,n_treated,naive_diff,psm_att,se,t,p
+2014,traditional vs egalitarian parent (tertiles),2285,0.0761,0.0625,0.0054,11.63,0.0
+2020,traditional vs egalitarian parent (tertiles),1642,0.0748,0.0409,0.0063,6.47,0.0

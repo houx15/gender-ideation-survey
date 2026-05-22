@@ -1,0 +1,15 @@
+year,pair,subgroup,n,r,p
+2014,mother-child,all,5564,0.142,0.0
+2014,father-child,all,5564,0.165,0.0
+2014,parent_mean-child,all,5564,0.197,0.0
+2014,mother-daughter,daughter,1987,0.154,0.0
+2014,father-daughter,daughter,1987,0.149,0.0
+2014,mother-son,son,3577,0.12,0.0
+2014,father-son,son,3577,0.163,0.0
+2020,mother-child,all,4120,0.147,0.0
+2020,father-child,all,4120,0.149,0.0
+2020,parent_mean-child,all,4120,0.191,0.0
+2020,mother-daughter,daughter,1672,0.152,0.0
+2020,father-daughter,daughter,1672,0.147,0.0
+2020,mother-son,son,2448,0.127,0.0
+2020,father-son,son,2448,0.128,0.0
