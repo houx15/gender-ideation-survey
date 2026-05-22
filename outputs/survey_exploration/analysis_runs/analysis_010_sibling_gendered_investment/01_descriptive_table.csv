@@ -1,0 +1,5 @@
+year,design,n_families,mean_edu_gap_daughter_minus_son,parent_ideology_coef,parent_ideology_t
+2014,OSOD all-ages,367,0.482,-2.708,-1.63
+2014,OSOD both>=25,107,0.654,0.443,0.12
+2020,OSOD all-ages,385,0.636,-0.17,-0.12
+2020,OSOD both>=25,189,0.27,-0.472,-0.21

@@ -1,5 +1,12 @@
 # analysis_009 — Interpretation note
 
+> **Update:** the gender read below is revised by **analysis_010**, which matches
+> household structure (within-family one-son-one-daughter design) and restricts to
+> completed-schooling ages. There, the apparent daughter-education pattern is shown to
+> be **co-residence selection**, and parent ideology does **not** significantly tilt the
+> within-family gap toward sons. The "less-educated children of both genders" finding
+> stands; the gender-specific read does not. Prefer analysis_010 for the investment question.
+
 ## What the results say (RQ 5.5 / 5.6)
 From `04_result_table.csv` / `01_descriptive_table.csv` (5,343 / 3,980 children).
 

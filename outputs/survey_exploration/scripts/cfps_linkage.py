@@ -61,3 +61,28 @@ def attach_parents(df: pd.DataFrame, pid_col: str, father_col: str,
         for c in value_cols:
             out[f"{parent}_{c}"] = valid_ptr.map(lookup[c])
     return out
+
+
+def one_son_one_daughter_diff(df: pd.DataFrame, family_col: str, female_col: str,
+                              value_cols: list[str]) -> pd.DataFrame:
+    """Within-family daughter-minus-son contrast for one-son-one-daughter families.
+
+    Keeps families with exactly one daughter (female==1) and exactly one son
+    (female==0), and returns one row per such family with `<col>_diff` =
+    daughter value − son value. This differences out every family-level factor
+    (parent ideology, SES, region, household structure) — the cleanest test of
+    gendered within-household allocation.
+    """
+    rows = []
+    for fam, g in df.groupby(family_col):
+        daughters = g[g[female_col] == 1]
+        sons = g[g[female_col] == 0]
+        if len(daughters) != 1 or len(sons) != 1:
+            continue
+        d = daughters.iloc[0]
+        s = sons.iloc[0]
+        rec = {family_col: fam}
+        for c in value_cols:
+            rec[f"{c}_diff"] = d[c] - s[c]
+        rows.append(rec)
+    return pd.DataFrame(rows)

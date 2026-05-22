@@ -81,3 +81,28 @@ def test_attach_parents_missing_or_zero_pointer_is_nan():
 def test_attach_parents_keeps_all_ego_rows():
     out = K.attach_parents(_kid_frame(), "pid", "pid_f", "pid_m", ["ideation"])
     assert len(out) == 4
+
+
+# ---- one_son_one_daughter_diff: within-family daughter - son contrast ----
+
+def _sibs():
+    # family A: one daughter (eduy 12) + one son (eduy 16) -> diff -4
+    # family B: one daughter (eduy 10) + one son (eduy 9)  -> diff +1
+    # family C: two daughters -> not one-son-one-daughter, excluded
+    # family D: single child -> excluded
+    return pd.DataFrame({
+        "fam":    ["A", "A", "B", "B", "C", "C", "D"],
+        "female": [1,   0,   1,   0,   1,   1,   1],
+        "eduy":   [12,  16,  10,  9,   11,  13,  8],
+    })
+
+
+def test_osod_diff_one_row_per_one_son_one_daughter_family():
+    out = K.one_son_one_daughter_diff(_sibs(), "fam", "female", ["eduy"])
+    assert sorted(out["fam"]) == ["A", "B"]
+
+
+def test_osod_diff_is_daughter_minus_son():
+    out = K.one_son_one_daughter_diff(_sibs(), "fam", "female", ["eduy"]).set_index("fam")
+    assert out.loc["A", "eduy_diff"] == -4
+    assert out.loc["B", "eduy_diff"] == 1
