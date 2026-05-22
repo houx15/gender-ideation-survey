@@ -1,0 +1,85 @@
+model,n,term,coef,se,t
+parent_expect_college ~ female + controls,18476,const,0.7133,0.0104,68.87
+parent_expect_college ~ female + controls,18476,female,0.0423,0.0048,8.75
+parent_expect_college ~ female + controls,18476,grade9,-0.0415,0.0048,-8.57
+parent_expect_college ~ female + controls,18476,ses,0.0098,0.0051,1.94
+parent_expect_college ~ female + controls,18476,medu,0.0137,0.0017,8.21
+parent_expect_college ~ female + controls,18476,fedu,0.0204,0.0017,12.37
+parent_expect_college ~ female*has_brother (non-only),10418,const,0.7279,0.0158,45.94
+parent_expect_college ~ female*has_brother (non-only),10418,female,0.0468,0.011,4.26
+parent_expect_college ~ female*has_brother (non-only),10418,has_brother,-0.0162,0.0106,-1.53
+parent_expect_college ~ female*has_brother (non-only),10418,female_x_brother,0.0026,0.0149,0.17
+parent_expect_college ~ female*has_brother (non-only),10418,grade9,-0.0413,0.0072,-5.72
+parent_expect_college ~ female*has_brother (non-only),10418,ses,0.0099,0.007,1.41
+parent_expect_college ~ female*has_brother (non-only),10418,medu,0.0075,0.0028,2.65
+parent_expect_college ~ female*has_brother (non-only),10418,fedu,0.0197,0.0027,7.31
+tutoring ~ female + controls,18454,const,-0.2559,0.0135,-18.91
+tutoring ~ female + controls,18454,female,0.0425,0.0063,6.74
+tutoring ~ female + controls,18454,grade9,0.057,0.0063,9.0
+tutoring ~ female + controls,18454,ses,0.0969,0.0066,14.67
+tutoring ~ female + controls,18454,medu,0.0491,0.0022,22.53
+tutoring ~ female + controls,18454,fedu,0.0368,0.0022,17.05
+tutoring ~ female*has_brother (non-only),10384,const,-0.1949,0.0168,-11.62
+tutoring ~ female*has_brother (non-only),10384,female,0.0527,0.0116,4.54
+tutoring ~ female*has_brother (non-only),10384,has_brother,-0.0018,0.0112,-0.17
+tutoring ~ female*has_brother (non-only),10384,female_x_brother,-0.0262,0.0158,-1.66
+tutoring ~ female*has_brother (non-only),10384,grade9,0.0337,0.0076,4.41
+tutoring ~ female*has_brother (non-only),10384,ses,0.097,0.0074,13.1
+tutoring ~ female*has_brother (non-only),10384,medu,0.0324,0.003,10.86
+tutoring ~ female*has_brother (non-only),10384,fedu,0.0248,0.0028,8.7
+log_tutor_cost ~ female + controls,17553,const,-2.2482,0.1062,-21.16
+log_tutor_cost ~ female + controls,17553,female,0.3049,0.0497,6.14
+log_tutor_cost ~ female + controls,17553,grade9,0.5533,0.0498,11.11
+log_tutor_cost ~ female + controls,17553,ses,0.7676,0.0519,14.79
+log_tutor_cost ~ female + controls,17553,medu,0.3905,0.0171,22.77
+log_tutor_cost ~ female + controls,17553,fedu,0.3073,0.017,18.09
+log_tutor_cost ~ female*has_brother (non-only),9885,const,-1.6725,0.1278,-13.08
+log_tutor_cost ~ female*has_brother (non-only),9885,female,0.3595,0.0882,4.07
+log_tutor_cost ~ female*has_brother (non-only),9885,has_brother,0.1045,0.0852,1.23
+log_tutor_cost ~ female*has_brother (non-only),9885,female_x_brother,-0.326,0.1201,-2.72
+log_tutor_cost ~ female*has_brother (non-only),9885,grade9,0.3621,0.0582,6.22
+log_tutor_cost ~ female*has_brother (non-only),9885,ses,0.7639,0.0564,13.55
+log_tutor_cost ~ female*has_brother (non-only),9885,medu,0.243,0.0228,10.66
+log_tutor_cost ~ female*has_brother (non-only),9885,fedu,0.2047,0.0218,9.41
+own_desk ~ female + controls,18765,const,0.2564,0.0118,21.69
+own_desk ~ female + controls,18765,female,0.0124,0.0055,2.25
+own_desk ~ female + controls,18765,grade9,0.0178,0.0055,3.22
+own_desk ~ female + controls,18765,ses,0.1663,0.0058,28.89
+own_desk ~ female + controls,18765,medu,0.0295,0.0019,15.53
+own_desk ~ female + controls,18765,fedu,0.0244,0.0019,12.94
+own_desk ~ female*has_brother (non-only),10525,const,0.1559,0.0187,8.35
+own_desk ~ female*has_brother (non-only),10525,female,0.0447,0.013,3.45
+own_desk ~ female*has_brother (non-only),10525,has_brother,-0.0227,0.0124,-1.83
+own_desk ~ female*has_brother (non-only),10525,female_x_brother,-0.0236,0.0176,-1.34
+own_desk ~ female*has_brother (non-only),10525,grade9,0.0159,0.0085,1.86
+own_desk ~ female*has_brother (non-only),10525,ses,0.1862,0.0083,22.56
+own_desk ~ female*has_brother (non-only),10525,medu,0.0351,0.0033,10.54
+own_desk ~ female*has_brother (non-only),10525,fedu,0.0263,0.0032,8.3
+hw_help_daily ~ female + controls,18933,const,0.1794,0.0137,13.1
+hw_help_daily ~ female + controls,18933,female,-0.0412,0.0064,-6.42
+hw_help_daily ~ female + controls,18933,grade9,-0.1082,0.0064,-16.87
+hw_help_daily ~ female + controls,18933,ses,0.0236,0.0067,3.53
+hw_help_daily ~ female + controls,18933,medu,0.0225,0.0022,10.18
+hw_help_daily ~ female + controls,18933,fedu,0.0101,0.0022,4.64
+hw_help_daily ~ female*has_brother (non-only),10645,const,0.1399,0.0175,7.97
+hw_help_daily ~ female*has_brother (non-only),10645,female,-0.0018,0.0122,-0.15
+hw_help_daily ~ female*has_brother (non-only),10645,has_brother,-0.0074,0.0117,-0.64
+hw_help_daily ~ female*has_brother (non-only),10645,female_x_brother,-0.0262,0.0165,-1.59
+hw_help_daily ~ female*has_brother (non-only),10645,grade9,-0.0905,0.008,-11.31
+hw_help_daily ~ female*has_brother (non-only),10645,ses,0.0157,0.0078,2.02
+hw_help_daily ~ female*has_brother (non-only),10645,medu,0.0199,0.0031,6.35
+hw_help_daily ~ female*has_brother (non-only),10645,fedu,0.0141,0.003,4.71
+chore_hours_week ~ female + controls,18395,const,16.2457,0.3775,43.04
+chore_hours_week ~ female + controls,18395,female,0.6996,0.1767,3.96
+chore_hours_week ~ female + controls,18395,grade9,-1.3553,0.177,-7.66
+chore_hours_week ~ female + controls,18395,ses,-2.3102,0.184,-12.55
+chore_hours_week ~ female + controls,18395,medu,-0.4322,0.0611,-7.07
+chore_hours_week ~ female + controls,18395,fedu,-0.4435,0.0605,-7.33
+chore_hours_week ~ female*has_brother (non-only),10375,const,16.9151,0.6036,28.02
+chore_hours_week ~ female*has_brother (non-only),10375,female,0.0317,0.4184,0.08
+chore_hours_week ~ female*has_brother (non-only),10375,has_brother,0.7115,0.4008,1.78
+chore_hours_week ~ female*has_brother (non-only),10375,female_x_brother,0.8083,0.5677,1.42
+chore_hours_week ~ female*has_brother (non-only),10375,grade9,-1.2748,0.2748,-4.64
+chore_hours_week ~ female*has_brother (non-only),10375,ses,-2.6121,0.2663,-9.81
+chore_hours_week ~ female*has_brother (non-only),10375,medu,-0.3336,0.1079,-3.09
+chore_hours_week ~ female*has_brother (non-only),10375,fedu,-0.434,0.1031,-4.21

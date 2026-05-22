@@ -1,0 +1,7 @@
+outcome,n,mean_boys,mean_girls,girl_minus_boy
+parent_expect_college,18518,0.8495,0.8914,0.0419
+tutoring,18505,0.2892,0.3363,0.0471
+log_tutor_cost,17595,2.1836,2.5335,0.3499
+own_desk,18842,0.7875,0.8018,0.0143
+hw_help_daily,19013,0.3014,0.2574,-0.044
+chore_hours_week,18463,7.8761,8.4808,0.6047
