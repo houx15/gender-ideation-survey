@@ -1,0 +1,8 @@
+frame,variable,n_total,n_nonmissing,pct_coverage
+2014_cross,edu_yrs,31554,31531,99.93
+2014_cross,edu_level,31554,31531,99.93
+2020_cross,edu_yrs,22692,22345,98.47
+2020_cross,edu_level,22692,11107,48.95
+2014_young_cohort,edu_yrs,3812,3794,99.53
+2020_young_cohort,edu_yrs,5198,5196,99.96
+lagged_young_cohort,"edu_yrs_2020 (panel, birthy>=1990)",2697,2618,97.07
