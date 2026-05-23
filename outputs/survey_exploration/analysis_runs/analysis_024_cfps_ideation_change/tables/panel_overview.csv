@@ -1,0 +1,12 @@
+metric,value
+pids_in_both_waves,20100.0
+pids_with_delta_ideation,15859.0
+mean_delta,-0.030383641255228366
+sd_delta,0.19596357728834113
+n_progressive,7429.0
+n_stable,2909.0
+n_traditional,5521.0
+share_progressive,0.46844063307900874
+share_stable,0.18342896777854845
+share_traditional,0.34813039914244276
+share_changed_any_direction,0.8165710322214516
