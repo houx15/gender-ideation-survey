@@ -49,6 +49,44 @@ The directional frame puts `edu_yrs_2014` on the RHS, so the β on
 `urban` (hukou), `log_income`. **No `edu_yrs` on the RHS** — it's the
 outcome.
 
+## Ideation tertile cutoffs (v2 update)
+
+The default split throughout the project is **empirical terciles** of the
+ideation index within the analysis sample: `s.quantile([1/3, 2/3])`. So:
+
+* **"low"** = bottom 1/3 of the ideation distribution in this cell (most progressive)
+* **"mid"** = middle 1/3
+* **"high"** = top 1/3 (most traditional)
+
+This is the conventional social-science choice — it produces three roughly
+equal-sized groups and is what Welch / forest plots use. **It is
+sample-relative**: high-tertile in 2014 is not the same range of the index
+as high-tertile in 2020 (the whole distribution shifted progressive
+between waves). For comparisons that need cross-wave / cross-strata
+fixedness, a **fixed-cutoff variant** is also reported as a sensitivity
+check (v2):
+
+* **"low"** = ideation < 0.4    (disagrees with most traditional items)
+* **"mid"** = 0.4 ≤ ideation ≤ 0.7
+* **"high"** = ideation > 0.7   (agrees with most traditional items)
+
+The fixed-cutoff split produces unequal group sizes (CFPS skews high,
+especially in 2014) but is substantively interpretable and stable across
+waves.
+
+Both splits appear as separate `_fixedcutoff` figures alongside the
+default tertile figures in `figures/`.
+
+## Cohort-trajectory CI bands (v2 update)
+
+The cohort-trajectory figures (`edu_yrs_by_cohort_*.pdf`) now show
+**95 % confidence bands** around each ideation-tertile line, computed as
+`mean ± 1.96 · SE` of the within-cell mean. Bands are restricted to
+decade × sex × ideation cells with n > 30 (consistent with the prior
+filter for plotting the line itself). Overlapping bands signal that the
+ideation-tertile differences in that decade are within sampling
+uncertainty.
+
 ## Interpretation bounds
 
 * **(A) / (B) are reverse-causal**. Adult final education is largely

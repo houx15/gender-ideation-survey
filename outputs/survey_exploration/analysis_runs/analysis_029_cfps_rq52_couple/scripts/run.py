@@ -167,6 +167,52 @@ def part_A_correlations(couples: pd.DataFrame, wave: str) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
+def part_A_rank_rank(couples: pd.DataFrame, wave: str) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """v3 (2026-05-23): rank-rank measures of ideology homogamy.
+
+    For each spouse, compute the sex-specific percentile rank of ideation
+    (so the level shift between wives' and husbands' distributions is removed).
+    Returns:
+      - per-subgroup table of Spearman ρ + rank-rank OLS slope
+      - the per-couple frame with rank columns, for use in figures
+    """
+    valid = couples.dropna(subset=["wife_ideation", "husband_ideation"]).copy()
+    if len(valid) < 30:
+        return pd.DataFrame(), valid
+    valid["wife_rank"]    = valid["wife_ideation"].rank(pct=True)
+    valid["husband_rank"] = valid["husband_ideation"].rank(pct=True)
+    # rank-rank regression slope (= Spearman ρ when both ranks are uniform)
+    summary_rows = []
+    def _summarize(g: pd.DataFrame, subgroup: str):
+        if len(g) < 30:
+            return
+        rho = float(g["wife_ideation"].corr(g["husband_ideation"], method="spearman"))
+        # rank-rank OLS slope: cov(wife_rank, husband_rank) / var(husband_rank)
+        b = float(g["wife_rank"].cov(g["husband_rank"]) / g["husband_rank"].var(ddof=1))
+        summary_rows.append(dict(wave=wave, subgroup=subgroup, n=len(g),
+                                   spearman_rho=round(rho, 4),
+                                   rank_rank_slope=round(b, 4)))
+    _summarize(valid, "all")
+    # by wife birth decade
+    valid["decade"] = (valid["wife_birthy"] // 10 * 10).astype("Int64")
+    for decade, g in valid.dropna(subset=["decade"]).groupby("decade"):
+        _summarize(g, f"wife_birth_decade={int(decade)}")
+    # by couple urban
+    valid["couple_urban"] = ((valid["wife_urban"] == 1) | (valid["husband_urban"] == 1)).astype(int)
+    for u, g in valid.groupby("couple_urban"):
+        _summarize(g, f"couple_urban={u}")
+    # by wife edu tertile
+    if valid["wife_edu_yrs"].notna().sum() > 100:
+        q = valid["wife_edu_yrs"].quantile([1 / 3, 2 / 3]).values
+        valid["wife_edu_t"] = pd.cut(valid["wife_edu_yrs"],
+                                       [-np.inf, q[0], q[1], np.inf],
+                                       labels=["low", "mid", "high"])
+        for t, g in valid.dropna(subset=["wife_edu_t"]).groupby("wife_edu_t",
+                                                                  observed=True):
+            _summarize(g, f"wife_edu_tertile={t}")
+    return pd.DataFrame(summary_rows), valid
+
+
 def part_A_regression(couples: pd.DataFrame, wave: str) -> pd.DataFrame:
     """OLS-HC1: wife_ideation ~ husband_ideation + couple controls.
 
@@ -497,6 +543,35 @@ def part_C_satisfaction(couples: pd.DataFrame, wave: str) -> pd.DataFrame:
 # 4. Figures
 # ------------------------------------------------------------------ #
 
+def fig_rank_rank_scatter(valid_with_ranks: pd.DataFrame, wave: str,
+                            out_pdf: Path):
+    """Rank-rank scatter (Chetty-style) of wife vs husband ideology percentile.
+
+    Adds the diagonal (perfect rank assortment) and the OLS slope line.
+    """
+    d = valid_with_ranks
+    if len(d) < 50:
+        return
+    fig, ax = plt.subplots(figsize=(4.4, 4.4))
+    ax.scatter(d["husband_rank"], d["wife_rank"], s=4, alpha=0.25, color="#1f77b4")
+    ax.plot([0, 1], [0, 1], "--", color="#888", linewidth=0.7, label="rank diagonal")
+    # OLS slope
+    b = d["wife_rank"].cov(d["husband_rank"]) / d["husband_rank"].var(ddof=1)
+    a = d["wife_rank"].mean() - b * d["husband_rank"].mean()
+    xs = np.linspace(0, 1, 100)
+    ax.plot(xs, a + b * xs, color="#d62728", linewidth=1.4,
+            label=f"rank-rank slope = {b:.3f}")
+    rho = d["wife_ideation"].corr(d["husband_ideation"], method="spearman")
+    ax.set_xlim(0, 1); ax.set_ylim(0, 1)
+    ax.set_xlabel("Husband ideology percentile")
+    ax.set_ylabel("Wife ideology percentile")
+    ax.set_title(f"Rank-rank ideology matching — CFPS {wave}\n"
+                 f"Spearman ρ = {rho:.3f}  (n = {len(d)})")
+    ax.legend(frameon=False, loc="lower right", fontsize=8)
+    ax.grid(linewidth=0.4, alpha=0.4)
+    fig.tight_layout(); fig.savefig(out_pdf); plt.close(fig)
+
+
 def fig_scatter_couple_ideation(couples: pd.DataFrame, wave: str, out_pdf: Path):
     d = couples.dropna(subset=["wife_ideation", "husband_ideation"])
     if len(d) < 50:
@@ -605,6 +680,7 @@ def fig_match_type_by_ideation(couples: pd.DataFrame, wave: str, out_pdf: Path):
 
 
 def fig_match_type_coef_forest(results: pd.DataFrame, wave: str, out_pdf: Path):
+    """Combined forest across all dimensions — kept for backward-compat."""
     sub = results[results["wave"] == wave].copy()
     if sub.empty:
         return
@@ -624,6 +700,45 @@ def fig_match_type_coef_forest(results: pd.DataFrame, wave: str, out_pdf: Path):
     ax.set_xlabel("LPM β on ideation (HC1, 95 % CI)")
     ax.set_title(f"Does ideation predict mating-type membership? — CFPS {wave}")
     ax.grid(axis="x", linewidth=0.4, alpha=0.4)
+    fig.tight_layout(); fig.savefig(out_pdf); plt.close(fig)
+
+
+_DIM_LABEL = {"age": "Age", "edu": "Education", "inc": "Income"}
+
+
+def fig_match_type_per_dimension(results: pd.DataFrame, wave: str,
+                                   dim: str, out_pdf: Path):
+    """v3 (2026-05-23): per-dimension forest to avoid the combined-plot noise."""
+    sub = results[(results["wave"] == wave) &
+                   (results["dimension"] == dim)].copy()
+    if sub.empty:
+        return
+    # order: hypergamy / homogamy / hypogamy × predictor
+    type_order = ["hypergamy", "homogamy", "hypogamy"]
+    sub["match_rank"] = sub["match_type"].map({t: i for i, t in enumerate(type_order)})
+    sub = sub.sort_values(["match_rank", "predictor"])
+    color_map = {"wife_ideation": "#d62728", "husband_ideation": "#1f77b4"}
+    rows = list(zip(sub["coef"], sub["se"], sub["match_type"],
+                    sub["predictor"], sub["n"]))
+    fig, ax = plt.subplots(figsize=(6.4, 0.45 * len(rows) + 1.4))
+    ys = np.arange(len(rows))[::-1]
+    for i, (coef, se, mt, pred, n) in enumerate(rows):
+        ax.errorbar([coef], [ys[i]], xerr=1.96 * se, fmt="o",
+                    color=color_map[pred], ecolor=color_map[pred],
+                    capsize=3, markersize=6)
+    ax.axvline(0, color="#aaa", linewidth=0.8, linestyle="--")
+    ax.set_yticks(ys)
+    ax.set_yticklabels([f"{mt} | {pred.replace('_ideation','')} (n={n})"
+                         for _, _, mt, pred, n in rows], fontsize=8)
+    ax.set_xlabel("LPM β on ideation (HC1, 95 % CI)")
+    ax.set_title(f"{_DIM_LABEL[dim]} matching: does ideation predict type?\nCFPS {wave}")
+    ax.grid(axis="x", linewidth=0.4, alpha=0.4)
+    # legend
+    handles = [plt.Line2D([], [], marker="o", color=color_map["wife_ideation"],
+                            linestyle="", label="Wife's ideation"),
+               plt.Line2D([], [], marker="o", color=color_map["husband_ideation"],
+                            linestyle="", label="Husband's ideation")]
+    ax.legend(handles=handles, loc="best", frameon=False, fontsize=8)
     fig.tight_layout(); fig.savefig(out_pdf); plt.close(fig)
 
 
@@ -668,14 +783,20 @@ def main() -> int:
         couples_by_wave[wave] = c
 
     # ---- Part A ----
-    corr_rows, regA_rows = [], []
+    corr_rows, regA_rows, rankrank_rows = [], [], []
+    rank_frames = {}
     for wave, c in couples_by_wave.items():
         corr_rows.append(part_A_correlations(c, wave))
         regA_rows.append(part_A_regression(c, wave))
+        rr_summary, rr_frame = part_A_rank_rank(c, wave)
+        rankrank_rows.append(rr_summary)
+        rank_frames[wave] = rr_frame
     pd.concat(corr_rows, ignore_index=True).to_csv(
         TABLES / "assortative_mating_correlations.csv", index=False)
     pd.concat(regA_rows, ignore_index=True).to_csv(
         TABLES / "assortative_mating_regression.csv", index=False)
+    pd.concat(rankrank_rows, ignore_index=True).to_csv(
+        TABLES / "assortative_mating_rank_rank.csv", index=False)
 
     # ---- Part A2 (v2) — sociological match types and ideation ----
     a2_desc_rows, a2_reg_rows = [], []
@@ -751,14 +872,21 @@ def main() -> int:
     for wave, c in couples_by_wave.items():
         fig_scatter_couple_ideation(c, wave,
                                      FIGS / f"couple_ideation_scatter_{wave}.pdf")
+        fig_rank_rank_scatter(rank_frames[wave], wave,
+                               FIGS / f"rank_rank_scatter_{wave}.pdf")
         partB_wave = partB[partB["wave"] == wave]
         fig_dyadic_coef_forest(partB_wave, FIGS / f"dyadic_forest_{wave}.pdf", wave)
         fig_satisfaction_by_typology(c, wave,
                                       FIGS / f"sat_by_typology_{wave}.pdf")
         fig_match_type_by_ideation(c, wave,
                                     FIGS / f"mating_types_stacked_{wave}.pdf")
+        # v3 — per-dimension forests + the combined one kept for backward-compat
         fig_match_type_coef_forest(partA2_reg, wave,
                                     FIGS / f"mating_types_forest_{wave}.pdf")
+        for dim in ("age", "edu", "inc"):
+            fig_match_type_per_dimension(
+                partA2_reg, wave, dim,
+                FIGS / f"mating_types_forest_{dim}_{wave}.pdf")
     print("figures written.")
     return 0
 

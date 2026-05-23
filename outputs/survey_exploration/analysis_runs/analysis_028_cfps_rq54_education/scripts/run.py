@@ -349,32 +349,62 @@ def fig_edu_by_tertile_sex(df, label_tag, out_pdf):
     plt.close(fig)
 
 
-def fig_edu_by_cohort(df, label_tag, out_pdf):
-    """Mean edu_yrs by birth decade × ideation tertile × sex — to make the
-    reverse-causality story visible (older cohorts: less edu AND more traditional)."""
+def fig_edu_by_cohort(df, label_tag, out_pdf, split_fn=None,
+                       split_label="tertile"):
+    """Mean edu_yrs by birth decade × ideation split × sex, with 95 % CI bands.
+
+    The reverse-causality story (older cohorts: less edu AND more traditional)
+    becomes visible. CIs are mean ± 1.96 · SE.
+
+    `split_fn` is a callable from ideation Series -> categorical Series with
+    levels low / mid / high. Defaults to empirical terciles. Can pass a
+    fixed-cutoff variant.
+    """
+    if split_fn is None:
+        split_fn = tertile
     d = df.dropna(subset=["edu_yrs", "birthy", "ideation", "female"]).copy()
     d["decade"] = (d["birthy"] // 10 * 10).astype(int)
-    d["__t"] = tertile(d["ideation"])
+    d["__t"] = split_fn(d["ideation"])
     fig, axes = plt.subplots(1, 2, figsize=(8.0, 3.6), sharey=True)
     for ax, fem, name in zip(axes, [0, 1], ["Male", "Female"]):
         for t, color in zip(["low", "mid", "high"], ["#1a9850", "#999", "#d73027"]):
             sub = d[(d["female"] == fem) & (d["__t"] == t)]
-            means = sub.groupby("decade")["edu_yrs"].mean()
-            counts = sub.groupby("decade").size()
+            grouped = sub.groupby("decade")["edu_yrs"]
+            means = grouped.mean()
+            counts = grouped.size()
+            sds = grouped.std(ddof=1)
             ok = counts > 30
-            ax.plot(means.index[ok], means.values[ok], "-o", color=color,
-                    label=f"{t}", markersize=4)
+            xs = means.index[ok]
+            ys = means.values[ok]
+            ses = (sds.values / np.sqrt(counts.values))[ok.values]
+            lo = ys - 1.96 * ses
+            hi = ys + 1.96 * ses
+            ax.fill_between(xs, lo, hi, color=color, alpha=0.18, linewidth=0)
+            ax.plot(xs, ys, "-o", color=color, label=f"{t}", markersize=4)
         ax.set_title(f"{name}")
         ax.set_xlabel("Birth decade")
         if fem == 0:
             ax.set_ylabel("Mean years of education")
         ax.grid(axis="y", linewidth=0.4, alpha=0.4)
-        ax.legend(frameon=False, fontsize=7, title="Ideation tertile")
-    fig.suptitle(f"Edu years by birth decade × ideation tertile × sex ({label_tag})",
+        ax.legend(frameon=False, fontsize=7, title=f"Ideation {split_label}")
+    fig.suptitle(f"Edu years by birth decade × ideation {split_label} × sex ({label_tag})\n"
+                 f"95 % CI bands (mean ± 1.96·SE)",
                  fontsize=10)
-    fig.tight_layout(rect=[0, 0, 1, 0.95])
+    fig.tight_layout(rect=[0, 0, 1, 0.93])
     fig.savefig(out_pdf)
     plt.close(fig)
+
+
+def _fixed_cutoff(s: pd.Series) -> pd.Series:
+    """Alternative to empirical terciles: fixed cutoffs on [0, 1] index.
+
+    low: < 0.4    mid: 0.4–0.7    high: > 0.7
+
+    Substantively interpretable (a "low" person disagrees with most
+    traditional items), comparable across waves and across sex strata.
+    """
+    return pd.cut(s, [-np.inf, 0.4, 0.7, np.inf],
+                  labels=["low", "mid", "high"])
 
 
 def fig_coef_forest(results, term, frames, out_pdf, title):
@@ -461,10 +491,20 @@ def main() -> int:
     fig_edu_by_tertile_sex(df20[df20["birthy"] >= 1990],
                             "CFPS 2020 young cohort (birthy ≥ 1990)",
                             FIGS / "edu_yrs_by_tertile_2020_young.pdf")
+    # default split = empirical tertiles, with CI bands (v2)
     fig_edu_by_cohort(df14, "CFPS 2014",
                        FIGS / "edu_yrs_by_cohort_2014.pdf")
     fig_edu_by_cohort(df20, "CFPS 2020",
                        FIGS / "edu_yrs_by_cohort_2020.pdf")
+    # v2 sensitivity: fixed-cutoff split (< .4 / .4-.7 / > .7 on the index)
+    fig_edu_by_cohort(df14, "CFPS 2014",
+                       FIGS / "edu_yrs_by_cohort_2014_fixedcutoff.pdf",
+                       split_fn=_fixed_cutoff,
+                       split_label="fixed-cutoff (<.4 / .4-.7 / >.7)")
+    fig_edu_by_cohort(df20, "CFPS 2020",
+                       FIGS / "edu_yrs_by_cohort_2020_fixedcutoff.pdf",
+                       split_fn=_fixed_cutoff,
+                       split_label="fixed-cutoff (<.4 / .4-.7 / >.7)")
 
     fig_coef_forest(main_tab, "ideation",
                     ["2014_cross", "2020_cross",

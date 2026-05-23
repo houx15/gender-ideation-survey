@@ -1,4 +1,32 @@
-# 05 · Interpretation note — analysis_029 (v2)
+# 05 · Interpretation note — analysis_029 (v3)
+
+## v3 update (2026-05-23)
+
+Three focused additions on top of v2:
+
+1. **Per-dimension match-type forests**. The combined `mating_types_forest_*`
+   plots were noisy (3 dims × 3 types × 2 predictors × 2 waves = 36 rows on
+   one chart). v3 adds three per-dimension PDFs per wave (`age`, `edu`,
+   `inc`), 12 rows each, with wife- and husband-ideation predictors
+   colour-coded.
+2. **Rank-rank ideology matching**. Added `tables/assortative_mating_rank_rank.csv`
+   and `figures/rank_rank_scatter_{2014,2020}.pdf`. For each spouse, the
+   percentile rank of ideation is computed (sex-pooled within wave), then:
+   - **Spearman ρ**: 0.234 (2014), 0.242 (2020) — essentially identical to
+     the Pearson r (0.225 / 0.237), meaning the joint ideation distribution
+     is roughly symmetric and the linear correlation is not hiding a
+     nonlinearity.
+   - **Rank-rank OLS slope**: 0.233 (2014), 0.242 (2020). Reading: a 10
+     percentile-rank shift in the husband's ideation associates with a 2.3
+     percentile-rank shift in the wife's, scale-free.
+   - Subgroup pattern matches the Pearson r breakdown: weaker matching
+     in younger cohorts, in mid-edu couples (2020), and in rural couples.
+
+The rank-rank result *confirms* the v1 Pearson finding rather than
+revising it — useful as a robustness check, but doesn't change the
+substantive conclusion.
+
+
 
 > RQ 5.2 family-level couple analysis. Deep-dive replacement for
 > `analysis_007_couple_whose_ideation`. v1 covered ideology-axis
