@@ -1,0 +1,4 @@
+stratum,n,mean_dhw_high_id,mean_dhw_low_id,raw_diff
+all,20100,0.14,0.195,-0.055
+male,9994,0.376,0.234,0.142
+female,10106,-0.047,0.15,-0.197
