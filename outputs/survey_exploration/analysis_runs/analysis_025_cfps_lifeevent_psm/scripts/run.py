@@ -67,14 +67,17 @@ SPECS = {
         "treat":   lambda p: (p["entered_marriage"] == 1).astype("float64"),
         "extra_covs": ["marital_2014"],  # 1=never vs 3=cohab matter
     },
-    "had_new_child": {
-        "label": "Had a new child (rostered)",
-        # At-risk: fertile-age window
+    "had_new_birth": {
+        # Clean fertility event: child born 2015-2020, identified from the
+        # CFPS 2020 child file (cfps2020_child.dta) via pid_a_f / pid_a_m
+        # and ibirthy_update.  Replaces the contaminated `had_new_child`
+        # roster measure used in v1 of this analysis.
+        "label": "Had a new birth (child born 2015–2020)",
         "at_risk": lambda p: (
             ((p["female"] == 1) & (p["age_2014"] <= 45)) |
             ((p["female"] == 0) & (p["age_2014"] <= 55))
         ),
-        "treat":   lambda p: (p["had_new_child"] == 1).astype("float64"),
+        "treat":   lambda p: (p["had_new_birth"] == 1).astype("float64"),
         "extra_covs": ["children_n_2014"],
     },
     "divorced": {

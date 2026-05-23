@@ -1,8 +1,8 @@
 event,sex,n_treated,n_control,note
 entered_marriage,male,200,255,
 entered_marriage,female,184,88,
-had_new_child,male,29,2549,
-had_new_child,female,0,1474,insufficient sample
+had_new_birth,male,414,2164,
+had_new_birth,female,371,1103,
 divorced,male,77,2416,
 divorced,female,35,1611,
 widowed,male,21,2472,

@@ -77,11 +77,11 @@ def test_count_children_2014_negative_sentinels_are_not_children():
     assert out.tolist() == [1, 1, 0]
 
 
-def test_count_children_2020_uses_qf1_columns():
+def test_count_children_2020_uses_xchildpid_columns():
     df = pd.DataFrame({
-        "qf1_a_1": [1, 2, np.nan],
-        "qf1_a_2": [3, np.nan, np.nan],
-        "qf1_a_3": [np.nan, np.nan, np.nan],
+        "xchildpid_a_1": [101, 102, np.nan],
+        "xchildpid_a_2": [201, np.nan, np.nan],
+        "xchildpid_a_3": [np.nan, np.nan, np.nan],
     })
     out = P.count_children_2020(df)
     assert out.tolist() == [2, 1, 0]
@@ -89,8 +89,8 @@ def test_count_children_2020_uses_qf1_columns():
 
 def test_count_children_2020_negative_sentinels_are_not_children():
     df = pd.DataFrame({
-        "qf1_a_1": [1, -8, -1],
-        "qf1_a_2": [-9, 2, np.nan],
+        "xchildpid_a_1": [101, -8, -1],
+        "xchildpid_a_2": [-9, 202, np.nan],
     })
     out = P.count_children_2020(df)
     assert out.tolist() == [1, 1, 0]
@@ -237,3 +237,79 @@ def test_at_risk_had_new_child_fertile_age_filter():
 def test_at_risk_unknown_event_raises():
     with pytest.raises(ValueError):
         P.at_risk_for_event(_panel_for_at_risk(), "not_a_real_event")
+
+
+# ---------------------------------------------------------------------------
+# had_new_birth_from_children — clean fertility-event indicator from child file
+# ---------------------------------------------------------------------------
+def test_new_birth_matches_via_father_pid_in_window():
+    panel = pd.DataFrame({"pid": [100, 101, 102, 103]})
+    child = pd.DataFrame({
+        "pid_a_f":        [100, 100, 102, 999],
+        "pid_a_m":        [200, 200, 201, 202],
+        "ibirthy_update": [2018, 2010, 2017, 2019],
+    })
+    out = P.had_new_birth_from_children(panel, child,
+                                        birth_year_min=2015,
+                                        birth_year_col="ibirthy_update")
+    assert out.tolist() == [1.0, 0.0, 1.0, 0.0]
+
+
+def test_new_birth_matches_via_mother_pid():
+    panel = pd.DataFrame({"pid": [10, 11, 12]})
+    child = pd.DataFrame({
+        "pid_a_f":        [99, 99, 99],
+        "pid_a_m":        [10, 11, 99],
+        "ibirthy_update": [2018, 2010, 2017],
+    })
+    out = P.had_new_birth_from_children(panel, child, birth_year_min=2015)
+    assert out.tolist() == [1.0, 0.0, 0.0]
+
+
+def test_new_birth_zero_when_no_link():
+    panel = pd.DataFrame({"pid": [1, 2, 3]})
+    child = pd.DataFrame({
+        "pid_a_f":        [999, 998, 997],
+        "pid_a_m":        [888, 887, 886],
+        "ibirthy_update": [2018, 2019, 2020],
+    })
+    out = P.had_new_birth_from_children(panel, child, birth_year_min=2015)
+    assert out.tolist() == [0.0, 0.0, 0.0]
+
+
+def test_new_birth_filters_out_pre_window_births():
+    panel = pd.DataFrame({"pid": [5]})
+    child = pd.DataFrame({
+        "pid_a_f":        [5, 5],
+        "pid_a_m":        [99, 99],
+        "ibirthy_update": [2008, 2014],   # both before 2015
+    })
+    out = P.had_new_birth_from_children(panel, child, birth_year_min=2015)
+    assert out.tolist() == [0.0]
+
+
+def test_new_birth_handles_sentinel_parent_pids():
+    """pid_a_f / pid_a_m carry sentinel codes (-8 etc.) — they should never
+    match a real panel pid."""
+    panel = pd.DataFrame({"pid": [-8, 100, 101]})
+    child = pd.DataFrame({
+        "pid_a_f":        [-8, 100, -9],
+        "pid_a_m":        [-9, -8,  101],
+        "ibirthy_update": [2018, 2019, 2020],
+    })
+    out = P.had_new_birth_from_children(panel, child, birth_year_min=2015)
+    # The sentinel pid -8 must NOT match the sentinel parent_f -8 (we treat
+    # sentinels as missing on both sides).  Real pids 100 and 101 both match.
+    assert out.tolist() == [0.0, 1.0, 1.0]
+
+
+def test_new_birth_returns_one_row_per_panel_member():
+    """Even if a respondent has many children, the output is a single 0/1."""
+    panel = pd.DataFrame({"pid": [1]})
+    child = pd.DataFrame({
+        "pid_a_f":        [1, 1, 1, 1],
+        "pid_a_m":        [99, 99, 99, 99],
+        "ibirthy_update": [2018, 2019, 2010, 2016],
+    })
+    out = P.had_new_birth_from_children(panel, child, birth_year_min=2015)
+    assert out.tolist() == [1.0]

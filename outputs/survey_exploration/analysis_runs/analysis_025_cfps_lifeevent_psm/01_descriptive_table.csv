@@ -1,8 +1,8 @@
 event,sex,label,n_treated,n_control,note
 entered_marriage,male,Entered marriage,200,255,
 entered_marriage,female,Entered marriage,184,88,
-had_new_child,male,Had a new child (rostered),29,2549,
-had_new_child,female,Had a new child (rostered),0,1474,insufficient sample
+had_new_birth,male,Had a new birth (child born 2015–2020),414,2164,
+had_new_birth,female,Had a new birth (child born 2015–2020),371,1103,
 divorced,male,Got divorced,77,2416,
 divorced,female,Got divorced,35,1611,
 widowed,male,Widowed,21,2472,

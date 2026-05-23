@@ -97,11 +97,15 @@ def count_children_2014(df: pd.DataFrame) -> pd.Series:
 
 
 def count_children_2020(df: pd.DataFrame) -> pd.Series:
-    """Number of CFPS-rostered children at 2020 wave (non-null `qf1_a_1..qf1_a_8`).
+    """Number of CFPS-rostered children at 2020 wave.
 
-    qf1_a_<i> is "relationship with child i" — present only when child i exists.
+    Uses `xchildpid_a_1..xchildpid_a_8`, which are the child-pid analogs of
+    2014's `pid_c1..pid_c10`.  This is structurally cleaner than
+    `qf1_a_*` (the per-child relationship code), which can be NaN even
+    when the child has a pid.  Empirically the two count nearly identically
+    (≈ 55 / 28,530 differences in CFPS 2020).
     """
-    cols = [f"qf1_a_{i}" for i in range(1, 9)]
+    cols = [f"xchildpid_a_{i}" for i in range(1, 9)]
     return _count_nonmissing_positive(df, cols)
 
 
@@ -189,7 +193,48 @@ _AT_RISK = {
         ((p["female"] == 1) & (p["age_2014"] <= 45))
         | ((p["female"] == 0) & (p["age_2014"] <= 55))
     ),
+    # Same fertility window for the clean child-file-derived measure.
+    "had_new_birth":    lambda p: (
+        ((p["female"] == 1) & (p["age_2014"] <= 45))
+        | ((p["female"] == 0) & (p["age_2014"] <= 55))
+    ),
 }
+
+
+def had_new_birth_from_children(panel: pd.DataFrame,
+                                child: pd.DataFrame,
+                                birth_year_min: int = 2015,
+                                birth_year_col: str = "ibirthy_update") -> pd.Series:
+    """Clean fertility indicator: 1 iff `panel.pid` appears as a parent in
+    `child` of at least one row with `birth_year_col >= birth_year_min`.
+
+    Both `child.pid_a_f` and `child.pid_a_m` are searched.  Sentinel
+    parent-pid codes (any of the CFPS missing-code set) are treated as
+    missing and never match.  Returns a float Series of 0.0 / 1.0 aligned
+    to `panel.index`.
+
+    Parameters
+    ----------
+    panel : DataFrame with at least column "pid".
+    child : DataFrame with at least "pid_a_f", "pid_a_m", `birth_year_col`.
+    birth_year_min : earliest birth year considered a "new" birth
+        (inclusive).  Default 2015 for a 2014→2020 CFPS panel window.
+    birth_year_col : which column on `child` holds the year.  Default
+        "ibirthy_update" (the cleanest variable in cfps2020_child.dta).
+    """
+    by = pd.to_numeric(child[birth_year_col], errors="coerce")
+    in_window = (by >= birth_year_min) & (by <= 2025)
+    c = child.loc[in_window, ["pid_a_f", "pid_a_m"]].copy()
+    f = pd.to_numeric(c["pid_a_f"], errors="coerce")
+    m = pd.to_numeric(c["pid_a_m"], errors="coerce")
+    # Drop sentinel/missing parent pids.
+    f = f[(~f.isin(list(_MISSING))) & f.notna() & (f > 0)]
+    m = m[(~m.isin(list(_MISSING))) & m.notna() & (m > 0)]
+    parents_with_new_birth = pd.Index(set(f.tolist()) | set(m.tolist()))
+    panel_pid = pd.to_numeric(panel["pid"], errors="coerce")
+    out = panel_pid.isin(parents_with_new_birth).astype("float64")
+    out.index = panel.index
+    return out
 
 
 def at_risk_for_event(panel: pd.DataFrame, event: str) -> pd.Series:
@@ -255,7 +300,7 @@ def _read_2020() -> pd.DataFrame:
     cols = (items + [cfg["gender_var"], cfg["province_var"], "pid",
                      "qea0", "employ", "ibirthy",
                      "cfps2020eduy_im", "emp_income", "qa301", "fml_count"]
-            + [f"qf1_a_{i}" for i in range(1, 9)])
+            + [f"xchildpid_a_{i}" for i in range(1, 9)])
     df, _ = pyreadstat.read_dta(str(ROOT / cfg["file"]),
                                 usecols=list(dict.fromkeys(cols)))
     norm = []
@@ -318,8 +363,19 @@ def build_panel() -> pd.DataFrame:
     p["delta_urban"] = numeric_delta(p["urban_2014"], p["urban_2020"])
 
     # life events (binary, in 2014..2020 window)
+    # had_new_child = roster-count went up (the OLD measure, kept for
+    # backward-compat; known to be contaminated by roster-update artefacts at
+    # older ages — see analysis_024 § "Important caveat").
     p["had_new_child"] = (p["delta_children_n"].fillna(0) > 0).astype("float")
     p["had_new_child"] = p["had_new_child"].where(p["delta_children_n"].notna())
+
+    # had_new_birth = clean measure from cfps2020_child.dta: 1 iff respondent
+    # is pid_a_f or pid_a_m of at least one child with ibirthy_update >= 2015.
+    child20, _ = pyreadstat.read_dta(
+        str(ROOT / "surveys" / "CFPS" / "cfps2020_child.dta"),
+        usecols=["pid_a_f", "pid_a_m", "ibirthy_update"])
+    p["had_new_birth"] = had_new_birth_from_children(
+        p, child20, birth_year_min=2015, birth_year_col="ibirthy_update")
     p["lost_job"] = ((p["employed_2014"] == 1) & (p["employed_2020"] == 0)).astype("float")
     p["lost_job"] = p["lost_job"].where(p["employed_2014"].notna() & p["employed_2020"].notna())
     p["entered_work"] = ((p["employed_2014"] == 0) & (p["employed_2020"] == 1)).astype("float")

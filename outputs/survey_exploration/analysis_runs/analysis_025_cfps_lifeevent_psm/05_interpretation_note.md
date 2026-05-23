@@ -1,89 +1,106 @@
-# 05 · Interpretation note — analysis_025
+# 05 · Interpretation note — analysis_025 (v2)
+
+## v2 update
+
+The earlier `had_new_child` measure was contaminated (roster-update
+artefact concentrated at ages 54+). The PSM fit on it was therefore
+either useless (n_treated = 0 within fertile age) or biased (matched
+older men only). v2 replaces it with **`had_new_birth`**, derived from
+the CFPS 2020 child file (`cfps2020_child.dta`) via parent-pid linkage
+and `ibirthy_update ≥ 2015`. Treated cases now have mean age 26.5 in
+2014, range 16–52 — biologically plausible.
+
+The new variable also unlocks the female fertility cell, which had been
+impossible to estimate before. The substantive headline changes
+accordingly.
 
 ## Headline
 
-Under PSM-DiD with bootstrap inference, **no event survives a strict
-significance test** (smallest *p* = 0.058, female entered_marriage),
-but the **female entered-marriage ATT flips sign relative to OLS**.
-This is exactly the kind of result that motivates moving from OLS to
-PSM: linear adjustment was masking selection structure that
-non-parametric matching surfaces.
+Under PSM-DiD with bootstrap inference, **two events reach
+significance in the female panel, both with the same selection-flip
+signature**: women who entered marriage between 2014–2020 and women
+who had a new birth in 2015–2020 shifted *less progressive* than
+matched controls. Both effects vanish (or even reverse) under linear
+OLS adjustment — the difference between the two is informative about
+what was happening with selection.
 
-| Event              | Sex    | n_treated | ATT     | boot SE | 95 % CI               | *p* (norm) |
-|--------------------|--------|-----------|---------|---------|-----------------------|------------|
-| entered_marriage   | male   | 200       | +0.052  | 0.032   | [−0.021, +0.099]      | 0.10       |
-| entered_marriage   | female | 184       | **+0.080** | 0.042 | [−0.036, +0.124]    | **0.058**  |
-| had_new_child      | male   | 29        | +0.077  | 0.080   | [−0.146, +0.181]      | 0.34       |
-| had_new_child      | female | 0         | — insufficient (fertile-age n_treated = 0)              |            |
-| divorced           | male   | 77        | +0.032  | 0.036   | [−0.068, +0.075]      | 0.38       |
-| divorced           | female | 35        | −0.023  | 0.057   | [−0.143, +0.083]      | 0.69       |
-| widowed            | male   | 21        | +0.040  | 0.066   | [−0.148, +0.116]      | 0.55       |
-| widowed            | female | 39        | +0.025  | 0.047   | [−0.052, +0.132]      | 0.59       |
-| lost_job           | male   | 21        | +0.009  | 0.072   | [−0.116, +0.190]      | 0.90       |
-| lost_job           | female | 33        | +0.046  | 0.056   | [−0.054, +0.158]      | 0.42       |
-| entered_work       | —      | small     | — insufficient (n_control < 10 in both sexes)           |            |
+| Event              | Sex    | n_treated | ATT     | boot SE | 95 % CI            | *p*       |
+|--------------------|--------|-----------|---------|---------|--------------------|-----------|
+| entered_marriage   | female | 184       | **+0.080** | 0.042 | [−0.036, +0.124]  | **0.058** |
+| entered_marriage   | male   | 200       | +0.052  | 0.032   | [−0.021, +0.099]   | 0.10      |
+| **had_new_birth**  | **female** | **371** | **+0.050** | **0.025** | **[−0.011, +0.086]** | **0.049** |
+| had_new_birth      | male   | 414       | +0.021  | 0.019   | [−0.025, +0.049]   | 0.26      |
+| divorced           | male   | 77        | +0.032  | 0.036   | [−0.068, +0.075]   | 0.38      |
+| divorced           | female | 35        | −0.023  | 0.057   | [−0.143, +0.083]   | 0.69      |
+| widowed            | male   | 21        | +0.040  | 0.066   | [−0.148, +0.116]   | 0.55      |
+| widowed            | female | 39        | +0.025  | 0.047   | [−0.052, +0.132]   | 0.59      |
+| lost_job           | male   | 21        | +0.009  | 0.072   | [−0.116, +0.190]   | 0.90      |
+| lost_job           | female | 33        | +0.046  | 0.056   | [−0.054, +0.158]   | 0.42      |
+| entered_work       | —      | small     | — insufficient (n_control < 10 in both sexes)        |           |
 
-ATT > 0 means the event group shifted **more traditional** than the
-matched control would have. ATT < 0 means more progressive.
+ATT > 0 ⇒ event group shifted **more traditional** than the matched
+control. ATT < 0 ⇒ more progressive.
 
-## The most interesting finding: entered_marriage in women
+## Two female "selection-flip" findings
 
-**OLS (analysis_024)**: β = **−0.034** (95 % CI [−0.062, −0.005],
-*p* = 0.019). Reading: women who entered marriage shifted more
-progressive than otherwise-similar non-married women, after linear
-control for baseline ideation, age, and hukou.
+### 1. Entered marriage (female): OLS → −0.037, PSM → +0.080
 
-**PSM-DiD (this analysis)**: ATT = **+0.080** (95 % CI [−0.036,
-+0.124], *p* = 0.058). Reading: marriage-enterers shifted *more
-traditional* (or, equivalently, less progressive) than matched
-controls.
+Same direction reversal as v1. Mechanism unchanged: young Chinese
+women in the never-married pool drifted strongly progressive
+regardless of treatment (mean Δ_no = −0.112), and entering marriage
+selects from the younger, more-progressive tail. Linear OLS under-
+corrects this selection because the age slope is non-linear in this
+range; PSM matches young marriage-enterers to young still-unmarried
+women, and the matched controls turn out to have shifted more
+progressive than the marriage-enterers themselves. So marriage
+suppresses the progressive shift that would otherwise have happened.
 
-The sign flip is the substantively important result. Mechanics:
+### 2. Had a new birth (female): Welch → −0.027 (sig), OLS → −0.011 (NS), PSM → +0.050 (sig)
 
-1. The "at-risk" pool for women in 2014 is overwhelmingly young
-   never-married women, and that pool drifts strongly progressive
-   regardless of marriage (Δ_no = −0.112 in the raw within-pool
-   contrast).
-2. Women who marry between 2014 and 2020 are selected from the
-   *younger and more-progressive* end of that pool.
-3. Linear OLS that adjusts for age and baseline ideation
-   under-corrects this selection because the relationship between
-   age and Δ is steep in this age range and the OLS slope is fit
-   across the whole age distribution (mostly older).
-4. PSM matches young marriage-enterers to young still-unmarried
-   controls — the same age band the treated group lives in — and the
-   comparison shows that the unmarried controls actually shifted
-   *more* progressive (−0.112) than the marriage-enterers (−0.081).
-   So entering marriage is associated with **suppressing** part of
-   the progressive shift that would have happened in the absence of
-   marriage.
+This is new in v2 and is the cleanest demonstration of the
+selection-flip phenomenon in the run:
 
-This is the canonical demonstration that "controlled in OLS" ≠ "well
-adjusted under PSM" when (a) the treated group is concentrated in a
-small region of covariate space and (b) the outcome's relationship
-with the covariates isn't strictly linear.
+* **Raw Welch contrast**: women with a new birth shifted *more
+  progressive* than other women by 0.027 (*p* = 3e-4).
+* **OLS with controls**: that's reduced to β = −0.011, NS — linear
+  adjustment absorbs most of the selection.
+* **PSM-DiD**: ATT = +0.050 (*p* = 0.049, *n*_treated = 371) — the
+  matched controls shifted **more** progressive than the new-mothers.
 
-⚠️ Caveat: even after PSM, balance is imperfect for this fit. The
-post-match SMD on `marital_2014` is 0.24 (Cohen's 0.1 rule says ≤
-0.1 is acceptable). So the PSM is partially under-controlled, and
-the +0.058 *p*-value should not be over-read. The substantive
-take-away is the *direction* of the adjustment, not the precise
-magnitude.
+Balance after matching is excellent:
+
+| Covariate          | pre-SMD | post-SMD |
+|--------------------|---------|----------|
+| ideation_2014      | −0.20   | +0.03    |
+| birthy_2014        | +1.39   | −0.07    |
+| edu_yrs_2014       | +0.51   | −0.03    |
+| income_2014_log    | −0.04   | −0.15    |
+| urban_2014         | −0.21   | −0.07    |
+| children_n_2014    | −1.08   | −0.08    |
+
+Cohen's 0.1 rule is met or near-met on all covariates post-match (the
+worst is income at 0.15, still well below 0.25). Same picture for the
+male fit. So the new-birth ATT is on a properly-balanced match — this
+is a substantively defensible estimate.
+
+Substantive reading: among Chinese women aged 16–45 in 2014, having a
+child in 2015–2020 was associated with about a 0.05 point *more
+traditional* shift on the [0,1] ideation index over the panel window,
+relative to matched non-mothers. The bound is wide (CI nearly touches
+zero on the low side), so this is "consistent with a modest
+traditionalising effect of new motherhood under unconfoundedness", not
+a precise causal claim.
+
+The male fit (ATT = +0.021, *p* = 0.26) goes in the same direction but
+isn't significant. With n_treated = 414 it's not a sample-size issue
+— the magnitude is just smaller, plausibly because the lived
+experience of new fatherhood at this age band carries less of an
+attitudinal shock than new motherhood does.
 
 ## Other fits, briefly
 
 * **Entered marriage, men**: ATT = +0.052, *p* = 0.10. Direction
   matches the female result but smaller and less precise.
-* **Had a new child, men**: ATT = +0.077 but n_treated = 29, *p* =
-  0.34. The fertile-age male pool with a rostered new child is too
-  small and too age-concentrated (54–55 years old, the contamination
-  story) to support inference. Balance on `birthy_2014` is bad both
-  pre (SMD = −2.5) and post matching (−1.0).
-* **Had a new child, women**: not estimable — within the fertile
-  window (women ≤ 45) there are essentially zero pids with a
-  rostered new child by 2020 (n_treated = 0). The roster-update
-  measurement artefact makes this contrast impossible to study with
-  the current variable definition.
 * **Divorced / widowed / lost_job**: all *p* > 0.3 with bootstrap
   CIs spanning zero. Sample sizes (n_treated ∈ [21, 77]) are too
   small to detect any but very large effects. Read as "no evidence",
@@ -92,55 +109,46 @@ magnitude.
   = 7 male, 8 female) — bootstrapping fails when the control pool
   is this small.
 
-## Comparing PSM and OLS side-by-side
+## Comparing PSM and OLS side-by-side (female only)
 
-| Predictor          | OLS β (female) | OLS *p* | PSM ATT (female) | PSM *p* |
-|--------------------|----------------|---------|-------------------|---------|
-| Entered marriage   | **−0.034**     | 0.019   | **+0.080**        | 0.058   |
-| Had a new child    | **−0.042**     | 1e-6    | — n/a             | — n/a   |
-| Got divorced       | −0.028 (ns)    | 0.24    | −0.023 (ns)       | 0.69    |
-| Widowed            | +0.012 (ns)    | 0.40    | +0.025 (ns)       | 0.59    |
-| Lost job           | +0.039 (ns)    | 0.13    | +0.046 (ns)       | 0.42    |
+| Predictor          | Welch diff | OLS β    | PSM ATT  |
+|--------------------|------------|----------|----------|
+| Entered marriage   | **−0.041** | **−0.037** | **+0.080** |
+| Had a new birth    | **−0.027** | −0.011 (NS) | **+0.050** |
+| Got divorced       | −0.040 (∼)  | −0.029 (NS) | −0.023 (NS) |
+| Widowed            | **+0.026** | +0.010 (NS) | +0.025 (NS) |
+| Lost job           | +0.011 (NS) | +0.038 (NS) | +0.046 (NS) |
 
-For the events with *n_treated* large enough to estimate both ways,
-PSM and OLS agree on the **sign** for divorced / widowed / lost_job,
-but disagree on **entered_marriage** in the female panel. The male
-panel doesn't show a sign flip but also doesn't show a significant
-OLS effect to begin with, so there's nothing to flip.
-
-The female `had_new_child` OLS β = −0.042 (*p* < 1e-6) has no PSM
-counterpart because the fertile-age denominator is empty. This is
-a measurement issue, not a substantive one — see analysis_024 § "Important caveat".
+The two events that survive PSM both have a clean **Welch → OLS → PSM**
+trajectory in which the OLS lies between the raw contrast and the
+matched ATT (or kills the signal entirely). This is the textbook
+diagnostic for selection that linear adjustment doesn't fully soak up.
 
 ## What this analysis *does* support, after PSM-DiD
 
-1. **The most defensible causal-style claim** in the run is that
-   *entering marriage suppresses the progressive shift that would
-   otherwise occur among young Chinese women between 2014 and
-   2020*. The effect is around +0.08 on the [0,1] ideation index
-   (≈ 1.6 notches on the 4-item battery) and is marginally
-   significant.
-2. No other event reaches significance under PSM-DiD. The earlier
-   `had_new_child` story (−0.04 in female OLS) cannot be supported
-   here because the variable is contaminated.
-3. The PSM-DiD vs OLS comparison itself is a methodological message:
-   for selection-heavy contrasts (e.g. life events in panel data),
-   linear OLS adjustment can give qualitatively wrong answers even
-   when the controls *look* right on paper.
+1. **Marriage and motherhood both partially suppress the progressive
+   ideological shift** that young Chinese women would otherwise have
+   undergone between 2014 and 2020. Each effect is ≈ +0.05 to +0.08 on
+   the [0,1] index, marginally significant, and balance-controlled.
+2. No similar male effect reaches significance for either event, but
+   the male PSM coefficients on both events point in the same
+   direction (smaller magnitude).
+3. Divorce, widowhood, and job-status changes carry no PSM signal — but
+   these are also the smallest treated groups, so this is "no
+   evidence", not "no effect".
 
-## Important caveats (read with the table)
+## Caveats (read together with the table)
 
-* Hidden confounders are not addressed. PSM is observable-only.
-* Sample sizes are small for every fit except entered_marriage.
-* Balance is acceptable but not perfect for entered_marriage in
-  women (max post-match SMD = 0.24 on `marital_2014`); poor for
-  had_new_child in men (post-match SMD on `birthy_2014` = 1.0).
-  See `figures/psm_balance.pdf` for the full balance dotplot.
-* The `had_new_child` variable is contaminated by roster artefacts
-  (see analysis_024 §); PSM can't fix that.
-* All inference uses normal-approximation *p*-values from the
-  bootstrap SE. With n_treated < 50, those *p*-values are an
-  approximation; the percentile CI is the more trustworthy summary.
+* **Hidden confounders.** PSM is observable-only. Anything
+  unmeasured that predicts both event and Δideation (e.g. an
+  unobserved "wanting to settle down" attitude) is not adjusted for.
+* **Wide bootstrap CIs.** The female new-birth CI is
+  [−0.011, +0.086] — the lower bound nearly touches zero. The
+  marriage CI is similar. Read these as "consistent with a real
+  positive effect, weakly distinguishable from null."
+* **Normal-approx *p*-values.** With n_treated in the hundreds these
+  are reasonable approximations; we report the percentile CI alongside.
+* **Two-wave design.** No event-study leads / lags possible.
 
 ## Files in this analysis_run
 

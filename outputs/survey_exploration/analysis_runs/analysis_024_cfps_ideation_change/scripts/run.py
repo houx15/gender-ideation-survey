@@ -251,7 +251,12 @@ def step_forest_who(by_strat: dict[str, pd.DataFrame]) -> None:
 # 5. Life-event means
 # ---------------------------------------------------------------------------
 EVENTS = [
-    ("had_new_child",    "Had a new child (2014→2020)"),
+    # had_new_birth replaces the older had_new_child indicator: it identifies
+    # respondents who appear as pid_a_f / pid_a_m of at least one child in
+    # cfps2020_child.dta with ibirthy_update ≥ 2015.  This fixes the
+    # roster-expansion artefact of had_new_child (which was concentrated in
+    # respondents aged 54+ in 2014 and was not capturing actual births).
+    ("had_new_birth",    "Had a new birth (child born 2015–2020)"),
     ("entered_marriage", "Entered marriage"),
     ("divorced",         "Got divorced"),
     ("widowed",          "Lost spouse to death"),
@@ -373,12 +378,12 @@ def step_did_trajectory(p: pd.DataFrame) -> None:
     We just plot what the current analysis already implies — no PSM yet.
 
     Two figures matching the focused forests:
-      did_trajectory_family.pdf — had_new_child / entered_marriage / divorced
+      did_trajectory_family.pdf — had_new_birth / entered_marriage / divorced
       did_trajectory_job.pdf    — lost_job / entered_work
     """
     panels = [
         ("family", "Family-change events",
-         [("had_new_child",    "Had a new child"),
+         [("had_new_birth",    "Had a new birth"),
           ("entered_marriage", "Entered marriage"),
           ("divorced",         "Got divorced")]),
         ("job", "Job-change events",
@@ -449,7 +454,7 @@ def step_life_event_focused_forests(by_strat: dict[str, pd.DataFrame]) -> None:
     sex_colours = {"male": "#117755", "female": "#aa4422"}
     sex_marker  = {"male": "o", "female": "s"}
     panels = [
-        ("family", "Family-change events", ["had_new_child", "entered_marriage", "divorced"]),
+        ("family", "Family-change events", ["had_new_birth", "entered_marriage", "divorced"]),
         ("job",    "Job-change events",     ["lost_job", "entered_work"]),
     ]
     label_of = dict(EVENTS)
@@ -535,7 +540,7 @@ def step_ols(p: pd.DataFrame) -> dict[str, pd.DataFrame]:
 
     Female is dropped from the within-sex specifications.
     """
-    base_cols = ["urban_2014", "age_2014", "had_new_child", "lost_job",
+    base_cols = ["urban_2014", "age_2014", "had_new_birth", "lost_job",
                  "entered_work", "entered_marriage", "divorced", "widowed",
                  "delta_household_n", "delta_edu_yrs", "ideation_2014"]
     cols_pooled = ["female"] + base_cols
@@ -566,7 +571,7 @@ def step_ols_coefplot(coefs_by: dict[str, pd.DataFrame]) -> None:
         "female":           "Female",
         "urban_2014":       "Urban hukou (2014)",
         "age_2014":         "Age at 2014",
-        "had_new_child":    "Had a new child",
+        "had_new_birth":    "Had a new birth",
         "lost_job":         "Lost / left job",
         "entered_work":     "Entered work",
         "entered_marriage": "Entered marriage",
@@ -577,7 +582,7 @@ def step_ols_coefplot(coefs_by: dict[str, pd.DataFrame]) -> None:
         "ideation_2014":    "Baseline ideation (2014)",
     }
     # Order from top: substantive variables first; baseline last.
-    base_order = ["urban_2014", "age_2014", "had_new_child", "entered_marriage",
+    base_order = ["urban_2014", "age_2014", "had_new_birth", "entered_marriage",
                   "divorced", "widowed", "lost_job", "entered_work",
                   "delta_household_n", "delta_edu_yrs"]
     sex_titles = {"all": "Overall sample (N = 10,318)",

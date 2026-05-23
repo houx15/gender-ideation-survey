@@ -1,4 +1,26 @@
-# 05 · Interpretation note — analysis_024 (v3)
+# 05 · Interpretation note — analysis_024 (v4)
+
+## v4 update — clean `had_new_birth` indicator
+
+The earlier `had_new_child` indicator (which counted whether the
+respondent's rostered-children count rose between 2014 and 2020) was
+contaminated by roster updates: 100 % of `had_new_child = 1` cases were
+aged ≥ 54 at 2014 (median 63), not biologically plausible as new births.
+
+v4 replaces that with `had_new_birth`, derived from
+`cfps2020_child.dta`: a respondent is treated (1) if they appear as
+`pid_a_f` or `pid_a_m` of at least one child whose `ibirthy_update`
+is ≥ 2015. That delivers 1,997 treated cases with **mean age 26.5 at
+2014, range 16–52** — exactly the biology we expected. The previous
+`had_new_child` column remains on the panel for transparency but no
+analysis output uses it.
+
+Additionally, the 2020 child-count helper (`count_children_2020`)
+switched from `qf1_a_*` (relationship code) to `xchildpid_a_*`
+(child pid). The two differ on only ~55 of 28,530 cases but
+`xchildpid_a_*` is the structurally cleaner choice (parallel to 2014's
+`pid_c_*`).
+
 
 ## Scope
 
@@ -9,13 +31,13 @@ of those moved by at least one notch of the 4-item battery
 *which life events* go with it, stratified by sex (overall, male,
 female).
 
-> v3 simplification: only the **whole-sample denominator** is reported
-> for life-event contrasts (`event = 1` vs `event = 0` across the
-> relevant sex stratum). The at-risk-restricted version explored in v2
-> shrank n_yes too far for the rarer events (e.g. fertile-age
-> `had_new_child` n_yes = 94 panel-wide, ≈0 for women under 45) to
-> support inference. The `at_risk_for_event` helper stays in
-> `cfps_panel.py` as documented library code for follow-up work.
+> Simplification (carried over from v3): only the **whole-sample
+> denominator** is reported for life-event contrasts (`event = 1` vs
+> `event = 0` across the relevant sex stratum). An at-risk-restricted
+> version was explored earlier but dropped because for several events
+> the restricted n_yes was too small. The `at_risk_for_event` helper
+> stays in `cfps_panel.py` as documented library code for follow-up
+> work.
 
 ## Headline
 
@@ -58,7 +80,7 @@ progressive than the no-event group.
 
 | Event              | n_yes  | mean(yes) | mean(no) | diff    | Welch *p*  |
 |--------------------|--------|-----------|----------|---------|------------|
-| Had a new child    | 2,648  | −0.010    | −0.035   | +0.025  | 3 × 10⁻¹⁰  |
+| Had a new birth    | 1,591  | −0.048    | −0.028   | −0.020  | 1 × 10⁻⁵   |
 | Entered marriage   | 760    | −0.058    | −0.029   | −0.029  | 2 × 10⁻⁴   |
 | Got divorced       | 256    | −0.043    | −0.030   | −0.013  | 0.33 (ns)  |
 | Widowed            | 380    | −0.018    | −0.031   | +0.012  | 0.20 (ns)  |
@@ -67,34 +89,36 @@ progressive than the no-event group.
 
 ### Male sample
 
-| Event              | n_yes | mean(yes) | mean(no) | diff   | Welch *p*  |
-|--------------------|-------|-----------|----------|--------|------------|
-| Had a new child    | 1,301 | −0.005    | −0.021   | +0.016 | 5 × 10⁻³   |
-| Entered marriage   | 374   | −0.034    | −0.018   | −0.017 | 0.13 (ns)  |
-| Got divorced       | 159   | −0.019    | −0.018   | −0.001 | 0.95 (ns)  |
-| Widowed            | 119   | −0.022    | −0.018   | −0.004 | 0.85 (ns)  |
-| Lost / left job    | 38    | +0.005    | −0.017   | +0.022 | 0.47 (ns)  |
-| Entered work       | 62    | −0.028    | −0.017   | −0.011 | 0.75 (ns)  |
+| Event              | n_yes | mean(yes) | mean(no) | diff    | Welch *p*  |
+|--------------------|-------|-----------|----------|---------|------------|
+| Had a new birth    | 752   | −0.029    | −0.017   | −0.012  | 0.14 (ns)  |
+| Entered marriage   | 374   | −0.034    | −0.018   | −0.017  | 0.13 (ns)  |
+| Got divorced       | 159   | −0.019    | −0.018   | −0.001  | 0.95 (ns)  |
+| Widowed            | 119   | −0.022    | −0.018   | −0.004  | 0.85 (ns)  |
+| Lost / left job    | 38    | +0.005    | −0.017   | +0.022  | 0.47 (ns)  |
+| Entered work       | 62    | −0.028    | −0.017   | −0.011  | 0.75 (ns)  |
 
 ### Female sample
 
-| Event              | n_yes | mean(yes) | mean(no) | diff    | Welch *p* |
-|--------------------|-------|-----------|----------|---------|-----------|
-| Had a new child    | 1,347 | −0.014    | −0.047   | **+0.033** | 9 × 10⁻¹⁰ |
+| Event              | n_yes | mean(yes) | mean(no) | diff      | Welch *p* |
+|--------------------|-------|-----------|----------|-----------|-----------|
+| Had a new birth    | 839   | −0.066    | −0.039   | **−0.027** | 3 × 10⁻⁴  |
 | Entered marriage   | 386   | −0.081    | −0.040   | **−0.041** | 2 × 10⁻⁴  |
-| Got divorced       | 97    | −0.081    | −0.041   | −0.040  | 0.068 (∼)  |
+| Got divorced       | 97    | −0.081    | −0.041   | −0.040    | 0.068 (∼)  |
 | Widowed            | 261   | −0.017    | −0.043   | **+0.026** | 0.024     |
-| Lost / left job    | 43    | −0.029    | −0.040   | +0.011  | 0.71 (ns) |
-| Entered work       | 50    | −0.066    | −0.039   | −0.027  | 0.38 (ns) |
+| Lost / left job    | 43    | −0.029    | −0.040   | +0.011    | 0.71 (ns) |
+| Entered work       | 50    | −0.066    | −0.039   | −0.027    | 0.38 (ns) |
 
-The clean reading: **the female panel carries all of the life-event
-signal**. Three contrasts cross conventional significance: women who
-had a new child shifted less progressive than other women (+0.033, *p*
-≈ 9e-10); women who entered marriage shifted *more* progressive
-(−0.041, *p* = 2e-4); women who were widowed shifted less progressive
-(+0.026, *p* = 0.024). In the male panel only the new-child contrast
-has any signal at all (+0.016, *p* = 0.005), and the OLS below shows it
-disappears once baseline ideation is controlled.
+The clean reading: **the female panel carries the bulk of the
+life-event signal**. Three contrasts cross conventional significance:
+women who had a new birth shifted *more* progressive than other women
+(−0.027, *p* = 3e-4); women who entered marriage shifted *more*
+progressive (−0.041, *p* = 2e-4); women who were widowed shifted *less*
+progressive (+0.026, *p* = 0.024). The male panel shows no Welch-level
+signal on any event. Note that the new-birth direction in the raw
+contrast (more progressive) reverses sign in the PSM-DiD (analysis_025)
+once baseline selection is matched non-parametrically — see the
+discussion there.
 
 ## OLS by sex (HC1 SEs)
 
@@ -102,57 +126,60 @@ disappears once baseline ideation is controlled.
 identical across the three specifications, with `female` dropped from
 the within-sex fits. Selected coefficients with HC1 95 % CI:
 
-| Predictor          | All (N=10,318)               | Male (N=5,808)              | Female (N=4,510)             |
-|--------------------|-------------------------------|------------------------------|------------------------------|
-| Urban hukou (2014) | **−0.055** [−0.063, −0.047]   | **−0.035** [−0.045, −0.025] | **−0.080** [−0.093, −0.067] |
-| Age at 2014 / yr   | **+0.003** [+0.003, +0.004]   | **+0.002** [+0.002, +0.003] | **+0.005** [+0.004, +0.005] |
-| Had a new child    | **−0.019** [−0.030, −0.008]   | −0.003 [−0.017, +0.011]      | **−0.042** [−0.059, −0.025] |
-| Entered marriage   | **−0.018** [−0.035, −0.0002]  | −0.006 [−0.028, +0.016]      | **−0.034** [−0.062, −0.005] |
-| Got divorced       | +0.003 [−0.022, +0.028]       | +0.016 [−0.013, +0.044]      | −0.028 [−0.074, +0.019]      |
-| Widowed            | −0.003 [−0.029, +0.023]       | **−0.050** [−0.096, −0.005] | +0.012 [−0.017, +0.042]      |
-| Lost / left job    | +0.025 [−0.010, +0.060]       | +0.024 [−0.025, +0.073]      | +0.039 [−0.011, +0.089]      |
-| Entered work       | −0.018 [−0.058, +0.023]       | −0.006 [−0.061, +0.049]      | −0.026 [−0.083, +0.030]      |
-| Δ household size   | −0.001 [−0.003, +0.001]       | −0.001 [−0.003, +0.001]      | −0.002 [−0.005, +0.001]      |
-| Δ education years  | −0.001 [−0.003, +0.001]       | −0.001 [−0.005, +0.002]      | +0.0003 [−0.003, +0.004]     |
-| Baseline ideation  | **−0.644** [−0.665, −0.623]   | **−0.669** [−0.696, −0.643] | **−0.637** [−0.669, −0.604] |
-| Female (pooled)    | **−0.012** [−0.018, −0.005]   | —                            | —                            |
+| Predictor          | All                     | Male                       | Female                     |
+|--------------------|--------------------------|----------------------------|----------------------------|
+| Urban hukou (2014) | **−0.054** [−0.062, −0.046] | **−0.035** [−0.045, −0.025] | **−0.079** [−0.092, −0.066] |
+| Age at 2014 / yr   | **+0.003** [+0.003, +0.003] | **+0.002** [+0.002, +0.003] | **+0.004** [+0.003, +0.004] |
+| Had a new birth    | −0.001 [−0.014, +0.011]     | +0.007 [−0.008, +0.022]     | −0.011 [−0.031, +0.009]     |
+| Entered marriage   | **−0.020** [−0.038, −0.003] | −0.009 [−0.031, +0.013]     | **−0.037** [−0.066, −0.008] |
+| Got divorced       | +0.003 [−0.022, +0.028]     | +0.016 [−0.013, +0.045]     | −0.029 [−0.075, +0.018]     |
+| Widowed            | −0.004 [−0.029, +0.022]     | **−0.050** [−0.096, −0.005] | +0.010 [−0.020, +0.040]     |
+| Lost / left job    | +0.025 [−0.010, +0.060]     | +0.025 [−0.024, +0.074]     | +0.038 [−0.012, +0.087]     |
+| Entered work       | −0.019 [−0.060, +0.022]     | −0.006 [−0.061, +0.049]     | −0.027 [−0.084, +0.029]     |
+| Δ household size   | −0.001 [−0.003, +0.001]     | −0.001 [−0.003, +0.001]     | −0.002 [−0.005, +0.001]     |
+| Δ education years  | −0.001 [−0.004, +0.001]     | −0.002 [−0.005, +0.002]     | −0.0003 [−0.004, +0.003]    |
+| Baseline ideation  | **−0.644** [−0.665, −0.623] | **−0.670** [−0.696, −0.643] | **−0.633** [−0.665, −0.601] |
+| Female (pooled)    | **−0.012** [−0.018, −0.005] | —                           | —                           |
 
-Bold = HC1 *p* < 0.05.
+N pooled = 10,318; male = 5,808; female = 4,510. Bold = HC1 *p* < 0.05.
 
 Three things worth stressing:
 
-1. **The new-child coefficient flips sign in the female panel.** In the
-   raw whole-sample contrast (Welch), women with a new child shifted
-   *less* progressive than other women (+0.033). In the OLS, after
-   conditioning on baseline ideation + age + hukou, the same group
-   shifted *more* progressive (β = −0.042, *p* < 1e-6). Mechanism: women
-   who gain a rostered child are selected from younger, more-traditional
-   baselines; once we condition on that selection, the within-person
-   effect goes in the progressive direction. The male panel has no
-   such effect either way.
+1. **`had_new_birth` is null under linear OLS adjustment, but flips sign
+   and reaches significance in PSM-DiD (analysis_025).** The female
+   Welch contrast says new-mothers shifted more progressive than
+   non-mothers (−0.027, *p* = 3e-4). Linear OLS reduces that to
+   β = −0.011, NS, because age and baseline ideation soak up most of
+   the selection. But PSM-DiD matches *non-parametrically* on baseline,
+   and finds **ATT = +0.050 (*p* = 0.049)** — new-mothers shifted *less*
+   progressive than matched non-mothers. The sign reversal is the same
+   pattern we see for `entered_marriage` (see § "Comparing PSM and OLS
+   side-by-side" in analysis_025).
 
 2. **Hukou and age are roughly twice as strong for women as for men.**
-   Urban hukou shifts women 0.080 more progressive than rural women but
-   men only 0.035. Age drifts women 0.005 traditional per year vs 0.002
-   for men. Over a 30-year age gap that compounds to 0.15 vs 0.06.
+   Urban hukou shifts women 0.079 more progressive than rural women but
+   men only 0.035. Age drifts women 0.004 traditional per year vs 0.002
+   for men. Over a 30-year age gap that compounds to 0.12 vs 0.06.
 
 3. **Widowed men** shifted 0.050 more progressive than partnered men.
-   *p* = 0.030 with n_yes = 119, so we flag it as a striking but
+   *p* = 0.029 with n_yes = 119, so we flag it as a striking but
    underpowered finding. No equivalent signal for women.
 
-## Important caveat — `had_new_child` is contaminated
+4. **Entered marriage stays significant for women in OLS** (β = −0.037,
+   *p* = 0.011) — and likewise flips sign in PSM (see analysis_025).
 
-Of the 2,785 panel-wide `had_new_child = 1` cases, **all are aged ≥ 54
-in 2014, median age 63**. These are not biological births — they're
-rostering changes (adult children re-appearing in the 2020 child
-roster). The indicator is therefore best read as "respondent's number
-of rostered children grew", not "respondent had a baby". The female
-OLS coefficient (β = −0.042) is robust *within the data we have*, but
-the substantive claim "new motherhood reduces traditionalism" cannot
-be made from this evidence alone — it would require pulling the CFPS
-child file and reconstructing the event from child birth-years. We
-note this in the discussion and leave the cleaner reconstruction for a
-follow-up.
+## Historical caveat — the old `had_new_child` was contaminated (fixed in v4)
+
+For posterity: the original `had_new_child` indicator (used in v1-v3
+of this analysis) was defined as "rostered children count grew between
+2014 and 2020". 2,785 of the 20,100 panel members had that == 1, but
+**all of them were aged ≥ 54 in 2014, median 63** — not biological
+births, but adult children re-appearing in the 2020 child roster.
+
+v4 fixed this by switching to `had_new_birth` from the CFPS 2020 child
+file (see top of this note). The new variable has 1,997 treated cases
+with mean age 26.5 — exactly the biology we expect. All life-event
+tables and the PSM-DiD in analysis_025 now use the clean variable.
 
 ## Takeaways
 
