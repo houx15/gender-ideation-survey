@@ -195,4 +195,9 @@ follow-up.
   job-change events: lost / left job, entered work.
 * `figures/ols_coefplot_{all,male,female}.pdf` — one coefplot per sex
   stratum (HC1 95 % CI; baseline-ideation in footnote)
-* `figures/who_changes_forest.pdf`, `delta_ideation_hist.pdf` — unchanged
+* `figures/who_changes_forest_{all,male,female}.pdf` — demographic
+  forests (cohort + hukou; gender block in the pooled figure only).
+  X-axes are matched so the three figures line up visually.
+  `tables/who_changes_{all,male,female}.csv` carry the underlying
+  numbers.
+* `figures/delta_ideation_hist.pdf` — unchanged

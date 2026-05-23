@@ -134,13 +134,26 @@ def _group_summary(p: pd.DataFrame, group_col: str) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
-def step_who_changes(p: pd.DataFrame) -> pd.DataFrame:
-    parts = []
-    for col in ["female", "cohort", "urban_2014"]:
-        parts.append(_group_summary(p, col))
-    out = pd.concat(parts, ignore_index=True)
+def step_who_changes(p: pd.DataFrame) -> dict[str, pd.DataFrame]:
+    """Group means + bootstrap CIs for the demographic splits.
 
-    # Effect sizes for the binary splits.
+    Runs three times: pooled (gender + cohort + hukou blocks), male-only
+    (cohort + hukou), female-only (cohort + hukou).  Each result is saved
+    to its own CSV.  Returns a dict keyed by stratum name.
+    """
+    by_strat: dict[str, pd.DataFrame] = {}
+    for stratum, sex_val in SEX_STRATA:
+        sub = p if sex_val is None else p[p["female"] == sex_val]
+        # Within-sex panels drop the Gender block (it's trivially one row).
+        group_vars = (["female", "cohort", "urban_2014"] if stratum == "all"
+                      else ["cohort", "urban_2014"])
+        parts = [_group_summary(sub, col) for col in group_vars]
+        out = pd.concat(parts, ignore_index=True)
+        out["sex_stratum"] = stratum
+        out.to_csv(TBL / f"who_changes_{stratum}.csv", index=False)
+        by_strat[stratum] = out
+
+    # Effect sizes for the binary splits in the pooled panel only.
     es_rows = []
     for col, label in [("female", "female_vs_male"), ("urban_2014", "urban_vs_rural")]:
         a = p.loc[(p[col] == 0) & p["delta_ideation"].notna(), "delta_ideation"]
@@ -151,68 +164,87 @@ def step_who_changes(p: pd.DataFrame) -> pd.DataFrame:
             w = DS.welch_ci_diff(b.values, a.values)
             es_rows.append({
                 "comparison": label,
-                "n_group0": len(a),
-                "n_group1": len(b),
-                "mean_group0": float(a.mean()),
-                "mean_group1": float(b.mean()),
-                "cohen_d": cd,
-                "hedges_g": hg,
-                "welch_diff": w["diff"],
-                "welch_se": w["se"],
-                "welch_t": w["t"],
-                "welch_df": w["df"],
-                "welch_p": w["p"],
-                "ci_lo": w["ci_lo"],
-                "ci_hi": w["ci_hi"],
+                "n_group0": len(a), "n_group1": len(b),
+                "mean_group0": float(a.mean()), "mean_group1": float(b.mean()),
+                "cohen_d": cd, "hedges_g": hg,
+                "welch_diff": w["diff"], "welch_se": w["se"],
+                "welch_t": w["t"], "welch_df": w["df"], "welch_p": w["p"],
+                "ci_lo": w["ci_lo"], "ci_hi": w["ci_hi"],
             })
     pd.DataFrame(es_rows).to_csv(TBL / "effect_sizes_who.csv", index=False)
-    out.to_csv(TBL / "who_changes.csv", index=False)
-    return out
+    return by_strat
 
 
 # ---------------------------------------------------------------------------
 # 4. Forest plot of group means
 # ---------------------------------------------------------------------------
-def step_forest_who(who: pd.DataFrame) -> None:
-    # Build a single forest with three blocks (gender / cohort / urban).
-    blocks = [
-        ("Gender", "female",
-         {0.0: "Male", 1.0: "Female"}),
-        ("Cohort", "cohort", None),
-        ("Hukou", "urban_2014",
-         {0.0: "Rural hukou", 1.0: "Urban hukou"}),
+def _draw_who_forest(who: pd.DataFrame, *, stratum: str, title_extra: str,
+                     out_path: Path, xlim: tuple[float, float] | None,
+                     include_gender: bool) -> None:
+    blocks = []
+    if include_gender:
+        blocks.append(("Gender", "female", {0.0: "Male", 1.0: "Female"}))
+    blocks += [
+        ("Cohort",  "cohort",     None),
+        ("Hukou",   "urban_2014", {0.0: "Rural hukou", 1.0: "Urban hukou"}),
     ]
-    fig, ax = plt.subplots(figsize=(6.8, 5.4))
+    sex_colours = {"all": "#264478", "male": "#117755", "female": "#aa4422"}
+
+    fig, ax = plt.subplots(figsize=(6.8, 4.2 + 0.4 * include_gender))
     y = 0
     yticks, ylabels = [], []
-    for title, var, lab_map in blocks:
-        ax.text(-0.18, y + 0.5, title, fontsize=10, fontweight="bold",
+    for block_title, var, lab_map in blocks:
+        ax.text(-0.20, y + 0.5, block_title, fontsize=10, fontweight="bold",
                 transform=ax.get_yaxis_transform(), va="center", ha="right")
         sub = who[who.group_var == var]
-        # consistent ordering
         if var == "cohort":
             order = ["1930-1949", "1950-1959", "1960-1969",
                      "1970-1979", "1980-1989", "1990-2005"]
-            sub = sub.set_index("group").reindex([g for g in order if g in set(sub.group)]).reset_index()
+            sub = sub.set_index("group").reindex(
+                [g for g in order if g in set(sub.group)]).reset_index()
         for _, r in sub.iterrows():
-            ax.errorbar(r["mean_delta"], y, xerr=[[r["mean_delta"] - r["ci_lo"]],
-                                                  [r["ci_hi"] - r["mean_delta"]]],
-                        fmt="o", color="#264478", capsize=3)
+            ax.errorbar(r["mean_delta"], y,
+                        xerr=[[r["mean_delta"] - r["ci_lo"]],
+                              [r["ci_hi"] - r["mean_delta"]]],
+                        fmt="o", color=sex_colours[stratum], capsize=3)
             label = lab_map.get(r["group"], str(r["group"])) if lab_map else str(r["group"])
             yticks.append(y)
             ylabels.append(f"{label}  (n={int(r['n']):,})")
             y -= 1
-        y -= 0.5   # spacing between blocks
-
+        y -= 0.5
     ax.axvline(0, color="black", lw=0.6)
     ax.set_yticks(yticks)
     ax.set_yticklabels(ylabels)
     ax.invert_yaxis()
     ax.set_xlabel("Δ gender-ideation index (95% bootstrap CI)")
-    ax.set_title("Who shifted ideology, CFPS 2014→2020")
+    if xlim:
+        ax.set_xlim(*xlim)
+    ax.set_title(f"Who shifted ideology, {title_extra} (CFPS 2014→2020)",
+                 fontsize=10)
     fig.tight_layout()
-    fig.savefig(FIG / "who_changes_forest.pdf")
+    fig.savefig(out_path)
     plt.close(fig)
+
+
+def step_forest_who(by_strat: dict[str, pd.DataFrame]) -> None:
+    """Produce three who-changes forests: all / male / female."""
+    # Common x-axis lim across the three forests so they line up.
+    finite = pd.concat(by_strat.values())
+    finite = finite.dropna(subset=["mean_delta", "ci_lo", "ci_hi"])
+    lo = float(finite["ci_lo"].min())
+    hi = float(finite["ci_hi"].max())
+    pad = (hi - lo) * 0.05
+    xlim = (lo - pad, hi + pad)
+
+    titles = {"all":    "overall sample",
+              "male":   "male sample",
+              "female": "female sample"}
+    for stratum, who in by_strat.items():
+        _draw_who_forest(who, stratum=stratum,
+                         title_extra=titles[stratum],
+                         out_path=FIG / f"who_changes_forest_{stratum}.pdf",
+                         xlim=xlim,
+                         include_gender=(stratum == "all"))
 
 
 # ---------------------------------------------------------------------------
@@ -526,8 +558,8 @@ def step_ols_coefplot(coefs_by: dict[str, pd.DataFrame]) -> None:
 def main() -> None:
     p = step_panel()
     step_distribution(p)
-    who = step_who_changes(p)
-    step_forest_who(who)
+    who_by_strat = step_who_changes(p)
+    step_forest_who(who_by_strat)
     by_strat = step_life_events(p)
     step_life_event_forest(by_strat)
     step_life_event_focused_forests(by_strat)
