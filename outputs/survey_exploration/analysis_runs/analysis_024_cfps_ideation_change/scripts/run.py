@@ -365,6 +365,85 @@ def step_life_event_forest(by_strat: dict[str, pd.DataFrame]) -> None:
         plt.close(fig)
 
 
+def step_did_trajectory(p: pd.DataFrame) -> None:
+    """Classic 2-point DiD-style plot: mean ideation in 2014 and 2020 for
+    treated (event=1) vs control (event=0), per (event × sex stratum).
+
+    The "DiD effect" is visible as the divergence of the two slopes.
+    We just plot what the current analysis already implies — no PSM yet.
+
+    Two figures matching the focused forests:
+      did_trajectory_family.pdf — had_new_child / entered_marriage / divorced
+      did_trajectory_job.pdf    — lost_job / entered_work
+    """
+    panels = [
+        ("family", "Family-change events",
+         [("had_new_child",    "Had a new child"),
+          ("entered_marriage", "Entered marriage"),
+          ("divorced",         "Got divorced")]),
+        ("job", "Job-change events",
+         [("lost_job",      "Lost / left job"),
+          ("entered_work",  "Entered work")]),
+    ]
+    sex_strata = [("Male",   p[p["female"] == 0], "#117755"),
+                  ("Female", p[p["female"] == 1], "#aa4422")]
+
+    for slug, suptitle, events in panels:
+        ncols = len(events)
+        fig, axes = plt.subplots(2, ncols,
+                                 figsize=(3.6 * ncols, 6.4),
+                                 sharex=True, sharey=False)
+        if ncols == 1:
+            axes = axes.reshape(2, 1)
+        for row, (sex_name, sub, colour) in enumerate(sex_strata):
+            for col, (event_col, event_label) in enumerate(events):
+                ax = axes[row, col]
+                df = sub.dropna(subset=["ideation_2014", "ideation_2020", event_col])
+                t = df[df[event_col] == 1]
+                c = df[df[event_col] == 0]
+
+                def _stats(d):
+                    m14 = d["ideation_2014"].mean()
+                    m20 = d["ideation_2020"].mean()
+                    se14 = d["ideation_2014"].sem()
+                    se20 = d["ideation_2020"].sem()
+                    return m14, m20, se14, se20
+
+                if len(t) > 1 and len(c) > 1:
+                    tm14, tm20, ts14, ts20 = _stats(t)
+                    cm14, cm20, cs14, cs20 = _stats(c)
+                    # treated trajectory (solid)
+                    ax.errorbar([2014, 2020], [tm14, tm20],
+                                yerr=[1.96 * ts14, 1.96 * ts20],
+                                fmt="-o", color=colour, capsize=3,
+                                label=f"event=1 (n={len(t):,})")
+                    # control trajectory (dashed, same colour, lighter alpha)
+                    ax.errorbar([2014, 2020], [cm14, cm20],
+                                yerr=[1.96 * cs14, 1.96 * cs20],
+                                fmt="--s", color=colour, alpha=0.55, capsize=3,
+                                label=f"event=0 (n={len(c):,})")
+                    # DiD = (treated slope) − (control slope)
+                    did = (tm20 - tm14) - (cm20 - cm14)
+                    ax.text(0.04, 0.05, f"DiD = {did:+.3f}",
+                            transform=ax.transAxes, fontsize=8,
+                            bbox=dict(facecolor="white", edgecolor="0.7",
+                                      pad=2, linewidth=0.5))
+                ax.set_xticks([2014, 2020])
+                ax.grid(axis="y", alpha=0.25, lw=0.5)
+                if row == 0:
+                    ax.set_title(event_label, fontsize=9)
+                if col == 0:
+                    ax.set_ylabel(f"{sex_name}\nmean ideation (95% CI)",
+                                  fontsize=9)
+                ax.legend(frameon=False, fontsize=7, loc="upper right")
+        fig.suptitle(f"{suptitle}: ideation trajectory 2014 → 2020 — "
+                     f"event vs no-event, by sex (CFPS)",
+                     fontsize=10)
+        fig.tight_layout(rect=[0, 0, 1, 0.96])
+        fig.savefig(FIG / f"did_trajectory_{slug}.pdf")
+        plt.close(fig)
+
+
 def step_life_event_focused_forests(by_strat: dict[str, pd.DataFrame]) -> None:
     """Two focused M-vs-F figures: family-change events and job-change events."""
     sex_colours = {"male": "#117755", "female": "#aa4422"}
@@ -563,6 +642,7 @@ def main() -> None:
     by_strat = step_life_events(p)
     step_life_event_forest(by_strat)
     step_life_event_focused_forests(by_strat)
+    step_did_trajectory(p)
     step_marital_table(p)
     coefs_by = step_ols(p)
     step_ols_coefplot(coefs_by)

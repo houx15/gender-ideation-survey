@@ -84,3 +84,65 @@ def psm_att(df: pd.DataFrame, treat_col: str, outcome_col: str,
         "att": att, "se": se, "t": float(tval), "p": pval,
         "n_treated": int(len(diffs)), "n_control": int((t == 0).sum()),
     }
+
+
+def standardised_mean_difference(a, b) -> float:
+    """Standardised mean difference of two arrays.
+
+    SMD = (mean(a) - mean(b)) / pooled_sd, where pooled_sd is the
+    sqrt-average of the two sample variances (Cohen, 1988).
+    NaN-safe — drops missing values.  Returns 0 if pooled_sd == 0.
+    """
+    a = np.asarray(a, dtype="float64")
+    b = np.asarray(b, dtype="float64")
+    a = a[~np.isnan(a)]; b = b[~np.isnan(b)]
+    if len(a) < 2 or len(b) < 2:
+        return float("nan")
+    va = a.var(ddof=1); vb = b.var(ddof=1)
+    s = np.sqrt(0.5 * (va + vb))
+    if s == 0:
+        return 0.0
+    return float((a.mean() - b.mean()) / s)
+
+
+def psm_diagnostic(df: pd.DataFrame, treat_col: str,
+                   covariate_cols: list[str],
+                   caliper: float | None = None) -> dict:
+    """Run the same nearest-neighbour matching as `psm_att`, but return the
+    matched-pair indices and propensity scores for downstream diagnostics
+    (balance tables, sensitivity, etc.).
+
+    Indices are positions into the dropna-cleaned dataframe
+    `df[[treat_col] + covariate_cols].dropna()`, in its original row
+    order.  `treated_idx` and `matched_control_idx` are parallel: the i-th
+    treated unit matches to the i-th control.
+    """
+    cols = [treat_col] + covariate_cols
+    d = df[cols].dropna().reset_index(drop=True)
+    t = d[treat_col].to_numpy(dtype="float64")
+    Xc = StandardScaler().fit_transform(d[covariate_cols].to_numpy(dtype="float64"))
+    ps = LogisticRegression(max_iter=1000).fit(Xc, t).predict_proba(Xc)[:, 1]
+
+    treated_pos = np.flatnonzero(t == 1)
+    control_pos = np.flatnonzero(t == 0)
+    ps_t, ps_c = ps[treated_pos], ps[control_pos]
+
+    matched_t, matched_c = [], []
+    n_dropped = 0
+    for i, p_i in enumerate(ps_t):
+        j = int(np.argmin(np.abs(ps_c - p_i)))
+        if caliper is not None and abs(ps_c[j] - p_i) > caliper:
+            n_dropped += 1
+            continue
+        matched_t.append(int(treated_pos[i]))
+        matched_c.append(int(control_pos[j]))
+
+    return {
+        "treated_idx": np.asarray(matched_t, dtype="int64"),
+        "matched_control_idx": np.asarray(matched_c, dtype="int64"),
+        "propensity": ps,
+        "treat": t,
+        "n_treated_matched": int(len(matched_t)),
+        "n_treated_caliper_drop": int(n_dropped),
+        "n_control_pool": int(len(control_pos)),
+    }

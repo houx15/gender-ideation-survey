@@ -1,0 +1,13 @@
+event,sex,label,n_treated,n_control,note
+entered_marriage,male,Entered marriage,200,255,
+entered_marriage,female,Entered marriage,184,88,
+had_new_child,male,Had a new child (rostered),29,2549,
+had_new_child,female,Had a new child (rostered),0,1474,insufficient sample
+divorced,male,Got divorced,77,2416,
+divorced,female,Got divorced,35,1611,
+widowed,male,Widowed,21,2472,
+widowed,female,Widowed,39,1607,
+lost_job,male,Lost / left job,21,2836,
+lost_job,female,Lost / left job,33,1779,
+entered_work,male,Entered work,33,7,insufficient sample
+entered_work,female,Entered work,17,8,insufficient sample

@@ -193,6 +193,13 @@ follow-up.
   divorced. Y-tick labels show both M and F n_yes.
 * `figures/life_event_forest_job.pdf` — focused M-vs-F forest of
   job-change events: lost / left job, entered work.
+* `figures/did_trajectory_family.pdf` / `did_trajectory_job.pdf` —
+  classic 2-point DiD plots of mean ideation in 2014 and 2020 for
+  treated (event=1) vs control (event=0), per event × sex. Each
+  panel prints `DiD = (treated slope) − (control slope)`. These are
+  visualisations of the same naïve DiD that the OLS coefficients
+  estimate (controls being the whole-sample no-event group, no
+  matching). For the matched-control version, see analysis_025.
 * `figures/ols_coefplot_{all,male,female}.pdf` — one coefplot per sex
   stratum (HC1 95 % CI; baseline-ideation in footnote)
 * `figures/who_changes_forest_{all,male,female}.pdf` — demographic

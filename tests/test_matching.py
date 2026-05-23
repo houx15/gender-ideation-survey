@@ -58,3 +58,55 @@ def test_psm_bootstrap_no_effect_ci_contains_zero():
     res = M.psm_att_boot(df, "treat", "y", ["x"], n_boot=80, seed=0)
     assert res["ci_lo"] <= 0.0 <= res["ci_hi"]
     assert res["p"] > 0.05
+
+
+def test_standardised_mean_difference_zero_when_distributions_match():
+    rng = np.random.default_rng(0)
+    a = rng.normal(0, 1, 5000)
+    b = rng.normal(0, 1, 5000)
+    smd = M.standardised_mean_difference(a, b)
+    assert abs(smd) < 0.05
+
+
+def test_standardised_mean_difference_picks_up_shift():
+    rng = np.random.default_rng(0)
+    a = rng.normal(1.0, 1.0, 5000)
+    b = rng.normal(0.0, 1.0, 5000)
+    smd = M.standardised_mean_difference(a, b)
+    assert 0.9 < smd < 1.1
+
+
+def test_psm_diagnostic_returns_parallel_index_arrays():
+    df = _confounded(effect=1.0, seed=1)
+    diag = M.psm_diagnostic(df, "treat", ["x"])
+    assert "treated_idx" in diag and "matched_control_idx" in diag
+    assert len(diag["treated_idx"]) == len(diag["matched_control_idx"])
+    # All treated units (no caliper) should have a match.
+    n_treated_full = int((df["treat"] == 1).sum())
+    assert len(diag["treated_idx"]) == n_treated_full
+    # propensity is one float per row of the dropna-cleaned frame
+    n_after = len(df.dropna(subset=["treat", "x"]))
+    assert len(diag["propensity"]) == n_after
+
+
+def test_psm_diagnostic_caliper_drops_units():
+    df = _confounded(effect=1.0, seed=2)
+    n_treated = int((df["treat"] == 1).sum())
+    diag = M.psm_diagnostic(df, "treat", ["x"], caliper=0.005)
+    assert len(diag["treated_idx"]) <= n_treated
+    assert diag["n_treated_caliper_drop"] >= 0
+    assert diag["n_treated_caliper_drop"] == n_treated - len(diag["treated_idx"])
+
+
+def test_psm_diagnostic_balance_improves():
+    """SMD on the matched pairs should be smaller than on the unmatched pool."""
+    df = _confounded(effect=1.0, seed=3)
+    diag = M.psm_diagnostic(df, "treat", ["x"])
+    pre = M.standardised_mean_difference(df.loc[df.treat == 1, "x"].values,
+                                         df.loc[df.treat == 0, "x"].values)
+    post = M.standardised_mean_difference(
+        df["x"].values[diag["treated_idx"]],
+        df["x"].values[diag["matched_control_idx"]],
+    )
+    assert abs(pre) > 0.5
+    assert abs(post) < abs(pre) * 0.5    # matching at least halves the imbalance
