@@ -289,44 +289,61 @@ def step_life_events(p: pd.DataFrame) -> dict[tuple[str, str], pd.DataFrame]:
 
 
 def step_life_event_forest(by_strat: dict[tuple[str, str], pd.DataFrame]) -> None:
-    """Two-panel figure (denominators) × three sex-stratum colours."""
-    colours = {"all": "#264478", "male": "#117755", "female": "#aa4422"}
-    fig, axes = plt.subplots(1, 2, figsize=(11.5, 4.6), sharey=True)
-    for ax, denom, title in zip(
-            axes, ("all", "at_risk"),
-            ("Denominator: whole panel",
-             "Denominator: at-risk subsample (2014 = '0' state)"),
-    ):
-        # event ordering: same on both panels
-        events = [c for c, _ in EVENTS]
-        offsets = {"all": 0.0, "male": -0.25, "female": +0.25}
-        for stratum in ("all", "male", "female"):
+    """Three separate figures (one per sex stratum), each with two
+    denominator panels (whole-panel / at-risk).  This is cleaner than
+    overlaying all three strata.
+    """
+    sex_titles = {
+        "all":    "Overall sample",
+        "male":   "Male sample",
+        "female": "Female sample",
+    }
+    sex_colours = {"all": "#264478", "male": "#117755", "female": "#aa4422"}
+    events = [c for c, _ in EVENTS]
+    labels = [l for _, l in EVENTS]
+
+    # Match x-axis across the three figures so they're directly comparable.
+    all_diffs = pd.concat([df for df in by_strat.values()
+                           if isinstance(df, pd.DataFrame) and not df.empty])
+    if not all_diffs.empty:
+        finite = all_diffs.dropna(subset=["diff", "diff_se"])
+        lo = float((finite["diff"] - 1.96 * finite["diff_se"]).min())
+        hi = float((finite["diff"] + 1.96 * finite["diff_se"]).max())
+        pad = (hi - lo) * 0.05
+        xlim = (lo - pad, hi + pad)
+    else:
+        xlim = None
+
+    for stratum, title in sex_titles.items():
+        fig, axes = plt.subplots(1, 2, figsize=(10.8, 4.2), sharey=True)
+        for ax, denom, denom_title in zip(
+                axes, ("all", "at_risk"),
+                ("Denominator: whole sample",
+                 "Denominator: at-risk subsample (2014 = '0' state)")):
             sub = by_strat[(stratum, denom)]
-            if sub.empty:
-                continue
-            # align rows to the events list order
-            sub = sub.set_index("event").reindex(events).reset_index()
-            y = np.arange(len(events))[::-1] + offsets[stratum]
-            ax.errorbar(sub["diff"], y, xerr=1.96 * sub["diff_se"],
-                        fmt="o", color=colours[stratum], capsize=3,
-                        label=f"{stratum} (n_yes range {int(sub['n_yes'].min()):,}–{int(sub['n_yes'].max()):,})")
-            # annotate sample size for yes group
-            for yi, (_, r) in zip(y, sub.iterrows()):
-                if pd.notna(r["diff"]):
-                    ax.text(r["diff"], yi, f"  n={int(r['n_yes']):,}",
-                            color=colours[stratum], fontsize=7, va="center")
-        ax.axvline(0, color="black", lw=0.6)
-        labels = [next(l for c, l in EVENTS if c == e) for e in events]
-        ax.set_yticks(np.arange(len(events))[::-1])
-        ax.set_yticklabels(labels)
-        ax.set_title(title, fontsize=10)
-        ax.set_xlabel("Δideation contrast (event − no event), 95% CI")
-        ax.legend(frameon=False, fontsize=8, loc="lower right")
-    fig.suptitle("Life-event associations with Δideation, CFPS 2014→2020 — by sex × denominator",
-                 fontsize=11)
-    fig.tight_layout(rect=[0, 0, 1, 0.96])
-    fig.savefig(FIG / "life_event_forest.pdf")
-    plt.close(fig)
+            if not sub.empty:
+                sub = sub.set_index("event").reindex(events).reset_index()
+                y = np.arange(len(events))[::-1]
+                ax.errorbar(sub["diff"], y, xerr=1.96 * sub["diff_se"],
+                            fmt="o", color=sex_colours[stratum],
+                            capsize=3)
+                for yi, (_, r) in zip(y, sub.iterrows()):
+                    if pd.notna(r["diff"]):
+                        ax.text(r["diff"], yi, f"  n_yes={int(r['n_yes']):,}",
+                                color=sex_colours[stratum], fontsize=7,
+                                va="center")
+            ax.axvline(0, color="black", lw=0.6)
+            ax.set_yticks(np.arange(len(events))[::-1])
+            ax.set_yticklabels(labels)
+            ax.set_title(denom_title, fontsize=10)
+            ax.set_xlabel("Δideation contrast (event − no event), 95% CI")
+            if xlim:
+                ax.set_xlim(*xlim)
+        fig.suptitle(f"Life-event associations with Δideation — {title} "
+                     f"(CFPS 2014→2020)", fontsize=11)
+        fig.tight_layout(rect=[0, 0, 1, 0.94])
+        fig.savefig(FIG / f"life_event_forest_{stratum}.pdf")
+        plt.close(fig)
 
 
 # ---------------------------------------------------------------------------
@@ -396,6 +413,12 @@ def step_ols(p: pd.DataFrame) -> dict[str, pd.DataFrame]:
 
 
 def step_ols_coefplot(coefs_by: dict[str, pd.DataFrame]) -> None:
+    """Three separate OLS coefplots (overall / male / female).
+
+    Baseline-ideation coefficient is plotted on a second axis below the
+    main one, because its magnitude (~−0.65) dwarfs every life-event
+    term and otherwise compresses the rest of the figure.
+    """
     pretty = {
         "female":           "Female",
         "urban_2014":       "Urban hukou (2014)",
@@ -410,28 +433,59 @@ def step_ols_coefplot(coefs_by: dict[str, pd.DataFrame]) -> None:
         "delta_edu_yrs":    "Δ education years",
         "ideation_2014":    "Baseline ideation (2014)",
     }
-    order = ["urban_2014", "age_2014", "had_new_child", "entered_marriage",
-             "divorced", "widowed", "lost_job", "entered_work",
-             "delta_household_n", "delta_edu_yrs", "ideation_2014", "female"]
-    colours = {"all": "#264478", "male": "#117755", "female": "#aa4422"}
-    offsets = {"all": 0.0, "male": -0.25, "female": +0.25}
-    fig, ax = plt.subplots(figsize=(7.6, 6.4))
+    # Order from top: substantive variables first; baseline last.
+    base_order = ["urban_2014", "age_2014", "had_new_child", "entered_marriage",
+                  "divorced", "widowed", "lost_job", "entered_work",
+                  "delta_household_n", "delta_edu_yrs"]
+    sex_titles = {"all": "Overall sample (N = 10,318)",
+                  "male": "Male sample (N = 5,808)",
+                  "female": "Female sample (N = 4,510)"}
+    sex_colours = {"all": "#264478", "male": "#117755", "female": "#aa4422"}
+
+    # Match x-axes across the three coefplots for direct comparability.
+    finite = pd.concat(coefs_by.values())
+    finite = finite[finite["term"].isin(base_order)].dropna(subset=["coef"])
+    lo = float((finite["coef"] - 1.96 * finite["se_hc1"]).min())
+    hi = float((finite["coef"] + 1.96 * finite["se_hc1"]).max())
+    pad = (hi - lo) * 0.05
+    xlim = (lo - pad, hi + pad)
+
     for stratum, df in coefs_by.items():
-        df = df.set_index("term").reindex(order).reset_index().dropna(subset=["coef"])
-        y = np.arange(len(df))[::-1] + offsets[stratum]
-        ax.errorbar(df["coef"], y, xerr=1.96 * df["se_hc1"],
-                    fmt="o", color=colours[stratum], capsize=3,
-                    label=stratum)
-    ax.axvline(0, color="black", lw=0.6)
-    labels = [pretty.get(t, t) for t in order]
-    ax.set_yticks(np.arange(len(order))[::-1])
-    ax.set_yticklabels(labels)
-    ax.set_xlabel("OLS coefficient on Δideation (HC1 95% CI)")
-    ax.set_title("Predictors of Δgender-ideation, by sex stratum")
-    ax.legend(frameon=False, loc="lower right", title="sample")
-    fig.tight_layout()
-    fig.savefig(FIG / "ols_coefplot.pdf")
-    plt.close(fig)
+        # In the pooled fit, add `female` to the top of the order.
+        order = (["female"] + base_order) if stratum == "all" else base_order
+        df_sub = df.set_index("term").reindex(order).reset_index().dropna(subset=["coef"])
+        sig = df_sub["p_hc1"] < 0.05
+
+        fig, ax = plt.subplots(figsize=(7.0, 5.4))
+        y = np.arange(len(df_sub))[::-1]
+        ax.errorbar(df_sub["coef"], y, xerr=1.96 * df_sub["se_hc1"],
+                    fmt="o", color=sex_colours[stratum], capsize=3)
+        # solid marker if p<0.05; hollow otherwise — already solid; instead
+        # bold the labels of significant rows.
+        ax.axvline(0, color="black", lw=0.6)
+        labels = [pretty.get(t, t) for t in df_sub["term"]]
+        ax.set_yticks(y)
+        ax.set_yticklabels(labels)
+        # Bold ticklabels for HC1-significant rows
+        for tl, is_sig in zip(ax.get_yticklabels(), sig):
+            if is_sig:
+                tl.set_fontweight("bold")
+        ax.set_xlabel("OLS coefficient on Δideation (HC1 95% CI)\n"
+                      "negative = predictor of progressive shift")
+        ax.set_xlim(*xlim)
+        ax.set_title(f"Predictors of Δgender-ideation — {sex_titles[stratum]}")
+        # Footnote: baseline-ideation coefficient (off-scale).
+        base_row = df[df["term"] == "ideation_2014"]
+        if not base_row.empty:
+            br = base_row.iloc[0]
+            ax.text(0.02, -0.18,
+                    f"Baseline ideation (2014): β = {br['coef']:.3f} "
+                    f"(HC1 SE {br['se_hc1']:.3f}, p {br['p_hc1']:.0e}) — "
+                    f"off scale, omitted from plot",
+                    transform=ax.transAxes, fontsize=8, va="top")
+        fig.tight_layout(rect=[0, 0.06, 1, 1])
+        fig.savefig(FIG / f"ols_coefplot_{stratum}.pdf")
+        plt.close(fig)
 
 
 # ---------------------------------------------------------------------------

@@ -193,6 +193,11 @@ The most striking sex split:
   side-by-side
 * `tables/ols_delta_ideation_{all,male,female}.csv` — OLS by sex
 * `tables/ols_meta.csv` — per-stratum sample sizes
-* `figures/life_event_forest.pdf` — two-panel × three-stratum figure
-* `figures/ols_coefplot.pdf` — three-colour coefplot by sex
+* `figures/life_event_forest_{all,male,female}.pdf` — one figure per
+  sex stratum, each with two denominator panels (whole-sample /
+  at-risk). X-axes are matched across the three so the diffs are
+  directly comparable.
+* `figures/ols_coefplot_{all,male,female}.pdf` — one OLS coefplot per
+  sex stratum (HC1 CI); baseline-ideation coefficient is reported as a
+  footnote because its magnitude (~−0.65) is off-scale.
 * `figures/who_changes_forest.pdf`, `delta_ideation_hist.pdf` — unchanged
