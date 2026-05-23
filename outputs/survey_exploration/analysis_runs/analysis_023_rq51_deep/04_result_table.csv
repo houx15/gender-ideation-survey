@@ -1,0 +1,14 @@
+section,headline,n,quantity,value
+1_cleaning,"final analytic N pooled across all 13 dataset-years",,n,"see tables/cleaning_steps.csv"
+2_item,"index reproduces processed reference exactly",,cronbach_alpha_range,"0.37 (CFPS 2014) – 0.71 (ACWF 2000); see tables/ideation_index.csv"
+3_cohort_pooled_CFPS,"1930-49 vs 1990-2005",4002,delta,-0.199
+3_cohort_pooled_CGSS,"1930-49 vs 1990-2005",15052,delta,-0.148
+3_cohort_pooled_ACWF,"1930-49 vs 1990-2005",12251,delta,-0.002
+3_cfps_dedup,"pids in both 2014+2020",20100,n_pids_in_both_waves,20100
+3_cfps_dedup,"pids whose ideation changed >=0.01",12971,n_pids_changed,12971
+4_gender_crossover,"F-M in 1990-2005 (CGSS)",7700,F_minus_M,-0.120
+4_gender_crossover,"F-M in 1990-2005 (CFPS)",6892,F_minus_M,-0.097
+4_urban_gap_CGSS,"avg U-R across cohorts",,delta,"-0.06 to -0.08"
+4_corr_edu_CGSS_2021,"Pearson r ideation~edu_yrs",8110,r,-0.446
+4_corr_edu_CFPS_2020,"Pearson r ideation~edu_yrs",22345,r,-0.419
+5_province,"see province_means.csv",,,

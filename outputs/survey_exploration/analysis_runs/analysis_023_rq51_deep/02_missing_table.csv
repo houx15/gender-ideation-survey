@@ -1,0 +1,2 @@
+note
+"All tables in tables/ are produced by scripts/run.py and scripts/run_map.py. Cleaning attrition is in cleaning_steps.csv. Constant-input correlations (ACWF 1990 employed) are flagged via the 'note' column in correlation_table.csv. Provincial maps come with an explicit caveat banner because none of the surveys are provincially representative."
