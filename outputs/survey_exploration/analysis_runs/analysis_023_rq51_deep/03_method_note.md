@@ -129,3 +129,130 @@ All helpers (cohort_label, cfps_dedup_keep_latest, urban_indicator, birth_year,
 personal_income, education_years, employed_indicator, cleaning_steps_table)
 are covered by `tests/test_rq51_helpers.py` (8 unit + integration tests). The
 full repo test suite is green (62 tests).
+
+---
+
+## v2 — Statistical upgrade (paper-grade)
+
+The additions below were added in the v2 pass.  Tested helpers:
+`outputs/survey_exploration/scripts/descriptive_stats.py` (9 tests), an HC1
+robust-SE variant in `stats_helpers.ols_robust` (2 tests), and the
+CFPS-2014 aspirational extractors in `rq51_helpers` (2 tests).  Full repo
+suite: 79 tests passing.
+
+### Hukou-based urban / rural
+
+The community-type fields used in v1 (`s5`, `urban14`, `type`, `isurban`,
+`ch_x`) classify by sampling location, not by the respondent's hukou (户口).
+v2 reclassifies using hukou status, the sociology-standard divide:
+
+- 农业户口 → rural (0)
+- 非农业户口 → urban (1)
+- 居民户口 (post-reform residence registration) → urban (1)
+- 蓝印 / 军籍 / 没户口 / 其他 / refused → NaN
+
+Per-survey hukou variable: CFPS `qa301`, CGSS `a18`/`A18`, ACWF 2000 `v5`,
+ACWF 2010 `V501`.  ACWF 1990 has no hukou variable on file and uses the
+community fallback (`ch_x`); this is flagged in `HUKOU_VARS["fallback"]=True`.
+
+The shift moves the urban share to a much more realistic level (CFPS now
+26-28 % urban-hukou, matching well-known agricultural-hukou dominance; CGSS
+40-50 %; ACWF 47 %).
+
+### Missingness — proof it is NaN, never 0
+
+`tables/missingness_audit.csv` reports, per (survey, variable):
+`n_total`, `n_NaN`, `n_zero`, `n_one`, `mean_nonnull`.  Every variable
+distinguishes NaN (refused / DK / N-A / out-of-range) from real zero (e.g.
+non-earner with literal RMB 0 income).  Locked by four defensive tests in
+`tests/test_rq51_helpers.py`:
+
+- `test_employed_indicator_keeps_acwf_1990_outside_set_as_nan`
+- `test_income_missing_codes_are_nan_not_zero_cfps`
+- `test_urban_indicator_negative_codes_become_nan`
+- `test_education_years_returns_nan_for_unknown_levels`
+
+### Education: highest level → years (continuous)
+
+Following standard sociological practice, every survey's education variable is
+mapped from highest-completed level (categorical) to years (continuous).  CFPS
+uses the survey's own imputed years variable (`cfps20XXeduy_im`); CGSS uses
+the `a7a` 1..14 level to years map (`_CGSS_A7A_YEARS`, 0..22); ACWF uses
+`_ACWF_LEVEL_YEARS`.
+
+### Occupation: ISEI (continuous)
+
+Following standard practice (Ganzeboom & Treiman 1996), we use **ISEI**
+(International Socio-Economic Index of Occupations) as the continuous
+occupation measure, not categorical job-type codes.
+
+- **CFPS 2020** — `qea203code_isei` is directly on file (range 16–90).
+- **CFPS 2014** — has no direct ISEI.  Per the user's reference
+  implementation in `reference/stata_convert.do`, we filter to the
+  in-high-school subsample (kr1==4) and map `ks801code` (occupational
+  aspiration, 1..29) → ISCO-88 4-digit codes (verbatim from the dofile) →
+  ISEI (embedded Ganzeboom values for the 22 ISCO codes referenced).  This
+  yields `isei_aspiration` for **728 high schoolers** — a youth-aspiration
+  measure, *not* current-job ISEI.  Education aspiration `edu_aspiration`
+  follows the same dofile: qc201 1..9 → years.
+- **CGSS, ACWF** — have ISCO-88 / ISCO-08 4-digit codes on file but require
+  the Ganzeboom translation table to obtain ISEI.  Deferred — `isei_current`
+  is NaN for these surveys and a row showing 100 % missingness appears in
+  Table 1.
+
+### Paper-grade Table 1 (per survey-year)
+
+`tables/descriptives_{dataset}_{year}.csv` — one Table-1 per survey-year with
+variable name, explanation, n (non-missing), mean, sd, min, max, n_missing,
+missing %.  Variables: ideation, female, birth year, urban (hukou),
+education years, employed, ISEI current, ISEI aspiration, edu aspiration,
+income, log(1+income).  A combined long-format
+`tables/descriptives_long.csv` (143 rows) supports cross-survey comparison.
+
+### Cohort trend with bootstrap 95 % CI and LOESS smooth
+
+`tables/cohort_trend_bootstrap.csv` — for every (program, cohort), the
+mean ideation index and the **percentile bootstrap 95 % CI** (n_boot = 1000,
+per-group reproducible seed).  `figures/cohort_trend_bootstrap.pdf` overlays:
+
+- the cohort means with shaded 95 % CI ribbons (one ribbon per program), and
+- a **LOESS smooth** (statsmodels `lowess`, frac = 0.3) of ideation on the
+  continuous birth-year axis, drawn as a dashed line per program.
+
+### Effect-size tables and forest plots
+
+For both **gender** and **urban-rural**, per (program, cohort):
+
+- Welch's t-test on independent samples (handles unequal variance / N)
+- exact two-sided p-value
+- **Cohen's d** = (mean_a − mean_b) / pooled_sd
+- **Hedges' g** (small-sample-corrected d)
+- 95 % CI of the mean difference
+
+`tables/effect_sizes_gender.csv` and `tables/effect_sizes_urban.csv`.
+`figures/gender_gap_forest.pdf` and `figures/urban_gap_forest.pdf` plot
+Cohen's d with 95 % CI bars per (program, cohort), with significance stars
+(`*` p<.05, `**` p<.01, `***` p<.001).
+
+### Correlation heatmap (Fisher-z CI)
+
+`tables/correlation_table_v2.csv` — per (program, wave) Pearson r with the
+**Fisher's-z 95 % CI** and exact p-value, for ideation vs each of edu_yrs,
+log_income, employed, female, urban.  `figures/correlation_heatmap.pdf`
+shows the r values as a (survey × variable) heat map with cell annotations.
+
+### OLS with cohort + wave fixed effects (per program)
+
+`tables/ols_models.csv` — one regression per program, ideation ∼ female +
+urban + edu_yrs + log_income + employed + cohort dummies (1930-1949 base)
++ wave dummies.  Both **classical** and **HC1 heteroskedasticity-robust**
+SEs (and the corresponding t / p) are reported side by side.
+`tables/ols_meta.csv` has N and df per program.
+`figures/ols_coefplot.pdf` shows all coefficients with 95 % CI (HC1).
+
+Additional OLS specifications:
+
+- `tables/ols_cfps2020_with_isei.csv` — adds current-job `isei_current`
+  to the CFPS 2020 regression (single-wave; N ≈ 1,000).
+- `tables/ols_cfps2014_youth_aspiration.csv` — CFPS 2014 kr1==4 subsample:
+  ideation ∼ female + urban + isei_aspiration + edu_aspiration (N ≈ 687).

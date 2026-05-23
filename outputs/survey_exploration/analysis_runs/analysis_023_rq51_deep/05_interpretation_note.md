@@ -180,3 +180,120 @@ and the province_means.csv for per-province N.
    negative association with ideation; income/employment are minor.
 5. Provincial differences exist but the surveys cannot speak to them with
    anything resembling representative power.
+
+---
+
+## v2 — Statistical upgrade results
+
+### Bootstrap-CI cohort trend (`figures/cohort_trend_bootstrap.pdf`)
+
+The 95 % bootstrap CIs are tight (≈ ±0.005 around each cohort mean for both
+CFPS and CGSS; wider for the ACWF 1990-2005 cohort, N=766).  All three
+program-specific LOESS smooths (dashed) confirm: a steady decline in CFPS
+and CGSS that accelerates around the 1960-69 cohort, and a roughly flat ACWF
+trajectory because that programme stops in 2010 — before the 2010s period
+effect kicks in for the youngest cohort.
+
+### Effect sizes — gender (`figures/gender_gap_forest.pdf`)
+
+Cohen's d for the F − M difference, with 95 % CI:
+
+| Cohort | CFPS d | CGSS d | ACWF d | Verdict |
+|--------|------:|------:|------:|---------|
+| 1930-1949 | **+0.150** | **+0.067** | −0.063 | women slightly more traditional in older cohorts (CFPS) |
+| 1950-1959 | **+0.153** | +0.012 | −0.096 | |
+| 1960-1969 | **+0.207** | −0.039 | −0.174 | |
+| 1970-1979 | +0.061 | **−0.158** | **−0.248** | crossover begins |
+| 1980-1989 | **−0.265** | **−0.394** | **−0.372** | women clearly more egalitarian |
+| 1990-2005 | **−0.498** | **−0.671** | **−0.560** | half a SD difference — large |
+
+All cohort × program cells with |d| ≥ 0.06 reach p < .001 (Welch's t with the
+huge N) — but the **practical importance** is captured by d, not p.  The
+1990s+ cohort shows a Cohen's d of −0.5 to −0.7, conventionally classified
+as a **medium-to-large** effect in psychology — substantial within-cohort
+gender divergence.
+
+### Effect sizes — urban-rural (`figures/urban_gap_forest.pdf`)
+
+After switching to hukou-based urban/rural the gap is somewhat smaller than
+the community-based version reported in v1 but still highly significant:
+
+- CGSS: d ≈ −0.5 to −0.6 in the oldest cohorts, shrinking toward d ≈ −0.15
+  in the 1990s+ cohort.
+- CFPS: d ≈ −0.3 across most cohorts.
+- ACWF: d ≈ −0.2 to −0.4 in older cohorts, fading for the 1990s+.
+
+The urban–rural ideological gap is **closing** in younger cohorts —
+rural younger respondents are catching up.
+
+### Correlation heatmap (`figures/correlation_heatmap.pdf`, `tables/correlation_table_v2.csv`)
+
+The matrix shows the most striking gradient is on `edu_yrs`: r climbs in
+absolute value from −0.16 (ACWF 2000) to **−0.45 (CGSS 2021)** and
+**−0.42 (CFPS 2020)**.  Log income is mildly negative (|r| up to 0.17).
+`female` and `urban` are negatively correlated with ideation across the
+board; `employed` is weakly positive (employment correlates with marginally
+more traditional views, likely a selection effect — older cohorts with both
+attributes).
+
+### OLS — per program with cohort & wave FE (`tables/ols_models.csv`)
+
+| Coefficient | CFPS | CGSS | ACWF |
+|-----------:|----:|----:|----:|
+| female      | **−0.044** (p≪.001) | **−0.037** (p≪.001) | **−0.033** (p≪.001) |
+| urban (hukou) | **−0.017** (p≪.001) | **−0.032** (p≪.001) | **−0.016** (p≪.001) |
+| edu_yrs (per year) | **−0.010** (p≪.001) | **−0.009** (p≪.001) | **−0.006** (p≪.001) |
+| log_income  | −0.001 (p<.01) | **−0.003** (p≪.001) | +0.000 (n.s.) |
+| employed    | +0.022 (p≈.08) | +0.006 (p<.001) | −0.002 (n.s.) |
+
+All p-values are HC1-robust.  The story is consistent across the three
+programmes: net of cohort & wave, **women are 0.03–0.04 less traditional
+than men, urban-hukou holders are 0.02–0.03 less traditional than rural,
+and each additional year of education subtracts 0.006–0.010 from the
+ideation index**.  Cohort dummies (1990-2005 vs 1930-1949) are roughly
+−0.06 in CFPS / −0.08 in CGSS / −0.02 in ACWF, consistent with the
+descriptive cohort trend.
+
+### CFPS 2020 OLS with current-job ISEI (`tables/ols_cfps2020_with_isei.csv`)
+
+Adding `isei_current` to the CFPS 2020 regression (N = 1,023, since ISEI
+is only observed for currently-employed respondents):
+
+- ISEI coefficient: ~0 (b = 0.00003, p = 0.94) — once education years and
+  income are in the model, ISEI adds essentially nothing on top.
+
+This is consistent with the literature: in adult cross-sections, education
+years usually absorbs most of the occupational-prestige signal.
+
+### CFPS 2014 youth aspiration OLS (`tables/ols_cfps2014_youth_aspiration.csv`)
+
+CFPS 2014 high-school subsample (kr1==4, N = 687):
+
+| Coefficient | Estimate | p (HC1) |
+|-----------:|----:|----:|
+| female | **−0.140** | p≪.001 |
+| urban | −0.033 | 0.18 |
+| isei_aspiration (per ISEI unit) | −0.001 | 0.13 |
+| edu_aspiration (per aspired year) | **−0.017** | 0.02 |
+
+So among Chinese high schoolers, every additional aspired year of education
+predicts a 0.017 step toward more egalitarian gender ideology, and girls hold
+ideologies a full 0.14 below boys (twice the adult gender gap in CFPS).  The
+aspirational-ISEI effect washes out once education aspiration is included.
+
+## Bottom line — v2
+
+1. Hukou-based urban/rural is the right division — and the urban-rural gap
+   stays significant in every program × cohort, even though it shrinks for
+   the youngest cohort.
+2. Education years is the single strongest non-cohort predictor of
+   egalitarianism, and the relationship is **growing in absolute size**
+   over time (CGSS r climbs from −0.25 in 2013 to −0.45 in 2021).
+3. Net of cohort, wave, education, and income, women are 0.03–0.04 less
+   traditional than men in adult cross-sections.  In the high-school youth
+   subsample (CFPS 2014) the gap is **−0.14** — three to four times larger.
+4. Cohen's d for the 1990s+ cohort gender gap is −0.5 to −0.7 across all
+   three programs — a medium-to-large effect by conventional benchmarks.
+5. Adding current-job ISEI doesn't change the CFPS 2020 coefficients
+   meaningfully; aspirational ISEI doesn't survive the inclusion of
+   aspirational education years in the CFPS 2014 youth model.

@@ -124,3 +124,43 @@ def ols(X: pd.DataFrame, y) -> dict:
         "n": int(n),
         "df": int(df),
     }
+
+
+def ols_robust(X: pd.DataFrame, y, kind: str = "HC1") -> dict:
+    """Fit y ~ X (X already includes const) and return heteroskedasticity-robust SEs.
+
+    kind:
+      "HC0"  White (1980): cov = (X'X)^-1 X' diag(e^2) X (X'X)^-1
+      "HC1"  Stata default: HC0 scaled by n / (n - k)   (small-sample correction)
+
+    Same listwise-deletion + return shape as ols(); only the SEs/t/p change.
+    """
+    if kind not in ("HC0", "HC1"):
+        raise ValueError(f"unknown robust kind: {kind!r}")
+    y = np.asarray(y, dtype="float64")
+    Xv = X.to_numpy(dtype="float64")
+    ok = np.isfinite(Xv).all(axis=1) & np.isfinite(y)
+    Xm, ym = Xv[ok], y[ok]
+    n, k = Xm.shape
+    df = n - k
+    XtX_inv = np.linalg.inv(Xm.T @ Xm)
+    beta = XtX_inv @ Xm.T @ ym
+    resid = ym - Xm @ beta
+    meat = Xm.T @ (resid[:, None] * resid[:, None] * Xm)   # X' diag(e^2) X
+    cov = XtX_inv @ meat @ XtX_inv
+    if kind == "HC1":
+        cov *= n / df
+    se = np.sqrt(np.diag(cov))
+    tvals = [float(b / s) if s else float("nan") for b, s in zip(beta, se)]
+    pvals = [float(2 * stats.t.sf(abs(t), df)) if np.isfinite(t) else float("nan")
+             for t in tvals]
+    return {
+        "term": list(X.columns),
+        "coef": [float(b) for b in beta],
+        "se": [float(s) for s in se],
+        "t": tvals,
+        "p": pvals,
+        "n": int(n),
+        "df": int(df),
+        "se_kind": kind,
+    }

@@ -1,0 +1,12 @@
+column,name,explanation,n,mean,sd,min,max,n_missing,missing_pct,dataset,year
+ideation,Gender-ideology index,"Mean of valid items, mapped to [0,1]; 1 = most traditional",12766,0.4122,0.1831,0.0000,1.0000,21,0.1642,CGSS,2018
+female,Female (0/1),"1 if respondent is female, 0 if male",12787,0.5331,0.4989,0.0000,1.0000,0,0.0000,CGSS,2018
+birthy,Birth year,4-digit year of birth,12782,1966.1905,16.9185,1920.0000,2000.0000,5,0.0391,CGSS,2018
+urban,Urban hukou (0/1),"Hukou: 农业=rural, 非农业 or 居民=urban; see method",12755,0.4517,0.4977,0.0000,1.0000,32,0.2503,CGSS,2018
+edu_yrs,"Education (years, current)",Highest completed level mapped to years (continuous),12758,7.2687,5.3526,0.0000,19.0000,29,0.2268,CGSS,2018
+employed,Currently employed (0/1),Survey-specific employment indicator; see method note,12787,0.5391,0.4985,0.0000,1.0000,0,0.0000,CGSS,2018
+isei_current,Occupation ISEI (current),Current-job ISEI; only CFPS 2020 has it directly,0,,,,,12787,100.0000,CGSS,2018
+isei_aspiration,Occupation ISEI (aspiration),CFPS 2014 youth (kr1==4): ks801code→ISCO-88→ISEI,0,,,,,12787,100.0000,CGSS,2018
+edu_aspiration,Education aspiration (yrs),CFPS 2014 youth (kr1==4): qc201 level → years,0,,,,,12787,100.0000,CGSS,2018
+income,Personal income (RMB),Annual personal income (urban monthly for ACWF 1990),12106,41494.2488,192036.0219,0.0000,9950000.0000,681,5.3257,CGSS,2018
+log_income,log(1 + income),Natural log of (1+income),12106,8.3760,3.8752,0.0000,16.1131,681,5.3257,CGSS,2018

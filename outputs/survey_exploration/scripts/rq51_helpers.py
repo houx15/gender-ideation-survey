@@ -58,21 +58,43 @@ def cohort_label(year) -> str | float:
 # Per-survey variable maps.
 # ---------------------------------------------------------------------------
 
-# urban indicator: (var, urban_code, rural_code)
-URBAN_VARS: dict[tuple[str, str], tuple[str, int, int]] = {
-    ("CFPS", "2014"): ("urban14", 1, 0),
-    ("CFPS", "2020"): ("urban20", 1, 0),
-    ("CGSS", "2010"): ("s5", 1, 2),
-    ("CGSS", "2012"): ("s5a", 1, 2),
-    ("CGSS", "2013"): ("s5a", 1, 2),
-    ("CGSS", "2015"): ("s1", 1, 2),
-    ("CGSS", "2017"): ("isurban", 1, 2),
-    ("CGSS", "2018"): ("type", 1, 2),
-    ("CGSS", "2021"): ("isurban", 1, 2),
-    ("CGSS", "2023"): ("isurban", 1, 2),
-    ("ACWF", "1990"): ("ch_x", 1, 2),    # 城乡
-    ("ACWF", "2000"): ("c_n", 1, 2),     # 城乡分组
-    ("ACWF", "2010"): ("ChengX", 1, 2),  # 城乡
+# --------------------------------------------------------------------------- #
+# urban / rural classification — HUKOU-based (per Chinese sociology standard).
+# Rule:
+#   - 农村/农业户口        -> rural (0)
+#   - 城镇/非农业户口      -> urban (1)
+#   - 居民户口 (post-reform) -> urban (1)   (the unified-registration regime;
+#                                            previously rural respondents have
+#                                            largely been re-classified urban)
+#   - 蓝印 / 军籍 / 没户口 / 其他 / 拒绝回答 -> NaN
+# ACWF 1990 has no hukou variable on file; we fall back to community
+# urban/rural (ch_x) and flag this clearly in the method note.
+# --------------------------------------------------------------------------- #
+
+# Each value: {var, rural_codes, urban_codes}.  Codes not listed -> NaN.
+HUKOU_VARS: dict[tuple[str, str], dict] = {
+    # CFPS qa301: 1=农业, 3=非农业, 5=无户口, 7=居民(2020 only), 79=非中国
+    ("CFPS", "2014"): {"var": "qa301", "rural_codes": [1], "urban_codes": [3]},
+    ("CFPS", "2020"): {"var": "qa301", "rural_codes": [1], "urban_codes": [3, 7]},
+    # CGSS a18: 1=农业, 2=非农业, 居民 codes shift by wave.
+    # 2010-2013: 3=蓝印 (NaN), 4=居民(post-reform Guangdong-style) -> urban.
+    ("CGSS", "2010"): {"var": "a18", "rural_codes": [1], "urban_codes": [2, 4]},
+    ("CGSS", "2012"): {"var": "a18", "rural_codes": [1], "urban_codes": [2, 4]},
+    ("CGSS", "2013"): {"var": "a18", "rural_codes": [1], "urban_codes": [2, 4]},
+    # 2015: 4=居民(former agric), 5=居民(former non-agric) — both -> urban.
+    ("CGSS", "2015"): {"var": "a18", "rural_codes": [1], "urban_codes": [2, 4, 5]},
+    # 2017-2023: 3=居民(former agric), 4=居民(former non-agric) — both -> urban.
+    ("CGSS", "2017"): {"var": "a18", "rural_codes": [1], "urban_codes": [2, 3, 4]},
+    ("CGSS", "2018"): {"var": "a18", "rural_codes": [1], "urban_codes": [2, 3, 4]},
+    ("CGSS", "2021"): {"var": "A18", "rural_codes": [1], "urban_codes": [2, 3, 4]},
+    ("CGSS", "2023"): {"var": "a18", "rural_codes": [1], "urban_codes": [2, 3, 4]},
+    # ACWF 2000 v5: 1=农业, 2=非农业, 3=无户口 (NaN)
+    ("ACWF", "2000"): {"var": "v5", "rural_codes": [1], "urban_codes": [2]},
+    # ACWF 2010 V501: 1=本县市农业, 2=本县市非农业, 3=外县市农业, 4=外县市非农业
+    ("ACWF", "2010"): {"var": "V501", "rural_codes": [1, 3], "urban_codes": [2, 4]},
+    # ACWF 1990 has no hukou variable on file; fall back to ch_x (community type).
+    ("ACWF", "1990"): {"var": "ch_x", "rural_codes": [2], "urban_codes": [1],
+                       "fallback": True},
 }
 
 # birth year variable + (lo, hi) plausible range.
@@ -98,21 +120,24 @@ BIRTH_VARS: dict[tuple[str, str], tuple[str, int, int]] = {
 INCOME_VARS: dict[tuple[str, str], tuple[str, int, int]] = {
     ("CFPS", "2014"): ("income", 0, 10_000_000),
     ("CFPS", "2020"): ("emp_income", 0, 10_000_000),
-    ("CGSS", "2010"): ("a8a", 0, 100_000_000),
-    ("CGSS", "2012"): ("a8a", 0, 100_000_000),
-    ("CGSS", "2013"): ("a8a", 0, 100_000_000),
-    ("CGSS", "2015"): ("a8a", 0, 100_000_000),
-    ("CGSS", "2017"): ("a8a", 0, 100_000_000),
-    ("CGSS", "2018"): ("a8a", 0, 100_000_000),
-    ("CGSS", "2021"): ("A8a", 0, 100_000_000),
-    ("CGSS", "2023"): ("a8a", 0, 100_000_000),
-    # ACWF 1990: w151 monthly urban; w16 annual rural -> combine to "annualized RMB".
-    ("ACWF", "1990"): ("w151", 0, 10_000_000),
-    ("ACWF", "2000"): ("c18_a", 0, 10_000_000),
+    # CGSS a8a uses 9999996..9999999 as sentinels (>1M / N/A / DK / refused).
+    # Cap at 9,999,995 to drop those.
+    ("CGSS", "2010"): ("a8a", 0, 9_999_995),
+    ("CGSS", "2012"): ("a8a", 0, 9_999_995),
+    ("CGSS", "2013"): ("a8a", 0, 9_999_995),
+    ("CGSS", "2015"): ("a8a", 0, 9_999_995),
+    ("CGSS", "2017"): ("a8a", 0, 9_999_995),
+    ("CGSS", "2018"): ("a8a", 0, 9_999_995),
+    ("CGSS", "2021"): ("A8a", 0, 9_999_995),
+    ("CGSS", "2023"): ("a8a", 0, 9_999_995),
+    # ACWF 1990: w151 monthly urban income (RMB), max ~6,666.
+    ("ACWF", "1990"): ("w151", 0, 100_000),
+    # ACWF 2000: sentinels 999996..999999 -> cap at 999995.
+    ("ACWF", "2000"): ("c18_a", 0, 999_995),
     # ACWF 2010: NC9A is in the never-married supplement (zero overlap with the
     # ideology module).  C18AA = labour income from the main module aligns with
-    # the ideology sample; we use it as personal income.
-    ("ACWF", "2010"): ("C18AA", 0, 10_000_000),
+    # the ideology sample; we use it as personal income.  Sentinel 9999997 -> NA.
+    ("ACWF", "2010"): ("C18AA", 0, 9_999_995),
 }
 
 # Education years (preferred) or highest-level mapped to years.
@@ -133,6 +158,17 @@ EDU_VARS: dict[tuple[str, str], dict] = {
     ("ACWF", "2000"): {"kind": "acwf_level", "var": "b4_a"},
     ("ACWF", "2010"): {"kind": "acwf_level", "var": "B3A"},
 }
+
+# Occupational ISEI (International Socio-Economic Index of Occupations).
+# Standard continuous occupation measure in sociology. Only directly available
+# in CFPS 2020 on file (qea203code_isei).  CGSS waves carry ISCO-88/08 codes
+# (risco881, isco08_a59d, ...) which would need an external Ganzeboom
+# ISCO->ISEI translation table; deferred.  Surveys without ISEI get an
+# all-NaN series so Table 1 still has a row for the variable.
+ISEI_VARS: dict[tuple[str, str], dict] = {
+    ("CFPS", "2020"): {"var": "qea203code_isei", "lo": 16, "hi": 90},
+}
+
 
 # Currently employed indicator. We accept presence of `yes` codes per-survey.
 EMP_VARS: dict[tuple[str, str], dict] = {
@@ -274,12 +310,19 @@ def _read_extra(dataset: str, year: str, extra_vars: Iterable[str]) -> pd.DataFr
 
 
 def urban_indicator(dataset: str, year: str) -> pd.Series:
-    var, urban_code, rural_code = URBAN_VARS[(dataset, year)]
-    df = _read_extra(dataset, year, [var])
-    s = pd.to_numeric(df[var], errors="coerce")
+    """Hukou-based urban (1) / rural (0) indicator.
+
+    Codes outside the per-survey rural_codes / urban_codes lists (incl. negative
+    missing codes, blue-stamp, military, no-hukou, other, refused) become NaN.
+    ACWF 1990 has no hukou variable on file and falls back to community type
+    (ch_x); this is flagged in HUKOU_VARS via fallback=True.
+    """
+    cfg = HUKOU_VARS[(dataset, year)]
+    df = _read_extra(dataset, year, [cfg["var"]])
+    s = pd.to_numeric(df[cfg["var"]], errors="coerce")
     out = pd.Series(np.nan, index=s.index, dtype="float64")
-    out[s == urban_code] = 1.0
-    out[s == rural_code] = 0.0
+    out[s.isin(cfg["urban_codes"])] = 1.0
+    out[s.isin(cfg["rural_codes"])] = 0.0
     return out
 
 
@@ -349,3 +392,114 @@ def employed_indicator(dataset: str, year: str) -> pd.Series:
         out[s.isin(yes)] = 1.0
         out[(s > 0) & ~s.isin(yes)] = 0.0
     return out
+
+
+def occupation_isei(dataset: str, year: str) -> pd.Series:
+    """ISEI of respondent's current main job.  NaN where unavailable on file.
+
+    CFPS 2020: qea203code_isei (16–90 valid; negatives = missing).
+    Other surveys: all-NaN (CGSS would need ISCO->ISEI translation; deferred).
+    """
+    cfg = ISEI_VARS.get((dataset, year))
+    if cfg is None:
+        # build an all-NaN series with the right length
+        # peek at the file to get rowcount cheaply
+        import pyreadstat
+        path = ROOT / L.SURVEYS[(dataset, year)]["file"]
+        _, meta = pyreadstat.read_dta(str(path), metadataonly=True)
+        return pd.Series([np.nan] * int(meta.number_rows), dtype="float64")
+    df = _read_extra(dataset, year, [cfg["var"]])
+    s = pd.to_numeric(df[cfg["var"]], errors="coerce")
+    return s.where(s.between(cfg["lo"], cfg["hi"]))
+
+
+# --------------------------------------------------------------------------- #
+# CFPS 2014 aspirational ISEI + education-years.
+#
+# CFPS 2014 has NO direct ISEI on file (the adult occupation variable qg303code
+# uses the Chinese 5-digit GBM-2014 scheme).  We follow the user's reference
+# implementation in `reference/stata_convert.do`:
+#   1. Filter to the in-high-school subsample (kr1 == 4).
+#   2. Map ks801code 1..29 (CFPS simplified occupation aspiration) -> ISCO-88
+#      4-digit codes (verbatim from the dofile).
+#   3. Look up ISEI (Ganzeboom & Treiman 1996) for those ISCO codes.
+# Education aspiration follows the same dofile: qc201 1..9 -> aspired years.
+#
+# These are YOUTH aspiration measures, not adult current ISEI; they should be
+# used in youth-focused models only.
+# --------------------------------------------------------------------------- #
+
+# Verbatim from reference/stata_convert.do, lines 40-69.
+_CFPS_KS801_TO_ISCO88 = {
+    1: 1100, 2: 1200, 3: 2100, 4: 2140, 5: 3140, 6: 2220, 7: 3410,
+    8: 2420, 9: 2300, 10: 2450, 11: 3475, 12: 2451, 13: 2000,
+    14: 4110, 15: 5160, 16: 5132, 17: 5112, 18: 5132, 19: 6100,
+    20: 7230, 21: 8300, 22: 8000,
+    26: 9000, 28: 9000,
+    # 23, 24, 25, 27, 29 -> NaN per dofile
+}
+
+# ISEI for the ISCO-88 4-digit codes used above (Ganzeboom & Treiman 1996).
+_ISCO88_TO_ISEI = {
+    1100: 70, 1200: 69, 2000: 65, 2100: 71, 2140: 70, 2220: 85,
+    2300: 70, 2420: 85, 2450: 65, 2451: 65,
+    3140: 50, 3410: 51, 3475: 51,
+    4110: 45,
+    5112: 31, 5132: 25, 5160: 39,
+    6100: 23,
+    7230: 34, 8000: 30, 8300: 32,
+    9000: 16,
+}
+
+# qc201 education aspiration mapping (verbatim from dofile).
+_CFPS_QC201_TO_YEARS = {
+    1: 0,    # 文盲/半文盲 -> 0 years
+    2: 6,    # 小学
+    3: 9,    # 初中
+    4: 12,   # 高中
+    5: 15,   # 大专
+    6: 16,   # 本科
+    7: 19,   # 硕士
+    8: 23,   # 博士
+    9: 0,    # 不必读书
+}
+_CFPS_MISSING_CODES = {-10, -9, -8, -7, -2, -1, 79, 0}
+
+
+def _cfps2014_youth_filter() -> pd.Series:
+    """Boolean mask: kr1 == 4 (currently in high school / vocational), per dofile."""
+    df = _read_extra("CFPS", "2014", ["kr1"])
+    return df["kr1"] == 4
+
+
+def cfps2014_aspiration_isei() -> pd.Series:
+    """ISEI of aspired occupation for CFPS 2014 youth subsample (kr1==4).
+
+    Returns an all-survey-length Series; non-youth respondents and unanswered /
+    refused / unmappable codes are NaN.  Per reference/stata_convert.do.
+    """
+    df = _read_extra("CFPS", "2014", ["ks801code"])
+    s_raw = pd.to_numeric(df["ks801code"], errors="coerce")
+    # missing-code drop
+    s_clean = s_raw.where(~s_raw.isin(_CFPS_MISSING_CODES))
+    isco = s_clean.map(_CFPS_KS801_TO_ISCO88)
+    isei = isco.map(_ISCO88_TO_ISEI).astype("float64")
+    # restrict to kr1==4 youth subsample
+    mask = _cfps2014_youth_filter().reset_index(drop=True).reindex(
+        range(len(s_raw)), fill_value=False).astype(bool)
+    isei = isei.where(mask)
+    return isei
+
+
+def cfps2014_aspiration_edu_years() -> pd.Series:
+    """Aspired education years for CFPS 2014 youth subsample (kr1==4).
+
+    qc201 1..9 mapped to years per reference/stata_convert.do.
+    """
+    df = _read_extra("CFPS", "2014", ["qc201"])
+    s_raw = pd.to_numeric(df["qc201"], errors="coerce")
+    s_clean = s_raw.where(~s_raw.isin(_CFPS_MISSING_CODES))
+    yrs = s_clean.map(_CFPS_QC201_TO_YEARS).astype("float64")
+    mask = _cfps2014_youth_filter().reset_index(drop=True).reindex(
+        range(len(s_raw)), fill_value=False).astype(bool)
+    return yrs.where(mask)

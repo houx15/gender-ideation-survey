@@ -119,3 +119,35 @@ def test_ols_strong_effect_has_tiny_pvalue_noise_effect_large():
     p = dict(zip(res["term"], res["p"]))
     assert p["x"] < 1e-6           # real effect -> tiny p
     assert p["noise"] > 0.05       # unrelated -> non-significant
+
+
+def test_ols_robust_HC1_matches_ols_under_homoskedasticity():
+    rng = np.random.default_rng(50)
+    n = 1500
+    x = rng.normal(size=n)
+    X = pd.DataFrame({"const": 1.0, "x": x})
+    y = 1.0 + 0.5 * x + rng.normal(scale=0.4, size=n)
+    classical = S.ols(X, y)
+    robust = S.ols_robust(X, y, kind="HC1")
+    # coefs identical
+    for c1, c2 in zip(classical["coef"], robust["coef"]):
+        assert c1 == pytest.approx(c2, abs=1e-9)
+    # SEs are close (within ~10%) under homoskedastic DGP
+    for s1, s2 in zip(classical["se"], robust["se"]):
+        assert abs(s1 - s2) / max(s1, s2) < 0.15
+
+
+def test_ols_robust_HC1_picks_up_heteroskedasticity():
+    rng = np.random.default_rng(51)
+    n = 2000
+    x = rng.normal(size=n)
+    X = pd.DataFrame({"const": 1.0, "x": x})
+    # error scale grows with |x| -> classical SE is biased downward
+    sigma = 0.2 + 1.5 * np.abs(x)
+    y = 1.0 + 0.7 * x + rng.normal(scale=sigma)
+    classical = S.ols(X, y)
+    robust = S.ols_robust(X, y, kind="HC1")
+    se_c = classical["se"][classical["term"].index("x")]
+    se_r = robust["se"][robust["term"].index("x")]
+    # robust SE should be visibly larger
+    assert se_r > se_c * 1.5
