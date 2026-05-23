@@ -127,17 +127,19 @@ def plot_cohort_bootstrap(boot: pd.DataFrame, pooled: pd.DataFrame, path: Path):
     import matplotlib.pyplot as plt
     from statsmodels.nonparametric.smoothers_lowess import lowess
 
-    fig, ax = plt.subplots(figsize=(8.5, 5.2))
+    fig, ax = plt.subplots(figsize=(9.0, 5.4))
     x_pos = {c: i for i, c in enumerate(COHORTS_ORDER)}
+    program_handles = []
     for program in PROGRAMS:
         d = boot[boot.program == program].set_index("cohort").reindex(
             COHORTS_ORDER).reset_index()
         xs = np.array([x_pos[c] for c in d["cohort"]])
         color = PROGRAM_COLOR[program]
         ax.fill_between(xs, d["ci_lo"], d["ci_hi"], color=color, alpha=0.18)
-        ax.plot(xs, d["mean"], marker="o", lw=2.2, color=color, label=f"{program}")
+        line, = ax.plot(xs, d["mean"], marker="o", lw=2.2, color=color, label=program)
+        program_handles.append(line)
 
-    # LOESS smooths of ideation on continuous birth year
+    # LOESS smooths of ideation on continuous birth year (dashed)
     for program in PROGRAMS:
         sub = pooled[(pooled.program == program) &
                      pooled["birthy"].notna() &
@@ -154,11 +156,25 @@ def plot_cohort_bootstrap(boot: pd.DataFrame, pooled: pd.DataFrame, path: Path):
 
     ax.set_xticks(list(x_pos.values()))
     ax.set_xticklabels(list(x_pos.keys()), rotation=15)
-    ax.set_xlabel("Birth cohort")
+    ax.set_xlabel("Birth cohort  /  continuous birth year (rescaled)")
     ax.set_ylabel("Mean gender-ideation index (1 = most traditional)")
-    ax.set_title("Cohort trend — points + bootstrap 95% CI ribbons + LOESS smooth (dashed)")
+    ax.set_title("Cohort trend — bucket means with bootstrap 95% CI ribbons (solid)\n"
+                 "plus LOESS smooth of ideation on continuous birth year (dashed)")
     ax.grid(axis="y", alpha=0.3)
-    ax.legend(frameon=False)
+
+    # Two-part legend: programs (by colour) AND line style (solid vs dashed)
+    from matplotlib.lines import Line2D
+    style_handles = [
+        Line2D([0], [0], color="black", lw=2.2, marker="o",
+               label="Cohort bucket mean ± bootstrap 95% CI"),
+        Line2D([0], [0], color="black", ls="--", lw=1.4, alpha=0.6,
+               label="LOESS smooth (frac=0.3) over birth year"),
+    ]
+    leg1 = ax.legend(handles=program_handles, loc="upper right",
+                     frameon=False, title="Survey program")
+    ax.add_artist(leg1)
+    ax.legend(handles=style_handles, loc="lower left", frameon=False,
+              fontsize=8, title="Line type")
     fig.tight_layout()
     fig.savefig(path, format="pdf")
     plt.close(fig)
@@ -422,6 +438,71 @@ def plot_ols_coefs(coefs: pd.DataFrame, path: Path):
     plt.close(fig)
 
 
+def plot_isei_specs(cfps2020: pd.DataFrame, cfps2014_youth: pd.DataFrame,
+                    path: Path) -> None:
+    """Coefficient plot for the two ISEI-augmented specs.
+
+    Left panel: CFPS 2020 adult with current-job ISEI.
+    Right panel: CFPS 2014 youth (kr1==4) with aspirational ISEI + edu_asp.
+    """
+    import matplotlib
+    matplotlib.use("Agg")
+    matplotlib.rcParams.update({"pdf.fonttype": 42, "ps.fonttype": 42,
+                                "svg.fonttype": "none"})
+    import matplotlib.pyplot as plt
+
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(11.5, 4.8), sharey=False)
+
+    def _panel(ax, df, keep_terms, n, df_, title, color):
+        sub = df[df.term.isin(keep_terms)].copy()
+        sub["ci_lo"] = sub["coef"] - 1.96 * sub["se_hc1"]
+        sub["ci_hi"] = sub["coef"] + 1.96 * sub["se_hc1"]
+        ys = list(range(len(keep_terms)))
+        labels = []
+        for i, term in enumerate(keep_terms):
+            row = sub[sub.term == term]
+            if row.empty:
+                labels.append(term)
+                continue
+            r = row.iloc[0]
+            ax.errorbar(r["coef"], i, xerr=[[r["coef"] - r["ci_lo"]],
+                                             [r["ci_hi"] - r["coef"]]],
+                        fmt="o", color=color, capsize=3, lw=1.5)
+            star = ("***" if r["p_hc1"] < 0.001 else
+                    "**" if r["p_hc1"] < 0.01 else
+                    "*" if r["p_hc1"] < 0.05 else "")
+            labels.append(f"{term} {star}")
+        ax.axvline(0, color="grey", lw=1, ls="--")
+        ax.set_yticks(ys)
+        ax.set_yticklabels(labels, fontsize=9)
+        ax.invert_yaxis()
+        ax.set_xlabel("OLS coefficient on ideation index  (95% CI, HC1)")
+        ax.set_title(f"{title}\nN = {n}, df = {df_}", fontsize=11)
+        ax.grid(axis="x", alpha=0.25)
+
+    if cfps2020 is not None and len(cfps2020):
+        keep20 = ["female", "urban", "edu_yrs", "log_income", "employed",
+                  "isei_current"]
+        n20 = int(cfps2020.attrs.get("n", 0))
+        df20 = int(cfps2020.attrs.get("df", 0))
+        _panel(ax1, cfps2020, keep20, n20, df20,
+               "CFPS 2020 adult (current-job ISEI)",
+               PROGRAM_COLOR["CFPS"])
+    if cfps2014_youth is not None and len(cfps2014_youth):
+        keep14 = ["female", "urban", "isei_aspiration", "edu_aspiration"]
+        n14 = int(cfps2014_youth.attrs.get("n", 0))
+        df14 = int(cfps2014_youth.attrs.get("df", 0))
+        _panel(ax2, cfps2014_youth, keep14, n14, df14,
+               "CFPS 2014 youth (kr1==4, aspirational ISEI + edu)",
+               PROGRAM_COLOR["CFPS"])
+
+    fig.suptitle("Auxiliary OLS specifications — occupation as ISEI (continuous)",
+                 fontsize=12, y=1.02)
+    fig.tight_layout()
+    fig.savefig(path, format="pdf", bbox_inches="tight")
+    plt.close(fig)
+
+
 # --------------------------------------------------------------------------- #
 # main
 # --------------------------------------------------------------------------- #
@@ -470,6 +551,7 @@ def main() -> int:
     cf20 = pooled[(pooled.program == "CFPS") & (pooled.wave == "2020")].dropna(
         subset=["ideation", "female", "urban", "edu_yrs", "log_income",
                 "employed", "isei_current", "cohort"])
+    cf20_df = None
     if len(cf20) > 100:
         cohort_dummies = COHORTS_ORDER[1:]
         X = pd.DataFrame({"const": 1.0,
@@ -489,8 +571,11 @@ def main() -> int:
                 for t, c, se_c, t_c, p_c, se_r, t_r, p_r in zip(
                 cl["term"], cl["coef"], cl["se"], cl["t"], cl["p"],
                 rb["se"], rb["t"], rb["p"])]
-        pd.DataFrame(rows).to_csv(TABLES / "ols_cfps2020_with_isei.csv",
-                                  index=False, float_format="%.5f")
+        cf20_df = pd.DataFrame(rows)
+        cf20_df.attrs["n"] = cl["n"]
+        cf20_df.attrs["df"] = cl["df"]
+        cf20_df.to_csv(TABLES / "ols_cfps2020_with_isei.csv",
+                       index=False, float_format="%.5f")
         print(f"    CFPS 2020 + current ISEI N = {cl['n']}, df = {cl['df']}")
 
     # --- (4c) CFPS 2014 YOUTH (kr1==4) — aspirational ISEI + edu aspiration ---
@@ -499,6 +584,7 @@ def main() -> int:
                    pooled["isei_aspiration"].notna()].dropna(
         subset=["ideation", "female", "urban", "isei_aspiration",
                 "edu_aspiration"])
+    cf14_df = None
     if len(cf14y) > 50:
         X = pd.DataFrame({
             "const": 1.0,
@@ -514,10 +600,15 @@ def main() -> int:
                 for t, c, se_c, t_c, p_c, se_r, t_r, p_r in zip(
                 cl["term"], cl["coef"], cl["se"], cl["t"], cl["p"],
                 rb["se"], rb["t"], rb["p"])]
-        pd.DataFrame(rows).to_csv(TABLES / "ols_cfps2014_youth_aspiration.csv",
-                                  index=False, float_format="%.5f")
+        cf14_df = pd.DataFrame(rows)
+        cf14_df.attrs["n"] = cl["n"]
+        cf14_df.attrs["df"] = cl["df"]
+        cf14_df.to_csv(TABLES / "ols_cfps2014_youth_aspiration.csv",
+                       index=False, float_format="%.5f")
         print(f"    CFPS 2014 youth (kr1==4) aspiration N = {cl['n']}, df = {cl['df']}")
-        print(pd.DataFrame(rows).to_string(index=False))
+
+    # --- (4d) auxiliary ISEI coefplot ---
+    plot_isei_specs(cf20_df, cf14_df, FIGS / "ols_coefplot_isei.pdf")
 
     print("\n--- gender effect sizes (head) ---")
     print(gender_eff.head(8).to_string(index=False))
