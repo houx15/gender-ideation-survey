@@ -77,3 +77,67 @@ def test_yes_no_maps_yes_to_one_no_to_zero():
 def test_yes_no_not_applicable_and_missing_are_nan():
     s = pd.Series([79, -8, -2])
     assert all(math.isnan(x) for x in C.yes_no(s))
+
+
+# ---- first-marriage age (SPEC 5.2, analysis_026) ----
+# Computed as qea205y (marriage year) - birth_year.
+# - qea2071 == 1 restricts to *first* marriage where available.
+# - Filter plausible range [15, 50]; ages outside -> NaN.
+# - Missing in either input -> NaN.
+
+def test_first_marriage_age_subtracts_birth_year():
+    marry_y = pd.Series([1990, 2005, 2018])
+    birthy = pd.Series([1965, 1980, 1995])
+    out = C.first_marriage_age(marry_y, birthy)
+    assert list(out) == [25.0, 25.0, 23.0]
+
+
+def test_first_marriage_age_filters_implausible_ages():
+    marry_y = pd.Series([1990, 2005, 2010])      # ages would be 60 / 5 / 30
+    birthy = pd.Series([1930, 2000, 1980])
+    out = C.first_marriage_age(marry_y, birthy)
+    assert math.isnan(out[0])                    # 60 -> NaN (too old for first marr)
+    assert math.isnan(out[1])                    # 5  -> NaN (too young)
+    assert out[2] == 30.0
+
+
+def test_first_marriage_age_missing_inputs_are_nan():
+    marry_y = pd.Series([float("nan"), 2005, -8])
+    birthy = pd.Series([1980, float("nan"), 1980])
+    out = C.first_marriage_age(marry_y, birthy)
+    assert all(math.isnan(x) for x in out)
+
+
+def test_first_marriage_age_filters_negative_sentinel_marry_year():
+    marry_y = pd.Series([-9, -1, 1995])
+    birthy = pd.Series([1970, 1970, 1970])
+    out = C.first_marriage_age(marry_y, birthy)
+    assert math.isnan(out[0])
+    assert math.isnan(out[1])
+    assert out[2] == 25.0
+
+
+# ---- housework_hours_daily ----
+def test_housework_hours_daily_clips_to_valid_day():
+    s = pd.Series([0, 1.5, 12, 24])
+    out = C.housework_hours_daily(s)
+    assert list(out) == [0.0, 1.5, 12.0, 24.0]
+
+
+def test_housework_hours_daily_drops_out_of_range_and_sentinels():
+    s = pd.Series([-8, -1, 25, 100])
+    out = C.housework_hours_daily(s)
+    assert all(math.isnan(x) for x in out)
+
+
+# ---- ideal_children_count ----
+def test_ideal_children_count_keeps_zero_to_ten():
+    s = pd.Series([0, 1, 2, 3, 10])
+    out = C.ideal_children_count(s)
+    assert list(out) == [0.0, 1.0, 2.0, 3.0, 10.0]
+
+
+def test_ideal_children_count_drops_sentinels_and_implausible():
+    s = pd.Series([-8, -1, 11, 99])
+    out = C.ideal_children_count(s)
+    assert all(math.isnan(x) for x in out)

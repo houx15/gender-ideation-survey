@@ -57,3 +57,29 @@ def yes_no(s: pd.Series) -> pd.Series:
     out[s == 1] = 1.0
     out[s.isin({0, 5})] = 0.0
     return out
+
+
+# ---- analysis_026 helpers (SPEC 5.2 individual-level family outcomes) ----
+
+def first_marriage_age(marry_year: pd.Series, birth_year: pd.Series,
+                       lo: int = 15, hi: int = 50) -> pd.Series:
+    """Age at marriage = qea205y - birth_year, kept to [lo, hi].
+
+    qea205y is the marriage-date year; negative sentinels (CFPS -8/-1) and any
+    age outside [15, 50] -> NaN. Birth years must also be plausible (>=1900);
+    upstream readers already filter birthy to [1920, 2010].
+    """
+    my = pd.to_numeric(marry_year, errors="coerce").where(lambda x: x.between(1940, 2024))
+    by = pd.to_numeric(birth_year, errors="coerce").where(lambda x: x.between(1900, 2010))
+    age = my - by
+    return age.where(age.between(lo, hi))
+
+
+def housework_hours_daily(s: pd.Series) -> pd.Series:
+    """Daily housework hours (qq9010 / qq9010n), clipped to [0, 24]."""
+    return clean_continuous(pd.to_numeric(s, errors="coerce"), lo=0, hi=24)
+
+
+def ideal_children_count(s: pd.Series) -> pd.Series:
+    """Ideal number of children (qm501, 2014 only), kept to [0, 10]."""
+    return clean_continuous(pd.to_numeric(s, errors="coerce"), lo=0, hi=10)
