@@ -186,7 +186,13 @@ follow-up.
 * `tables/ols_delta_ideation_{all,male,female}.csv` — OLS by sex
 * `tables/ols_meta.csv` — per-stratum sample sizes
 * `figures/life_event_forest_{all,male,female}.pdf` — one forest per
-  sex stratum
+  sex stratum, all six life events. n_yes is folded into each y-tick
+  label so the count no longer collides with the CI whisker.
+* `figures/life_event_forest_family.pdf` — focused M-vs-F forest of
+  family-change events: had a new child, entered marriage, got
+  divorced. Y-tick labels show both M and F n_yes.
+* `figures/life_event_forest_job.pdf` — focused M-vs-F forest of
+  job-change events: lost / left job, entered work.
 * `figures/ols_coefplot_{all,male,female}.pdf` — one coefplot per sex
   stratum (HC1 95 % CI; baseline-ideation in footnote)
 * `figures/who_changes_forest.pdf`, `delta_ideation_hist.pdf` — unchanged

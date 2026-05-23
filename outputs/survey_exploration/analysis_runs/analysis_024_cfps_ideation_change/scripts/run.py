@@ -279,9 +279,21 @@ def step_life_events(p: pd.DataFrame) -> dict[str, pd.DataFrame]:
     return out_by_strat
 
 
+def _forest_xlim(frames: list[pd.DataFrame]) -> tuple[float, float]:
+    """Common x-axis lim so several forests are visually comparable."""
+    finite = pd.concat([f for f in frames if not f.empty])
+    finite = finite.dropna(subset=["diff", "diff_se"])
+    lo = float((finite["diff"] - 1.96 * finite["diff_se"]).min())
+    hi = float((finite["diff"] + 1.96 * finite["diff_se"]).max())
+    pad = (hi - lo) * 0.05
+    return lo - pad, hi + pad
+
+
 def step_life_event_forest(by_strat: dict[str, pd.DataFrame]) -> None:
-    """Three separate figures (one per sex stratum), each a single
-    whole-sample forest of life-event contrasts.
+    """Three single-stratum forests (one PDF per sex stratum).
+
+    The n_yes count is folded into the y-tick label (e.g. "Entered
+    marriage (n=760)") so it no longer collides with the CI whisker.
     """
     sex_titles = {
         "all":    "Overall sample",
@@ -290,32 +302,27 @@ def step_life_event_forest(by_strat: dict[str, pd.DataFrame]) -> None:
     }
     sex_colours = {"all": "#264478", "male": "#117755", "female": "#aa4422"}
     events = [c for c, _ in EVENTS]
-    labels = [l for _, l in EVENTS]
+    label_of = dict(EVENTS)
 
-    # Match x-axis across the three figures so they're directly comparable.
-    finite = pd.concat([df for df in by_strat.values() if not df.empty])
-    finite = finite.dropna(subset=["diff", "diff_se"])
-    lo = float((finite["diff"] - 1.96 * finite["diff_se"]).min())
-    hi = float((finite["diff"] + 1.96 * finite["diff_se"]).max())
-    pad = (hi - lo) * 0.05
-    xlim = (lo - pad, hi + pad)
+    xlim = _forest_xlim(list(by_strat.values()))
 
     for stratum, title in sex_titles.items():
         sub = by_strat[stratum]
+        if sub.empty:
+            continue
+        sub = sub.set_index("event").reindex(events).reset_index()
+        y = np.arange(len(events))[::-1]
+
         fig, ax = plt.subplots(figsize=(7.0, 4.0))
-        if not sub.empty:
-            sub = sub.set_index("event").reindex(events).reset_index()
-            y = np.arange(len(events))[::-1]
-            ax.errorbar(sub["diff"], y, xerr=1.96 * sub["diff_se"],
-                        fmt="o", color=sex_colours[stratum], capsize=3)
-            for yi, (_, r) in zip(y, sub.iterrows()):
-                if pd.notna(r["diff"]):
-                    ax.text(r["diff"], yi, f"  n_yes={int(r['n_yes']):,}",
-                            color=sex_colours[stratum], fontsize=7,
-                            va="center")
+        ax.errorbar(sub["diff"], y, xerr=1.96 * sub["diff_se"],
+                    fmt="o", color=sex_colours[stratum], capsize=3)
         ax.axvline(0, color="black", lw=0.6)
-        ax.set_yticks(np.arange(len(events))[::-1])
-        ax.set_yticklabels(labels)
+        tick_labels = [
+            f"{label_of[e]}  (n_yes={int(r.n_yes):,})" if pd.notna(r.n_yes) else label_of[e]
+            for e, r in zip(sub["event"], sub.itertuples(index=False))
+        ]
+        ax.set_yticks(y)
+        ax.set_yticklabels(tick_labels)
         ax.set_xlabel("Δideation contrast (event − no event), 95% CI Welch\n"
                       "negative = event associated with progressive shift")
         ax.set_xlim(*xlim)
@@ -323,6 +330,51 @@ def step_life_event_forest(by_strat: dict[str, pd.DataFrame]) -> None:
                      f"(CFPS 2014→2020)", fontsize=10)
         fig.tight_layout()
         fig.savefig(FIG / f"life_event_forest_{stratum}.pdf")
+        plt.close(fig)
+
+
+def step_life_event_focused_forests(by_strat: dict[str, pd.DataFrame]) -> None:
+    """Two focused M-vs-F figures: family-change events and job-change events."""
+    sex_colours = {"male": "#117755", "female": "#aa4422"}
+    sex_marker  = {"male": "o", "female": "s"}
+    panels = [
+        ("family", "Family-change events", ["had_new_child", "entered_marriage", "divorced"]),
+        ("job",    "Job-change events",     ["lost_job", "entered_work"]),
+    ]
+    label_of = dict(EVENTS)
+    # Common x-axis based on all M/F life-event contrasts so the two new figures
+    # match each other visually.
+    xlim = _forest_xlim([by_strat["male"], by_strat["female"]])
+
+    for slug, title, events in panels:
+        male = by_strat["male"].set_index("event").reindex(events).reset_index()
+        female = by_strat["female"].set_index("event").reindex(events).reset_index()
+        y_base = np.arange(len(events))[::-1].astype(float)
+
+        fig, ax = plt.subplots(figsize=(7.4, 2.2 + 0.7 * len(events)))
+        ax.errorbar(male["diff"], y_base + 0.18, xerr=1.96 * male["diff_se"],
+                    fmt=sex_marker["male"], color=sex_colours["male"],
+                    capsize=3, label="Male")
+        ax.errorbar(female["diff"], y_base - 0.18, xerr=1.96 * female["diff_se"],
+                    fmt=sex_marker["female"], color=sex_colours["female"],
+                    capsize=3, label="Female")
+        ax.axvline(0, color="black", lw=0.6)
+        tick_labels = [
+            f"{label_of[e]}\n(M n_yes={int(m.n_yes):,}; F n_yes={int(f.n_yes):,})"
+            if pd.notna(m.n_yes) and pd.notna(f.n_yes) else label_of[e]
+            for e, m, f in zip(events,
+                               male.itertuples(index=False),
+                               female.itertuples(index=False))
+        ]
+        ax.set_yticks(y_base)
+        ax.set_yticklabels(tick_labels)
+        ax.set_xlabel("Δideation contrast (event − no event), 95% CI Welch\n"
+                      "negative = event associated with progressive shift")
+        ax.set_xlim(*xlim)
+        ax.set_title(f"{title} — male vs female (CFPS 2014→2020)", fontsize=10)
+        ax.legend(frameon=False, loc="lower right")
+        fig.tight_layout()
+        fig.savefig(FIG / f"life_event_forest_{slug}.pdf")
         plt.close(fig)
 
 
@@ -478,6 +530,7 @@ def main() -> None:
     step_forest_who(who)
     by_strat = step_life_events(p)
     step_life_event_forest(by_strat)
+    step_life_event_focused_forests(by_strat)
     step_marital_table(p)
     coefs_by = step_ols(p)
     step_ols_coefplot(coefs_by)
