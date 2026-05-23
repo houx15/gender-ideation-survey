@@ -50,24 +50,18 @@ Direction-of-change is classified with `eps = 0.05` on the [0,1] index
 
 Each binary event is NaN (not 0) whenever either endpoint is missing.
 
-## At-risk denominators (`cfps_panel.at_risk_for_event`)
+## Denominator
 
-For every Welch contrast we report two denominators:
-
-* **"all"** — `event = 1` vs `event = 0` across the whole panel. Big
-  "no" group but contaminated by people who could not have undergone the
-  transition.
-* **"at_risk"** — only respondents whose 2014 state made the 0→1
-  transition possible.
-
-| Event              | At-risk pool (2014 state)                  |
-|--------------------|--------------------------------------------|
-| entered_marriage   | marital ∈ {never-married, cohab}           |
-| divorced           | marital ∈ {married, cohab}                 |
-| widowed            | marital ∈ {married, cohab}                 |
-| lost_job           | employed == 1                              |
-| entered_work       | employed == 0                              |
-| had_new_child      | (female & age ≤ 45)  OR  (male & age ≤ 55) |
+Every Welch contrast in this run uses the **whole-sample denominator**:
+`event = 1` vs `event = 0` across all panel rows in the relevant sex
+stratum. An at-risk-pool variant (restricted to respondents whose 2014
+state made the 0→1 transition possible) was explored in an earlier
+iteration and dropped because n_yes after restriction was too small to
+support inference (e.g. the fertile-age `had_new_child` pool collapses
+to 94 cases, almost all on the male side). The `at_risk_for_event`
+helper is retained in `cfps_panel.py` as documented library code for
+follow-ups that have more wave-pairs to pool, but no analysis output in
+this run uses it.
 
 ## Sex stratification
 

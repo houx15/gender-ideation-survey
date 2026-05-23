@@ -234,18 +234,9 @@ SEX_STRATA = [
 ]
 
 
-def _life_event_one(p: pd.DataFrame, col: str, label: str,
-                    denom: str) -> dict | None:
-    """One Welch contrast.  `denom` ∈ {"all", "at_risk"}."""
-    if denom == "at_risk":
-        try:
-            mask = CP.at_risk_for_event(p, col)
-        except ValueError:
-            return None
-        pool = p[mask]
-    else:
-        pool = p
-    sub = pool.dropna(subset=["delta_ideation", col])
+def _life_event_one(p: pd.DataFrame, col: str, label: str) -> dict | None:
+    """One Welch contrast on the whole-sample denominator."""
+    sub = p.dropna(subset=["delta_ideation", col])
     a = sub.loc[sub[col] == 0, "delta_ideation"].to_numpy()
     b = sub.loc[sub[col] == 1, "delta_ideation"].to_numpy()
     if len(a) < 2 or len(b) < 2:
@@ -254,7 +245,7 @@ def _life_event_one(p: pd.DataFrame, col: str, label: str,
     ci_b = DS.bootstrap_mean_ci(b, n_boot=1000, seed=1)
     w = DS.welch_ci_diff(b, a)
     return {
-        "event": col, "label": label, "denom": denom,
+        "event": col, "label": label,
         "n_no": len(a), "n_yes": len(b),
         "mean_no": float(a.mean()), "mean_yes": float(b.mean()),
         "ci_no_lo": ci_a["ci_lo"],  "ci_no_hi": ci_a["ci_hi"],
@@ -266,32 +257,31 @@ def _life_event_one(p: pd.DataFrame, col: str, label: str,
     }
 
 
-def step_life_events(p: pd.DataFrame) -> dict[tuple[str, str], pd.DataFrame]:
-    """One row per (event, denom) × sex stratum.  Save three CSVs and
-    return a dict keyed by (stratum, denom) for downstream plotting."""
-    out_by_strat: dict[tuple[str, str], pd.DataFrame] = {}
+def step_life_events(p: pd.DataFrame) -> dict[str, pd.DataFrame]:
+    """One row per event × sex stratum.  Save three CSVs and return a dict
+    keyed by stratum for downstream plotting.
+
+    Only the whole-sample denominator is used (at-risk denominators were
+    explored in v2 but dropped because n_yes was too small after
+    restriction)."""
+    out_by_strat: dict[str, pd.DataFrame] = {}
     for stratum_name, sex_val in SEX_STRATA:
         sub = p if sex_val is None else p[p["female"] == sex_val]
-        for denom in ("all", "at_risk"):
-            rows = []
-            for col, label in EVENTS:
-                r = _life_event_one(sub, col, label, denom)
-                if r is not None:
-                    r["sex_stratum"] = stratum_name
-                    rows.append(r)
-            df = pd.DataFrame(rows)
-            out_by_strat[(stratum_name, denom)] = df
-        # Save one combined CSV per sex stratum (both denominators stacked)
-        combined = pd.concat([out_by_strat[(stratum_name, d)] for d in ("all", "at_risk")],
-                             ignore_index=True)
-        combined.to_csv(TBL / f"life_event_means_{stratum_name}.csv", index=False)
+        rows = []
+        for col, label in EVENTS:
+            r = _life_event_one(sub, col, label)
+            if r is not None:
+                r["sex_stratum"] = stratum_name
+                rows.append(r)
+        df = pd.DataFrame(rows)
+        out_by_strat[stratum_name] = df
+        df.to_csv(TBL / f"life_event_means_{stratum_name}.csv", index=False)
     return out_by_strat
 
 
-def step_life_event_forest(by_strat: dict[tuple[str, str], pd.DataFrame]) -> None:
-    """Three separate figures (one per sex stratum), each with two
-    denominator panels (whole-panel / at-risk).  This is cleaner than
-    overlaying all three strata.
+def step_life_event_forest(by_strat: dict[str, pd.DataFrame]) -> None:
+    """Three separate figures (one per sex stratum), each a single
+    whole-sample forest of life-event contrasts.
     """
     sex_titles = {
         "all":    "Overall sample",
@@ -303,45 +293,35 @@ def step_life_event_forest(by_strat: dict[tuple[str, str], pd.DataFrame]) -> Non
     labels = [l for _, l in EVENTS]
 
     # Match x-axis across the three figures so they're directly comparable.
-    all_diffs = pd.concat([df for df in by_strat.values()
-                           if isinstance(df, pd.DataFrame) and not df.empty])
-    if not all_diffs.empty:
-        finite = all_diffs.dropna(subset=["diff", "diff_se"])
-        lo = float((finite["diff"] - 1.96 * finite["diff_se"]).min())
-        hi = float((finite["diff"] + 1.96 * finite["diff_se"]).max())
-        pad = (hi - lo) * 0.05
-        xlim = (lo - pad, hi + pad)
-    else:
-        xlim = None
+    finite = pd.concat([df for df in by_strat.values() if not df.empty])
+    finite = finite.dropna(subset=["diff", "diff_se"])
+    lo = float((finite["diff"] - 1.96 * finite["diff_se"]).min())
+    hi = float((finite["diff"] + 1.96 * finite["diff_se"]).max())
+    pad = (hi - lo) * 0.05
+    xlim = (lo - pad, hi + pad)
 
     for stratum, title in sex_titles.items():
-        fig, axes = plt.subplots(1, 2, figsize=(10.8, 4.2), sharey=True)
-        for ax, denom, denom_title in zip(
-                axes, ("all", "at_risk"),
-                ("Denominator: whole sample",
-                 "Denominator: at-risk subsample (2014 = '0' state)")):
-            sub = by_strat[(stratum, denom)]
-            if not sub.empty:
-                sub = sub.set_index("event").reindex(events).reset_index()
-                y = np.arange(len(events))[::-1]
-                ax.errorbar(sub["diff"], y, xerr=1.96 * sub["diff_se"],
-                            fmt="o", color=sex_colours[stratum],
-                            capsize=3)
-                for yi, (_, r) in zip(y, sub.iterrows()):
-                    if pd.notna(r["diff"]):
-                        ax.text(r["diff"], yi, f"  n_yes={int(r['n_yes']):,}",
-                                color=sex_colours[stratum], fontsize=7,
-                                va="center")
-            ax.axvline(0, color="black", lw=0.6)
-            ax.set_yticks(np.arange(len(events))[::-1])
-            ax.set_yticklabels(labels)
-            ax.set_title(denom_title, fontsize=10)
-            ax.set_xlabel("Δideation contrast (event − no event), 95% CI")
-            if xlim:
-                ax.set_xlim(*xlim)
-        fig.suptitle(f"Life-event associations with Δideation — {title} "
-                     f"(CFPS 2014→2020)", fontsize=11)
-        fig.tight_layout(rect=[0, 0, 1, 0.94])
+        sub = by_strat[stratum]
+        fig, ax = plt.subplots(figsize=(7.0, 4.0))
+        if not sub.empty:
+            sub = sub.set_index("event").reindex(events).reset_index()
+            y = np.arange(len(events))[::-1]
+            ax.errorbar(sub["diff"], y, xerr=1.96 * sub["diff_se"],
+                        fmt="o", color=sex_colours[stratum], capsize=3)
+            for yi, (_, r) in zip(y, sub.iterrows()):
+                if pd.notna(r["diff"]):
+                    ax.text(r["diff"], yi, f"  n_yes={int(r['n_yes']):,}",
+                            color=sex_colours[stratum], fontsize=7,
+                            va="center")
+        ax.axvline(0, color="black", lw=0.6)
+        ax.set_yticks(np.arange(len(events))[::-1])
+        ax.set_yticklabels(labels)
+        ax.set_xlabel("Δideation contrast (event − no event), 95% CI Welch\n"
+                      "negative = event associated with progressive shift")
+        ax.set_xlim(*xlim)
+        ax.set_title(f"Life-event associations with Δideation — {title} "
+                     f"(CFPS 2014→2020)", fontsize=10)
+        fig.tight_layout()
         fig.savefig(FIG / f"life_event_forest_{stratum}.pdf")
         plt.close(fig)
 
