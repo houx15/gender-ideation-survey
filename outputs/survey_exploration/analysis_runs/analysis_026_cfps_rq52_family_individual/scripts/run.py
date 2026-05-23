@@ -1,16 +1,23 @@
 #!/usr/bin/env python3
-"""analysis_026 — RQ 5.2 individual-level family outcomes (deep version).
+"""analysis_026 v2 — RQ 5.2 individual-level family outcomes (deep, enriched).
 
-Outcomes (CFPS):
-  - currently_married  (qea0 == 2)         binary, both waves
-  - first_marriage_age (qea205y - birthy)  retrospective continuous, both waves
-  - ideal_children     (qm501)             count, 2014 only
-  - housework_hours    (qq9010 / qq9010n)  hours/day, both waves
+v1 outcomes (CFPS):
+  - currently_married   (qea0 == 2)
+  - first_marriage_age  (qea205y - birthy)        retrospective
+  - ideal_children      (qm501, 2014 only)
+  - housework_hours     (qq9010 / qq9010n)        hours/day
+
+v2 additions (user-supplied list, 2026-05-23):
+  - ideal_marriage_age  (qka201,  2020 only)      理想结婚年龄
+  - birth_intention_2y  (qka205,  2020 only)      未来两年生育意愿 (binary)
+  - marriage_sat        (qm801,   both waves)     婚姻满意度 (Likert 1-5)
+  - cohab_experience    (eeb501,  both waves)     同居经历 (binary)
+  - childcare_hours     (qq9013,  2020 only)      照顾孩子时长 (hours/day)
 
 Each outcome estimated:
-  (A) 2014 cross-section
+  (A) 2014 cross-section (where available)
   (B) 2020 cross-section (where available)
-  (C) lagged panel: ideation_2014 -> outcome_2020 (+ outcome_2014 if continuous)
+  (C) lagged panel: ideation_2014 -> outcome_2020 (where both waves exist)
 
 Each fit stratified to (overall, male, female).
 
@@ -19,6 +26,8 @@ Methods:
   - OLS (continuous) / LPM (binary) with HC1 robust SEs.
   - Lagged-continuous fit puts outcome_2014 on RHS so the coefficient on
     ideation_2014 is interpreted as predicting the *change*.
+  - Controls: female (overall only), age_c=(age-40)/10, age_c2, urban (hukou),
+    edu_yrs, log_income.
 
 All tables CSV, all figures vector PDF (pdf.fonttype=42).
 """
@@ -64,6 +73,7 @@ def load_2014_cross() -> pd.DataFrame:
     """Full 2014 adult cross-section with ideation index + outcome variables."""
     cfg = L.SURVEYS[("CFPS", "2014")]
     extras = ["qea0", "qea205y", "qea2071", "qm501", "qq9010",
+              "qm801", "eeb501",
               "cfps_birthy", "cfps2014eduy_im", "income", "qa301",
               "employ2014", cfg["gender_var"], "pid"]
     df, _meta, norm_cols, idx = L.load_recoded(
@@ -80,6 +90,15 @@ def load_2014_cross() -> pd.DataFrame:
     df.loc[~is_first & df["qea2071"].notna(), "first_marriage_age"] = np.nan
     df["ideal_children"] = C.ideal_children_count(df["qm501"])
     df["housework_hours"] = C.housework_hours_daily(df["qq9010"])
+    # v2 additions available in 2014: qm801 (1-5 Likert), eeb501 (yes/no).
+    df["marriage_sat"] = C.clean_continuous(
+        pd.to_numeric(df["qm801"], errors="coerce"), lo=1, hi=5)
+    df["cohab_experience"] = C.yes_no(pd.to_numeric(df["eeb501"], errors="coerce"))
+    # v2 additions NOT available in 2014: keep as NaN columns so downstream
+    # generic loops can address them uniformly.
+    df["ideal_marriage_age"] = np.nan
+    df["birth_intention_2y"] = np.nan
+    df["childcare_hours"]    = np.nan
     df["edu_yrs"] = pd.to_numeric(df["cfps2014eduy_im"], errors="coerce").where(
         lambda x: x.between(0, 22))
     df["income"] = P._to_numeric_nan_sentinels(df["income"]).where(lambda x: x >= 0)
@@ -92,6 +111,7 @@ def load_2014_cross() -> pd.DataFrame:
 def load_2020_cross() -> pd.DataFrame:
     cfg = L.SURVEYS[("CFPS", "2020")]
     extras = ["qea0", "qea205y", "qea2071", "qq9010n",
+              "qka201", "qka205", "qm801", "eeb501", "qq9013",
               "ibirthy", "cfps2020eduy_im", "emp_income", "qa301",
               "employ", cfg["gender_var"], "pid"]
     df, _meta, norm_cols, idx = L.load_recoded(
@@ -107,6 +127,14 @@ def load_2020_cross() -> pd.DataFrame:
     df.loc[~is_first & df["qea2071"].notna(), "first_marriage_age"] = np.nan
     df["ideal_children"] = pd.Series(np.nan, index=df.index)  # not asked in 2020
     df["housework_hours"] = C.housework_hours_daily(df["qq9010n"])
+    # v2 additions
+    df["ideal_marriage_age"] = C.clean_continuous(
+        pd.to_numeric(df["qka201"], errors="coerce"), lo=15, hi=50)
+    df["birth_intention_2y"] = C.yes_no(pd.to_numeric(df["qka205"], errors="coerce"))
+    df["marriage_sat"] = C.clean_continuous(
+        pd.to_numeric(df["qm801"], errors="coerce"), lo=1, hi=5)
+    df["cohab_experience"] = C.yes_no(pd.to_numeric(df["eeb501"], errors="coerce"))
+    df["childcare_hours"] = C.housework_hours_daily(df["qq9013"])
     df["edu_yrs"] = pd.to_numeric(df["cfps2020eduy_im"], errors="coerce").where(
         lambda x: x.between(0, 22))
     df["income"] = P._to_numeric_nan_sentinels(df["emp_income"]).where(lambda x: x >= 0)
@@ -117,29 +145,50 @@ def load_2020_cross() -> pd.DataFrame:
 
 
 def load_panel() -> pd.DataFrame:
-    """Lagged frame: panel members, with 2014 covariates + 2020 outcomes."""
+    """Lagged frame: panel members, with 2014 covariates + 2020 outcomes.
+
+    For v2, also attaches qm801 (婚姻满意度) and eeb501 (同居经历) on both waves
+    (so lagged frame has these two new outcomes), and qq9013 + qka201 + qka205
+    on 2020 only.
+    """
     p = P.build_panel().copy()
-    # Re-read 2020 housework + first-marriage age to merge onto the panel.
-    cfg = L.SURVEYS[("CFPS", "2020")]
-    extra20, _ = pyreadstat.read_dta(
-        str(L.ROOT / cfg["file"]),
-        usecols=["pid", "qq9010n", "qea205y", "qea2071", "qm501a"])
-    extra20["housework_2020"] = C.housework_hours_daily(extra20["qq9010n"])
-    is_first = (pd.to_numeric(extra20["qea2071"], errors="coerce") == 1)
-    extra20 = extra20.drop_duplicates(subset=["pid"], keep="first")
-    # 2014 housework + ideal_children attached on pid
+    cfg20 = L.SURVEYS[("CFPS", "2020")]
     cfg14 = L.SURVEYS[("CFPS", "2014")]
+    # 2020 extras
+    extra20, _ = pyreadstat.read_dta(
+        str(L.ROOT / cfg20["file"]),
+        usecols=["pid", "qq9010n", "qq9013", "qm801", "eeb501",
+                 "qka201", "qka205"])
+    extra20["housework_2020"]          = C.housework_hours_daily(extra20["qq9010n"])
+    extra20["childcare_hours_2020"]    = C.housework_hours_daily(extra20["qq9013"])
+    extra20["marriage_sat_2020"]       = C.clean_continuous(
+        pd.to_numeric(extra20["qm801"], errors="coerce"), lo=1, hi=5)
+    extra20["cohab_experience_2020"]   = C.yes_no(
+        pd.to_numeric(extra20["eeb501"], errors="coerce"))
+    extra20["ideal_marriage_age_2020"] = C.clean_continuous(
+        pd.to_numeric(extra20["qka201"], errors="coerce"), lo=15, hi=50)
+    extra20["birth_intention_2y_2020"] = C.yes_no(
+        pd.to_numeric(extra20["qka205"], errors="coerce"))
+    extra20 = extra20.drop_duplicates(subset=["pid"], keep="first")
+    # 2014 extras
     extra14, _ = pyreadstat.read_dta(
         str(L.ROOT / cfg14["file"]),
-        usecols=["pid", "qq9010", "qm501"])
-    extra14["housework_2014"] = C.housework_hours_daily(extra14["qq9010"])
-    extra14["ideal_children_2014"] = C.ideal_children_count(extra14["qm501"])
+        usecols=["pid", "qq9010", "qm501", "qm801", "eeb501"])
+    extra14["housework_2014"]        = C.housework_hours_daily(extra14["qq9010"])
+    extra14["ideal_children_2014"]   = C.ideal_children_count(extra14["qm501"])
+    extra14["marriage_sat_2014"]     = C.clean_continuous(
+        pd.to_numeric(extra14["qm801"], errors="coerce"), lo=1, hi=5)
+    extra14["cohab_experience_2014"] = C.yes_no(
+        pd.to_numeric(extra14["eeb501"], errors="coerce"))
     extra14 = extra14.drop_duplicates(subset=["pid"], keep="first")
-    p = p.merge(extra20[["pid", "housework_2020"]], on="pid", how="left")
-    p = p.merge(extra14[["pid", "housework_2014", "ideal_children_2014"]], on="pid",
-                how="left")
+    p = p.merge(extra20[["pid", "housework_2020", "childcare_hours_2020",
+                         "marriage_sat_2020", "cohab_experience_2020",
+                         "ideal_marriage_age_2020", "birth_intention_2y_2020"]],
+                on="pid", how="left")
+    p = p.merge(extra14[["pid", "housework_2014", "ideal_children_2014",
+                         "marriage_sat_2014", "cohab_experience_2014"]],
+                on="pid", how="left")
     # Derived: currently_married_2020 = (marital_2020==1).
-    # P.clean_marital_status maps qea0==2 -> 1; this is the same convention.
     p["currently_married_2020"] = (p["marital_2020"] == 1).astype("float")
     p.loc[p["marital_2020"].isna(), "currently_married_2020"] = np.nan
     p["currently_married_2014"] = (p["marital_2014"] == 1).astype("float")
@@ -183,12 +232,17 @@ def descriptive_table(df14: pd.DataFrame, df20: pd.DataFrame,
     spec = [
         ("2014_cross", df14, "ideation",
          ["currently_married", "first_marriage_age", "ideal_children",
-          "housework_hours"], "female"),
+          "housework_hours", "marriage_sat", "cohab_experience"],
+         "female"),
         ("2020_cross", df20, "ideation",
-         ["currently_married", "first_marriage_age", "housework_hours"],
+         ["currently_married", "first_marriage_age", "housework_hours",
+          "ideal_marriage_age", "birth_intention_2y", "marriage_sat",
+          "cohab_experience", "childcare_hours"],
          "female"),
         ("panel_2014_baseline", panel, "ideation_2014",
-         ["currently_married_2020", "housework_2020"],
+         ["currently_married_2020", "housework_2020", "marriage_sat_2020",
+          "cohab_experience_2020", "childcare_hours_2020",
+          "birth_intention_2y_2020"],
          "female"),
     ]
     for tag, df, idcol, outcomes, fcol in spec:
@@ -220,10 +274,15 @@ def missing_table(df14: pd.DataFrame, df20: pd.DataFrame,
     rows = []
     for tag, df, cols in [
         ("2014_cross", df14, ["currently_married", "first_marriage_age",
-                              "ideal_children", "housework_hours"]),
+                              "ideal_children", "housework_hours",
+                              "marriage_sat", "cohab_experience"]),
         ("2020_cross", df20, ["currently_married", "first_marriage_age",
-                              "housework_hours"]),
-        ("panel", panel, ["currently_married_2020", "housework_2020"]),
+                              "housework_hours", "ideal_marriage_age",
+                              "birth_intention_2y", "marriage_sat",
+                              "cohab_experience", "childcare_hours"]),
+        ("panel", panel, ["currently_married_2020", "housework_2020",
+                          "marriage_sat_2020", "cohab_experience_2020",
+                          "childcare_hours_2020", "birth_intention_2y_2020"]),
     ]:
         for c in cols:
             s = df[c]
@@ -323,16 +382,27 @@ def fit_outcome(X: pd.DataFrame, y: pd.Series, stratum_mask: pd.Series) -> dict:
 # ------------------------------------------------------------------ #
 
 OUTCOMES_CROSS = {
-    "currently_married": dict(continuous=False, lo=0, hi=1, label="Currently married"),
-    "first_marriage_age": dict(continuous=True, lo=15, hi=50, label="Age at first marriage (descriptive)"),
-    "ideal_children":     dict(continuous=True, lo=0, hi=10, label="Ideal children num (2014 only)"),
-    "housework_hours":    dict(continuous=True, lo=0, hi=24, label="Housework hours / day"),
+    "currently_married":  dict(continuous=False, lo=0,  hi=1,  label="Currently married"),
+    "first_marriage_age": dict(continuous=True,  lo=15, hi=50, label="Age at first marriage (descriptive)"),
+    "ideal_children":     dict(continuous=True,  lo=0,  hi=10, label="Ideal children num (2014 only)"),
+    "housework_hours":    dict(continuous=True,  lo=0,  hi=24, label="Housework hours / day"),
+    # v2 additions
+    "ideal_marriage_age": dict(continuous=True,  lo=15, hi=50, label="Ideal marriage age (2020 only)"),
+    "birth_intention_2y": dict(continuous=False, lo=0,  hi=1,  label="Plans a child in next 2 yr (2020 only)"),
+    "marriage_sat":       dict(continuous=True,  lo=1,  hi=5,  label="Marriage satisfaction (1-5)"),
+    "cohab_experience":   dict(continuous=False, lo=0,  hi=1,  label="Cohabitation experience"),
+    "childcare_hours":    dict(continuous=True,  lo=0,  hi=24, label="Childcare hours / day (2020 only)"),
 }
 OUTCOMES_LAGGED = {
     "currently_married_2020": dict(continuous=False, baseline="currently_married_2014",
                                    label="Currently married 2020"),
     "housework_2020":         dict(continuous=True,  baseline="housework_2014",
                                    label="Housework hours / day 2020"),
+    # v2 additions where both waves exist
+    "marriage_sat_2020":      dict(continuous=True,  baseline="marriage_sat_2014",
+                                   label="Marriage satisfaction 2020 (1-5)"),
+    "cohab_experience_2020":  dict(continuous=False, baseline="cohab_experience_2014",
+                                   label="Cohabitation experience 2020"),
 }
 
 
@@ -548,6 +618,25 @@ def main() -> int:
     fig_outcome_by_tertile(df14, "ideation", "female", "ideal_children",
                            "Ideal children",
                            FIGS / "ideal_children_by_tertile_2014.pdf", "CFPS 2014")
+    # v2 additions
+    fig_outcome_by_tertile(df20, "ideation", "female", "ideal_marriage_age",
+                           "Ideal marriage age",
+                           FIGS / "ideal_marriage_age_by_tertile_2020.pdf", "CFPS 2020")
+    fig_outcome_by_tertile(df20, "ideation", "female", "birth_intention_2y",
+                           "P(plans child within 2 yr)",
+                           FIGS / "birth_intention_by_tertile_2020.pdf", "CFPS 2020")
+    fig_outcome_by_tertile(df14, "ideation", "female", "marriage_sat",
+                           "Marriage satisfaction (1-5)",
+                           FIGS / "marriage_sat_by_tertile_2014.pdf", "CFPS 2014")
+    fig_outcome_by_tertile(df20, "ideation", "female", "marriage_sat",
+                           "Marriage satisfaction (1-5)",
+                           FIGS / "marriage_sat_by_tertile_2020.pdf", "CFPS 2020")
+    fig_outcome_by_tertile(df20, "ideation", "female", "cohab_experience",
+                           "P(cohabitation experience)",
+                           FIGS / "cohab_experience_by_tertile_2020.pdf", "CFPS 2020")
+    fig_outcome_by_tertile(df20, "ideation", "female", "childcare_hours",
+                           "Childcare hours / day",
+                           FIGS / "childcare_by_tertile_2020.pdf", "CFPS 2020")
     fig_outcome_by_tertile(df14, "ideation", "female", "currently_married",
                            "P(currently married)",
                            FIGS / "currently_married_by_tertile_2014.pdf", "CFPS 2014")

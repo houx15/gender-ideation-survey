@@ -1,8 +1,64 @@
-# 05 · Interpretation note — analysis_026
+# 05 · Interpretation note — analysis_026 (v2)
 
 > RQ 5.2 individual-level family practice, deep-dive replacement for
 > `analysis_004_cfps_family_practice`. Reports cross-section + lagged
 > fits side-by-side and stratifies every outcome by sex.
+
+## v2 update (2026-05-23)
+
+User-supplied five new family-domain variables. All available in CFPS 2020;
+two also in 2014 (so two get a lagged frame).
+
+| Variable | 2014 | 2020 | Lagged |
+|---|---|---|---|
+| `ideal_marriage_age` (qka201) | — | ✓ | — |
+| `birth_intention_2y` (qka205) | — | ✓ | — |
+| `marriage_sat` (qm801)        | ✓ | ✓ | ✓ |
+| `cohab_experience` (eeb501)   | ✓ | ✓ | ✓ |
+| `childcare_hours` (qq9013)    | — | ✓ | — |
+
+Three findings worth flagging in v2:
+
+1. **Ideal marriage age (2020): traditional → earlier ideal.** Overall
+   β = **−1.45** (p = .005); male **−1.28** (p = .016); **female −1.94**
+   (p = .0003). Bigger and tighter than the retrospective first-marriage-age
+   contrast in v1, and goes in the same direction: a top-of-scale →
+   bottom-of-scale ideation move shifts women's ideal marriage age by
+   ~2 years earlier. This is the cleanest "ideology → marriage timing
+   intention" gradient in the family bucket so far, and time-ordering is
+   relatively clean since `qka201` is asked of unmarried respondents (so
+   it's largely future-facing).
+
+2. **Marriage satisfaction (2020): female-only effect, +0.48 (p < .001).**
+   Among married women in 2020, traditional ideation is associated with
+   marriage satisfaction roughly *half a Likert point* higher; among men,
+   essentially flat (β = −0.08 n.s.). Consistent with a "traditional
+   division-of-labour matches your expectations → you report higher
+   satisfaction" reading for women. 2014 cross-section is null (no
+   such gradient), so this is a 2020-specific finding worth corroborating
+   in CGSS replication. **Lagged** β = +0.18 n.s. (panel n = 1 580 for
+   women), so descriptive, not directional.
+
+3. **Cohabitation experience (panel lagged): male β = +0.18 (p = .01).**
+   Unexpected sign — would expect traditional men to *avoid* cohabitation.
+   This is on a small sample (n = 354 men with non-missing baseline +
+   2020 cohab), so I'd treat it as a oddity awaiting replication, not a
+   substantive finding. Reported here because the data shows it, not
+   because it confirms theory.
+
+4. **Childcare hours (2020 only)**: all strata n.s. (β ≈ +0.07 male,
+   +0.28 female, neither significant). Childcare time may simply be
+   too determined by structural factors (presence of a young child,
+   employment) for ideation to move in the cross-section.
+
+5. **Birth intention next 2 yr**: small negative, all n.s. Most CFPS
+   adults are past prime childbearing in 2020; a sample restricted to
+   age 20–40 might be needed to see this.
+
+v2 keeps every v1 result intact (see headline table below). Tables and
+figures regenerated; the 11 v1 figures remain plus 6 new tertile-bar
+figures (ideal_marriage_age, birth_intention, marriage_sat × 2 waves,
+cohab_experience, childcare_hours).
 
 ## Headline
 
