@@ -164,3 +164,76 @@ def test_numeric_delta_basic():
     np.testing.assert_allclose(out.iloc[:2].values, [0.2, -0.2])
     assert pd.isna(out.iloc[2])
     assert pd.isna(out.iloc[3])
+
+
+# ---------------------------------------------------------------------------
+# at-risk masks: restrict each event to people who could have transitioned 0→1
+# ---------------------------------------------------------------------------
+def _panel_for_at_risk():
+    return pd.DataFrame({
+        # marital_2014: 1=never, 2=married, 3=cohab, 4=divorced, 5=widow, NaN
+        "marital_2014":   [1, 2, 3, 4, 5, np.nan, 1, 2],
+        # employed_2014: 0, 1, NaN
+        "employed_2014":  [1, 0, 1, np.nan, 0, 1, 1, 0],
+        # age_2014 for had_new_child fertility filter
+        "age_2014":       [25, 30, 22, 60, 70, 45, 35, 48],
+    })
+
+
+def test_at_risk_entered_marriage_only_unmarried_baseline():
+    p = _panel_for_at_risk()
+    m = P.at_risk_for_event(p, "entered_marriage")
+    # at-risk = marital_2014 in {1, 3} (never-married or cohab)
+    expected = pd.Series([True, False, True, False, False, False, True, False])
+    pd.testing.assert_series_equal(m.reset_index(drop=True),
+                                   expected.reset_index(drop=True), check_names=False)
+
+
+def test_at_risk_divorced_only_partnered_baseline():
+    p = _panel_for_at_risk()
+    m = P.at_risk_for_event(p, "divorced")
+    # at-risk = marital_2014 in {2, 3}
+    expected = pd.Series([False, True, True, False, False, False, False, True])
+    pd.testing.assert_series_equal(m.reset_index(drop=True),
+                                   expected.reset_index(drop=True), check_names=False)
+
+
+def test_at_risk_widowed_only_partnered_baseline():
+    p = _panel_for_at_risk()
+    m = P.at_risk_for_event(p, "widowed")
+    expected = pd.Series([False, True, True, False, False, False, False, True])
+    pd.testing.assert_series_equal(m.reset_index(drop=True),
+                                   expected.reset_index(drop=True), check_names=False)
+
+
+def test_at_risk_lost_job_only_employed_baseline():
+    p = _panel_for_at_risk()
+    m = P.at_risk_for_event(p, "lost_job")
+    expected = pd.Series([True, False, True, False, False, True, True, False])
+    pd.testing.assert_series_equal(m.reset_index(drop=True),
+                                   expected.reset_index(drop=True), check_names=False)
+
+
+def test_at_risk_entered_work_only_unemployed_baseline():
+    p = _panel_for_at_risk()
+    m = P.at_risk_for_event(p, "entered_work")
+    expected = pd.Series([False, True, False, False, True, False, False, True])
+    pd.testing.assert_series_equal(m.reset_index(drop=True),
+                                   expected.reset_index(drop=True), check_names=False)
+
+
+def test_at_risk_had_new_child_fertile_age_filter():
+    """Restrict to plausible-childbearing-age window (women ≤45, men ≤55 in 2014)."""
+    p = pd.DataFrame({
+        "female":  [1, 1, 1, 0, 0, 0, np.nan],
+        "age_2014":[30, 45, 50, 40, 55, 60, 30],
+    })
+    m = P.at_risk_for_event(p, "had_new_child")
+    expected = pd.Series([True, True, False, True, True, False, False])
+    pd.testing.assert_series_equal(m.reset_index(drop=True),
+                                   expected.reset_index(drop=True), check_names=False)
+
+
+def test_at_risk_unknown_event_raises():
+    with pytest.raises(ValueError):
+        P.at_risk_for_event(_panel_for_at_risk(), "not_a_real_event")

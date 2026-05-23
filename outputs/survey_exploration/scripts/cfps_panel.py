@@ -173,6 +173,37 @@ def numeric_delta(a: pd.Series, b: pd.Series) -> pd.Series:
     return pd.to_numeric(b, errors="coerce") - pd.to_numeric(a, errors="coerce")
 
 
+# Per-event at-risk definition.  Each entry maps an event name to a
+# predicate over the panel that returns the boolean mask of "people who
+# could have transitioned 0→1 between 2014 and 2020".
+_AT_RISK = {
+    # marital_2014 codes: 1=never, 2=married, 3=cohab, 4=divorced, 5=widow
+    "entered_marriage": lambda p: p["marital_2014"].isin([1, 3]),
+    "divorced":         lambda p: p["marital_2014"].isin([2, 3]),
+    "widowed":          lambda p: p["marital_2014"].isin([2, 3]),
+    "lost_job":         lambda p: p["employed_2014"] == 1,
+    "entered_work":     lambda p: p["employed_2014"] == 0,
+    # Fertility window: women ≤45 in 2014 OR men ≤55 in 2014.  Anyone with
+    # female==NaN or age==NaN is dropped from at-risk.
+    "had_new_child":    lambda p: (
+        ((p["female"] == 1) & (p["age_2014"] <= 45))
+        | ((p["female"] == 0) & (p["age_2014"] <= 55))
+    ),
+}
+
+
+def at_risk_for_event(panel: pd.DataFrame, event: str) -> pd.Series:
+    """Return a boolean mask: True where the respondent could have undergone
+    the named 0→1 transition between 2014 and 2020.
+
+    Definitions follow `_AT_RISK`.  Raises ValueError if `event` is unknown.
+    """
+    if event not in _AT_RISK:
+        raise ValueError(f"unknown event {event!r}; "
+                         f"known: {sorted(_AT_RISK)}")
+    return _AT_RISK[event](panel).fillna(False).astype(bool)
+
+
 # ---------------------------------------------------------------------------
 # Loader: assemble the 2014↔2020 panel keyed by pid.
 # ---------------------------------------------------------------------------
@@ -301,6 +332,9 @@ def build_panel() -> pd.DataFrame:
     p["divorced"] = p["divorced"].where(p["marital_transition"].notna())
     p["widowed"] = (p["marital_transition"] == "widowed").astype("float")
     p["widowed"] = p["widowed"].where(p["marital_transition"].notna())
+
+    # age at 2014 (handy for at-risk filters and for sex-stratified OLS)
+    p["age_2014"] = 2014 - p["birthy_2014"]
 
     # household-size change buckets (smaller / same / larger)
     def _bucket(x: float) -> str | float:

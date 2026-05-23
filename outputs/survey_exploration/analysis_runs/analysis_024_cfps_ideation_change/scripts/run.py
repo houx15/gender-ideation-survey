@@ -218,58 +218,113 @@ def step_forest_who(who: pd.DataFrame) -> None:
 # ---------------------------------------------------------------------------
 # 5. Life-event means
 # ---------------------------------------------------------------------------
-def step_life_events(p: pd.DataFrame) -> pd.DataFrame:
-    events = [
-        ("had_new_child",       "Had a new child (2014→2020)"),
-        ("entered_marriage",    "Entered marriage"),
-        ("divorced",            "Got divorced"),
-        ("widowed",             "Lost spouse to death"),
-        ("lost_job",            "Lost / left job (1→0)"),
-        ("entered_work",        "Entered work (0→1)"),
-    ]
-    rows = []
-    for col, label in events:
-        sub = p.dropna(subset=["delta_ideation", col])
-        a = sub.loc[sub[col] == 0, "delta_ideation"].to_numpy()
-        b = sub.loc[sub[col] == 1, "delta_ideation"].to_numpy()
-        if len(a) > 1 and len(b) > 1:
-            ci_a = DS.bootstrap_mean_ci(a, n_boot=1000, seed=0)
-            ci_b = DS.bootstrap_mean_ci(b, n_boot=1000, seed=1)
-            w = DS.welch_ci_diff(b, a)
-            rows.append({
-                "event": col,
-                "label": label,
-                "n_no":  len(a),
-                "n_yes": len(b),
-                "mean_no":  float(a.mean()),
-                "mean_yes": float(b.mean()),
-                "ci_no_lo": ci_a["ci_lo"],   "ci_no_hi": ci_a["ci_hi"],
-                "ci_yes_lo": ci_b["ci_lo"],  "ci_yes_hi": ci_b["ci_hi"],
-                "diff": w["diff"],
-                "diff_se": w["se"],
-                "welch_t": w["t"],
-                "welch_p": w["p"],
-                "cohen_d": DS.cohen_d(a, b),
-                "hedges_g": DS.hedges_g(a, b),
-            })
-    out = pd.DataFrame(rows)
-    out.to_csv(TBL / "life_event_means.csv", index=False)
-    return out
+EVENTS = [
+    ("had_new_child",    "Had a new child (2014→2020)"),
+    ("entered_marriage", "Entered marriage"),
+    ("divorced",         "Got divorced"),
+    ("widowed",          "Lost spouse to death"),
+    ("lost_job",         "Lost / left job (1→0)"),
+    ("entered_work",     "Entered work (0→1)"),
+]
+
+SEX_STRATA = [
+    ("all",    None),
+    ("male",   0.0),
+    ("female", 1.0),
+]
 
 
-def step_life_event_forest(le: pd.DataFrame) -> None:
-    fig, ax = plt.subplots(figsize=(7.0, 4.0))
-    y = np.arange(len(le))[::-1]
-    ax.errorbar(le["diff"], y,
-                xerr=1.96 * le["diff_se"], fmt="o",
-                color="#264478", capsize=3)
-    ax.axvline(0, color="black", lw=0.6)
-    ax.set_yticks(y)
-    ax.set_yticklabels([f"{r.label}  (n_yes={int(r.n_yes):,})" for _, r in le.iterrows()])
-    ax.set_xlabel("Δideation contrast: event vs no event (95% CI, Welch)\n"
-                  "negative = event associated with progressive shift")
-    ax.set_title("Life-event associations with Δideation, CFPS 2014→2020")
-    fig.tight_layout()
+def _life_event_one(p: pd.DataFrame, col: str, label: str,
+                    denom: str) -> dict | None:
+    """One Welch contrast.  `denom` ∈ {"all", "at_risk"}."""
+    if denom == "at_risk":
+        try:
+            mask = CP.at_risk_for_event(p, col)
+        except ValueError:
+            return None
+        pool = p[mask]
+    else:
+        pool = p
+    sub = pool.dropna(subset=["delta_ideation", col])
+    a = sub.loc[sub[col] == 0, "delta_ideation"].to_numpy()
+    b = sub.loc[sub[col] == 1, "delta_ideation"].to_numpy()
+    if len(a) < 2 or len(b) < 2:
+        return None
+    ci_a = DS.bootstrap_mean_ci(a, n_boot=1000, seed=0)
+    ci_b = DS.bootstrap_mean_ci(b, n_boot=1000, seed=1)
+    w = DS.welch_ci_diff(b, a)
+    return {
+        "event": col, "label": label, "denom": denom,
+        "n_no": len(a), "n_yes": len(b),
+        "mean_no": float(a.mean()), "mean_yes": float(b.mean()),
+        "ci_no_lo": ci_a["ci_lo"],  "ci_no_hi": ci_a["ci_hi"],
+        "ci_yes_lo": ci_b["ci_lo"], "ci_yes_hi": ci_b["ci_hi"],
+        "diff": w["diff"], "diff_se": w["se"],
+        "welch_t": w["t"], "welch_p": w["p"],
+        "cohen_d": DS.cohen_d(a, b),
+        "hedges_g": DS.hedges_g(a, b),
+    }
+
+
+def step_life_events(p: pd.DataFrame) -> dict[tuple[str, str], pd.DataFrame]:
+    """One row per (event, denom) × sex stratum.  Save three CSVs and
+    return a dict keyed by (stratum, denom) for downstream plotting."""
+    out_by_strat: dict[tuple[str, str], pd.DataFrame] = {}
+    for stratum_name, sex_val in SEX_STRATA:
+        sub = p if sex_val is None else p[p["female"] == sex_val]
+        for denom in ("all", "at_risk"):
+            rows = []
+            for col, label in EVENTS:
+                r = _life_event_one(sub, col, label, denom)
+                if r is not None:
+                    r["sex_stratum"] = stratum_name
+                    rows.append(r)
+            df = pd.DataFrame(rows)
+            out_by_strat[(stratum_name, denom)] = df
+        # Save one combined CSV per sex stratum (both denominators stacked)
+        combined = pd.concat([out_by_strat[(stratum_name, d)] for d in ("all", "at_risk")],
+                             ignore_index=True)
+        combined.to_csv(TBL / f"life_event_means_{stratum_name}.csv", index=False)
+    return out_by_strat
+
+
+def step_life_event_forest(by_strat: dict[tuple[str, str], pd.DataFrame]) -> None:
+    """Two-panel figure (denominators) × three sex-stratum colours."""
+    colours = {"all": "#264478", "male": "#117755", "female": "#aa4422"}
+    fig, axes = plt.subplots(1, 2, figsize=(11.5, 4.6), sharey=True)
+    for ax, denom, title in zip(
+            axes, ("all", "at_risk"),
+            ("Denominator: whole panel",
+             "Denominator: at-risk subsample (2014 = '0' state)"),
+    ):
+        # event ordering: same on both panels
+        events = [c for c, _ in EVENTS]
+        offsets = {"all": 0.0, "male": -0.25, "female": +0.25}
+        for stratum in ("all", "male", "female"):
+            sub = by_strat[(stratum, denom)]
+            if sub.empty:
+                continue
+            # align rows to the events list order
+            sub = sub.set_index("event").reindex(events).reset_index()
+            y = np.arange(len(events))[::-1] + offsets[stratum]
+            ax.errorbar(sub["diff"], y, xerr=1.96 * sub["diff_se"],
+                        fmt="o", color=colours[stratum], capsize=3,
+                        label=f"{stratum} (n_yes range {int(sub['n_yes'].min()):,}–{int(sub['n_yes'].max()):,})")
+            # annotate sample size for yes group
+            for yi, (_, r) in zip(y, sub.iterrows()):
+                if pd.notna(r["diff"]):
+                    ax.text(r["diff"], yi, f"  n={int(r['n_yes']):,}",
+                            color=colours[stratum], fontsize=7, va="center")
+        ax.axvline(0, color="black", lw=0.6)
+        labels = [next(l for c, l in EVENTS if c == e) for e in events]
+        ax.set_yticks(np.arange(len(events))[::-1])
+        ax.set_yticklabels(labels)
+        ax.set_title(title, fontsize=10)
+        ax.set_xlabel("Δideation contrast (event − no event), 95% CI")
+        ax.legend(frameon=False, fontsize=8, loc="lower right")
+    fig.suptitle("Life-event associations with Δideation, CFPS 2014→2020 — by sex × denominator",
+                 fontsize=11)
+    fig.tight_layout(rect=[0, 0, 1, 0.96])
     fig.savefig(FIG / "life_event_forest.pdf")
     plt.close(fig)
 
@@ -299,21 +354,11 @@ def step_marital_table(p: pd.DataFrame) -> None:
 # ---------------------------------------------------------------------------
 # 7. OLS Δideation ~ events + controls
 # ---------------------------------------------------------------------------
-def step_ols(p: pd.DataFrame) -> pd.DataFrame:
-    rhs = ["female", "urban_2014", "had_new_child", "lost_job",
-           "entered_work", "entered_marriage", "divorced", "widowed",
-           "delta_household_n", "delta_edu_yrs", "ideation_2014"]
-    age_2014 = 2014 - p["birthy_2014"]
-    df = p[["delta_ideation"] + rhs].copy()
-    df["age_2014"] = age_2014
-    cols = ["female", "urban_2014", "age_2014", "had_new_child", "lost_job",
-            "entered_work", "entered_marriage", "divorced", "widowed",
-            "delta_household_n", "delta_edu_yrs", "ideation_2014"]
-    sub = df.dropna(subset=["delta_ideation"] + cols)
+def _ols_one(p: pd.DataFrame, cols: list[str]) -> tuple[pd.DataFrame, int]:
+    sub = p.dropna(subset=["delta_ideation"] + cols)
     Xdf = sub[cols].astype(float).copy()
     Xdf.insert(0, "const", 1.0)
     y = sub["delta_ideation"].to_numpy()
-
     cl  = SH.ols(Xdf, y)
     hc1 = SH.ols_robust(Xdf, y, kind="HC1")
     out = pd.DataFrame({
@@ -322,16 +367,35 @@ def step_ols(p: pd.DataFrame) -> pd.DataFrame:
         "se_classical": cl["se"], "t_classical": cl["t"], "p_classical": cl["p"],
         "se_hc1": hc1["se"],      "t_hc1": hc1["t"],      "p_hc1": hc1["p"],
     })
-    out.to_csv(TBL / "ols_delta_ideation.csv", index=False)
-    pd.DataFrame([{"n": len(sub), "df": len(sub) - len(cl["term"])}]
-                 ).to_csv(TBL / "ols_meta.csv", index=False)
-    return out
+    return out, len(sub)
 
 
-def step_ols_coefplot(coefs: pd.DataFrame) -> None:
-    # drop intercept and baseline-ideation (its sign is mechanical reversion).
-    plot = coefs[~coefs.term.isin(["const"])].copy()
-    plot = plot.sort_values("coef")
+def step_ols(p: pd.DataFrame) -> dict[str, pd.DataFrame]:
+    """Run the OLS three times: pooled, men-only, women-only.
+
+    Female is dropped from the within-sex specifications.
+    """
+    base_cols = ["urban_2014", "age_2014", "had_new_child", "lost_job",
+                 "entered_work", "entered_marriage", "divorced", "widowed",
+                 "delta_household_n", "delta_edu_yrs", "ideation_2014"]
+    cols_pooled = ["female"] + base_cols
+    out_meta = []
+    coefs_by = {}
+    for label, sub, cols in [
+        ("all",    p,                cols_pooled),
+        ("male",   p[p["female"] == 0], base_cols),
+        ("female", p[p["female"] == 1], base_cols),
+    ]:
+        df, n = _ols_one(sub, cols)
+        df["sex_stratum"] = label
+        df.to_csv(TBL / f"ols_delta_ideation_{label}.csv", index=False)
+        out_meta.append({"sex_stratum": label, "n": n, "k": len(cols) + 1})
+        coefs_by[label] = df
+    pd.DataFrame(out_meta).to_csv(TBL / "ols_meta.csv", index=False)
+    return coefs_by
+
+
+def step_ols_coefplot(coefs_by: dict[str, pd.DataFrame]) -> None:
     pretty = {
         "female":           "Female",
         "urban_2014":       "Urban hukou (2014)",
@@ -346,17 +410,25 @@ def step_ols_coefplot(coefs: pd.DataFrame) -> None:
         "delta_edu_yrs":    "Δ education years",
         "ideation_2014":    "Baseline ideation (2014)",
     }
-    labels = [pretty.get(t, t) for t in plot.term]
-    y = np.arange(len(plot))[::-1]
-    fig, ax = plt.subplots(figsize=(6.6, 5.2))
-    ax.errorbar(plot["coef"], y,
-                xerr=1.96 * plot["se_hc1"], fmt="o",
-                color="#264478", capsize=3, label="HC1 SE")
+    order = ["urban_2014", "age_2014", "had_new_child", "entered_marriage",
+             "divorced", "widowed", "lost_job", "entered_work",
+             "delta_household_n", "delta_edu_yrs", "ideation_2014", "female"]
+    colours = {"all": "#264478", "male": "#117755", "female": "#aa4422"}
+    offsets = {"all": 0.0, "male": -0.25, "female": +0.25}
+    fig, ax = plt.subplots(figsize=(7.6, 6.4))
+    for stratum, df in coefs_by.items():
+        df = df.set_index("term").reindex(order).reset_index().dropna(subset=["coef"])
+        y = np.arange(len(df))[::-1] + offsets[stratum]
+        ax.errorbar(df["coef"], y, xerr=1.96 * df["se_hc1"],
+                    fmt="o", color=colours[stratum], capsize=3,
+                    label=stratum)
     ax.axvline(0, color="black", lw=0.6)
-    ax.set_yticks(y)
+    labels = [pretty.get(t, t) for t in order]
+    ax.set_yticks(np.arange(len(order))[::-1])
     ax.set_yticklabels(labels)
     ax.set_xlabel("OLS coefficient on Δideation (HC1 95% CI)")
-    ax.set_title("Predictors of Δgender-ideation, CFPS 2014→2020")
+    ax.set_title("Predictors of Δgender-ideation, by sex stratum")
+    ax.legend(frameon=False, loc="lower right", title="sample")
     fig.tight_layout()
     fig.savefig(FIG / "ols_coefplot.pdf")
     plt.close(fig)
@@ -370,11 +442,11 @@ def main() -> None:
     step_distribution(p)
     who = step_who_changes(p)
     step_forest_who(who)
-    le = step_life_events(p)
-    step_life_event_forest(le)
+    by_strat = step_life_events(p)
+    step_life_event_forest(by_strat)
     step_marital_table(p)
-    coefs = step_ols(p)
-    step_ols_coefplot(coefs)
+    coefs_by = step_ols(p)
+    step_ols_coefplot(coefs_by)
     print(f"DONE   N panel = {len(p):,}   N with Δideation = {p['delta_ideation'].notna().sum():,}")
 
 

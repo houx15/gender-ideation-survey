@@ -37,7 +37,7 @@ All CFPS missing-code sentinels (`-10, -9, -8, -2, -1, 0`) become NaN.
 Direction-of-change is classified with `eps = 0.05` on the [0,1] index
 (one notch on the 4-item battery).
 
-## Life-event derivations
+## Life-event derivations (0 → 1 transitions)
 
 * `had_new_child`     := `delta_children_n > 0`
 * `lost_job`          := `employed_2014 == 1 AND employed_2020 == 0`
@@ -49,6 +49,31 @@ Direction-of-change is classified with `eps = 0.05` on the [0,1] index
 * `entered_marriage`, `divorced`, `widowed`: 0/1 derived from the above.
 
 Each binary event is NaN (not 0) whenever either endpoint is missing.
+
+## At-risk denominators (`cfps_panel.at_risk_for_event`)
+
+For every Welch contrast we report two denominators:
+
+* **"all"** — `event = 1` vs `event = 0` across the whole panel. Big
+  "no" group but contaminated by people who could not have undergone the
+  transition.
+* **"at_risk"** — only respondents whose 2014 state made the 0→1
+  transition possible.
+
+| Event              | At-risk pool (2014 state)                  |
+|--------------------|--------------------------------------------|
+| entered_marriage   | marital ∈ {never-married, cohab}           |
+| divorced           | marital ∈ {married, cohab}                 |
+| widowed            | marital ∈ {married, cohab}                 |
+| lost_job           | employed == 1                              |
+| entered_work       | employed == 0                              |
+| had_new_child      | (female & age ≤ 45)  OR  (male & age ≤ 55) |
+
+## Sex stratification
+
+Every life-event contrast and OLS specification is run three times:
+`all` (pooled), `male` (`female == 0`), and `female` (`female == 1`).
+The `female` regressor is dropped from the within-sex OLS.
 
 ## Statistical methods
 
