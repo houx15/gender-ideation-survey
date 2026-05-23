@@ -1,0 +1,16 @@
+stratum,covariate,pre_smd,post_smd
+all,birthy_2014,-0.4193,0.0477
+all,edu_yrs_2014,-0.6061,-0.0205
+all,urban_2014,-0.2635,0.0158
+all,log_income_2014,-0.182,-0.0311
+all,employed_2014,0.0862,0.026
+male,birthy_2014,-0.3374,-0.0352
+male,edu_yrs_2014,-0.4705,0.0112
+male,urban_2014,-0.222,0.0698
+male,log_income_2014,-0.1423,-0.0114
+male,employed_2014,0.1031,0.0
+female,birthy_2014,-0.5952,0.0573
+female,edu_yrs_2014,-0.8379,-0.0401
+female,urban_2014,-0.328,-0.0209
+female,log_income_2014,-0.3063,0.0035
+female,employed_2014,0.0544,0.0
