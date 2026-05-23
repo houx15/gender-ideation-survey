@@ -83,3 +83,27 @@ def housework_hours_daily(s: pd.Series) -> pd.Series:
 def ideal_children_count(s: pd.Series) -> pd.Series:
     """Ideal number of children (qm501, 2014 only), kept to [0, 10]."""
     return clean_continuous(pd.to_numeric(s, errors="coerce"), lo=0, hi=10)
+
+
+# ---- analysis_027 helpers (SPEC 5.3 work / leadership) ----
+
+_PROMOTED_CODES = {1, 2, 3}     # admin / technical / both
+_NOT_PROMOTED_CODES = {78, 79}  # neither / no upward room
+
+
+def promotion_indicator(s: pd.Series) -> pd.Series:
+    """qg15 work-promotion: 1/2/3 -> 1; 78/79 -> 0; everything else -> NaN.
+
+    Codes (CFPS 2014 & 2020):
+      1 = 行政职务晋升 (admin)
+      2 = 技术职称晋升 (technical title)
+      3 = 两项都有 (both)
+      78 = 两项都没有 (neither)
+      79 = 这份工作无更高的职务或等级可供晋升 (no upward room)
+      -10/-9/-8/-2/-1 = missing
+    """
+    s = pd.to_numeric(s, errors="coerce")
+    out = pd.Series(np.nan, index=s.index, dtype="float64")
+    out[s.isin(_PROMOTED_CODES)] = 1.0
+    out[s.isin(_NOT_PROMOTED_CODES)] = 0.0
+    return out

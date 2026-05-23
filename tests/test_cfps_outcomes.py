@@ -141,3 +141,35 @@ def test_ideal_children_count_drops_sentinels_and_implausible():
     s = pd.Series([-8, -1, 11, 99])
     out = C.ideal_children_count(s)
     assert all(math.isnan(x) for x in out)
+
+
+# ---- promotion_indicator (qg15, analysis_027 / SPEC 5.3) ----
+# Codes (both waves):
+#   1 = 行政职务晋升 (admin), 2 = 技术职称晋升 (technical), 3 = 两项都有 (both)
+#       -> all three -> 1 (got a promotion)
+#   78 = 两项都没有 (neither), 79 = 这份工作无更高等级可供晋升 (no upward room)
+#       -> both -> 0 (no promotion)
+#   negatives (-8/-1/-2/-9/-10) -> NaN
+
+def test_promotion_indicator_codes_promoted_as_one():
+    s = pd.Series([1, 2, 3])
+    out = C.promotion_indicator(s)
+    assert list(out) == [1.0, 1.0, 1.0]
+
+
+def test_promotion_indicator_no_promotion_codes_as_zero():
+    s = pd.Series([78, 79])
+    out = C.promotion_indicator(s)
+    assert list(out) == [0.0, 0.0]
+
+
+def test_promotion_indicator_missing_codes_are_nan():
+    s = pd.Series([-8, -1, -2, -9, -10])
+    out = C.promotion_indicator(s)
+    assert all(math.isnan(x) for x in out)
+
+
+def test_promotion_indicator_unknown_values_are_nan():
+    s = pd.Series([0, 4, 5, 100])
+    out = C.promotion_indicator(s)
+    assert all(math.isnan(x) for x in out)
