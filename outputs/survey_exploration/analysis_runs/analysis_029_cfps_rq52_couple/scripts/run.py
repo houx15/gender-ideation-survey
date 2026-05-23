@@ -1,17 +1,21 @@
 #!/usr/bin/env python3
-"""analysis_029 — RQ 5.2 family-level couple analysis (deep).
+"""analysis_029 v2 — RQ 5.2 family-level couple analysis (deep).
 
-Three parts:
-  A. Assortative mating on ideation
+Four parts:
+  A. Ideology-axis homogamy
        - within-couple Pearson r, overall + by cohort / urban / edu
        - OLS-HC1: wife_ideation ~ husband_ideation + couple controls
+  A2. (v2 addition) Sociological matching TYPES and ideation
+       - Build age / edu / income match types (hyper / homo / hypogamy)
+       - LPM-HC1 of each type on wife_ideation and husband_ideation
   B. Whose ideology drives the division
        - dyadic OLS on wife_housework ~ wife_ideation + husband_ideation
          + spouse covariates  (and analog for husband)
        - same for childcare (2020 qq9013)
   C. Marriage satisfaction by ideation gap / typology
        - OLS-HC1: wife/husband qm801 on |wife - husband| ideation gap
-       - typology comparison (concordant-prog / concordant-trad / W>M / M>W)
+       - ideology typology comparison (concordant-prog / concordant-trad
+         / W>M / M>W)
 
 Frames: 2014 and 2020 cross-sections (no lagged — couples are the unit).
 All HC1; vector PDF figures.
@@ -207,6 +211,166 @@ def part_A_regression(couples: pd.DataFrame, wave: str) -> pd.DataFrame:
 
 
 # ------------------------------------------------------------------ #
+# 1b. Part A2 — sociological matching types and ideation (v2)
+# ------------------------------------------------------------------ #
+
+# Thresholds chosen to align with the marriage-homogamy literature:
+#   age:  >=3 yr difference  -> hyper / hypogamy; <3 -> homogamy
+#   edu:  >=3 yr difference  -> hyper / hypogamy (~ one schooling level)
+#   inc:  log1p_husband_income - log1p_wife_income;
+#         |diff| >= log(2) -> primary-earner side; else dual-earner
+#         (log(2) ~ 0.69 — husband earns >= 2x wife counts as hypergamy)
+#
+# Convention: "hypergamy" = woman married UP on this trait (older / more
+# educated / higher-earning husband, the patriarchal default).
+#             "homogamy" = within threshold.
+#             "hypogamy" = woman married DOWN (younger / less-educated /
+# lower-earning husband).
+
+_AGE_THRESHOLD = 3.0     # years
+_EDU_THRESHOLD = 3.0     # years (~ one schooling level)
+_INC_THRESHOLD = np.log(2)
+
+
+def _age_match_type(couples: pd.DataFrame) -> pd.Series:
+    diff = couples["husband_age"] - couples["wife_age"]
+    out = pd.Series(np.nan, index=couples.index, dtype="object")
+    out[diff >=  _AGE_THRESHOLD] = "hypergamy"   # husband ≥ wife+3 (older husband)
+    out[diff.abs() <  _AGE_THRESHOLD] = "homogamy"
+    out[diff <= -_AGE_THRESHOLD] = "hypogamy"    # wife ≥ husband+3 (older wife)
+    out[diff.isna()] = np.nan
+    return out
+
+
+def _edu_match_type(couples: pd.DataFrame) -> pd.Series:
+    diff = couples["husband_edu_yrs"] - couples["wife_edu_yrs"]
+    out = pd.Series(np.nan, index=couples.index, dtype="object")
+    out[diff >=  _EDU_THRESHOLD] = "hypergamy"   # husband more educated
+    out[diff.abs() <  _EDU_THRESHOLD] = "homogamy"
+    out[diff <= -_EDU_THRESHOLD] = "hypogamy"    # wife more educated
+    out[diff.isna()] = np.nan
+    return out
+
+
+def _income_match_type(couples: pd.DataFrame) -> pd.Series:
+    """husband_primary if log1p(h_inc) - log1p(w_inc) >= log(2);
+       wife_primary if reverse; dual_earner otherwise.
+
+       Note: log1p(0) = 0 so a wife with no earned income contributes
+       husband_primary automatically. Same for a husband with 0 income.
+    """
+    diff = couples["husband_log_income"] - couples["wife_log_income"]
+    out = pd.Series(np.nan, index=couples.index, dtype="object")
+    out[diff >=  _INC_THRESHOLD] = "hypergamy"   # husband-primary earner
+    out[diff.abs() <  _INC_THRESHOLD] = "homogamy"  # dual-earner-ish
+    out[diff <= -_INC_THRESHOLD] = "hypogamy"    # wife-primary earner
+    out[diff.isna()] = np.nan
+    return out
+
+
+def part_A2_descriptive(couples: pd.DataFrame, wave: str) -> pd.DataFrame:
+    """Cross-tab of match type × ideation tertile, for each dimension and
+    each spouse (wife and husband ideation tertile)."""
+    c = couples.copy()
+    c["age_type"]   = _age_match_type(c)
+    c["edu_type"]   = _edu_match_type(c)
+    c["inc_type"]   = _income_match_type(c)
+
+    def tertile(s):
+        q = s.quantile([1 / 3, 2 / 3]).values
+        return pd.cut(s, [-np.inf, q[0], q[1], np.inf], labels=["low", "mid", "high"])
+
+    c["wife_id_t"]    = tertile(c["wife_ideation"])
+    c["husband_id_t"] = tertile(c["husband_ideation"])
+
+    rows = []
+    for dim, type_col in [("age", "age_type"), ("edu", "edu_type"), ("inc", "inc_type")]:
+        for who, tcol in [("wife", "wife_id_t"), ("husband", "husband_id_t")]:
+            sub = c.dropna(subset=[type_col, tcol])
+            for tertile_v in ["low", "mid", "high"]:
+                g = sub[sub[tcol] == tertile_v]
+                total = len(g)
+                if total < 30:
+                    continue
+                for t in ["hypergamy", "homogamy", "hypogamy"]:
+                    n = int((g[type_col] == t).sum())
+                    rows.append(dict(wave=wave, dimension=dim,
+                                     ideation_predictor=who,
+                                     ideation_tertile=tertile_v,
+                                     match_type=t,
+                                     n=n, n_in_tertile=total,
+                                     pct=round(100 * n / total, 2)))
+    return pd.DataFrame(rows)
+
+
+def part_A2_regression(couples: pd.DataFrame, wave: str) -> pd.DataFrame:
+    """LPM-HC1 per type-dummy on wife_ideation and husband_ideation, with
+    couple controls. One row per (dimension, type, spouse-predictor, term).
+    """
+    base_cols = ["wife_ideation", "husband_ideation",
+                 "wife_age", "husband_age",
+                 "wife_edu_yrs", "husband_edu_yrs",
+                 "wife_urban", "husband_urban"]
+    c = couples.dropna(subset=base_cols).copy()
+    if len(c) < 100:
+        return pd.DataFrame()
+
+    c["age_type"]   = _age_match_type(c)
+    c["edu_type"]   = _edu_match_type(c)
+    c["inc_type"]   = _income_match_type(c)
+    c["wife_age_c"]    = (c["wife_age"]    - 40) / 10
+    c["husband_age_c"] = (c["husband_age"] - 40) / 10
+    c["couple_urban"]  = ((c["wife_urban"] == 1) | (c["husband_urban"] == 1)).astype(float)
+
+    rows = []
+    for dim, type_col in [("age", "age_type"), ("edu", "edu_type"), ("inc", "inc_type")]:
+        sub = c.dropna(subset=[type_col]).copy()
+        if len(sub) < 100:
+            continue
+        for match_type in ["hypergamy", "homogamy", "hypogamy"]:
+            y = (sub[type_col] == match_type).astype(float).to_numpy()
+            for predictor in ["wife_ideation", "husband_ideation"]:
+                # Note: do NOT control on the partner's ideation here so the
+                # estimate is the marginal "does THIS spouse's ideation
+                # predict this match type" (the question of interest).
+                # For age type we drop the age controls (collinearity with
+                # the outcome by construction).
+                #   Similarly for edu type we drop edu controls.
+                ctrl_age = (dim != "age")
+                ctrl_edu = (dim != "edu")
+                X_dict = {"const": 1.0, predictor: sub[predictor].astype(float)}
+                if ctrl_age:
+                    X_dict["wife_age_c"]    = sub["wife_age_c"].astype(float)
+                    X_dict["husband_age_c"] = sub["husband_age_c"].astype(float)
+                if ctrl_edu:
+                    X_dict["wife_edu_yrs"]    = sub["wife_edu_yrs"].astype(float)
+                    X_dict["husband_edu_yrs"] = sub["husband_edu_yrs"].astype(float)
+                X_dict["couple_urban"] = sub["couple_urban"].astype(float)
+                X = pd.DataFrame(X_dict)
+                keep = X.notna().all(axis=1) & ~np.isnan(y)
+                Xk, yk = X.loc[keep], y[keep.values]
+                if len(Xk) < (Xk.shape[1] + 2):
+                    continue
+                try:
+                    r = ST.ols_robust(Xk, yk, kind="HC1")
+                except np.linalg.LinAlgError:
+                    continue
+                for term, coef, se, t, p in zip(r["term"], r["coef"], r["se"],
+                                                  r["t"], r["p"]):
+                    if term != predictor:
+                        continue  # only keep the ideation coefficient
+                    rows.append(dict(wave=wave, dimension=dim,
+                                     match_type=match_type,
+                                     predictor=predictor,
+                                     n=int(r["n"]),
+                                     coef=round(float(coef), 5),
+                                     se=round(float(se), 5),
+                                     t=round(float(t), 3),
+                                     p=round(float(p), 5)))
+    return pd.DataFrame(rows)
+
+
+# ------------------------------------------------------------------ #
 # 2. Part B — whose ideology drives the division
 # ------------------------------------------------------------------ #
 
@@ -380,6 +544,89 @@ def fig_dyadic_coef_forest(results: pd.DataFrame, out_pdf: Path, wave: str):
     fig.tight_layout(); fig.savefig(out_pdf); plt.close(fig)
 
 
+def fig_match_type_by_ideation(couples: pd.DataFrame, wave: str, out_pdf: Path):
+    """Stacked-bar of match type composition by ideation tertile, for each
+    of (age, edu, income), shown separately for wife's ideation and husband's.
+    6 panels (3 dimensions × 2 sex-predictors)."""
+    c = couples.copy()
+    c["age_type"] = _age_match_type(c)
+    c["edu_type"] = _edu_match_type(c)
+    c["inc_type"] = _income_match_type(c)
+
+    def tertile(s):
+        q = s.quantile([1 / 3, 2 / 3]).values
+        return pd.cut(s, [-np.inf, q[0], q[1], np.inf], labels=["low", "mid", "high"])
+
+    c["wife_id_t"]    = tertile(c["wife_ideation"])
+    c["husband_id_t"] = tertile(c["husband_ideation"])
+
+    fig, axes = plt.subplots(3, 2, figsize=(8.8, 8.4))
+    type_order = ["hypergamy", "homogamy", "hypogamy"]
+    type_colors = {"hypergamy": "#d73027", "homogamy": "#999",
+                   "hypogamy":  "#1a9850"}
+    dim_label = {"age": "Age",
+                 "edu": "Education",
+                 "inc": "Income"}
+    for col, (predictor, tcol) in enumerate([("wife", "wife_id_t"),
+                                              ("husband", "husband_id_t")]):
+        for row, dim in enumerate(["age", "edu", "inc"]):
+            ax = axes[row, col]
+            type_col = f"{dim}_type"
+            tertiles = ["low", "mid", "high"]
+            bottoms = np.zeros(3)
+            for t in type_order:
+                vals = []
+                for ti in tertiles:
+                    g = c[(c[tcol] == ti) & c[type_col].notna()]
+                    if len(g) == 0:
+                        vals.append(0.0)
+                    else:
+                        vals.append(100 * (g[type_col] == t).mean())
+                ax.bar(range(3), vals, bottom=bottoms, color=type_colors[t],
+                       label=t, edgecolor="white", linewidth=0.5)
+                bottoms += np.array(vals)
+            ax.set_xticks(range(3))
+            ax.set_xticklabels(["low\n(progr.)", "mid", "high\n(trad.)"], fontsize=8)
+            ax.set_ylim(0, 100)
+            ax.set_title(f"{dim_label[dim]} match | {predictor}'s ideation",
+                         fontsize=9)
+            if col == 0:
+                ax.set_ylabel("% of couples")
+            ax.grid(axis="y", linewidth=0.4, alpha=0.4)
+    # one legend
+    handles, labels = axes[0, 0].get_legend_handles_labels()
+    fig.legend(handles, labels, loc="lower center", ncol=3, frameon=False,
+               bbox_to_anchor=(0.5, -0.01))
+    fig.suptitle(f"Sociological matching type composition by ideation tertile — CFPS {wave}",
+                 fontsize=10)
+    fig.tight_layout(rect=[0, 0.04, 1, 0.96])
+    fig.savefig(out_pdf)
+    plt.close(fig)
+
+
+def fig_match_type_coef_forest(results: pd.DataFrame, wave: str, out_pdf: Path):
+    sub = results[results["wave"] == wave].copy()
+    if sub.empty:
+        return
+    sub["label"] = sub.apply(
+        lambda r: f"{r['dimension']} {r['match_type']} | {r['predictor']} (n={r['n']})",
+        axis=1)
+    sub = sub.sort_values(["dimension", "match_type", "predictor"])
+    rows = list(zip(sub["coef"], sub["se"], sub["label"]))
+    fig, ax = plt.subplots(figsize=(7.6, 0.30 * len(rows) + 1.6))
+    ys = np.arange(len(rows))[::-1]
+    coefs = np.array([r[0] for r in rows])
+    ses = np.array([r[1] for r in rows])
+    ax.errorbar(coefs, ys, xerr=1.96 * ses, fmt="o", color="#222",
+                ecolor="#888", capsize=3)
+    ax.axvline(0, color="#aaa", linewidth=0.8, linestyle="--")
+    ax.set_yticks(ys); ax.set_yticklabels([r[2] for r in rows], fontsize=7.0)
+    ax.set_xlabel("LPM β on ideation (HC1, 95 % CI)")
+    ax.set_title(f"Does ideation predict mating-type membership? — CFPS {wave}")
+    ax.grid(axis="x", linewidth=0.4, alpha=0.4)
+    fig.tight_layout(); fig.savefig(out_pdf); plt.close(fig)
+
+
 def fig_satisfaction_by_typology(couples: pd.DataFrame, wave: str, out_pdf: Path):
     d = couples.copy()
     d["typology"] = _couple_typology(d)
@@ -430,6 +677,16 @@ def main() -> int:
     pd.concat(regA_rows, ignore_index=True).to_csv(
         TABLES / "assortative_mating_regression.csv", index=False)
 
+    # ---- Part A2 (v2) — sociological match types and ideation ----
+    a2_desc_rows, a2_reg_rows = [], []
+    for wave, c in couples_by_wave.items():
+        a2_desc_rows.append(part_A2_descriptive(c, wave))
+        a2_reg_rows.append(part_A2_regression(c, wave))
+    partA2_desc = pd.concat(a2_desc_rows, ignore_index=True)
+    partA2_reg  = pd.concat(a2_reg_rows,  ignore_index=True)
+    partA2_desc.to_csv(TABLES / "mating_types_descriptive.csv", index=False)
+    partA2_reg.to_csv(TABLES / "mating_types_regression.csv", index=False)
+
     # ---- Part B ----
     regB_rows = []
     for wave, c in couples_by_wave.items():
@@ -474,6 +731,8 @@ def main() -> int:
     all_rows = []
     for kind, df in [("partA_regression",
                        pd.concat(regA_rows, ignore_index=True)),
+                      ("partA2_mating_types",
+                       partA2_reg),
                       ("partB_dyadic",
                        partB),
                       ("partC_marriage_sat",
@@ -496,6 +755,10 @@ def main() -> int:
         fig_dyadic_coef_forest(partB_wave, FIGS / f"dyadic_forest_{wave}.pdf", wave)
         fig_satisfaction_by_typology(c, wave,
                                       FIGS / f"sat_by_typology_{wave}.pdf")
+        fig_match_type_by_ideation(c, wave,
+                                    FIGS / f"mating_types_stacked_{wave}.pdf")
+        fig_match_type_coef_forest(partA2_reg, wave,
+                                    FIGS / f"mating_types_forest_{wave}.pdf")
     print("figures written.")
     return 0
 

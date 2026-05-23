@@ -1,8 +1,101 @@
-# 05 · Interpretation note — analysis_029
+# 05 · Interpretation note — analysis_029 (v2)
 
 > RQ 5.2 family-level couple analysis. Deep-dive replacement for
-> `analysis_007_couple_whose_ideation`, with the new (2026-05-23)
-> assortative-mating question added.
+> `analysis_007_couple_whose_ideation`. v1 covered ideology-axis
+> homogamy; v2 (2026-05-23) adds Part A2 — sociological matching types
+> (age / edu / income hyper-/homo-/hypogamy) and whether ideation
+> predicts the *type* of marriage.
+
+## v2 headline (Part A2 — does ideation predict mating type?)
+
+Yes, especially on the **education** axis, and especially driven by the
+**wife's** own ideation.
+
+| Match type | 2014 β (wife ideation) | 2020 β (wife ideation) |
+|---|---|---|
+| **Edu hypergamy** (husband more educated) | **+0.220** (p < .001) | **+0.288** (p < .001) |
+| Edu homogamy                              | **−0.098** (p = .001) | **−0.127** (p < .001) |
+| Edu hypogamy (wife more educated)         | **−0.122** (p < .001) | **−0.161** (p < .001) |
+| **Income hypergamy** (husband-primary)    | +0.086 n.s.            | **+0.248** (p < .001) |
+| Income homogamy (dual earners)            | −0.021 n.s.            | **−0.209** (p = .002) |
+| Income hypogamy (wife-primary)            | −0.065 (p = .076)      | −0.039 n.s.            |
+| Age hypergamy (older husband)             | **−0.084** (p = .005)  | −0.008 n.s.            |
+| Age homogamy                              | **+0.063** (p = .036)  | −0.008 n.s.            |
+| Age hypogamy (older wife)                 | +0.021 (p = .088)      | +0.017 n.s.            |
+
+Substantively:
+
+1. **Education matching is the cleanest story.** Holding the husband's
+   ideation, couple age structure, urban hukou fixed, a full-range
+   ideation shift toward traditional (0 → 1 on the index) raises a
+   woman's probability of being in an educationally-hypergamous couple
+   (husband ≥ 3 more years of schooling) by **22 pp in 2014 and 29 pp
+   in 2020**, and pulls down her membership in both homogamy
+   (−10 / −13 pp) and hypogamy (−12 / −16 pp). The husband-side
+   coefficient is much smaller (−0.09 in 2014, ~zero in 2020), so
+   it's predominantly the wife's ideation that channels couples into
+   the patriarchal-default education arrangement.
+
+2. **Income hypergamy gained an ideation gradient between waves.**
+   In 2014, with limited income data (n = 1 634 couples with both
+   spouses' income), the ideation gradient on income matching was
+   not statistically significant. By 2020 (n = 1 796), the wife's
+   ideation strongly predicts income hypergamy (β = +0.25, p < .001):
+   traditional women are 25 pp more likely to be in a husband-primary-
+   earner couple, and 21 pp less likely in a dual-earner couple. The
+   husband's ideation also adds a small effect (+0.13 on hypergamy,
+   p = .044).
+
+3. **Age matching is the weakest signal.** In 2014, traditional women
+   were *less* likely in age hypergamy (β = −0.084, p = .005) and
+   more likely in age homogamy (β = +0.063, p = .036) — an unexpected
+   inverted pattern. In 2020 the gradient flips to the husband side:
+   traditional men more likely in age hypergamy (β = +0.08, p = .019),
+   less likely in homogamy. Possible explanations:
+   * Age hypergamy is so common (~35 % of all couples) and so
+     structurally determined by remarriage demographics that ideation
+     adds little variance.
+   * The within-cohort age sorting may be saturated; ideation acts on
+     the *kind* of age gap rather than its existence.
+
+4. **The "patriarchal default" composite**: traditional women, holding
+   constant the husband's ideation, are concentrated in couples that
+   are simultaneously education-hypergamous AND (by 2020) income-
+   hypergamous. This is the modal social-conservative arrangement.
+   Modern Chinese marriage is moving away from this pattern (national
+   educational expansion of women has made education hypogamy mechanically
+   more common — see the descriptive table below), but among holders
+   of traditional gender ideology, the old pattern persists.
+
+### What the descriptive cross-tab shows
+
+Take the education dimension, wife's ideation tertile, CFPS 2020:
+
+| Wife ideation tertile | % edu hypergamy | % edu homogamy | % edu hypogamy |
+|---|---|---|---|
+| Low (progressive)     | 27.9 % | 52.0 % | 20.1 % |
+| Mid                   | 40.0 % | 45.2 % | 14.8 % |
+| **High (traditional)** | **50.1 %** | 40.9 % | 9.1 % |
+
+50 % of the most-traditional women are in educationally-hypergamous
+couples vs. only 28 % of the most-progressive women. The flip side:
+20 % of progressive women are in hypogamous couples (more-educated wife
+than husband) vs. only 9 % of traditional women.
+
+This is one of the most substantively striking gradients in the entire
+project: gender ideology is **strongly tied to the conservative
+education-matching pattern**, especially on the female side.
+
+## v1 + v2 figures
+
+The 6 figures from v1 (couple-ideation scatter, dyadic forests,
+satisfaction-by-typology, ×2 waves) are unchanged. v2 adds **4 new
+figures**:
+
+* `mating_types_stacked_{2014,2020}.pdf` — 3×2 panel of stacked-bar
+  type composition by ideation tertile × predictor-spouse.
+* `mating_types_forest_{2014,2020}.pdf` — LPM β forest, ideation on
+  each (dimension × match_type × predictor).
 
 ## Headline
 
